@@ -50,7 +50,11 @@ include ("slider.php");
                                     <td>ชื่อ</td>  
                                     <td>หน่วยงาน</td>  
                                     <td>สถานะ</td>  
+<<<<<<< HEAD
                                     <td>asdsdsdsadsadsa</td> 
+=======
+                                    <td>action_ddddd</td> 
+>>>>>>> 2ebdeb25e34ee42ef3e2a49f04e3ba6478567275
                                </tr>  
                           </thead>  
                           <?php  
