@@ -30,7 +30,7 @@ body {
 </style>
 </head>
 <body>
-
+ 
 <div class="header">
   <div class="w3-bar w3-theme-aa w3-center-align w3-large w3-card-2">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
@@ -40,7 +40,7 @@ body {
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white w3-hover-text-teal w3-right">CONTACT</a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white w3-hover-text-teal w3-right">REPORT</a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white w3-hover-text-teal w3-right">MAP</a>
-  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white w3-hover-text-teal w3-right">MANAGE</a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white w3-hover-text-teal w3-right">aaaaaasss</a>
   
   <a href="index.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white w3-hover-text-teal w3-right">HOME</a>
  </div>
