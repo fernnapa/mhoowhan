@@ -54,7 +54,7 @@ if(mysqli_num_rows($result) > 0)
  {
   $output .= '
    <tr>
-   <td><img src="img/'.$row['emp_pic'].'" width="90px;" height="80px;" / class="w3-card-2 w3-round"></td>
+   <td><img src="upload/'.$row['emp_pic'].'" width="90px;" height="80px;" / class="w3-card-2 w3-round"></td>
    <td style="text-align:left">'.$row['emp_id'].'</td>
    <td style="text-align:left">'.$row['emp_fname'].'</td>
    <td style="text-align:left">'.$row['emp_lname'].'</td>

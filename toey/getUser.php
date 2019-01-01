@@ -37,7 +37,7 @@ echo '<link rel="stylesheet" href="style.css">';
 echo  
 '
 <tr>
-<td><img src="img/'.$pic.'" width="125px;" height="120px;" /></td>
+<td><img src="upload/'.$pic.'" width="125px;" height="120px;" /></td>
 </tr>
 <tr>
 <th style="text-align: center;">หมายเลขพนักงาน</th>
