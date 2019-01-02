@@ -1,6 +1,6 @@
 <?php  
-include ("header_user.php");
-include ("slider.php");
+// include ("header_user.php");
+// include ("slider.php");
  $connect = mysqli_connect("localhost", "root", "", "db_ccs");  
  $query ="SELECT * FROM allocate INNER JOIN status
  ON status.status_id = allocate.status_id
@@ -13,7 +13,7 @@ include ("slider.php");
       <head>  
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link rel="icon" href="img/logo_ccs.png" type="image/png">
+      <link rel="icon" href="img/logo11.png" type="image/png">
       <title>ระบบติดตามการใช้งานครุภัณฑ์ศูนย์คอมพิวเตอร์</title>
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
@@ -24,7 +24,7 @@ include ("slider.php");
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             
             
-            <!--font-->
+            <!-- font -->
             <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
 
             <style>
@@ -37,8 +37,8 @@ include ("slider.php");
             </style>
       </head>  
       <body>  
-           <br /><br />  
-           <div class="container">  
+           
+           <div class="container" style="width:80%">  
                 <h3 align="center">ระบบติดตามการใช้งานครุภัณฑ์คอมพิวเตอร์</h3>  
                 <br />  
                 <div class="table-responsive">  
@@ -50,15 +50,7 @@ include ("slider.php");
                                     <td>ชื่อ</td>  
                                     <td>หน่วยงาน</td>  
                                     <td>สถานะ</td>  
-<<<<<<< HEAD
                                     <td>action</td> 
-=======
-<<<<<<< HEAD
-                                    <td>asdsdsdsadsadsa</td> 
-=======
-                                    <td>action_ddddd</td> 
->>>>>>> 2ebdeb25e34ee42ef3e2a49f04e3ba6478567275
->>>>>>> fa65900daf432ed25d9695e596327398d22671b7
                                </tr>  
                           </thead>  
                           <?php  
@@ -79,25 +71,25 @@ include ("slider.php");
                      </table> 
 
                      <div class="modal fade" tabindex="-1" role="dialog" id="myModalView">
-                            <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                            <div class="modal-header">
+                         <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                              <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     <h4 class="modal-title">รายละเอียด</h4>
-                            </div>
-                                    <div class="modal-body">
+                              </div>
+                              <div class="modal-body">
                                             
-                                            <table style="width:90%" align="center" id="txtHint">
+                                   <table style="width:90%" align="center" id="txtHint">
                                                                                                     
-                                             </table>
-                                             
-                </div>  
-                <div class="modal-footer">
-                         <button type="reset" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
-               </div>
-               </div>       
-               </div> 
-           </div>  
+                                   </table>       
+                              </div>  
+                              <div class="modal-footer">
+                                             <button type="reset" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+                              </div>
+                              </div>
+                         </div>       
+                    </div> 
+               </div>  
       </body>  
  </html>
 

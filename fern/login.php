@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="loginBox">
-    <img class="user" src="img/user.png">
+    <img class="user" src="images/user.png">
     <h3>Sign in </h3>
     <form name="frmlogin"  method="post" action="check_log.php">
         <div class="inputBox">
