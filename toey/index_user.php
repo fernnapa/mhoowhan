@@ -14,7 +14,6 @@ include_once 'db_connect.php';
         
     <style>
             table, th, td    {
-                border: 1px solid black;
             }
             td {
                 padding: 5px;
@@ -46,7 +45,7 @@ include_once 'db_connect.php';
                     </div>
                             <div class="modal-body">
                                     <form id="upload_form" method="POST">
-                                            <table style="width:100%" align="center">
+                                            <table style="width:100%" align="center" border="1">
                                                 <tr>
                                                 </tr>
                                                 <tr>
@@ -125,7 +124,9 @@ include_once 'db_connect.php';
 <!-- /.modal edit-->
 
 <!-- /.data -->
-                    <table align="center" style="width:90%">
+                <div class="container w3-card-2 w3-round-large" style="width:90% " >  
+
+                    <table align="center" style="width:100%" border="0">
                         <tr>
                             <th colspan="7"><h4 style="text-align:center;"><b>ข้อมูลเจ้าหน้าที่</b></h4></th>
                         </tr>
@@ -137,7 +138,9 @@ include_once 'db_connect.php';
                         </form>                        
                         </tr>
                     </table>
-                    
+                    <br>
+                </div>  
+                <br>          
                     <div class="container w3-card-2" style="width:90% " >  
                     <div class="table-responsive" id="result">
                     <p></p>
