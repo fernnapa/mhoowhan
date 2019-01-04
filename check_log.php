@@ -21,14 +21,13 @@ session_start();
 
                       if($_SESSION["emp_status"]=="admin"){ //ถ้าเป็น admin ให้กระโดดไปหน้า admin_page.php
 
-                        Header("Location: index_admin.php");
+                        Header("Location: /mhoowhan/index_admin.php");
 
                       }
 
                       if ($_SESSION["emp_status"]=="member"){  //ถ้าเป็น member ให้กระโดดไปหน้า user_page.php
 
-                        Header("Location: index_emp.php");
-
+                        Header("Location: /mhoowhan/index_member.php");
                       }
 
                   }else{
@@ -42,7 +41,7 @@ session_start();
         }else{
 
 
-             Header("Location: login.php"); //user & password incorrect back to login again
+             Header("Location: /mhoowhan/login.php"); //user & password incorrect back to login again
 
         }
 ?>

@@ -62,6 +62,7 @@
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
 								<li class="active"><a href="index.php">Home</a></li>
+								<li><a href="#">Manage</a></li>
 								<li><a href="#">Map</a></li>
 								<li class="has-dropdown">
 									<a href="#">Report</a>
@@ -73,79 +74,14 @@
 									</ul>
 								</li>
 								<li><a href="#">About Me</a></li>
-								<li><a href="login.php">Login</a></li>
+								<li><a href="fern/logout.php">Logout</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 		</nav>
-		<aside id="colorlib-hero">
-			<div class="flexslider">
-				<ul class="slides">
-			   	<li style="background-image: url(images/img4.jpg);">
-			   		<div class="overlay"></div>
-			   		<div class="container">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-pull-3 col-sm-12 col-xs-12 col-md-offset-3 slider-text">
-				   				<div class="slider-text-inner">
-				   					<div class="desc">
-				   						<p class="meta">
-												<span class="cat"><a href="http://www.sut.ac.th/2012/news/detail/3/news20181215">Events</a></span>
-												<span class="date">| 12 มกราคม 2562</span>
-											</p>
-					   					<h1 align="center">วันเด็กแห่งชาติ ประจำปี 2562 </h1>
-										<h3 align="center">Children's Day </h3>
-										<h4>ณ อาคารสุรพัฒน์ 2 มหาวิทยาลัยเทคโนโลยีสุรนารี</h4>
-				   					</div>
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
-			   	<li style="background-image: url(images/img8.jpg);">
-			   		<div class="overlay"></div>
-			   		<div class="container">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-pull-3 col-sm-12 col-xs-12 col-md-offset-3 slider-text">
-				   				<div class="slider-text-inner">
-				   					<div class="desc">
-				   						<p class="meta">
-												<span class="cat"><a href="https://www.facebook.com/KasetSUT/">Events</a></span>
-												<span class="date">| 12-20 มกราคม 2562</span>
-											</p>
-											<h1 align="center">SAF 2019</h1>
-											<h3 align="center">เกษตรสุรนารี'62</h3>
-											<h4 align="center">ณ มหาวิทยาลัยเทคโนโลยีสุรนารี</h4>
-				   					</div>
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
-			   	<li style="background-image: url(images/img9.jpg);">
-			   		<div class="overlay"></div>
-			   		<div class="container">
-			   			<div class="row">
-				   			<div class="col-md-6 col-md-pull-3 col-sm-12 col-xs-12 col-md-offset-3 slider-text">
-				   				<div class="slider-text-inner">
-				   					<div class="desc">
-				   						<p class="meta">
-												<span class="cat"><a href="https://www.facebook.com/story.php?story_fbid=2169289539999620&id=2062108024051106">Events</a></span>
-												<span class="date">| 14-16 มกราคม 2562</span>
-												<span class="pos">By Sut-UKpsf</span>
-											</p>
-					   					<h1>SUT Teaching Academics Recognition Scheme (STARS)</h1>
-				   					</div>
-				   				</div>
-				   			</div>
-				   		</div>
-			   		</div>
-			   	</li>
-			  	</ul>
-		  	</div>
-		</aside>
-
+	
 
 	
 		<div id="colorlib-container">
