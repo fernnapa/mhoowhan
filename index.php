@@ -1,8 +1,8 @@
 <?php  
- $connect = mysqli_connect("localhost", "root", "", "db_ccs");  
- $query ="SELECT * FROM allocate INNER JOIN status
- ON status.status_id = allocate.status_id
- ORDER BY allocate_id ASC"; 
+ $connect = mysqli_connect("localhost", "root", "", "db_com");  
+ $query ="SELECT * FROM allocate INNER JOIN a_status
+ ON a_status.status_id = allocate.ac_status
+ ORDER BY ac_id ASC"; 
  mysqli_query($connect, "SET NAMES 'utf8' "); 
  $result = mysqli_query($connect, $query);  
  ?>  
@@ -158,12 +158,15 @@
                     		<table id="allocate_data" align="center" class="table table-striped table-bordered">  
                           		<thead>  
                                		<tr>  
-							   				<td style="text-align: center;">ลำดับที่</td>  
+							   				<td style="text-align: center;">ลำดับที่</td> 
+											<td style="text-align: center;">รหัสบาร์โคด</td>  
                                     		<td style="text-align: center;">รายการ</td>  
                                     		<td style="text-align: center;">ชื่อ</td>  
                                     		<td style="text-align: center;">หน่วยงาน</td>  
                                     		<td style="text-align: center;">สถานะ</td>  
-                                    		<td style="text-align: center;">action</td>  
+                                    		<td style="text-align: center;"></td>  
+											<td style="text-align: center;"></td>  
+
                                		</tr>  
                          		</thead>  
                           		<?php  
@@ -171,13 +174,16 @@
                           		{  
                                	echo '  
                                		<tr>  
-							   				<td style="text-align:center">'.$row["allocate_id"].'</td>  
-							   				<td style="text-align:left">'.$row["a_title"].'</td>  
-							   				<td style="text-align:left">'.$row["a_name"].'</td>  
-							   				<td style="text-align:left">'.$row["depart_name"].'</td>
+							   				<td width="10%" style="text-align:center">'.$row["ac_id"].'</td>  
+											<td style="text-align:left">'.$row["ac_barcode"].'</td>  
+											<td style="text-align:center">'.$row["ac_title"].'</td>
+							   				<td style="text-align:left">'.$row["ac_name"].'</td>  
+							   				<td style="text-align:left">'.$row["ac_dname"].'</td>
 							   				<td style="text-align:left">'.$row["status_name"].'</td>  
-							   				<td><form class="form-inline" onsubmit="openModal()" id="myFormView"><button type="submit" id="detail" class="btn btn-info btn-block" data-toggle="modal" data-target="#myModal" value="'.$row["allocate_id"].'" onclick="showDepartment(this.value)" form="myFormView"><i class="glyphicon glyphicon-file">&nbsp;</i>Detail</button></td> 
-						  			</tr>  
+							   				<td><button type="submit" id="detail" class="btn btn-info btn-block btn-sm" data-toggle="modal" data-target="#myModalView" value="'.$row["ac_id"].'" onclick="showAllocate('.$row["ac_id"].')" form="myFormView"><i class="glyphicon glyphicon-file">&nbsp;</i>รายละเอียด</button> </td>
+											<td><button type="submit" id="view" class="btn btn-success btn-block btn-sm" data-toggle="modal" data-target="#myModalView" value="'.$row["ac_id"].'" onclick="showPic('.$row["ac_id"].')" form="myFormView"><i class="glyphicon glyphicon-picture">&nbsp;</i>รูปภาพ</button> </td>
+
+									</tr>  
                                	';  
                           		}  
                           		?>  
@@ -204,6 +210,7 @@
 			</div>
 		</div>
 	</div>
+
 	<footer id="colorlib-footer" role="contentinfo">
 			<div class="container">
 				<div class="row">
@@ -276,9 +283,9 @@
         });
     </script>
             
-	<!-- /.script showmodal -->   
+	<!-- /.script show Detail -->   
 	<script>
-        function showDepartment(str) {
+        function showAllocate(str) {
         var xhttp;    
             if (str == "") {
                 document.getElementById("txtHint").innerHTML = "";
@@ -290,7 +297,27 @@
                 document.getElementById("txtHint").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "fern/select.php?id="+str, true);
+            xhttp.open("GET", "fern/getDetail.php?id="+str, true);
+            xhttp.send();
+        }
+    </script>	
+
+
+	<!-- /.script show View Pic -->   
+	<script>
+        function showPic(str) {
+        var xhttp;    
+            if (str == "") {
+                document.getElementById("txtHint").innerHTML = "";
+                return;
+            }
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "fern/getPic.php?id="+str, true);
             xhttp.send();
         }
     </script>	
