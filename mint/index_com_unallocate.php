@@ -5,7 +5,7 @@
 <html lang="en">
      <head>
           <meta charset="utf-8">
-          <title>เพิ่มข้อมูลการจัดสรรครุภัณฑ์ศูนย์คอมพิวเตอร์</title>
+          <title>เพิ่มข้อมูลรอการจัดสรรครุภัณฑ์ศูนย์คอมพิวเตอร์</title>
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <meta name="description" content="Import Excel File To MySql Database Using php">
 
@@ -36,7 +36,7 @@
                   <div class="row">
                         <div class="span3 hidden-phone"></div>
                              <div class="span6" id="form-login">
-          <form class="form-horizontal well" action="import_com_eq.php" method="post" name="upload_csv" enctype="multipart/form-data">
+          <form class="form-horizontal well" action="import_unallocate.php" method="post" name="upload_csv" enctype="multipart/form-data">
       <fieldset>
            <legend>เพิ่มไฟล์ข้อมูลประเภท CSV</legend>
 <div class="control-group">

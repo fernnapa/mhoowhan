@@ -40,8 +40,6 @@
                                     <td>Barcode</td>  
                                     <td>รายการ</td>  
                                     <td>SN Number</td> 
-                                    <td>หนังสืออ้างอิง</td> 
-                                    <td>ประเภท</td>  
                                     <td>สถานะ</td>
                                     <td>action</td>
                                     <td></td>
@@ -55,12 +53,10 @@
                                <tr>  
                                     <td>'.$row["bar_id"].'</td>
                                     <td>'.$row["com_list"].'</td>  
-                                    <td>'.$row["com_sn"].'</td>  
-                                    <td>'.$row["refer"].'</td>  
-                                    <td>'.$row["TOR"].'</td>  
+                                    <td>'.$row["com_sn"].'</td>   
                                     <td>'.$row["Status_com"].'</td>
                                     <form class="form-inline" onsubmit="openModal()" id="myFormEdit">
-                                    <td align="center"><button type="submit" id="detail"class="btn btn-info view_data" data-toggle="modal" data-target="#myModal" value="'.$row["com_no"].'" onclick="showDepartment(this.value)" form="myFormEdit"><i class="glyphicon glyphicon-pencil">&nbsp;</i>Detail</button></td>';  
+                                    <td align="center"><button type="submit" id="detail"class="btn btn-info view_data" data-toggle="modal" data-target="#myModal" value="'.$row["com_no"].'" onclick="showDepartment(this.value)" form="myFormEdit"><i class="glyphicon glyphicon-pencil">&nbsp;</i>ดูรายละเอียด</button></td>';  
                                     
                                     if ($row["Status_com"] == "จัดสรรแล้ว"){
 
