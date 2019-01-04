@@ -61,7 +61,16 @@
                                     <td>'.$row["Status_com"].'</td>
                                     <form class="form-inline" onsubmit="openModal()" id="myFormEdit">
                                     <td align="center"><button type="submit" id="detail"class="btn btn-info view_data" data-toggle="modal" data-target="#myModal" value="'.$row["com_no"].'" onclick="showDepartment(this.value)" form="myFormEdit"><i class="glyphicon glyphicon-pencil">&nbsp;</i>Detail</button></td>';  
-                                    echo"<td align='center'><a href='updatelist.php? com_no=$row[com_no]'< class='btn btn-success' data-role='update'>จัดสรร</a></button></td>";
+                                    
+                                    if ($row["Status_com"] == "จัดสรรแล้ว"){
+
+                                        echo"<td align='center'><a class='btn btn-danger' data-role='update'>จัดสรรแล้ว</a></button></td>";
+
+                                    }else{
+                                        echo"<td align='center'><a href='updatelist.php? com_no=$row[com_no]'< class='btn btn-success' data-role='update'>จัดสรร</a></button></td>";
+                                    }
+
+                                   
                         
                                 echo  "</tr>";
                                

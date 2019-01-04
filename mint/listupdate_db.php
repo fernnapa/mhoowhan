@@ -15,21 +15,45 @@ h1 {
 include('connection.php');  //ไฟล์เชื่อมต่อกับ database ที่เราได้สร้างไว้ก่อนหน้าน้ี
 
 //สร้างตัวแปรสำหรับรับค่าที่นำมาแก้ไขจากฟอร์ม
-	$bar_id = $_POST["bar_id"];
+	$bar_id = $_REQUEST["bar_id"];
                                         $Status_com =$_REQUEST["Status"];
 
 //ทำการปรับปรุงข้อมูลที่จะแก้ไขลงใน database 
 	
-	$sql = "UPDATE db_com SET  
+                  $sql = "UPDATE db_com SET  
 
-                                        Status_com ='$Status_com' 
-	WHERE bar_id ='$bar_id' ";		
+                  Status_com ='$Status_com' 
+                  WHERE bar_id ='$bar_id' ";		
 	
-$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+                  $result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
 
-mysqli_close($con); //ปิดการเชื่อมต่อ database 
+	
+	$bar_id = $_REQUEST["bar_id"];
+	$com_list = $_REQUEST["com_list"];
+	$com_sn = $_REQUEST["com_sn"];
+	$refer = $_REQUEST["refer"];
+	$TOR = $_REQUEST["TOR"];
+	$Status_com= $_REQUEST["Status"];
+	$ins_no = $_REQUEST["ins_no"];
+	$ins = $_REQUEST["ins"];
+	$prefix = $_REQUEST["prefix"];
+	$emp_name = $_REQUEST["emp_name"];
+	$position = $_REQUEST["position"];
+	$emp_id = $_REQUEST["emp_id"];
+	$category = $_REQUEST["category"];
+	$emp_no = $_REQUEST["emp_no"];
 
-//จาวาสคริปแสดงข้อความเมื่อบันทึกเสร็จและกระโดดกลับไปหน้าฟอร์ม
+                  $sql2 ="INSERT INTO `com_eq`(`bar_id`, `com_list`, `com_SN`, `com_refer`, `com_TOR`, `com_status`, `ins_no`, `ins_name`, `prefix`, `emp_name`, `emp_posi`, `emp_no`, `category`, `allocate_no`) 
+                  VALUES ('$bar_id','$com_list','$com_sn','$refer','$TOR','$Status_com','$ins_no','$ins','$prefix','$emp_name','$position',
+                  '$emp_id','$category','$emp_no')";
+                
+                  $query = mysqli_query($con, $sql2) or die (mysqli_error($con)); 
+
+
+                  mysqli_close($con); //ปิดการเชื่อมต่อ database 
+
+                  //จาวาสคริปแสดงข้อความเมื่อบันทึกเสร็จและกระโดดกลับไปหน้าฟอร์ม
+
 	
 	if($result){
 	echo "<script type='text/javascript'>";
