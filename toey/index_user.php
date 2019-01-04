@@ -107,7 +107,7 @@ include_once 'db_connect.php';
                             </div>
                                     <div class="modal-body">
                                             <form id="update_form" method="POST">
-                                            <table style="width:100%" align="center" id="txtHint">
+                                            <table style="width:100%" align="center" id="txtHint" border="1">
                                                
                                                
                                             
