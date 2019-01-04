@@ -81,8 +81,7 @@ extract($row);
                 <td align="right" bgcolor="#EBEBEB">ประเภทครุภัณฑ์(TOR) : </td>
                 <td bgcolor="#EBEBEB"><input name="TOR" type="text" id="TOR" value="<?=$TOR;?>" size="15" required="required" disabled='disabled'/>
                 <td align="right" bgcolor="#EBEBEB">สถานะ : </td>
-                <td bgcolor="#EBEBEB"><input name="Status" type="text" id="Status" value="<?=$Status_com;?>" size="15"   required="required"/></td>
-                </td>
+                <td bgcolor="#EBEBEB"><input name="Status" type="text" id="Status" value="<?=$Status_com;?>" size="15"   required="required"/> </td>
            </tr>
            <tr>
                  <td align="right" bgcolor="#EBEBEB">รหัสหน่วยงาน : </td>

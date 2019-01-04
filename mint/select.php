@@ -1,5 +1,5 @@
 <?php
-include ('con_db.php');
+include ('connection.php');
 mysqli_query($con, "SET NAMES 'utf8' "); 
 if(isset($_GET['id'])){
 
