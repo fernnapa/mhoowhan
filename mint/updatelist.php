@@ -65,21 +65,21 @@ extract($row);
            </tr>
            <tr>
                 <td  align="right" bgcolor="#EBEBEB">BarCode : </td>
-                <td  bgcolor="#EBEBEB"><input name="barcode" type="text" id="bar_id" value="<?=$bar_id;?>" size="15" required="required" disabled='disabled'/>
+                <td  bgcolor="#EBEBEB"><input name="bar_id" type="text" id="bar_id" value="<?=$bar_id;?>" size="15" required="required" readonly/>
                 <td  align="right" bgcolor="#EBEBEB">รายการ : </td>
-                <td  bgcolor="#EBEBEB"><input name="member_lname" type="text" id="com_list" value="<?=$com_list;?>" size="20" required="required" disabled='disabled'/></td>
+                <td  bgcolor="#EBEBEB"><input name="member_lname" type="text" id="com_list" value="<?=$com_list;?>" size="20" required="required" readonly/></td>
                 </td>
            </tr>
            <tr>
                 <td  align="right" bgcolor="#EBEBEB">SN Number : </td>
-                <td  bgcolor="#EBEBEB"><input type="text" name="username" id="com_sn" value="<?=$com_sn;?>"  required="required" disabled='disabled'/>
+                <td  bgcolor="#EBEBEB"><input type="text" name="username" id="com_sn" value="<?=$com_sn;?>"  required="required" readonly/>
                 <td align="right" bgcolor="#EBEBEB">หนังสืออ้างอิง : </td>
-                <td bgcolor="#EBEBEB"><input type="text" name="password" id="refer" value="<?=$refer;?>" size="15" required="required" disabled='disabled'/></td>
+                <td bgcolor="#EBEBEB"><input type="text" name="password" id="refer" value="<?=$refer;?>" size="15" required="required" readonly/></td>
                 </td>
            </tr>
            <tr>
                 <td align="right" bgcolor="#EBEBEB">ประเภทครุภัณฑ์(TOR) : </td>
-                <td bgcolor="#EBEBEB"><input name="TOR" type="text" id="TOR" value="<?=$TOR;?>" size="15" required="required" disabled='disabled'/>
+                <td bgcolor="#EBEBEB"><input name="TOR" type="text" id="TOR" value="<?=$TOR;?>" size="15" required="required" readonly/>
                 <td align="right" bgcolor="#EBEBEB">สถานะ : </td>
                 <td bgcolor="#EBEBEB"><input name="Status" type="text" id="Status" value="<?=$Status_com;?>" size="15"   required="required"/> </td>
            </tr>
@@ -120,3 +120,5 @@ extract($row);
           </tr>
         </div>
         </table>
+
+        </form>

@@ -15,25 +15,16 @@ h1 {
 include('connection.php');  //ไฟล์เชื่อมต่อกับ database ที่เราได้สร้างไว้ก่อนหน้าน้ี
 
 //สร้างตัวแปรสำหรับรับค่าที่นำมาแก้ไขจากฟอร์ม
-	$com_no = $_REQUEST["com_no"];
-	$bar_id = $_REQUEST["bar_id"];
-	$com_list = $_REQUEST["com_list"];
-	$com_sn = $_REQUEST["com_sn"];
-	$refer = $_REQUEST["refer"];	
-                                        $TOR = $_REQUEST["TOR"];
-                                        $Status_com =$_REQUEST["Status_com"];
+	$bar_id = $_POST["bar_id"];
+                                        $Status_com =$_REQUEST["Status"];
 
 //ทำการปรับปรุงข้อมูลที่จะแก้ไขลงใน database 
 	
 	$sql = "UPDATE db_com SET  
-	bar_id='$bar_id' ,
-	com_list='$com_list' , 
-	com_sn='$com_sn' ,
-	refer='$refer' ,
-	TOR='$TOR' ,
-                                        Status_com ='$Status_com' 
-	WHERE com_no='$com_no' ";		
 
+                                        Status_com ='$Status_com' 
+	WHERE bar_id ='$bar_id' ";		
+	
 $result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
 
 mysqli_close($con); //ปิดการเชื่อมต่อ database 
@@ -50,5 +41,6 @@ mysqli_close($con); //ปิดการเชื่อมต่อ database
 	echo "<script type='text/javascript'>";
 	echo "alert('บันทึกการจัดสรรไม่สำเร็จ');";
 	echo "</script>";
-}
+	}
+
 ?>
