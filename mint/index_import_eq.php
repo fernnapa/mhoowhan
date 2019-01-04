@@ -73,7 +73,7 @@
              </thead>
 <?php
 		
-             $result_set =  mysqli_query( $conn, "SELECT * FROM com_eq ");
+             $result_set =  mysqli_query( $con, "SELECT * FROM com_eq ");
              while($row = mysqli_fetch_array($result_set))
              {
 ?>

@@ -12,11 +12,11 @@ include ("connection.php");
          while (($Data = fgetcsv($file, 100000, ",")) !== FALSE)
       {
 			 
-          $result_check = mysqli_query($conn, "SELECT * FROM com_eq WHERE bar_id='" . $Data[0] . "'");
+          $result_check = mysqli_query($con, "SELECT * FROM com_eq WHERE bar_id='" . $Data[0] . "'");
          if(mysqli_num_rows($result_check) > 0){
                $check_repeat = 1;
          }else{
-               $result = mysqli_query($conn, "INSERT INTO `com_eq`(`bar_id`, `com_list`, `com_SN`, `com_refer`, `ins_no`, `ins_name`, `prefix`, `emp_name`, `emp_posi`, `emp_no`, `category`) 
+               $result = mysqli_query($con, "INSERT INTO `com_eq`(`bar_id`, `com_list`, `com_SN`, `com_refer`, `ins_no`, `ins_name`, `prefix`, `emp_name`, `emp_posi`, `emp_no`, `category`) 
                                                            values('$Data[0]','$Data[1]','$Data[9]','$Data[10]','$Data[2]','$Data[3]','$Data[4]','$Data[5]','$Data[6]','$Data[7]','$Data[8]')" ) or die ('Error');
          if(! $result){
                echo "<script type=\"text/javascript\">
