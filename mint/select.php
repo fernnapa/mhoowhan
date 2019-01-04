@@ -42,19 +42,19 @@ $status="";
 </tr>
 <tr>
      <td style="text-align: left;">SN Number</td>
-     <td><input type="text" id="dep_id" name="dep_id" style="width:99%" value="'.$sn.'" readonly>  </td>
+     <td><input type="text" id="com_sn" name="com_sn" style="width:99%" value="'.$sn.'" readonly>  </td>
 </tr>
 <tr>
      <td style="text-align: left;">หนังสืออ้างอิง</td>
-     <td><input type="text" id="dep_name" name="dep_name" style="width:99%" value="'.$refer.'" readonly>  </td>
+     <td><input type="text" id="refer" name="refer" style="width:99%" value="'.$refer.'" readonly>  </td>
 </tr>
 <tr>
      <td style="text-align: left;">ประเภทครุภัณฑ์(TOR)</td>
-     <td><input type="text" id="dep_name" name="dep_name" style="width:99%" value="'.$tor.'" readonly>  </td>
+     <td><input type="text" id="TOR" name="TOR" style="width:99%" value="'.$tor.'" readonly>  </td>
 </tr>
 <tr>
      <td style="text-align: left;">สถานะ</td>
-     <td><input type="text" id="al_name" name="al_name" style="width:99%" value="'.$status.'" readonly>  </td>
+     <td><input type="text" id="Status" name="Status" style="width:99%" value="'.$status.'" readonly>  </td>
 </tr>    
 <tr>
      <td style="text-align: left;">รหัสหน่วยงาน  </td>

@@ -91,7 +91,7 @@ extract($row);
            </tr>
            <tr>
                  <td align="right" bgcolor="#EBEBEB">รหัสหน่วยงาน : </td>
-                 <td bgcolor="#EBEBEB"><input name="ins_no" type="text" id="ins_no"  required="required"/>
+                 <td bgcolor="#EBEBEB"><input name="ins_no" type="text" id="ins_no"  required pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น"/>
                  <td align="right" bgcolor="#EBEBEB">หน่วยงาน : </td>
                  <td bgcolor="#EBEBEB"><input name="ins" type="text" id="ins"  required="required"/></td>
                  </td>
@@ -107,14 +107,14 @@ extract($row);
                  <td align="right" bgcolor="#EBEBEB">ตำแหน่ง : </td>
                  <td bgcolor="#EBEBEB"><input name="position" type="text" id="position"  required="required"/>
                  <td align="right" bgcolor="#EBEBEB">รหัสพนักงาน : </td>
-                 <td bgcolor="#EBEBEB"><input name="emp_id" type="text" id="emp_id"  required="required"/></td>
+                 <td bgcolor="#EBEBEB"><input name="emp_id" type="text" id="emp_id"  required  pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น"/></td>
                  </td>
            </tr>
            <tr>
                  <td align="right" bgcolor="#EBEBEB">ประเภท : </td>
                  <td bgcolor="#EBEBEB"><input name="category" type="text" id="category"  required="required"/>
                  <td align="right" bgcolor="#EBEBEB">รหัสพนักงานจัดสรร : </td>
-                 <td bgcolor="#EBEBEB"><input name="emp_no" type="text" id="emp_no"  required="required"/></td>
+                 <td bgcolor="#EBEBEB"><input name="emp_no" type="text" id="emp_no"  required pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น"/></td>
                  </td>
            </tr>
            </table>
