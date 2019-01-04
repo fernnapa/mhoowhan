@@ -10,7 +10,6 @@ include_once 'db_connect.php';
         
     <style>
             table, th, td    {
-                border: 1px solid black;
             }
             td {
                 padding: 5px;
@@ -30,7 +29,7 @@ include_once 'db_connect.php';
                 <br><br><br><br><br>          
 <!-- /.modal add-->
                 <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog" role="document" style="width:60%">
                     <div class="modal-content">
                     <div class="modal-header">
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -38,19 +37,20 @@ include_once 'db_connect.php';
                     </div>
                             <div class="modal-body">
                                     <form id="form1">
-                                            <table style="width:90%" align="center">
+                                            <table style="width:100%" align="center" border="1">
                                                 <tr>
                                                 </tr>
                                                 <tr>
-                                                    <th style="text-align: center;">ชื่อหน่วยงาน</th>
-                                                    <th style="text-align: center;">แลตติจูด</th>
-                                                    <th style="text-align: center;">ลองติจูด</th>
+                                                    <th style="text-align: left;">หมายเลขหน่วยงาน</th>
+                                                    <th style="text-align: left;">ชื่อหน่วยงาน</th>
+                                                    <th style="text-align: left;">แลตติจูด</th>
+                                                    <th style="text-align: left;">ลองติจูด</th>
                                                 </tr>
                                                 <tr>
-                                                    <td><input type="text" id="dep_name" name="dep_name" style="width:99%"></td>
-                                                    
-                                                    <td><input type="text" id="dep_latitude" name="dep_latitude" style="width:99%"></td>
-                                                    <td><input type="text" id="dep_longtitude" name="dep_longtitude" style="width:99%"></td>
+                                                    <td><input type="text" id="dep_no" name="dep_no" style="width:99%" class="form-control"></td>
+                                                    <td><input type="text" id="dep_name" name="dep_name" style="width:99%" class="form-control"></td>
+                                                    <td><input type="text" id="dep_latitude" name="dep_latitude" style="width:99%" class="form-control"></td>
+                                                    <td><input type="text" id="dep_longtitude" name="dep_longtitude" style="width:99%" class="form-control"></td>
                                                 </tr>
                                             </table>
                                     </form>
@@ -65,7 +65,7 @@ include_once 'db_connect.php';
 <!-- /.modal add-->
 <!-- /.modal edit-->
                 <div class="modal fade" tabindex="-1" role="dialog" id="myModal2">
-                            <div class="modal-dialog" role="document">
+                            <div class="modal-dialog" role="document" style="width:50%">
                             <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -73,13 +73,14 @@ include_once 'db_connect.php';
                             </div>
                                     <div class="modal-body">
                                             <form id="form2">
-                                                    <table style="width:90%" align="center">
+                                                    <table style="width:90%" align="center" border="1">
                                                         <tr>
                                                         </tr>
                                                         <tr>
-                                                            <th style="text-align: center;">ชื่อหน่วยงาน</th>
-                                                            <th style="text-align: center;">แลตติจูด</th>
-                                                            <th style="text-align: center;">ลองติจูด</th>
+                                                            <th style="text-align: left;">หมายเลขหน่วยงาน</th>
+                                                            <th style="text-align: left;">ชื่อหน่วยงาน</th>
+                                                            <th style="text-align: left;">แลตติจูด</th>
+                                                            <th style="text-align: left;">ลองติจูด</th>
                                                         </tr>
                                                         <tr id="txtHint">
                                                            
@@ -97,26 +98,30 @@ include_once 'db_connect.php';
 <!-- /.modal edit-->
 
 <!-- /.data -->
-                    <table align="center" style="width:60%">
+            <div class="container w3-card-2 w3-round-large" style="width:70% " >          
+                    <table align="center" style="width:100%">
                         <tr>
                             <th colspan="7"><h4 style="text-align:center;"><b>ข้อมูลหน่วยงาน</b></h4></th>
                         </tr>
                         <tr>
                         <form class="form-inline" onsubmit="openModal()" id="myForm">
-                        <th colspan="6"><input type="text" style="width:100%;" size="50" name="search_text" id="search_text"></th>
+                        <th colspan="6"><input type="text" style="width:100%;" size="50" name="search_text" id="search_text" class="form-control"></th>
                         <th style="text-align:right;"><button type="submit" class="btn btn-success btn-block">เพิ่มข้อมูล</button></th>
                         
                         </form>                        
                         </tr>
                     </table>
-                    
-                    <div class="container w3-card-2" style="width:60% " >  
+                    <br>
+            </div>
+            <br>
+            <div class="container w3-card-2 w3-round-large" style="width:70% " >          
                     <div class="table-responsive" id="result">
                     <p></p>
                     <form id="form3"> 
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
                     <tr >
+                        <td style="text-align: center;">หมายเลขหน่วยงาน</td>
                         <td style="text-align: center;">ชื่อหน่วยงาน</td>
                         <td style="text-align: center;">แลตติจูด</td>
                         <td style="text-align: center;">ลองติจูด</td>
@@ -131,6 +136,7 @@ include_once 'db_connect.php';
                        $result = mysqli_query($conn, $sql);
                        while($data = mysqli_fetch_array($result)):
                     ?>
+                        <td style="text-align:left"><?php echo $data['dep_no']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['latitude']; ?></td>
                         <td style="text-align:left"><?php echo $data['longtitude']; ?></td>
@@ -141,6 +147,7 @@ include_once 'db_connect.php';
                 </table>
                 </form>
                 </div>
+                
                 </div>
 <!-- /.data -->
 <!-- /.script modal add -->

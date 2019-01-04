@@ -3,7 +3,9 @@
 
 require_once 'db_connect.php';
 
-      if($_POST['dep_name'] != ""  && $_POST['dep_latitude'] != "" && $_POST['dep_longtitude'] != ""){
+      if($_POST['dep_no'] != ""  && $_POST['dep_name'] != ""  && $_POST['dep_latitude'] != "" && $_POST['dep_longtitude'] != ""){
+        
+        $dep_no = mysqli_escape_string($conn, $_POST['dep_no']); 
         $dep_name = mysqli_escape_string($conn, $_POST['dep_name']); 
         $dep_latitude = mysqli_escape_string($conn, $_POST['dep_latitude']); 
         $dep_longtitude = mysqli_escape_string($conn, $_POST['dep_longtitude']); 
@@ -16,8 +18,8 @@ require_once 'db_connect.php';
                $data = 2;
                 echo $data;
         }else{
-                $sql = "INSERT INTO `department`(`dep_name`, `latitude`, `longtitude`) VALUES 
-                      ('$dep_name','$dep_latitude','$dep_longtitude')";
+                $sql = "INSERT INTO `department`( `dep_no`,`dep_name`, `latitude`, `longtitude`) VALUES 
+                      ('$dep_no','$dep_name','$dep_latitude','$dep_longtitude')";
         
                         if(mysqli_query($conn, $sql)){
                                       $data = 1; 
