@@ -7,8 +7,11 @@ if(isset($_GET['id'])){
  }
  
  
- $sql = "SELECT *
-FROM db_com WHERE com_no = $id";
+ $sql = "SELECT * FROM db_com 
+ LEFT JOIN com_eq ON com_eq.bar_id = db_com.barcode_id
+ 
+ 
+ WHERE com_no = $id";
 
 $barcode="";
 $list="";
@@ -16,17 +19,34 @@ $sn="";
 $refer="";
 $tor="";
 $status="";
+$ins_no="";
+$ins="";
+$ins ="";
+$prefix ="";
+$emp_name ="";
+$emp_posi ="";
+$emp_no ="";
+$category ="";
+$allocate_no ="";
 
  
  $rs = $con->query($sql);
  while($row = mysqli_fetch_assoc($rs)){
-     $barcode = $row["bar_id"];
-     $list = $row["com_list"];
-     $sn = $row["com_sn"];
+     $barcode = $row["barcode_id"];
+     $list = $row["list_com"];
+     $sn = $row["SN"];
      $refer = $row["refer"];
      $tor = $row["TOR"];
      $status = $row["Status_com"];
-    
+     $ins_no = $row["ins_no"];
+     $ins = $row["ins_name"];
+     $prefix = $row["prefix"];
+     $emp_name = $row["emp_name"];
+     $emp_posi = $row["emp_posi"];
+     $emp_no = $row["emp_no"];
+     $category = $row["category"];
+     $allocate_no = $row["allocate_no"];
+ 
  }
  
  
@@ -34,7 +54,7 @@ $status="";
 '<table style="width:90%" align="center">
  <tr>
      <td style="text-align: left;">Barcode</td>
-     <td><input type="text" id="bar_code" name="bar_code" style="width:99%" value="'.$barcode.'" readonly>  </td>
+     <td><input type="text" id="barcode_id" name="barcode_id" style="width:99%" value="'.$barcode.'" readonly>  </td>
 </tr>
 <tr>
      <td style="text-align: left;">รายการ</td>
@@ -42,7 +62,7 @@ $status="";
 </tr>
 <tr>
      <td style="text-align: left;">SN Number</td>
-     <td><input type="text" id="com_sn" name="com_sn" style="width:99%" value="'.$sn.'" readonly>  </td>
+     <td><input type="text" id="SN" name="SN" style="width:99%" value="'.$sn.'" readonly>  </td>
 </tr>
 <tr>
      <td style="text-align: left;">หนังสืออ้างอิง</td>
@@ -58,35 +78,35 @@ $status="";
 </tr>    
 <tr>
      <td style="text-align: left;">รหัสหน่วยงาน  </td>
-     <td><input name="ins_no" type="text" id="ins_no" style="width:99%" value="" readonly></td>
+     <td><input name="ins_no" type="text" id="ins_no" style="width:99%" value="'.$ins_no.'" readonly></td>
 </tr>
 <tr>
     <td style="text-align: left;">หน่วยงาน  </td>
-    <td ><input name="ins" type="text" id="ins" style="width:99%" value="" readonly/></td>
+    <td ><input name="ins" type="text" id="ins" style="width:99%" value="'.$ins.'" readonly/></td>
 </tr>
 <tr>
     <td style="text-align: left;">คำนำหน้า  </td>
-    <td><input name="prefix" type="text" id="prefix" style="width:99%" value="" readonly/></td>
+    <td><input name="prefix" type="text" id="prefix" style="width:99%" value="'.$prefix.'" readonly/></td>
 </tr>  
 <tr>
     <td style="text-align: left;">ชื่อผู้เช่ายืม  </td>
-    <td><input name="emp_name" type="text" id="emp_name" style="width:99%" value="" readonly/></td>
+    <td><input name="emp_name" type="text" id="emp_name" style="width:99%" value="'.$emp_name.'" readonly/></td>
 </tr>
 <tr>
     <td style="text-align: left;">ตำแหน่ง  </td>
-    <td><input name="position" type="text" id="position" style="width:99%" value="" readonly/></td>
+    <td><input name="position" type="text" id="position" style="width:99%" value="'.$emp_posi.'" readonly/></td>
 </tr>
 <tr>
     <td style="text-align: left;">รหัสพนักงาน </td>
-    <td><input name="emp_id" type="text" id="emp_id" style="width:99%" value="" readonly/></td>
+    <td><input name="emp_id" type="text" id="emp_id" style="width:99%" value="'.$emp_no.'" readonly/></td>
 </tr>
 <tr>
     <td style="text-align: left;">ประเภท  </td>
-    <td ><input name="category" type="text" id="category" style="width:99%" value="" readonly/></td>
+    <td ><input name="category" type="text" id="category" style="width:99%" value="'.$category.'" readonly/></td>
 <tr/>
 <tr>
     <td style="text-align: left;">รหัสพนักงานจัดสรร  </td>
-    <td><input name="emp_no" type="text" id="emp_no" style="width:99%" value="" readonly/></td>
+    <td><input name="emp_no" type="text" id="emp_no" style="width:99%" value="'.$allocate_no.'" readonly/></td>
 </tr>                                      
  </tr>
  </table>';

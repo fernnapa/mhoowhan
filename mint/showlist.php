@@ -1,6 +1,7 @@
 <?php  
  include('connection.php');
- $query ="SELECT * FROM db_com ORDER BY com_no DESC";  
+ $query ="SELECT * FROM db_com 
+ ORDER BY com_no DESC";  
  $result = mysqli_query($con, $query);  
  ?>  
  <!DOCTYPE html>  
@@ -41,8 +42,9 @@
                                     <td>รายการ</td>  
                                     <td>SN Number</td> 
                                     <td>สถานะ</td>
-                                    <td>action</td>
-                                    <td></td>
+                                    <td width ="15">action</td>
+                                    <td width ="15"></td>
+                                    <td width ="15"></td>
                                     
                                </tr>  
                           </thead>  
@@ -51,9 +53,9 @@
                           {  
                                echo '  
                                <tr>  
-                                    <td>'.$row["bar_id"].'</td>
-                                    <td>'.$row["com_list"].'</td>  
-                                    <td>'.$row["com_sn"].'</td>   
+                                    <td>'.$row["barcode_id"].'</td>
+                                    <td>'.$row["list_com"].'</td>  
+                                    <td>'.$row["SN"].'</td>   
                                     <td>'.$row["Status_com"].'</td>
                                     <form class="form-inline" onsubmit="openModal()" id="myFormEdit">
                                     <td align="center"><button type="submit" id="detail"class="btn btn-info view_data" data-toggle="modal" data-target="#myModal" value="'.$row["com_no"].'" onclick="showDepartment(this.value)" form="myFormEdit"><i class="glyphicon glyphicon-pencil">&nbsp;</i>ดูรายละเอียด</button></td>';  
@@ -65,8 +67,12 @@
                                     }else{
                                         echo"<td align='center'><a href='updatelist.php? com_no=$row[com_no]'< class='btn btn-success' data-role='update'>จัดสรร</a></button></td>";
                                     }
-
-                                   
+                                     
+                                    if ($row["Status_com"] == "รอจัดสรร"){
+                                        echo"<td align='center'><a class='btn btn-warning' data-role='update'>แก้ไข</a></button></td>";
+                                   }else{
+                                        echo"<td align='center'><a href='editlist.php? com_no=$row[com_no]'< class='btn btn-warning' data-role='update'>แก้ไข</a></button></td>";
+                                   }
                         
                                 echo  "</tr>";
                                

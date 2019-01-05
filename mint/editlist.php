@@ -48,14 +48,16 @@ include('connection.php');
 
  
 $com_no = $_REQUEST["com_no"];
-$sql = "SELECT * FROM db_com WHERE com_no='$com_no' ";
+$sql = "SELECT * FROM db_com 
+LEFT JOIN com_eq ON com_eq.bar_id = db_com.barcode_id 
+WHERE com_no='$com_no' ";
 $result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
 $row = mysqli_fetch_array($result);
 extract($row);
 ?>
 
 
-        <form action="listupdate_db.php" method="post" name="updateuser" id="updateuser">
+        <form action="listEdit.php" method="post" name="updateuser" id="updateuser">
 <br />
         <table width="800" border="0" align="center" cellpadding="0" cellspacing="0">   
            <div class="container" align="center">  
@@ -65,56 +67,52 @@ extract($row);
            </tr>
            <tr>
                 <td  align="right" bgcolor="#EBEBEB">BarCode : </td>
-                <td  bgcolor="#EBEBEB"><input name="barcode_id" type="text" id="barcode_id" value="<?=$barcode_id;?>" size="15" required="required" readonly/>
+                <td  bgcolor="#EBEBEB"><input name="barcode_id" type="text" id="barcode_id" value="<?=$bar_id;?>" size="15" required="required" readonly/>
                 <td  align="right" bgcolor="#EBEBEB">รายการ : </td>
-                <td  bgcolor="#EBEBEB"><input name="list_com" type="text" id="list_com" value="<?=$list_com;?>" size="20" required="required" readonly/></td>
+                <td  bgcolor="#EBEBEB"><input name="list_com" type="text" id="list_com" value="<?=$com_list;?>" size="20" required="required" readonly/></td>
                 </td>
            </tr>
            <tr>
                 <td  align="right" bgcolor="#EBEBEB">SN Number : </td>
-                <td  bgcolor="#EBEBEB"><input type="text" name="SN" id="SN" value="<?=$SN;?>"  required="required" readonly/>
+                <td  bgcolor="#EBEBEB"><input type="text" name="SN" id="SN" value="<?=$com_SN;?>"  required="required" readonly/>
                 <td align="right" bgcolor="#EBEBEB">หนังสืออ้างอิง : </td>
                 <td bgcolor="#EBEBEB"><input type="text" name="refer" id="refer" value="<?=$refer;?>" size="15" required="required" readonly/></td>
                 </td>
            </tr>
            <tr>
                 <td align="right" bgcolor="#EBEBEB">ประเภทครุภัณฑ์(TOR) : </td>
-                <td bgcolor="#EBEBEB"><input name="TOR" type="text" id="TOR" value="<?=$TOR;?>" size="15" required="required" readonly/>
+                <td bgcolor="#EBEBEB"><input name="TOR" type="text" id="TOR" value="<?=$com_TOR;?>" size="15" required="required" readonly/>
                 <td align="right" bgcolor="#EBEBEB">สถานะ : </td>
-                <td bgcolor="#EBEBEB">
-                    <select name="Status" id="Status" required="required"/>
-                        <option value="">โปรดเลือก</option>
-                        <option value="รอจัดสรร">รอจัดสรร</option>
-                        <option value="จัดสรรแล้ว">จัดสรรแล้ว</option>
-                        </select></td>
+                <td bgcolor="#EBEBEB"><input type="text" name="Status" id="Status" value="<?=$com_status;?>" size="15" required="required" readonly/></td>
+                    
                
            </tr>
            <tr>
                  <td align="right" bgcolor="#EBEBEB">รหัสหน่วยงาน : </td>
-                 <td bgcolor="#EBEBEB"><input name="ins_no" type="text" id="ins_no"  required pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น"/>
+                 <td bgcolor="#EBEBEB"><input name="ins_no" type="text" id="ins_no" value="<?=$ins_no;?>" required pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น"/>
                  <td align="right" bgcolor="#EBEBEB">หน่วยงาน : </td>
-                 <td bgcolor="#EBEBEB"><input name="ins" type="text" id="ins"  required="required"/></td>
+                 <td bgcolor="#EBEBEB"><input name="ins" type="text" id="ins" value="<?=$ins_name;?>"required="required"/></td>
                  </td>
            </tr>
            <tr>
                  <td align="right" bgcolor="#EBEBEB">คำนำหน้า : </td>
-                 <td bgcolor="#EBEBEB"><input name="prefix" type="text" id="prefix"  required="required"/>
+                 <td bgcolor="#EBEBEB"><input name="prefix" type="text" id="prefix" value="<?=$prefix;?>" required="required"/>
                  <td align="right" bgcolor="#EBEBEB">ชื่อผู้เช่ายืม : </td>
-                 <td bgcolor="#EBEBEB"><input name="emp_name" type="text" id="emp_name"  required="required"/></td>
+                 <td bgcolor="#EBEBEB"><input name="emp_name" type="text" id="emp_name" value="<?=$emp_name;?>" required="required"/></td>
                  </td>
            </tr>
            <tr>
                  <td align="right" bgcolor="#EBEBEB">ตำแหน่ง : </td>
-                 <td bgcolor="#EBEBEB"><input name="position" type="text" id="position"  required="required"/>
+                 <td bgcolor="#EBEBEB"><input name="position" type="text" id="position" value="<?=$emp_posi;?>" required="required"/>
                  <td align="right" bgcolor="#EBEBEB">รหัสพนักงาน : </td>
-                 <td bgcolor="#EBEBEB"><input name="emp_id" type="text" id="emp_id"  required  pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น"/></td>
+                 <td bgcolor="#EBEBEB"><input name="emp_id" type="text" id="emp_id" value="<?=$emp_no;?>" required  pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น"/></td>
                  </td>
            </tr>
            <tr>
                  <td align="right" bgcolor="#EBEBEB">ประเภท : </td>
-                 <td bgcolor="#EBEBEB"><input name="category" type="text" id="category"  required="required"/>
+                 <td bgcolor="#EBEBEB"><input name="category" type="text" id="category" value="<?=$category;?>" required="required"/>
                  <td align="right" bgcolor="#EBEBEB">รหัสพนักงานจัดสรร : </td>
-                 <td bgcolor="#EBEBEB"><input name="emp_no" type="text" id="emp_no"  required pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น"/></td>
+                 <td bgcolor="#EBEBEB"><input name="emp_no" type="text" id="emp_no" value="<?=$allocate_no;?>" required pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น"/></td>
                  </td>
            </tr>
            </table>
