@@ -12,7 +12,18 @@
           <link rel="stylesheet" href="css/bootstrap.min-import.css">
           <link rel="stylesheet" href="css/bootstrap-responsive.min-import.css">
           <link rel="stylesheet" href="css/bootstrap-custom-import.css">
+          
+          <!--font-->
+          <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
 
+     <style>
+     body {
+        font-family: 'Kanit', sans-serif;
+     }
+     h1 {
+        font-family: 'Kanit', sans-serif;
+     }
+</style>
 
 </head>
 <body>    
@@ -38,7 +49,7 @@
                              <div class="span6" id="form-login">
           <form class="form-horizontal well" action="import_unallocate.php" method="post" name="upload_csv" enctype="multipart/form-data">
       <fieldset>
-           <legend>เพิ่มไฟล์ข้อมูลประเภท CSV</legend>
+           <legend>เพิ่มข้อมูลรอการจัดสรรครุภัณฑ์ศูนย์คอมพิวเตอร์</legend>
 <div class="control-group">
          <div class="control-label">
               <label>ไฟล์ข้อมูล CSV :</label>
@@ -63,28 +74,33 @@
           <table class="table table-bordered" >
              <thead>
                       <tr>
-	<th width="10%">ลำดับที่</th>
-	<th>Bar Code</th>
-	<th>รายการ</th>
-	<th>ชื่อผู้เช่ายืม</th>
-	<th>หน่วยงาน</th>	
-	<th width="15%">Serial Number.</th>				 
+	                    <th width="10%">ลำดับที่</th>
+	                    <th>Bar Code</th>
+	                    <th>รายการ</th>
+	                    <th width="15%">Serial Number.</th>
+                         <th>ประเภทครุภัณฑ์(TOR)</th>
+	                    <th>สถานะ</th>	
+                         <th> </th>				 
                       </tr>	
              </thead>
 <?php
 		
-             $result_set =  mysqli_query( $con, "SELECT * FROM com_eq ");
+             $result_set =  mysqli_query( $con, "SELECT * FROM db_com ");
              while($row = mysqli_fetch_array($result_set))
              {
 ?>
 			
                       <tr>
-	<td><?php echo $row['com_id']; ?></td>
-	<td><?php echo $row['bar_id']; ?></td>
-	<td><?php echo $row['com_list']; ?></td>
-	<td><?php echo $row['emp_name']; ?></td>
-	<td><?php echo $row['ins_name']; ?></td>
-	<td><?php echo $row['com_SN']; ?></td>
+	<td><?php echo $row['com_no']; ?></td>
+	<td><?php echo $row['barcode_id']; ?></td>
+	<td><?php echo $row['list_com']; ?></td>
+	<td><?php echo $row['SN']; ?></td>
+     <td><?php echo $row['TOR']; ?></td>
+	<td><?php echo $row['Status_com']; ?></td>
+     <form class="form-inline" onsubmit="openModal()" id="myFormEdit">
+     <td><button type="submit" id="detail"class="btn btn-warning view_data" data-toggle="modal" data-target="#myModal" value="<?php echo $row['com_no']; ?>" onclick="showDepartment(this.value)" form="myFormEdit">แก้ไข</button></td> 
+                                    
+     <!-- <td><?echo"<align='center'><a href='editcom_unallo.php? com_no=$row[com_no]'< class='btn btn-warning' data-role='update'>แก้ไข</a></button></td> -->
 
                       </tr>
 <?php
