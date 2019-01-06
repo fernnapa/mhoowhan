@@ -73,19 +73,18 @@
              </thead>
 <?php
 		
-             $result_set =  mysqli_query( $con, "SELECT * FROM com_eq ");
+             $result_set =  mysqli_query( $con, "SELECT * FROM allocate ");
              while($row = mysqli_fetch_array($result_set))
              {
 ?>
 			
                       <tr>
-	<td><?php echo $row['com_id']; ?></td>
-	<td><?php echo $row['bar_id']; ?></td>
-	<td><?php echo $row['com_list']; ?></td>
-	<td><?php echo $row['emp_name']; ?></td>
-	<td><?php echo $row['ins_name']; ?></td>
-	<td><?php echo $row['com_SN']; ?></td>
-
+	                    <td><?php echo $row['ac_id']; ?></td>
+	                    <td><?php echo $row['ac_barcode']; ?></td>
+	                    <td><?php echo $row['ac_title']; ?></td>
+	                    <td><?php echo $row['emp_name']; ?></td>
+	                    <td><?php echo $row['ins_name']; ?></td>
+	                    <td><?php echo $row['com_SN']; ?></td>
                       </tr>
 <?php
              }
