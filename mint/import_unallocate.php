@@ -12,7 +12,7 @@ include ("connection.php");
          while (($Data = fgetcsv($file, 100000, ",")) !== FALSE)
       {
 			 
-          $result_check = mysqli_query($con, "SELECT * FROM equipment WHERE eq_barcode='" . $Data[0] . "'");
+         $result_check = mysqli_query($con, "SELECT * FROM equipment WHERE eq_barcode='" . $Data[0] . "'");
          if(mysqli_num_rows($result_check) > 0){
                $check_repeat = 1;
          }else{
