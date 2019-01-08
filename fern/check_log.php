@@ -7,21 +7,22 @@ session_start();
                   $emp_user = $_REQUEST['emp_user'];
                   $emp_pass = $_REQUEST['emp_pass'];
 				//query 
-                  $sql="SELECT * FROM authoritie Where au_user='".$emp_user."' and au_pass='".$emp_pass."' ";
+                  $sql="SELECT * FROM `employee` WHERE emp_user ='$emp_user' AND emp_pass ='$emp_pass'";
+// echo $sql;
+                  $result = mysqli_query($connect,$sql);
 
-                  $result = mysqli_query($con,$sql);
-				
-                  if(mysqli_num_rows($result)==1){
+
+                  if(mysqli_num_rows($result)== 1){
 
                       $row = mysqli_fetch_array($result);
 
-                      $_SESSION["emp_id"] = $row["au_id"];
-                      $_SESSION["User"] = $row["au_fname"]." ".$row["au_lname"];
-                      $_SESSION["emp_status"] = $row["au_status"];
+                      $_SESSION["emp_id"] = $row["emp_id"];
+                      $_SESSION["User"] = $row["emp_fname"]." ".$row["emp_lname"];
+                      $_SESSION["emp_status"] = $row["emp_status"];
 
                       if($_SESSION["emp_status"]=="admin"){ //ถ้าเป็น admin ให้กระโดดไปหน้า admin_page.php
 
-                        Header("Location: /mhoowhan/index_admin.php");
+                        Header("Location: /mhoowhan/Admin/index_admin.php");
 
                       }
 
@@ -39,8 +40,6 @@ session_start();
                   }
 
         }else{
-
-
              Header("Location: /mhoowhan/login.php"); //user & password incorrect back to login again
 
         }

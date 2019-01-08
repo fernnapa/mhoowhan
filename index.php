@@ -1,12 +1,11 @@
 <?php  
- $connect = mysqli_connect("localhost", "root", "", "db_com");  
+ include ('fern/con_db.php');
  $query ="SELECT * FROM allocate INNER JOIN a_status
  ON a_status.status_id = allocate.ac_status
  ORDER BY ac_id ASC"; 
- mysqli_query($connect, "SET NAMES 'utf8' "); 
  $result = mysqli_query($connect, $query);  
- ?>  
-<!DOCTYPE HTML>
+ ?>
+ <!DOCTYPE HTML>
 <html>
 	<head>
 	<meta charset="utf-8">
@@ -18,6 +17,7 @@
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
 	
+	
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
 	
 	<!-- Animate.css -->
@@ -26,13 +26,10 @@
 	<link rel="stylesheet" href="css/icomoon.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
-
 	<!-- Magnific Popup -->
 	<link rel="stylesheet" href="css/magnific-popup.css">
-
 	<!-- Flexslider  -->
 	<link rel="stylesheet" href="css/flexslider.css">
-
 	<!-- Owl Carousel -->
 	<link rel="stylesheet" href="css/owl.carousel.min.css">
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
@@ -57,12 +54,12 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-2">
-							<div id="colorlib-logo"><a href="index.php"><img src="images/logo.png" alt=""></a></div>
+							<div id="colorlib-logo"><a href="index_member.php"><img src="images/logo.png" alt=""></a></div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
-								<li class="active"><a href="index.php">Home</a></li>
-								<li><a href="#">Map</a></li>
+								<li class="active"><a href="index_member.php">Home</a></li>
+								<li><a href="fern/map.php">Map</a></li>
 								<li class="has-dropdown">
 									<a href="#">Report</a>
 									<ul class="dropdown">
@@ -73,7 +70,9 @@
 									</ul>
 								</li>
 								<li><a href="#">About Me</a></li>
-								<li><a href="login.php">Login</a></li>
+								<li><button type="button" class="btn btn-warning btn-md" onclick="window.location='fern/login.php'">
+          										<span class="glyphicon glyphicon-log-out"></span> Log out
+        						</button></li>
 							</ul>
 						</div>
 					</div>
@@ -211,55 +210,9 @@
 		</div>
 	</div>
 
-	<footer id="colorlib-footer" role="contentinfo">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-					<h2>Address</h2>
-						<p><font face="verdana" color="white">
-						อาคารวิจัย ชั้นที่ 2 
-						<br/> มหาวิทยาลัยเทคโนโลยีสุรนารี 
-						<br/> 111 ถนนมหาวิทยาลัย ตำบลสุรนารี 
-						<br/>อำเภอเมืองนครราชสีมา 
-						<br/>จังหวัดนครราชสีมา 30000 
-						</p></font>
-					</div>
-					<div class="col-md-4">
-					<h2 class="widgetheading">Contact</h2>
-					<ul class="link-list">
-                        <li><img src="images/google.svg" style="width:30px">
-                                                        <a target="_blank" href="mailto:administrator@sut.ac.th"> &nbsp; administrator@sut.ac.th</a>
-                        </li><br/>
-                        <li><img src="images/viber.svg" style="width:30px">
-                                                        <a target="_blank" href="tel:044-224801"> &nbsp; 044-224801</a>
-                        </li><br/>
-                        <li><img src="images/fax.svg" style="width:30px">
-                                                        <a target="_blank" href="tel:044-224790"> &nbsp; 044-224790</a>
-                        </li>
-					</ul>		
-					</div>
-					<div class="col-md-4">
-						<a target="_blank" href="https://www.facebook.com/ccs.sut/"><img src="images/ccs.jpg" style="width:100px"></a>
-						<p><font face="verdana" color="white"><br/>ศูนย์คอมพิวเตอร์
-						<br/>มหาวิทยาลัยเทคโนโลยีสุรนารี
-						<br/>The Center for Computer Services 
-						<br/>Suranaree University fo Thechnology
-						</font></p>
-					</div>
-				</div><br/><br/>
-				<div class="row">
-				<div class="col-xs-12">
-                	<div class="copyright">
-                    	<p>
-                            <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a>
-							</span>
-						</p>
-                	</div>	
-				</div>
-				</div>
-			</div>
-	</footer>
-
+<?php
+include ('footer.php');
+?>
 
 	<!-- table advance -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
@@ -322,6 +275,7 @@
         }
     </script>	
 	
+
 	<!-- Waypoints -->
 	<script src="js/jquery.waypoints.min.js"></script>
 	<!-- Flexslider -->
