@@ -63,7 +63,7 @@
           <table class="table table-bordered" >
              <thead>
                       <tr>
-	<th width="10%">ลำดับที่</th>
+	
 	<th>Bar Code</th>
 	<th>รายการ</th>
 	<th>Serial Number.</th>
@@ -74,17 +74,18 @@
 		
              $result_set =  mysqli_query( $con, "SELECT * FROM equipment 
                                         LEFT JOIN tor ON equipment.eq_tor = tor.tor_id
-                                        LEFT JOIN type_eq ON tor.tor_type = type_eq.type_id");
+                                        LEFT JOIN type_eq ON tor.tor_type = type_eq.type_id
+                                        LEFT JOIN a_status ON equipment.eq_status = a_status.status_id ");
              while($row = mysqli_fetch_array($result_set))
              {
 ?>
 			
                       <tr>
-	                    <td><?php echo $row['eq_id']; ?></td>
+	                    
 	                    <td><?php echo $row['eq_barcode']; ?></td>
 	                    <td><?php echo $row['type_name']; ?></td>
 	                    <td><?php echo $row['eq_serial']; ?></td>
-	                    <td><?php echo $row['eq_status']; ?></td>
+	                    <td><?php echo $row['status_name']; ?></td>
                       </tr>
 <?php
              }
