@@ -1,352 +1,418 @@
 <?php  
 session_start();
-?>  
+include_once("../../Home/db_connect.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Home</title>
-  <!-- plugins:css -->
-  <link rel="stylesheet" href="../vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
-  <link rel="stylesheet" href="../vendors/css/vendor.bundle.addons.css">
-  <!-- endinject -->
-  <!-- plugin css for this page -->
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="../css/style.css">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="../../images/favicon.png" />
-</head>
+  <title>ข้อมูลเจ้าหน้าที่</title>
+  <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
 
-<body>
-  <div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
-    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-      <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-        <a class="navbar-brand brand-logo" href="../index_admin.php">
-          <img src="../../images/logo.png" alt="logo" />
-        </a>
-        <a class="navbar-brand brand-logo-mini" href="index_admin.php">
-          <img src="../../images/favicon.png" alt="logo" />
-        </a>
-      </div>
-      <div class="navbar-menu-wrapper d-flex align-items-center">
-        <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item dropdown d-none d-xl-inline-block">
-            <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-              <span class="profile-text">Hello, คุณ <?php echo $_SESSION["User"] ?></span>
-              <img class="img-xs rounded-circle" src="../images/faces/face2.jpg" alt="Profile image">
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-              <a class="dropdown-item p-0">
-                <div class="d-flex border-bottom">
-                  <div class="py-3 px-4 d-flex align-items-center justify-content-center">
-                    <i class="mdi mdi-bookmark-plus-outline mr-0 text-gray"></i>
-                  </div>
-                  <div class="py-3 px-4 d-flex align-items-center justify-content-center border-left border-right">
-                    <i class="mdi mdi-account-outline mr-0 text-gray"></i>
-                  </div>
-                  <div class="py-3 px-4 d-flex align-items-center justify-content-center">
-                    <i class="mdi mdi-alarm-check mr-0 text-gray"></i>
-                  </div>
-                </div>
-              </a>
-              <a class="dropdown-item mt-2" href ="#">
-                จัดการข้อมูลส่วนตัว
-              </a>
-              <a class="dropdown-item" href ="../../fern/logout.php">
-               ออกจากระบบ
-              </a>
-            </div>
-          </li>
-        </ul>
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-          <span class="mdi mdi-menu"></span>
-        </button>
-      </div>
-    </nav>
 
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-      <!-- partial:partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item nav-profile">
-            <div class="nav-link">
-              <div class="user-wrapper">
-                <div class="profile-image">
-                  <img src="../images/faces/face2.jpg" alt="profile image">      <!--    เอารูปมาแสดง  --->
-                </div>
-                <div class="text-wrapper">
-                  <p class="profile-name">คุณ <?php echo $_SESSION["User"] ?></p>
-                  <div>
-                    <small class="designation text-muted">Manager</small>      <!--    เอาตำแหน่งมาแสดง  --->
-                    <span class="status-indicator online"></span>
-                  </div>
-                </div>
-              </div>
-              <hr  class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto " style="width: 100%;">
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../index_admin.php">           <!-----  หน้าแรก----->
-              <i class="menu-icon mdi mdi-television"></i>
-              <span class="menu-title">หน้าแรก</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="menu-icon mdi mdi-content-copy"></i>
-              <span class="menu-title">จัดการข้อมูล</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                  <a class="nav-link" href="index_eq.php">ข้อมูลครุภัณฑ์คอมพิวเตอร์</a>         <!-----  หน้า จัดการ ----->
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="index_tor.php">ข้อมูลประเภทครุภัณฑ์</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="index_department.php">ข้อมูลหน่วยงาน</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="index_emp.php">ข้อมูลผู้ใช้งาน</a>
-                </li>
-                </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
-              <i class="menu-icon mdi mdi-sticker"></i>
-              <span class="menu-title">แผนที่</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">
-              <i class="menu-icon mdi mdi-chart-line"></i>
-              <span class="menu-title">แผนภูมิ</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/icons/font-awesome.html">
-              <i class="menu-icon mdi mdi-table"></i>
-              <span class="menu-title">รายงาน</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- partial -->
-      <div class="main-panel">
-        <div class="content-wrapper">         
-          <div class="row">
-            <div class="col-lg-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Orders</h4>
-                  <div class="table-responsive">
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>
-                            #
-                          </th>
-                          <th>
-                            First name
-                          </th>
-                          <th>
-                            Progress
-                          </th>
-                          <th>
-                            Amount
-                          </th>
-                          <th>
-                            Sales
-                          </th>
-                          <th>
-                            Deadline
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td class="font-weight-medium">
-                            1
-                          </td>
-                          <td>
-                            Herman Beck
-                          </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                          <td>
-                            $ 77.99
-                          </td>
-                          <td class="text-danger"> 53.64%
-                            <i class="mdi mdi-arrow-down"></i>
-                          </td>
-                          <td>
-                            May 15, 2015
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="font-weight-medium">
-                            2
-                          </td>
-                          <td>
-                            Messsy Adam
-                          </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                          <td>
-                            $245.30
-                          </td>
-                          <td class="text-success"> 24.56%
-                            <i class="mdi mdi-arrow-up"></i>
-                          </td>
-                          <td>
-                            July 1, 2015
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="font-weight-medium">
-                            3
-                          </td>
-                          <td>
-                            John Richards
-                          </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-warning progress-bar-striped" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                          <td>
-                            $138.00
-                          </td>
-                          <td class="text-danger"> 28.76%
-                            <i class="mdi mdi-arrow-down"></i>
-                          </td>
-                          <td>
-                            Apr 12, 2015
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="font-weight-medium">
-                            4
-                          </td>
-                          <td>
-                            Peter Meggik
-                          </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                          <td>
-                            $ 77.99
-                          </td>
-                          <td class="text-danger"> 53.45%
-                            <i class="mdi mdi-arrow-down"></i>
-                          </td>
-                          <td>
-                            May 15, 2015
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="font-weight-medium">
-                            5
-                          </td>
-                          <td>
-                            Edward
-                          </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-danger progress-bar-striped" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                          <td>
-                            $ 160.25
-                          </td>
-                          <td class="text-success"> 18.32%
-                            <i class="mdi mdi-arrow-up"></i>
-                          </td>
-                          <td>
-                            May 03, 2015
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="font-weight-medium">
-                            6
-                          </td>
-                          <td>
-                            Henry Tom
-                          </td>
-                          <td>
-                            <div class="progress">
-                              <div class="progress-bar bg-warning progress-bar-striped" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                            </div>
-                          </td>
-                          <td>
-                            $ 150.00
-                          </td>
-                          <td class="text-danger"> 24.67%
-                            <i class="mdi mdi-arrow-down"></i>
-                          </td>
-                          <td>
-                            June 16, 2015
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-          <div class="container-fluid clearfix">
-          <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
-          </div>
-        </footer>
-        <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
+  <?php include("../link1.php"); ?>
+  
+  <style>
+.modal-dialog.a{
+  max-width : 70%;
+}
+</style>
 
-  <!-- plugins:js -->
-  <script src="../vendors/js/vendor.bundle.base.js"></script>
-  <script src="../vendors/js/vendor.bundle.addons.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page-->
-  <!-- End plugin js for this page-->
-  <!-- inject:js -->
-  <script src="../js/off-canvas.js"></script>
-  <script src="../js/misc.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <script src="../js/dashboard.js"></script>
-  <!-- End custom js for this page-->
-</body>
-</html>
+  </head>
+  <?php include("../navbar.php"); ?>
+  <body>
+
+  <!-- /.modal add-->
+  <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+                    <div class="modal-dialog a" role="document">
+                    <div class="modal-content">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="modal-header">
+                          <h4 class="modal-title" style="font-family:Prompt;">เพิ่มข้อมูลเจ้าหน้าที่</h4>
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                            <div class="modal-body" style="font-family:Prompt;">
+                                    <form id="upload_form" method="POST">
+                                            <table style="width:100%" align="center" border="1">
+                                                <tr>
+                                                </tr>
+                                                <tr>
+                                                <th style="text-align: center;">หมายเลขพนักงาน</th>
+                                                <th style="text-align: center;">ชื่อ</th>
+                                                <th style="text-align: center;">สกุล</th>
+                                                <th style="text-align: center;">ตำเเหน่ง</th>
+                                                <th style="text-align: center;">โทรศัพท์</th>
+                                                                                       
+                                            </tr>
+                                            <tr>
+                                            <td><input type="text" id="emp_id" name="emp_id" style="width:99%" class="form-control"></td>
+                                            <td><input type="text" id="emp_fname" name="emp_fname" style="width:99%" class="form-control"></td>
+                                            <td><input type="text" id="emp_lname" name="emp_lname" style="width:99%" class="form-control"></td>
+                                            <td><input type="text" id="emp_position" name="emp_position" style="width:99%" class="form-control"></td>
+                                            <td><input type="text" id="emp_tel" name="emp_tel" style="width:99%" class="form-control"></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="text-align: center;">อีเมล์</th>
+                                                <th style="text-align: center;">รูปภาพ</th>
+                                                <th style="text-align: center;">Username</th>
+                                                <th style="text-align: center;">Password</th>
+                                                <th style="text-align: center;">status</th>       
+                                            </tr>
+                                                <tr>
+                                                <td><input type="text" id="emp_mail" name="emp_mail" style="width:99%" class="form-control"></td>
+                                                <td><input type="file" name="images[]" id="select_image" multiple  onchange="namepic()"></td>
+                                                <input type="hidden" id="emp_pic" name="emp_pic" style="width:99%" class="form-control">
+                                                <td><input type="text" id="emp_user" name="emp_user" style="width:99%" class="form-control"></td>
+                                                <td><input type="text" id="emp_pass" name="emp_pass" style="width:99%" class="form-control"></td>
+                                                <td><select name="emp_status" id="emp_status" style="width: 99%" class="form-control">
+                                                            <option>เลือกสถานะ</option>
+                                                            <option value="user">User</option>
+                                                            <option value="admin">Admin</option>
+                                                        </select></td>
+                                                </tr>
+                                            </table>
+                                    </form>
+                                </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ยกเลิก</button>
+                        <button type="submit" class="btn btn-success"  value="submit" name="sub_create" id="submit" form="upload_form" style="font-family:Prompt;">บันทึกข้อมูล</button>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+<!-- /.modal add-->
+
+<!-- /.modal edit-->
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal2">
+                            <div class="modal-dialog a" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                            <div class="card">
+                            <div class="card-body" >
+                                <h4 class="modal-title" style="font-family:Prompt;">เพิ่มข้อมูลเจ้าหน้าที่</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                                    <div class="modal-body table-responsive">
+                                            <form id="update_form" method="POST">
+                                            <table style="width:100%" align="center" id="txtHint" border="1">
+                                               
+                                               
+                                            
+                                            </table>
+                                            </form>
+                                        </div>
+                            <div class="modal-footer table-responsive">
+                                <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ยกเลิก</button>
+                                <button type="submit" class="btn btn-success" value="submit" name="sub_update" id="submit" form="update_form" style="font-family:Prompt;">อัพเดท</button>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+<!-- /.modal edit-->
+
+<!-- /.data -->
+      <div class="container w3-card-2 w3-round-large" style="width:90% font-family:Prompt;" >  
+          <table align="center" style="width:70%" border="0"><br/>
+            <tr>
+                <th colspan="7"><h4 style="text-align:center; font-family:Prompt;"><b>ข้อมูลเจ้าหน้าที่</b></h4></th>
+            </tr>
+            <tr>
+              <form class="form-inline" onsubmit="openModal()" id="myForm">
+                <th colspan="6"><input type="text" style="width:100%;" size="50" name="search_text" id="search_text" class="form-control" placeholder="ระบุคำที่ต้องการค้นหา"></th>
+                <th style="text-align:right; font-family:Prompt;"><button type="submit" class="btn btn-success btn-block" style="font-family:Prompt;">เพิ่มข้อมูล</button></th>
+              </form>                        
+            </tr>
+          </table>
+          <br>
+      </div>  
+
+      <br>          
+      <div class="table-responsive" id="result" style="font-family:Prompt;">
+        <p></p>
+          <form id="form3"> 
+            <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
+              <thead>
+                  <tr >
+                      <td style="text-align: center;">หมายเลขพนักงาน</td>
+                      <td style="text-align: center;">ชื่อ</td>
+                      <td style="text-align: center;">สกุล</td>
+                      <td style="text-align: center;">ตำเเหน่ง</td>
+                      <td style="text-align: center;">โทรศัพท์</td>
+                      <td style="text-align: center;">อีเมล์</td>
+                      <td style="text-align: center;">รูปภาพ</td>
+                    
+                      <td style="text-align: center;">Action</td>
+                      <td style="text-align: center;"></td>
+                  </tr>
+              </thead>
+              <tr>
+                  <?php
+                      $sql = "SELECT * FROM employee";
+                      $result = mysqli_query($conn, $sql);
+                      while($data = mysqli_fetch_array($result)):
+                  ?>
+                      <td style="text-align:left"><?php echo $data['emp_id']; ?></td>
+                      <td style="text-align:left"><?php echo $data['emp_fname']; ?></td>
+                      <td style="text-align:left"><?php echo $data['emp_lname']; ?></td>
+                      <td style="text-align:left"><?php echo $data['emp_position']; ?></td>
+                      <td style="text-align:left"><?php echo $data['emp_tel']; ?></td>
+                      <td style="text-align:left"><?php echo $data['emp_mail']; ?></td>
+                      <td style="text-align:left"><?php echo $data['emp_pic']; ?></td>
+                     
+
+                      <td><button type="button" class="btn btn-warning btn-block" data-toggle="modal" onclick="showUser(<?php echo $data['emp_id']; ?>)" data-target="#myModal2">เเก้ไข</button></td></form>
+                      <td><span  class="btn btn-danger btn-block" form="form3"  onclick="remove(<?php echo $data['emp_id']; ?>)">ลบ</span></td>                    
+              </tr>
+
+              <?php endwhile;?>
+            </table>
+          </form>
+      </div>
+<!-- /.data -->
+
+
+
+
+<!-------------------------------------------------------------------------------------------------------->
+
+
+<!-- /.script modal add -->
+
+<script>
+                    $('#myForm').on('submit', function(e){
+                    $('#myModal').modal('show');
+                    e.preventDefault();
+                    });
+            </script>
+<!-- /.script modal add -->
+<!-- /.script modal edit -->
+            <script>
+                    $('#myFormEdit').on('submit', function(e){
+                    $('#myModalEdit').modal('show');
+                    e.preventDefault();
+                    });
+            </script>
+
+<!-- /.script modal edit -->   
+<!-- /.script showdata in modal -->   
+
+            <script>
+            function showUser(str) {
+            var xhttp;    
+            if (str == "") {
+                document.getElementById("txtHint").innerHTML = "";
+                return;
+            }
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "../../toey/getUser.php?id="+str, true);
+            xhttp.send();
+            }
+            </script>
+<!-- /.script showdata in modal -->   
+
+<!-- /.script  insert data and popup-->   
+
+<!-- /.script  insert data and popup-->
+<!-- /.script  upload data and popup-->
+<script>          
+                $(document).ready(function(){  
+                  $('#sub_create').on("click", function(){  
+                       $('#upload_form').submit();  
+                  });  
+                  $('#upload_form').on('submit', function(e){  
+                       e.preventDefault();  
+                       $.ajax({  
+                            url :"../../toey/create_user.php",  
+                            method:"POST",  
+                            data:new FormData(this),  
+                            contentType:false,  
+                            processData:false,  
+                            success:function(data){
+                                var a = data;
+                                alert(a);
+                                if(data == 1){
+                                             swal( {
+                                                     title: "เพิ่มข้อมูลสำเร็จ",
+                                                     icon: "success",
+                                                     button: "ตกลง",
+                                                     }).then (function(){ 
+                                                     location.reload();
+                                                    }
+                                                    );
+                                }else if(data > 1){
+                                             swal( {
+                                                     title: "ข้อมูลไม่สำเร็จ",
+                                                     text: "รหัสหรือรูปนี้มีอยู่ในระบบเเล้ว",
+                                                     icon: "error",
+                                                     button: "กรอกข้อมูลอีกครั้ง",
+                                                    }
+                                                  );
+                                }else{
+                                             swal( {
+                                                     title: "เพิ่มข้อมูลไม่สำเร็จ",
+                                                     text: "ท่านกรอกข้อมูลไม่ครบถ้วนหรือไม่ถูกต้อง",
+                                                     icon: "error",
+                                                     button: "ตกลง",
+                                                    });
+                                                   }     
+                                                }  
+                       })  
+                  });  
+             });     
+            </script>  
+<!-- /.script  upload data and popup-->   
+<!-- /.script  update data and popup-->   
+<script>
+
+    $(document).ready(function(){  
+                  $('#sub_update').on("click", function(){  
+                       $('#update_form').submit();  
+                  });  
+                  $('#update_form').on('submit', function(e){  
+                       e.preventDefault();  
+                       $.ajax({  
+                            url :"../../toey/update_user.php",  
+                            method:"POST",  
+                            data:new FormData(this),  
+                            contentType:false,  
+                            processData:false,  
+                            success:function(data){
+                                var b = data;
+                                alert(b);
+                                if(data == 1){
+                                             swal( {
+                                                     title: "เพิ่มข้อมูลสำเร็จ",
+                                                     icon: "success",
+                                                     button: "ตกลง",
+                                                     }).then (function(){ 
+                                                     location.reload();
+                                                    }
+                                                    );
+                                }else{
+                                             swal( {
+                                                     title: "เพิ่มข้อมูลไม่สำเร็จ",
+                                                     text: "ท่านกรอกข้อมูลไม่ครบถ้วนหรือไม่ถูกต้อง",
+                                                     icon: "error",
+                                                     button: "ตกลง",
+                                                    });
+                                                   }     
+                                                }  
+                       })  
+                  });  
+             });     
+</script>
+<!-- /.script  update data and popup-->   
+<!-- /.script  datatable-->   
+<script>
+$(document).ready(function(){  
+      $('#tableshow').DataTable({
+  "searching": false
+});  
+ }); 
+</script>
+<!-- /.script  datatable-->   
+<!-- script remove -->
+<script>
+function remove(str){
+    swal({
+  title: "คุณต้องการลบข้อมูลนี้ใช่หรือไม่",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+}).then (function (isConfirm){
+    if (isConfirm) {
+        $.ajax({
+                    url: "../../toey/delete_user.php", 
+                    type: "POST",
+                    data: {"x": str},
+                    success: function(result){
+                        alert(result);
+                        if(result == 1){
+                            swal( {
+                            title: "ลบข้อมูลสำเร็จ",
+                             icon: "success",
+                             button: "ตกลง",
+                               }).then (function(){ 
+                                location.reload();
+                              }
+                            );   
+                        }else{
+                            swal({
+                                title: "ลบข้อมูลไม่สำเร็จ",
+                                text: "ท่านกรอกข้อมูลไม่ครบถ้วนหรือไม่ถูกต้อง",
+                                icon: "error",
+                                button: "ตกลง",
+                             });
+                        }
+                    }
+        });
+   
+        }else{
+            swal("ยกเลิกการลบ", "ข้อมูลนี้ยังคงอยู่ :)", "error");
+        }            
+});
+}
+</script>
+ <!-- script remove -->
+ <!-- script search -->
+
+<script>
+$(document).ready(function()
+{
+        load_data();
+                function load_data(query)
+                {
+                        $.ajax(
+                        {
+                        url:"../../toey/search_user.php",
+                        method:"POST",
+                        data:{query:query},
+                        success:function(data)
+                        {
+                            $('#result').html(data);
+                        }
+                        }
+                            );
+                }
+                $('#search_text').keyup(function()
+                {
+                    var search = $(this).val();
+                    if(search != '')
+                    {
+                        load_data(search);
+                    }else
+                    {
+                        load_data();
+                    }
+                }
+                );
+});
+</script>
+<!-- script search -->
+<!-- script upload -->
+<script>
+function namepic(){
+    var name = document.getElementById('select_image');
+      var x = name.files.item(0).name;
+      document.getElementById('emp_pic').value = x;
+}
+</script>
+  <!-- script upload -->
+
+  </body>
+  </html>
+  

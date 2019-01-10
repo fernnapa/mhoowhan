@@ -24,8 +24,8 @@ echo
 '
 
 <tr>
-<th style="text-align: left;">ชื่อสัญญา</th>
-<th style="text-align: left;">รายละเอียดสัญญา</th>
+<th style="text-align: left; font-family:Prompt;"">ชื่อสัญญา</th>
+<th style="text-align: left; font-family:Prompt;"">รายละเอียดสัญญา</th>
 
                                        
 </tr>

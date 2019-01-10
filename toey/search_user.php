@@ -13,10 +13,7 @@ if(isset($_POST["query"]))
         OR emp_position LIKE '%".$search."%'
         OR emp_tel LIKE '%".$search."%'
         OR emp_mail LIKE '%".$search."%'
-        OR emp_pic LIKE '%".$search."%'
-        OR emp_user LIKE '%".$search."%'
-        OR emp_pass LIKE '%".$search."%' 
-        OR emp_status LIKE '%".$search."%' ";
+        OR emp_pic LIKE '%".$search."%' ";
 }
 else
 {
@@ -41,9 +38,6 @@ if(mysqli_num_rows($result) > 0)
     <td style="text-align: center;"><b>ตำเเหน่ง</b></td>
     <td style="text-align: center;"><b>โทรศัพท์</b></td>
     <td style="text-align: center;"><b>อีเมล์</b></td>
-    <td style="text-align: center;"><b>Username</b></td>
-    <td style="text-align: center;"><b>Password</b></td>
-    <td style="text-align: center;"><b>status</b></td>
     <td style="text-align: center;"><b></b></td>
     <td style="text-align: center;"></td>
 
@@ -61,12 +55,8 @@ if(mysqli_num_rows($result) > 0)
    <td style="text-align:left">'.$row['emp_position'].'</td>
    <td style="text-align:left">'.$row['emp_tel'].'</td>
    <td style="text-align:left">'.$row['emp_mail'].'</td>
-   <td style="text-align:left">'.$row['emp_user'].'</td>
-   <td style="text-align:left">'.$row['emp_pass'].'</td>
-   <td style="text-align:left">'.$row['emp_status'].'</td>
-
-    <td><button type="button" class="btn btn-warning btn-block" data-toggle="modal" value="'.$row["emp_id"].'" onclick="showUser(this.value)" data-target="#myModal2">เเก้ไข</button></td>
-    <td><button type="button" class="btn btn-danger btn-block" value="'.$row["emp_id"].'" onclick="remove(this.value)">ลบ</button></td>                    
+    <td><button type="button" class="btn btn-warning btn-block" data-toggle="modal" value="'.$row["emp_id"].'" onclick="showUser(this.value)" data-target="#myModal2" style="font-family:Prompt;">เเก้ไข</button></td>
+    <td><button type="button" class="btn btn-danger btn-block" value="'.$row["emp_id"].'" onclick="remove(this.value)" style="font-family:Prompt;">ลบ</button></td>                    
     </tr>
 
    

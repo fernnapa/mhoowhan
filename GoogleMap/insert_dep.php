@@ -13,3 +13,4 @@ $arr = array(
 $rs = $mysql->J_Insert($arr,"department");
 $mysql->J_Close();
 ?>
+

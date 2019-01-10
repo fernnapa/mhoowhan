@@ -5,19 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
- 
-
-<title>MAP</title>
-	
+	<link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
   	<!-- Bootstrap core CSS -->
  	<link rel="stylesheet" href="bootstrap-4/css/bootstrap.min.css" crossorigin="anonymous">
 
-	<script type="text/javascript" src="jquery-3.2.1.min.js" ></script>
+	<script type="text/javascript" src="bootstrap-4/js/jquery-3.2.1.min.js" ></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXkgT4Hw83wzhkNsSJ05qL_dMkzX8EsuE&callback=initMap"
 	type="text/javascript"></script>
 	<script language="JavaScript">
 
+	
 	
 function initMap() { 
 	var myOptions = {
@@ -76,7 +75,7 @@ data:{ dep_no:dep_no,location_name:location_name,lat:lat,lng:lng   }
             button: "ตกลง",
             }).then (function(){ 
                      location.reload();
-					 location.href = "../fern/index_Department.php"
+					 location.href = "../Admin/pages/index_department.php"
                   	}
              )
 });
@@ -94,33 +93,32 @@ data:{ dep_no:dep_no,location_name:location_name,lat:lat,lng:lng   }
 		<div id="map_canvas" style="width:100%;height:600px"></div>
 		</div>
 
-		<div class="col-3">
+		<div class="col-3"><br/>
+		<button type="button" class="btn btn-info" data-dismiss="modal"  style="font-family:Prompt;" onclick="location.href='../Admin/pages/index_department.php';">ย้อนกลับ</button>
 		<div style="margin-top:60px">
-		<br/><br/>
 				<form>
-						<h2 align="center">เพิ่มข้อมูลหน่วยงาน</h2><br/>
-						<div class="form-group">
+						<h3 align="center" style="font-family:Prompt;">เพิ่มข้อมูลหน่วยงาน</h3><br/>
+						<div class="form-group" style="font-family:Prompt;">
 						  <label for="location_name">รหัสหน่วยงาน</label>
-						  <input type="text" class="form-control" id="dep_no" placeholder="ระบุรหัสหน่วยงาน">
+						  <input type="text" class="form-control" id="dep_no" style="font-family:Prompt;" placeholder="ระบุรหัสหน่วยงาน" required>
 						</div>
-						<div class="form-group">
-						  <label for="location_name">Location Name</label>
-						  <input type="text" class="form-control" id="location_name" placeholder="ระบุชื่อสถานที่">
+						<div class="form-group" style="font-family:Prompt;">
+						  <label for="location_name">ชื่อหน่วยงาน</label>
+						  <input type="text" class="form-control" id="location_name" style="font-family:Prompt;" placeholder="ระบุชื่อสถานที่" required>
 						</div>
-						<div class="form-group">
-								<label for="lat">Lat</label>
-								<input type="text" class="form-control" id="lat" placeholder="ระบุละติจูด">
+						<div class="form-group" style="font-family:Prompt;">
+								<label for="lat">ละติจูด</label>
+								<input type="text" class="form-control" id="lat" style="font-family:Prompt;" placeholder="ระบุละติจูด" required>
 						</div>
-						<div class="form-group">
-							<label for="Lng">Lng</label>
-							<input type="text" class="form-control" id="lng" placeholder="ระบุลองจิจูด">
+						<div class="form-group" style="font-family:Prompt;">
+							<label for="Lng">ลองจิจูด</label>
+							<input type="text" class="form-control" id="lng" style="font-family:Prompt;" placeholder="ระบุลองจิจูด" required>
 						</div>
-						<div align="center">
-							<button type="button" onclick="saveLocation()" class="btn btn-success">บันทึกข้อมูล</button>
-							<button type="reset" class="btn btn-danger" data-dismiss="modal" id="myReset">ยกเลิก</button>
+						<div align="center" style="font-family:Prompt;">
+							<button type="button" onclick="saveLocation()" class="btn btn-success" style="font-family:Prompt;">บันทึกข้อมูล</button>
+							<button type="reset" class="btn btn-danger" data-dismiss="modal" id="myReset" style="font-family:Prompt;">ยกเลิก</button>
 						</div>  
 					</form>
-
 		</div>
 		</div>
 

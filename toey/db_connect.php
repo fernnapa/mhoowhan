@@ -2,7 +2,7 @@
 
 
 
-$conn = new mysqli ( 'localhost', 'root', '', 'final');
+$conn = new mysqli ( 'localhost', 'root', '', 'project_com');
     if(mysqli_connect_error()):
         echo "Error connect". mysqli_connect_error();
     endif;

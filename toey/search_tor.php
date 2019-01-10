@@ -24,8 +24,8 @@ else
  echo '<link rel="stylesheet" href="style.css">';
 
  $query = "SELECT * FROM tor 
- LEFT JOIN type
- ON type.type_id = tor_type
+ LEFT JOIN type_eq
+ ON type_eq.type_id = tor_type
  LEFT JOIN contract
  ON contract.con_id = tor_contract";
 
@@ -42,12 +42,12 @@ if(mysqli_num_rows($result) > 0)
 <thead>
 <tr>
   
-    <td style="text-align: center;width:100px;"><b>ชื่อ TOR</b></td>
-    <td style="text-align: center; width:300px;"><b>รายละเอียด TOR</b></td>
-    <td style="text-align: center; width:200px;"><b>ประเภท TOR</b></td>
-    <td style="text-align: center;"><b>สัญญา</b></td>
-    <td style="text-align: center;"><b></b></td>
-    <td style="text-align: center;"><b></b></td>
+    <td style="text-align: center;width:100px; font-family:Prompt;"><b>ชื่อ TOR</b></td>
+    <td style="text-align: center; width:300px; font-family:Prompt;"><b>รายละเอียด TOR</b></td>
+    <td style="text-align: center; width:200px; font-family:Prompt;"><b>ประเภท TOR</b></td>
+    <td style="text-align: center; font-family:Prompt;"><b>สัญญา</b></td>
+    <td style="text-align: center; font-family:Prompt;"><b></b></td>
+    <td style="text-align: center; font-family:Prompt;"><b></b></td>
 
 </tr>
 </thead>
@@ -59,13 +59,13 @@ if(mysqli_num_rows($result) > 0)
 
   $output .= '
    <tr>
-   <td style="text-align:left">'.$row['tor_name'].'</td>
-   <td style="text-align:left">'.$row['tor_des'].'</td>
-   <td style="text-align:left">'.$type_name.'</td>
-   <td style="text-align:left">'.$con_name.'</td>
+   <td style="text-align:left font-family:Prompt;">'.$row['tor_name'].'</td>
+   <td style="text-align:left font-family:Prompt;">'.$row['tor_des'].'</td>
+   <td style="text-align:left font-family:Prompt;">'.$type_name.'</td>
+   <td style="text-align:left font-family:Prompt;">'.$con_name.'</td>
    
-    <td><button type="button" class="btn btn-warning btn-block" data-toggle="modal" value="'.$row["tor_id"].'" onclick="showTor(this.value)" data-target="#ModalEditTor">เเก้ไข</button></td>
-    <td><button type="button" class="btn btn-danger btn-block" onclick="removeTor('.$row["tor_id"].')">ลบ</button></td>                    
+    <td><button type="button" class="btn btn-warning btn-block" data-toggle="modal" value="'.$row["tor_id"].'" onclick="showTor(this.value)" data-target="#ModalEditTor" style="font-family:Prompt;">เเก้ไข</button></td>
+    <td><button type="button" class="btn btn-danger btn-block" onclick="removeTor('.$row["tor_id"].')" style="font-family:Prompt;">ลบ</button></td>                    
     </tr>
 
    

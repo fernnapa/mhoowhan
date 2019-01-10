@@ -1,5 +1,5 @@
 <?php
-include ('connection.php');
+include("../Home/db_connect.php");
 mysqli_query($con, "SET NAMES 'utf8' "); 
 if(isset($_GET['id'])){
 
@@ -37,7 +37,7 @@ if(isset($_GET['id'])){
             // $allocate_no ="";
 
  
-                $rs = $con->query($sql);
+                $rs = $conn->query($sql);
                 while($row = mysqli_fetch_assoc($rs)){
                 
 

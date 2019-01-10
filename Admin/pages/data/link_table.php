@@ -25,14 +25,12 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-       
-
 <!-- table advance -->
-  
+
+
 <!-- alert -->
-        <!-- <link rel="stylesheet" type="text/css" href="css/sweetalert2.css"> -->
-        <script type="text/่javascript" src="sweetalert2.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/sweetalert2.css">
+<script type="text/่javascript" src="../../sweetalert2.js"></script>
 <!-- alert -->
 
   

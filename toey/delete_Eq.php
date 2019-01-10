@@ -21,7 +21,7 @@ require_once 'db_connect.php';
 
             if(mysqli_query($conn, $sql)){
               $data = 1;
-              unlink("equipment_pic/$pic");
+              unlink("../../toey/equipment_pic/$pic");
               echo $data;
             }else{
               $data = 0;

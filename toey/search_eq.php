@@ -11,13 +11,16 @@ if(isset($_POST["query"]))
       ON equipment.eq_tor = tor.tor_id
       LEFT JOIN contract
       ON tor.tor_contract = contract.con_id 
+      LEFT JOIN a_status
+      ON equipment.eq_status = a_status.status_id 
         WHERE eq_id LIKE '%".$search."%'
         OR eq_barcode LIKE '%".$search."%'
         OR eq_serial LIKE '%".$search."%'
         OR eq_pic LIKE '%".$search."%'
         OR eq_status LIKE '%".$search."%'
         OR tor_name LIKE '%".$search."%' 
-        OR con_name LIKE '%".$search."%'";
+        OR con_name LIKE '%".$search."%'
+        OR status_name LIKE '%".$search."%'";
 }
 else
 {
@@ -25,8 +28,9 @@ else
  LEFT JOIN tor
 ON equipment.eq_tor = tor.tor_id
 LEFT JOIN contract
-ON tor.tor_contract = contract.con_id ";
- echo '<link rel="stylesheet" href="style.css">';
+ON tor.tor_contract = contract.con_id 
+LEFT JOIN a_status
+ON equipment.eq_status = a_status.status_id ";
 
 }
 $result = mysqli_query($conn, $query);
@@ -40,14 +44,12 @@ if(mysqli_num_rows($result) > 0)
 <thead>
 <tr >
 <td style="text-align: center;"></td>
-
-<td style="text-align: center;">Barcode</td>
-<td style="text-align: center;">Serial Number</td>
-<td style="text-align: center;">TOR</td>
-<td style="text-align: center;">สัญญา</td>
-<td style="text-align: center;">สถานะ</td>
-<td style="text-align: center;">Action</td>
-<td style="text-align: center;"></td>
+<th style="text-align: center;font-family:Prompt;"><b>Barcode</b></th>
+<th style="text-align: center;font-family:Prompt;"><b>Serial Number</b></th>
+<th style="text-align: center;font-family:Prompt;"><b>TOR</b></th>
+<th style="text-align: center;font-family:Prompt; " ><b>สัญญา</b></th>
+<th style="text-align: center;font-family:Prompt;"><b>สถานะ</b></th>
+<th style="text-align: center;font-family:Prompt;"><b>Action</b></th>
 
 </tr>
 </thead>
@@ -56,20 +58,22 @@ if(mysqli_num_rows($result) > 0)
  {
     $tor_name = $row["tor_name"];
     $con_name = $row["con_name"];
+    $status_name = $row["status_name"];
+
 
 
   $output .= '
    <tr>
-   <td><img src="equipment_pic/'.$row['eq_pic'].'" width="90px;" height="80px;" / class="w3-card-2 w3-round"></td>
-   <td style="text-align:left">'.$row['eq_barcode'].'</td>
-   <td style="text-align:left">'.$row['eq_serial'].'</td>
-   <td style="text-align:left">'.$tor_name.'</td>
-   <td style="text-align:left">'.$con_name.'</td>
-   <td style="text-align:left">'.$row['eq_status'].'</td>
+   <td><img src="equipment_pic/'.$row['eq_pic'].'" style="width:90px;height:80px;"" / class="img-md rounded w3-card-2"></td>
+   <td style="text-align:left;font-family:Prompt;">'.$row['eq_barcode'].'</td>
+   <td style="text-align:left;font-family:Prompt;">'.$row['eq_serial'].'</td>
+   <td style="text-align:left;font-family:Prompt;">'.$tor_name.'</td>
+   <td style="text-align:left;font-family:Prompt;">'.$con_name.'</td>
+   <td style="text-align:left;font-family:Prompt;">'.$status_name.'</td>
   
 
-    <td><button type="button" class="btn btn-warning btn-block" data-toggle="modal" value="'.$row["eq_id"].'" onclick="showEq(this.value)" data-target="#myModal2">เเก้ไข</button></td>
-    <td><button type="button" class="btn btn-danger btn-block" value="'.$row["eq_id"].'" onclick="removeEq(this.value)">ลบ</button></td>                    
+    <td><button type="button" class="btn btn-icons btn-rounded btn-warning" data-toggle="modal" value="'.$row["eq_id"].'" onclick="showEq(this.value)" data-target="#myModal2"><i class="mdi mdi-pencil"></i></button>
+    <button type="button" class="btn btn-icons btn-rounded btn-danger" value="'.$row["eq_id"].'" onclick="removeEq(this.value)"><i class="mdi mdi-delete"></i></button></td>                    
     </tr>
 
    

@@ -29,7 +29,7 @@
                                    {  
                                         $new_name = $_FILES['images']['name'][$name];  
                                         $sourcePath = $_FILES["images"]["tmp_name"][$name];  
-                                        $targetPath = "equipment_pic/".$new_name;
+                                        $targetPath = "../Admin/pages/equipment_pic/$new_name";
                                         $noup = 2;   
 
 
@@ -54,7 +54,7 @@
                                                                              
                                          $pic = $_FILES['images']['name'][$name];
                                               $data = 1;
-                                         unlink("equipment_pic/$img_old");
+                                         unlink("../Admin/pages/equipment_pic/$img_old");
                                                    }
                                    }else{
                                         $data = 6;
@@ -103,7 +103,7 @@
                 if($data == 1){
                    
                $t = "SELECT * FROM tor LEFT JOIN contract ON contract.con_id = tor_contract 
-               LEFT JOIN type ON type.type_id = tor_type WHERE con_name = '$con' AND type_name = '$type'";
+               LEFT JOIN type_eq ON type_eq.type_id = tor_type WHERE con_name = '$con' AND type_name = '$type'";
                        $rs = $conn->query($t);
                        while($row = mysqli_fetch_assoc($rs)){
                            $tor_i = $row["tor_id"];
@@ -111,7 +111,7 @@
                            
                        }
                    
-                       $status = "รอจัดสรร";
+                       $status = 1;
                                    
                 $sql = "UPDATE `equipment` SET `eq_barcode`='$barcode', `eq_serial`='$sr', `eq_pic`='$pic', `eq_tor`='$tor_i', `eq_status`='$status' WHERE `eq_id` = '$id'";                   
                                     if(mysqli_query($conn, $sql)){

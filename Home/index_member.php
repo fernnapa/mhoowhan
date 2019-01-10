@@ -1,11 +1,18 @@
 <?php  
-include("../Home/db_connect.php");
- ?>  
- <!DOCTYPE html>  
- <html>  
-      <head>  
-           
-           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+session_start();
+?>  
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ระบบติดตามการใช้งานครุภัณฑ์ศูนย์คอมพิวเตอร์</title>
+	<link rel="icon" href="images/favicon.png" type="image/png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+	      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />  
            <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
            <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
@@ -13,24 +20,19 @@ include("../Home/db_connect.php");
            
            <!-- bootstrap -->
            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-            <!--font-->
-            <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
-
-            <style>
-            body {
-                    font-family: 'Kanit', sans-serif;
-            }
-            h1 {
-                    font-family: 'Kanit', sans-serif;
-            }
-            </style>
-      </head>  
-      <body>  
-           <br />
-           <div class="container">  
-                <h2 align ="center">รายการครุภัณฑ์คอมพิวเตอร์ </h2>
-                <br />  
-                <div class="table-responsive">  
+	<?php
+		include("index_link.php");
+	?>
+	</head>
+	
+	<?php
+		include("navbar_member.php");
+	?>
+	<?php
+		include("db_connect.php");
+	?>
+	<body>
+	<div class="table-responsive">  
                      <table id="com_data" class="table table-striped table-bordered">  
                           <thead>  
                                <tr align="center">  
@@ -114,9 +116,33 @@ include("../Home/db_connect.php");
                                          
                 </div>  
            </div>  
-      </body>  
- </html>  
- <script>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<?php
+		include("footer.php");
+	?>
+	</body>
+</html>
+<script>  
                     $(document).ready(function(){  
                     $('#com_data').DataTable();  
                     });  
@@ -145,7 +171,7 @@ include("../Home/db_connect.php");
                 document.getElementById("txtHint").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "select.php?id="+str, true);
+            xhttp.open("GET", "../mint/select.php?id="+str, true);
             xhttp.send();
             }
             </script>

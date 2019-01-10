@@ -12,8 +12,8 @@ $sql = "SELECT * FROM equipment
       ON equipment.eq_tor = tor.tor_id
       LEFT JOIN contract
       ON tor.tor_contract = contract.con_id
-      LEFT JOIN type
-      ON tor.tor_type = type.type_id 
+      LEFT JOIN type_eq
+      ON tor.tor_type = type_eq.type_id 
 WHERE eq_id = $id";
 $eq_id = "";
 $barcode = "";
@@ -42,25 +42,25 @@ while($row = mysqli_fetch_assoc($rs)){
 
  
 }
-echo '<link rel="stylesheet" href="style.css">';
+
 
 echo  '  <tr>
-<input type="hidden" name="eq_id" value="'.$eq_id.'" class="form-control name_list" />
+<input type="hidden" name="eq_id" value="'.$eq_id.'" class="form-control name_list " />
 
-<th style="text-align: right; width:20%">Barcode</th>
-<th><input type="text" name="eq_barcode" value="'.$barcode.'" class="form-control name_list" /></th>
+<th style="text-align: right; width:30%; font-family:Prompt;" class="w3-small">Barcode</th>
+<th><input type="text" name="eq_barcode" value="'.$barcode.'" class="form-control name_list"/></th>
 </tr>
 <tr>
-<th style="text-align: right; ">SERIAL NUMBER</th>
+<th style="text-align: right; font-family:Prompt; " class="w3-small">SERIAL NUMBER</th>
 <th><input type="text" name="eq_sr" value="'.$sr.'" class="form-control name_list" /></th>
 </tr>
-<th style="text-align: right; width: 100px">รูปภาพ</th>
+<th style="text-align: right; width: 100px; font-family:Prompt;" class="w3-small">รูปภาพ</th>
 <th ><input type="file" name="images[]"  id="select_image" multiple  onchange="namepic()" class="form-control"></th>                               
 <input type="hidden" id="eq_pic" value="'.$pic.'" name="eq_pic" style="width:99%" class="form-control">
 
 </tr>
 <tr>
-<th style="text-align: right;">สัญญา</th>
+<th style="text-align: right; font-family:Prompt;" class="w3-small">สัญญา</th>
 <th><select name="eq_con" id="eq_con" style="width: 99%" class="form-control" onchange="filterType(this.value)">
             <option value="'.$con.'">'.$con.'</option>';
             
@@ -75,11 +75,11 @@ echo  '  <tr>
 echo '</select></th>
 </tr>
 <tr>
-<th style="text-align: right;">ประเภทครุภัณฑ์</th>
+<th style="text-align: right;font-family:Prompt;" class="w3-small">ประเภทครุภัณฑ์</th>
 <th id="getdltype"><select name="eq_type" id="eq_type" style="width: 99%" class="form-control" >
                 <option value="'.$type.'">'.$type.'</option>';
         $t = "SELECT * FROM tor LEFT JOIN contract ON contract.con_id = tor_contract 
-            LEFT JOIN type ON type.type_id = tor_type WHERE con_name = '$conname'";
+            LEFT JOIN type_eq ON type_eq.type_id = tor_type WHERE con_name = '$conname'";
             $rs = $conn->query($t);
             while($row = mysqli_fetch_assoc($rs)){
             $type_n = $row["type_name"];

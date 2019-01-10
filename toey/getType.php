@@ -7,7 +7,7 @@ if(isset($_GET['id'])){
 }
 
 $sql = "SELECT type_name
-FROM type WHERE type_id = $id";
+FROM type_eq WHERE type_id = $id";
 $name = "";
 
 $rs = $conn->query($sql);

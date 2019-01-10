@@ -7,8 +7,8 @@ if(isset($_GET['id'])){
 }
 
 $sql = "SELECT * FROM tor 
-LEFT JOIN type
-ON type.type_id = tor_type
+LEFT JOIN type_eq
+ON type_eq.type_id = tor_type
 LEFT JOIN contract
 ON contract.con_id = tor_contract
 WHERE tor_id = $id";
@@ -39,13 +39,13 @@ echo
                                             <input type="hidden" id="tor_id" name="tor_id"  value="'.$id.'">
 
                                             <tr>
-                                                <th style="text-align: right;">ชื่อ TOR</th>
+                                                <th style="text-align: right; font-family:Prompt;">ชื่อ TOR</th>
                                                 <th style="text-align: center;"><input type="text" id="tor_name" name="tor_name" style="width:99%" class="form-control" value="'.$name.'"></th>
                                             </tr>
 
                                             
                                             <tr>
-                                                <th style="text-align: right;">ประเภท TOR</th>
+                                                <th style="text-align: right; font-family:Prompt;">ประเภท TOR</th>
                                                 <th style="text-align: center;"><select name="tor_type" id="tor_type" style="width: 99%" class="form-control">
                                                             <option value="'.$type_id.'" >'.$type_name.'</option>';
                                             
@@ -61,7 +61,7 @@ echo
       echo                                          '</select></th>        
                                             </tr>
                                             <tr>
-                                                <th style="text-align: right;">สัญญา</th>
+                                                <th style="text-align: right; font-family:Prompt;">สัญญา</th>
                                                 <th style="text-align: center;"><select name="tor_contract" id="tor_contract" style="width: 99%" class="form-control">
                                                             <option value="'.$con_id.'">'.$con_name.'</option>';
                                             
@@ -75,7 +75,7 @@ echo
         echo                                       '</select></th>
                                             </tr>
                                             <tr>
-                                                <th style="text-align: right; vertical-align:top" >รายละเอียด TOR</th>
+                                                <th style="text-align: right; vertical-align:top; font-family:Prompt; ">รายละเอียด TOR</th>
                                                 <th style="text-align: center;"><textarea class="form-control" rows="5" id="comment" name="tor_des" >'.$des.'</textarea></th>
                                             </tr>';
 

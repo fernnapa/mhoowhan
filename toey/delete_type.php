@@ -6,7 +6,7 @@ require_once 'db_connect.php';
     $type_id = mysqli_escape_string($conn, $_POST['x']); 
        
     
-        $sql = "DELETE from type WHERE type_id = $type_id";
+        $sql = "DELETE from type_eq WHERE type_id = $type_id";
 
             if(mysqli_query($conn, $sql)){
               $data = 1;

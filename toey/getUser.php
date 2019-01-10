@@ -32,7 +32,6 @@ while($row = mysqli_fetch_assoc($rs)){
     $pass = $row["emp_pass"];
     $status = $row["emp_status"];
 }
-echo '<link rel="stylesheet" href="style.css">';
 
 echo  
 '
@@ -40,11 +39,11 @@ echo
 <td><img src="upload/'.$pic.'" width="125px;" height="120px;" /></td>
 </tr>
 <tr>
-<th style="text-align: center;">หมายเลขพนักงาน</th>
-<th style="text-align: center;">ชื่อ</th>
-<th style="text-align: center;">สกุล</th>
-<th style="text-align: center;">ตำเเหน่ง</th>
-<th style="text-align: center;">โทรศัพท์</th>
+<th style="text-align: center; font-family:Prompt;">หมายเลขพนักงาน</th>
+<th style="text-align: center; font-family:Prompt;">ชื่อ</th>
+<th style="text-align: center; font-family:Prompt;">สกุล</th>
+<th style="text-align: center; font-family:Prompt">ตำเเหน่ง</th>
+<th style="text-align: center; font-family:Prompt">โทรศัพท์</th>
                                        
 </tr>
 <tr>

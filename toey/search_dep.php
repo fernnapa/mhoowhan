@@ -9,8 +9,8 @@ if(isset($_POST["query"]))
         $query = "SELECT * FROM department 
         WHERE dep_no LIKE '%".$search."%'
         OR dep_name LIKE '%".$search."%' 
-        OR latitude LIKE '%".$search."%' 
-        OR longtitude LIKE '%".$search."%' ";
+        OR lat LIKE '%".$search."%' 
+        OR lng LIKE '%".$search."%' ";
 }
 else
 {
@@ -26,11 +26,11 @@ if(mysqli_num_rows($result) > 0)
 <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
     <thead>
      <tr>
-   <th style="text-align: center;">หมายเลขหน่วยงาน</th>
-   <th style="text-align: center;">ชื่อหน่วยงาน</th>
-   <th style="text-align: center;">แลตติจูด</th>
-   <th style="text-align: center;">ลองติจูด</th>
-   <th style="text-align: center;">Action</th>
+   <th style="text-align: center; font-family:Prompt;">หมายเลขหน่วยงาน</th>
+   <th style="text-align: center; font-family:Prompt;">ชื่อหน่วยงาน</th>
+   <th style="text-align: center; font-family:Prompt;">ละติจูด</th>
+   <th style="text-align: center; font-family:Prompt;">ลองจิจูด</th>
+   <th style="text-align: center;"></th>
    <th style="text-align: center;"></th>
     </tr>
      </thead>
@@ -39,12 +39,12 @@ if(mysqli_num_rows($result) > 0)
  {
   $output .= '
    <tr>
-    <td style="text-align: left;">'.$row["dep_no"].'</td>
-    <td style="text-align: left;">'.$row["dep_name"].'</td>
-    <td style="text-align: left;">'.$row["latitude"].'</td>
-    <td style="text-align: left;">'.$row["longtitude"].'</td>
-    <td><button type="button" class="btn btn-warning btn-block" data-toggle="modal" value="'.$row["dep_id"].'" onclick="showDepartment(this.value)" data-target="#myModal2">เเก้ไข</button></td>
-    <td><button type="button" class="btn btn-danger btn-block" value="'.$row["dep_id"].'" onclick="remove(this.value)">ลบ</button></td>                    
+    <td style="text-align: left; font-family:Prompt;">'.$row["dep_no"].'</td>
+    <td style="text-align: left; font-family:Prompt;">'.$row["dep_name"].'</td>
+    <td style="text-align: left; font-family:Prompt;">'.$row["lat"].'</td>
+    <td style="text-align: left; font-family:Prompt;">'.$row["lng"].'</td>
+    <td><button type="button" class="btn btn-warning btn-block" data-toggle="modal" value="'.$row["dep_id"].'" onclick="showDepartment(this.value)" data-target="#myModal2" style="font-family:Prompt;">เเก้ไข</button></td>
+    <td><button type="button" class="btn btn-danger btn-block" value="'.$row["dep_id"].'" onclick="remove(this.value)" style="font-family:Prompt;">ลบ</button></td>                    
     </tr>
 
    

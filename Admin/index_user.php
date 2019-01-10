@@ -1,5 +1,6 @@
 <?php  
 session_start();
+include("../Home/db_connect.php");
 ?>  
 <!DOCTYPE html>
 <html lang="en">
@@ -28,10 +29,10 @@ session_start();
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-        <a class="navbar-brand brand-logo" href="index_admin.php">
+        <a class="navbar-brand brand-logo" href="index_user.php">
           <img src="../images/logo.png" alt="logo" />
         </a>
-        <a class="navbar-brand brand-logo-mini" href="index_admin.php">
+        <a class="navbar-brand brand-logo-mini" href="index_user.php">
           <img src="../images/favicon.png" alt="logo" />
         </a>
       </div>
@@ -94,7 +95,7 @@ session_start();
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index_admin.php">           <!-----  หน้าแรก----->
+            <a class="nav-link" href="index_user.php">           <!-----  หน้าแรก----->
               <i class="menu-icon mdi mdi-television"></i>
               <span class="menu-title">หน้าแรก</span>
             </a>
@@ -103,24 +104,8 @@ session_start();
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="menu-icon mdi mdi-settings"></i>
               <span class="menu-title">จัดการข้อมูล</span>
-              <i class="menu-arrow"></i>
+              <i class="menu-title"></i>
             </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item">
-                  <a class="nav-link" href="pages/index_eq.php">ข้อมูลครุภัณฑ์คอมพิวเตอร์</a>         <!-----  หน้า จัดการ ----->
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="pages/index_tor.php">ข้อมูลประเภทครุภัณฑ์</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="pages/index_department.php">ข้อมูลหน่วยงาน</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="pages/index_emp.php">ข้อมูลผู้ใช้งาน</a>
-                </li>
-              </ul>
-            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="pages/index_map.php">
@@ -149,28 +134,117 @@ session_start();
             <div class="col-lg-12 grid-margin">
               <div class="card">
                 <div class="card-body">
+                
+
+                <div class="container">  
+                <h2 style="font-family:Prompt; text-align: center;">รายการครุภัณฑ์คอมพิวเตอร์ </h2>
+                <br />  
+                <div class="table-responsive">  
+                     <table id="com_data" class="table table-striped table-bordered">  
+                          <thead>  
+                               <tr align="center">  
+                                    
+                                    <td>Barcode</td>  
+                                    <td>รายการ</td>  
+                                    <td>SN Number</td> 
+                                    <td>สัญญาเช่า</td> 
+                                    <td>สถานะ</td>
+                                    <td width ="15">action</td>
+                                    <td width ="15"></td>
+                                    <td width ="15"></td>
+                                    
+                               </tr>  
+                          </thead>  
+                          <?php  
+                          $query ="SELECT * FROM equipment 
+                          LEFT JOIN tor ON equipment.eq_tor = tor.tor_id
+                          LEFT JOIN type_eq ON tor.tor_type = type_eq.type_id
+                          LEFT JOIN contract ON tor.tor_contract = contract.con_id
+                          LEFT JOIN a_status ON equipment.eq_status = a_status.status_id 
+                          ORDER BY eq_id DESC";  
+                          $result = mysqli_query($conn, $query);  
+                   
+                          while($row = mysqli_fetch_array($result))  
+                          {  
+
+                              
+                               echo '  
+                               <tr>  
+                                    
+                                    <td>'.$row["eq_barcode"].'</td>
+                                    <td>'.$row["type_name"].'</td>  
+                                    <td>'.$row["eq_serial"].'</td>
+                                    <td>'.$row["con_des"].' </td>
+                                    <td>'.$row["status_name"].'</td>
+                                    <form class="form-inline" onsubmit="openModal()" id="myFormEdit">
+                                    <td align="center"><button type="submit" id="detail"class="btn btn-info btn - viewdata" data-toggle="modal" data-target="#myModalView" value="'.$row["eq_id"].'" onclick="showEquipment('.$row["eq_id"].')" form="myFormView"><i class="glyphicon glyphicon-pencil">&nbsp;</i>ดูรายละเอียด</button></td>';  
+                                    
+                                    if ($row["status_name"] == "จัดสรร"){
+
+                                        echo"<td align='center'><a class='btn btn-danger' data-role='update'>จัดสรรแล้ว</a></button></td>";
+
+                                    }else{
+                                        echo"<td align='center'><a href='updatelist.php? eq_id=$row[eq_id]'< class='btn btn-success' data-role='update'>จัดสรร</a></button></td>";
+                                    }
+                                     
+                                    if ($row["status_name"] == "รอจัดสรร"){
+                                        echo"<td align='center'><a class='btn btn-warning' data-role='update'>แก้ไข</a></button></td>";
+                                   }else{
+                                        echo"<td align='center'><a href='editlist.php? eq_id=$row[eq_id]'< class='btn btn-warning' data-role='update'>แก้ไข</a></button></td>";
+                                   }
+                        
+                                echo  "</tr>";
+                               
+                          }  
+                          ?>  
+                     </table> 
 
 
-<!------------------------------------------ /.modal edit------------------------------------------------------->
+                                 <div class="modal fade" tabindex="-1" role="dialog" id="myModalView">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">รายละเอียด</h4>
+                            </div>
+                                    <div class="modal-body">
+                                            
+                                            <table style="width:90%" align="center" id="txtHint">
+                                                                                                    
+                                             </table>
+                                             </form>
+                </div>  
+                <div class="modal-footer">
+                         <button type="reset" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+               </div>
+               </div>       
+                    
+                   
+                                         
+                </div>  
+           </div>  
+                 
 
-<div class="container w3-card-2 w3-round " style="width:100%; font-family:Prompt;">  
-             <div class="container" > 
-            <br>
-            <h3 class="modal-title" style="font-family:Prompt; text-align: center;"> การจัดสรรข้อมูลครุภัณฑ์คอมพิวเตอร์</h3>
-            <br/>
-            <input type="text" style="width:100%;" size="80" name="search_text" id="search_text" class="form-control" placeholder="กรอกข้อมูลที่ต้องการค้นหา">
-
-            <div class="table-responsive" id="result">
-            <p></p>
-            <form id="form3"> 
-          
-        </form>
-        </div>
-        </div>
-<!-- /.data -->
 
 
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                 </div>
@@ -209,81 +283,36 @@ session_start();
 </body>
 </html>
 
-
-
-<script>
-$(document).ready(function(){  
-      $('#tableshow').DataTable({
-  "searching": false
-});  
- }); 
-</script>
+<script>  
+                    $(document).ready(function(){  
+                    $('#com_data').DataTable();  
+                    });  
+ </script>  
 
 <script>
-$(document).ready(function()
-{
-        load_data();
-                function load_data(query)
-                {
-                        $.ajax(
-                        {
-                        url:"../toey/search_eq.php",
-                        method:"POST",
-                        data:{query:query},
-                        success:function(data)
-                        {
-                            $('#result').html(data);
-                        }
-                        }
-                            );
-                }
-                $('#search_text').keyup(function()
-                {
-                    var search = $(this).val();
-                    if(search != '')
-                    {
-                        load_data(search);
-                    }else
-                    {
-                        load_data();
-                    }
-                }
-                );
-});
-</script>       
-<script>
-            function filterType(str) {
-            var xhttp;    
-            if (str == "") {
-                document.getElementById("getdltype").innerHTML = "";
-                return;
-            }
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("getdltype").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "../toey/getDLtype.php?id="+str, true);
-            xhttp.send();
-            }
-</script>
-
-
-<script>
-            function showEq(str) {
-            var xhttp;    
-            if (str == "") {
-                document.getElementById("getEq").innerHTML = "";
-                return;
-            }
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("getEq").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "../toey/getEq.php?id="+str, true);
-            xhttp.send();
-            }
+                    $('#myFormView').on('submit', function(e){
+                    $('#myModalView').modal('show');
+                    e.preventDefault();
+                    });
             </script>
+
+
+
+
+<script>
+            function showEquipment(str) {
+            var xhttp;    
+            if (str == "") {
+                document.getElementById("txtHint").innerHTML = "";
+                return;
+            }
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "../mint/select.php?id="+str, true);
+            xhttp.send();
+            }
+</script>
