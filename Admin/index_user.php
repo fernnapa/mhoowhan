@@ -140,7 +140,7 @@ include("../Home/db_connect.php");
                 <h2 align ="center">รายการครุภัณฑ์คอมพิวเตอร์ </h2>
                 <br />  
                 <div class="table-responsive">  
-                <td align="center"><a href='' class='btn btn-success'>ย้อนกลับ</a></button></td>
+                
                 <br/><br/>
                      <table id="com_data" class="table table-striped table-bordered">  
                           <thead>  
