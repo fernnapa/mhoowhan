@@ -55,7 +55,7 @@
                           LEFT JOIN type_eq ON tor.tor_type = type_eq.type_id
                           LEFT JOIN contract ON tor.tor_contract = contract.con_id
                           LEFT JOIN a_status ON equipment.eq_status = a_status.status_id 
-                          WHERE eq_status ='1'
+                          WHERE eq_status ='2'
                           ORDER BY eq_id DESC";  
                           $result = mysqli_query($conn, $query);  
                    

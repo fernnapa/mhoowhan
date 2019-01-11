@@ -1,4 +1,5 @@
 <html>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -68,6 +69,7 @@ input[type=submit]:hover {
 </style>
 <?php
 include('connection.php');  
+session_start();
 
 
  
@@ -80,7 +82,7 @@ include('connection.php');
 
                   WHERE eq_id='$eq_id' ";
 
-                  $result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+                  $result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
                   $row = mysqli_fetch_array($result);
                   extract($row);
 
@@ -117,10 +119,10 @@ include('connection.php');
                   <?php  
 
                         $sql_status_list = "SELECT * FROM `a_status`";   
-                        $rs_status_list =$con->query($sql_status_list);
+                        $rs_status_list =$conn->query($sql_status_list);
 
                   ?>
-                        <select name="status" onchange="push_status(this.value)"  id="status"  required="required">
+                        <select name="status"  id="status"  required="required">
 
                         <option value="">โปรดเลือก</option>
 
@@ -142,7 +144,7 @@ include('connection.php');
                  <?php  
 
                           $sql_dep_list = "SELECT * FROM `department`";   
-                          $rs_dep_list =$con->query($sql_dep_list);
+                          $rs_dep_list =$conn->query($sql_dep_list);
 
                   ?>
                     <select name="" onchange="push_depName(this.value)" id=""  required="required">
@@ -173,26 +175,26 @@ include('connection.php');
                  <td align="right" bgcolor="#EBEBEB">ตำแหน่ง : </td>
                  <td bgcolor="#EBEBEB"><input name="position" type="text" id="position"  required="required"/>
                  <td align="right" bgcolor="#EBEBEB">รหัสพนักงาน : </td>
-                 <td bgcolor="#EBEBEB"><input name="empid" type="text" id="empid"  required  pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น"/></td>
+                 <td bgcolor="#EBEBEB"><input name="empid" type="text" id="empid"   required  pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น"/></td>
                  </td>
            </tr>
            <tr>
                  <td align="right" bgcolor="#EBEBEB">ประเภทห้อง : </td>
-                 <td bgcolor="#EBEBEB"><input name="typeR" type="text" id="typeR"  required="required"/>
+                 <td bgcolor="#EBEBEB"><input name="typeR" type="text" id="typeR"  />
                  <td align="right" bgcolor="#EBEBEB">หนังสืออ้างอิง : </td>
-                 <td bgcolor="#EBEBEB"><input name="refer" type="text" id="refer"  required="required"/>
+                 <td bgcolor="#EBEBEB"><input name="refer" type="text" id="refer"  />
                  </td>
            </tr>
            <tr>
                  <td align="right" bgcolor="#EBEBEB"> สัญญาเช่า : </td>
                  <td bgcolor="#EBEBEB"><input name="con" type="text" id="con" value="<?=$con_des;?>" required="required" readonly/>
                  <td align="right" bgcolor="#EBEBEB">หมายเหตุ : </td>
-                 <td bgcolor="#EBEBEB"><input name="note" type="text" id="note"  required="required"/>
+                 <td bgcolor="#EBEBEB"><input name="note" type="text" id="note"  />
                  </td>
            </tr>
            <tr>
-                 <td align="right" bgcolor="#EBEBEB">รหัสพนักงานจัดสรร : </td>
-                 <td bgcolor="#EBEBEB"><input name="allo_no" type="text" id="allo_no"  required pattern="[0-9]{1,}" title="กรอกตัวเลขเท่านั้น"/></td>
+                 <td align="right" bgcolor="#EBEBEB">พนักงานจัดสรร : </td>
+                 <td bgcolor="#EBEBEB"><input name="allo_no" type="text" id="allo_no"  readonly ></td>
                  <td bgcolor="#EBEBEB"> </td>
                  <td bgcolor="#EBEBEB">
                  </td>

@@ -13,6 +13,7 @@ h1 {
 <?php
 //1. เชื่อมต่อ database: 
 include('connection.php');  //ไฟล์เชื่อมต่อกับ database ที่เราได้สร้างไว้ก่อนหน้าน้ี
+session_start();
 
 //สร้างตัวแปรสำหรับรับค่าที่นำมาแก้ไขจากฟอร์ม
 	$eq_barcode = $_REQUEST["barcode"];
@@ -29,23 +30,10 @@ include('connection.php');  //ไฟล์เชื่อมต่อกับ d
                   	eq_status ='$eq_status' 
                   	WHERE eq_barcode ='$eq_barcode' ";		
 	
-                  	$result = mysqli_query($con, $sql) or die ("Error in query: $sql " . mysqli_error());
+                  	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
 
 	
-	// $bar_id = $_REQUEST["barcode_id"];
-	// $com_list = $_REQUEST["list_com"];
-	// $SN = $_REQUEST["SN"];
-	// $com_refer = $_REQUEST["refer"];
-	// $TOR = $_REQUEST["TOR"];
-	// $Status_com= $_REQUEST["Status"];
-	// $ins_no = $_REQUEST["ins_no"];
-	// $ins = $_REQUEST["ins"];
-	// $prefix = $_REQUEST["prefix"];
-	// $emp_name = $_REQUEST["emp_name"];
-	// $position = $_REQUEST["position"];
-	// $emp_id = $_REQUEST["emp_id"];
-	// $category = $_REQUEST["category"];
-	// $emp_no = $_REQUEST["emp_no"];
+	
 
 	$bar_id= $_REQUEST["barcode"];
      	$title= $_REQUEST["titletor"];
@@ -63,18 +51,32 @@ include('connection.php');  //ไฟล์เชื่อมต่อกับ d
      	$note = $_REQUEST["note"];
 	$allocate_id = $_REQUEST["allo_no"];
 	     
-                  $sql3 ="INSERT INTO `allocate`(`ac_barcode`, `ac_title`, `ac_dep`, `ac_dname`,`ac_contract`, `ac_tname`, `ac_name`, `ac_position`, `ac_empid`, `ac_typeR`, `ac_serial`, `ac_refer`, `ac_note`, `ac_emp`, `ac_status`)
-                                            VALUES ('$bar_id','$title','$dep','$dname','$contract','$tname','$name','$position','$empid','$typeR','$sn','$refer','$note','$allocate_id','$status_com')";
+//                   $sql3 ="INSERT  INTO `allocate`(`ac_barcode`, `ac_title`, `ac_dep`, `ac_dname`,`ac_contract`, `ac_tname`, `ac_name`, `ac_position`, `ac_empid`, `ac_typeR`, `ac_serial`, `ac_refer`, `ac_note`, `ac_emp`, `ac_status`)
+// 	    VALUES ('$bar_id','$title','$dep','$dname','$contract','$tname','$name','$position','$empid','$typeR','$sn','$refer','$note','$allocate_id','$status_com')";
+	
+	$sql2 ="UPDATE allocate SET
+	 ac_barcode='$bar_id',
+	 ac_title='$title',
+	 ac_dep='$dep',
+	 ac_dname='$dname',
+	 ac_contract='$contract',
+	 ac_tname='$tname',
+	 ac_name='$name',
+	 ac_position='$position',
+	 ac_empid='$empid',
+	 ac_typeR='$typeR',
+	 ac_serial='$sn',
+	 ac_refer='$refer',
+	 ac_note='$note',
+	 ac_emp='$allocate_id',
+	 ac_status='$status_com' 
+	 WHERE ac_barcode = '$bar_id'";
+
+               
+                  $query = mysqli_query($conn, $sql2) or die (mysqli_error($conn)); 
 
 
-//                   $sql2 ="INSERT INTO `com_eq`(`bar_id`, `com_list`, `com_SN`, `com_refer`, `com_TOR`, `com_status`, `ins_no`, `ins_name`, `prefix`, `emp_name`, `emp_posi`, `emp_no`, `category`, `allocate_no`) 
-//                   VALUES ('$bar_id','$com_list','$SN','$com_refer','$TOR','$Status_com','$ins_no','$ins','$prefix','$emp_name','$position',
-//                   '$emp_id','$category','$emp_no')";
-                
-                  $query = mysqli_query($con, $sql3) or die (mysqli_error($con)); 
-
-
-                  mysqli_close($con); //ปิดการเชื่อมต่อ database 
+                  mysqli_close($conn); //ปิดการเชื่อมต่อ database 
 
                   //จาวาสคริปแสดงข้อความเมื่อบันทึกเสร็จและกระโดดกลับไปหน้าฟอร์ม
 
@@ -82,7 +84,7 @@ include('connection.php');  //ไฟล์เชื่อมต่อกับ d
 	if($result){
 	echo "<script type='text/javascript'>";
 	echo "alert('บันทึกการจัดสรรเรียบร้อย');";
-	echo "window.location = 'Showlist.php'; ";
+	echo "window.location = 'Showlistallo.php'; ";
 	echo "</script>";
 	}
 	else{
