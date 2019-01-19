@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php 
-     include ("connection.php");
+     include ("db_connect.php");
 ?>	
 <html lang="en">
      <head>
@@ -48,11 +48,17 @@
               </div>
          </div>
          <div class="control-group">
+                <table collspan="0">
+                <td> วันที่นำเข้า : <input type="text"  name="date"  id="date" value="<?=date('d-m-Y')?> "readonly/></td><br/>
+                <td> รหัสพนักงานนำเข้า : <input type="text"  name="empno"  id="empno"/></td>
+               </table>
+              </div>
+         <div class="control-group">
               <div class="controls">
               <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading...">Upload</button>
-							
               </div>
-         </div>
+              </div>
+         
          </fieldset>
          </form>
         </div>
@@ -67,15 +73,15 @@
 	<th>Bar Code</th>
 	<th>รายการ</th>
 	<th>Serial Number.</th>
-	<th width="15%">สถานะ</th>				 
+	<!-- <th width="15%">สถานะ</th>				  -->
                       </tr>	
              </thead>
 <?php
 		
-             $result_set =  mysqli_query( $con, "SELECT * FROM equipment 
+             $result_set =  mysqli_query( $conn, "SELECT * FROM equipment 
                                         LEFT JOIN tor ON equipment.eq_tor = tor.tor_id
                                         LEFT JOIN type_eq ON tor.tor_type = type_eq.type_id
-                                        LEFT JOIN a_status ON equipment.eq_status = a_status.status_id ");
+                                        -- LEFT JOIN a_status ON equipment.eq_status = a_status.status_id ");
              while($row = mysqli_fetch_array($result_set))
              {
 ?>
@@ -85,7 +91,7 @@
 	                    <td><?php echo $row['eq_barcode']; ?></td>
 	                    <td><?php echo $row['type_name']; ?></td>
 	                    <td><?php echo $row['eq_serial']; ?></td>
-	                    <td><?php echo $row['status_name']; ?></td>
+	                   
                       </tr>
 <?php
              }
