@@ -29,28 +29,7 @@ include_once 'db_connect.php';
     </head>
     <title>ดาวน์โหลดไฟล์การจัดสรรครุภัณฑ์คอมพิวเตอร์</title>
         <body >
-<!-- Modal ดูข้อมูลPM -->
-        <!-- <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewPM">
-                            <div class="modal-dialog " role="document">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title"><b>ข้อมูลการจัดสรรครุภัณฑ์</b></h4>
-                            </div>
-                                    <div class="modal-body">
-                                            <form id="ViewPM" >
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
-                                        </div>
 
-                            </div>
-                            </div>
-                            </div> -->
-<!-- Modal คืน -->
-     
-<!-- Modal คืน -->
                 <br>       
                     <div class="container w3-card-4 w3-round" style="width:80% " > 
                     <br>
@@ -105,7 +84,7 @@ include_once 'db_connect.php';
                        while($data = mysqli_fetch_array($result)):
                                $cn  =   $data['ald_con_name'];
                                $tn  =   $data['ald_type_name'];
-                            
+                       
                             $tor = "SELECT * FROM tor
                             LEFT JOIN type_eq
                             ON tor.tor_type = type_eq.type_id
@@ -134,6 +113,7 @@ include_once 'db_connect.php';
 
                    
                         </tr>
+                        
                        <?php endwhile; ?>
                 </table>
                 </form>

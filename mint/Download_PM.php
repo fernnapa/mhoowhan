@@ -16,19 +16,8 @@ if(isset($_POST["export"]))
 
                          $result = mysqli_query($conn, $sql);
                        while($data = mysqli_fetch_array($result)){
-                               $cn  =   $data['pmd_con_name'];
-                               $tn  =   $data['pmd_type_name'];
-                            
-                            $tor = "SELECT * FROM tor
-                            LEFT JOIN type_eq
-                            ON tor.tor_type = type_eq.type_id
-                            LEFT JOIN contract
-                            ON tor.tor_contract = contract.con_id
-                            WHERE type_name = '$tn' AND con_name = '$cn'";
-                            $result2 = mysqli_query($conn, $tor);
-                            while($data2 = mysqli_fetch_array($result2)){
-                                     $tor_name  = $data2['tor_name'];
-                            }
+                              
+                           
  
  
                          if(mysqli_num_rows($result) > 0)
@@ -52,6 +41,22 @@ if(isset($_POST["export"]))
                                         ';
                while($data = mysqli_fetch_array($result))
                  {
+
+                  $cn  =   $data['pmd_con_name'];
+                  $tn  =   $data['pmd_type_name'];
+
+                  $tor = "SELECT * FROM tor
+                  LEFT JOIN type_eq
+                  ON tor.tor_type = type_eq.type_id
+                  LEFT JOIN contract
+                  ON tor.tor_contract = contract.con_id
+                  WHERE type_name = '$tn' AND con_name = '$cn'";
+                  $result2 = mysqli_query($conn, $tor);
+                  while($data2 = mysqli_fetch_array($result2)){
+                           $tor_name  = $data2['tor_name'];
+                  }
+
+
                  $output .= '
                          <tr>  
                                        
