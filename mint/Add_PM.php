@@ -28,11 +28,13 @@
                 $pm_firstdate = $_POST['pm_firstdate'];
                 $pm_enddate =  $_POST['pm_enddate'];
                 $date = $_POST['date'];
+                $dateAN = $_POST['date'];
+
 
 
                             $status = 7;
-                            $sql = "INSERT INTO `permit`( `pm_name`, `pm_userTname`, `pm_username`, `pm_userno`, `pm_position`, `pm_dep`, `pm_TypeR`, `pm_firstdate`, `pm_enddate`, `pm_empno`, `pm_date`, `pm_status`) 
-                                            VALUES ( '$pm_name','$pm_userTname','$pm_username','$pm_userno','$pm_position','$pm_dep',' $pm_TypeR','$pm_firstdate','$pm_enddate','$pm_empno ','$date', '$status')";
+                            $sql = "INSERT INTO `permit`( `pm_name`, `pm_userTname`, `pm_username`, `pm_userno`, `pm_position`, `pm_dep`, `pm_TypeR`, `pm_firstdate`, `pm_enddate`, `pm_empno`, `pm_date`, `pm_status`, `pm_date_analys`) 
+                                            VALUES ( '$pm_name','$pm_userTname','$pm_username','$pm_userno','$pm_position','$pm_dep',' $pm_TypeR','$pm_firstdate','$pm_enddate','$pm_empno ','$date', '$status', '$dateAN')";
                                     if(mysqli_query($conn, $sql)){
 
                             $choose = $_SESSION['chooseEq'];
@@ -61,8 +63,8 @@
                                      ON equipment.eq_tor = tor.tor_id
                                      LEFT JOIN contract
                                      ON tor.tor_contract = contract.con_id
-                                     LEFT JOIN type_eq
-                                     ON tor.tor_type = type_eq.type_id 
+                                     LEFT JOIN type
+                                     ON tor.tor_type = type.type_id 
                                      WHERE eq_id = '$value'";
                             
                               $result = mysqli_query($conn, $eq_choose);

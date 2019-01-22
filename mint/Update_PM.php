@@ -30,9 +30,11 @@ if($_POST['pm_username'] != "" && $_POST['pm_userTname'] != ""  && $_POST['pm_na
     $pm_firstdate = $_POST['pm_firstdate'];
     $pm_enddate =  $_POST['pm_enddate'];
     $date = $_POST['date'];
+    $dateAN = $_POST['date'];
+
     $status = 7;
     $note = "";
-    $sql = "UPDATE `permit` SET `pm_name`='$pm_name',`pm_userTname`='$pm_userTname',`pm_username`='$pm_username',`pm_userno`='$pm_userno',`pm_position`='$pm_position',`pm_dep`='$pm_dep',`pm_TypeR`='$pm_TypeR',`pm_firstdate`='$pm_firstdate',`pm_enddate`='$pm_enddate',`pm_empno`='$pm_empno',`pm_date`='$date',`pm_status`='$status',`pm_note`='$note' WHERE pm_id = $id ";
+    $sql = "UPDATE `permit` SET `pm_name`='$pm_name',`pm_userTname`='$pm_userTname',`pm_username`='$pm_username',`pm_userno`='$pm_userno',`pm_position`='$pm_position',`pm_dep`='$pm_dep',`pm_TypeR`='$pm_TypeR',`pm_firstdate`='$pm_firstdate',`pm_enddate`='$pm_enddate',`pm_empno`='$pm_empno',`pm_date`='$date',`pm_status`='$status',`pm_note`='$note',`pm_date_analys`='$dateAN' WHERE pm_id = $id ";
                     if(mysqli_query($conn, $sql))
                     {
                         $data = 1;

@@ -98,6 +98,7 @@ include_once 'db_connect.php';
                         <td style="text-align: center;">สถานะ</td>
                       
                         <td style="text-align: center;">รายละเอียด</td>
+                        <td></td>
 
                    </tr>
                     </thead>
@@ -155,6 +156,7 @@ include_once 'db_connect.php';
                         
 
                         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="show_AC(<?php echo $data['ac_id']; ?>)">ดูรายละเอียด</button></td>
+                        <td><a href='pdf.php?ac_id=<?php echo $data['ac_id'];?>' class='btn btn-danger' data-role='pdf'>PDF</a></button></td>
 
                     <?php } ?>
                     <?php if($stn == "ไม่ผ่านการตรวจสอบ"){ ?>  
@@ -166,6 +168,7 @@ include_once 'db_connect.php';
                         
 
                         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_head(<?php echo $data['ac_id']; ?>)">ดูรายละเอียด</button></td>
+                        <td><a href='pdf.php?ac_id=<?php echo $data['ac_id'];?>' class='btn btn-danger' data-role='pdf'>PDF</a></button></td>
 
                     <?php } if($stn == "ไม่อนุมัติ"){ ?>
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
@@ -176,7 +179,8 @@ include_once 'db_connect.php';
                         
 
                         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC(<?php echo $data['ac_id']; ?>)">ดูรายละเอียด</button></td>
-                        
+                        <td><a href='pdf.php?ac_id=<?php echo $data['ac_id'];?>' class='btn btn-danger' data-role='pdf'>PDF</a></button></td>
+
                     <?php } if($stn == "อนุมัติ"){ ?>
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
                         <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
@@ -186,7 +190,8 @@ include_once 'db_connect.php';
                         
 
                         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC(<?php echo $data['ac_id']; ?>)">ดูรายละเอียด</button></td>
-                    
+                        <td><a href='pdf.php?ac_id=<?php echo $data['ac_id'];?>' class='btn btn-danger' data-role='pdf'>PDF</a></button></td>
+
                     <?php }if($stn == "ผ่านการตรวจสอบ"){ ?>
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
                         <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
@@ -196,6 +201,8 @@ include_once 'db_connect.php';
                         
 
                         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC(<?php echo $data['ac_id']; ?>)">ดูรายละเอียด</button></td>
+                        <td><a href='pdf.php?ac_id=<?php echo $data['ac_id'];?>' class='btn btn-danger' data-role='pdf'>PDF</a></button></td>
+                    
                     <?php }if($stn == "รออนุมัติ"){?>
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
                         <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
@@ -205,7 +212,8 @@ include_once 'db_connect.php';
                         
 
                          <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_head(<?php echo $data['ac_id']; ?>)">ดูรายละเอียด</button></td>
-                     
+                         <td><a href='pdf.php?ac_id=<?php echo $data['ac_id'];?>' class='btn btn-danger' data-role='pdf'>PDF</a></button></td>
+
                          <?php }if($stn == "จัดสรร"){ ?>
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
                         <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
@@ -214,7 +222,7 @@ include_once 'db_connect.php';
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                         
                         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC(<?php echo $data['ac_id']; ?>)">ดูรายละเอียด</button></td>
-
+                        <td><a href='pdf.php?ac_id=<?php echo $data['ac_id'];?>' class='btn btn-danger' data-role='pdf'>PDF</a></button></td>
 
                     <?php } ?>
                         </tr>
