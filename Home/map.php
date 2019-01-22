@@ -1,60 +1,135 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Map</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-	
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
-      function initMap() {
-        var mapOptions = {
-			center: {lat: 14.8803505, lng: 102.0156959},
-			zoom: 15,	
-		}
-		var maps = new google.maps.Map(document.getElementById("map"), mapOptions);
-		var marker, info;
-			$.getJSON("map_jsondata.php", function(jsonObj){
-				$.each(jsonObj, function(i, item){
-						marker = new google.maps.Marker({
-						animation: google.maps.Animation.DROP,
-						position: new google.maps.LatLng(item.lat, item.lng),
-						map: maps,
-					});
-					info = new google.maps.InfoWindow();
-					google.maps.event.addListener(marker, 'click', (function(marker, i){
-						return function(){
-							if (marker.getAnimation() !== null){
-								marker.setAnimation(null)
-							}else{
-								marker.setAnimation(google.maps.Animation.BOUNCE);
-							}
-							info.setContent(item.dep_name);
-							info.open(maps, marker);
-						}
-					})(marker, i));
-				});
-			});
-	  }
+e
+      <?php 
+      include("db_connect.php");
+
+        $sqlListData = "SELECT * FROM `department`";
+        
+        $rsListData = mysqli_query($conn, $sqlListData);
+
+
+                if(isset($_POST["search"]) && $_POST["address"] != "all"){   //ถ้ามีการ search และมีค่าที่ไม่ใช่ "ทั้งหมด" ให้แสดงเฉพาะหมุดที่ค้นหา
+
+                    $address = $_POST["address"];           
+
+                    $strSQL = "SELECT * FROM department WHERE dep_id = $address";
+                
+
+                }else if(isset($_POST["search"]) && $_POST["address"] == "all"){       //ถ้ามีการ search และมีค่า = "ทั้งหมด" ให้แสดงหมุดทั้งหมด
+
+                    $strSQL = "SELECT * FROM department";
+                
+                }else{                                                  
+
+                    $strSQL = "SELECT * FROM department";                  
+
+                }
+
+                    $rs = mysqli_query($conn, $strSQL);
+                    $infomation = $rs->fetch_assoc();       //เอาค่าไปแสดง description
+
+                    $objQuery = mysqli_query($conn, $strSQL);
+
+      ?>
+
+     
+                  
+                  <div align="center">
+                  
+                    <form action="map.php" method="post">
+                        <h3 align ="center" style="font-family:Prompt;">หน่วยงานที่มีการจัดสรรครุภัณฑ์คอมพิวเตอร์</h3><br/>
+                        <select name="address">
+
+                          <option selected value="all">ทั้งหมด</option>
+                            <?php while($row = $rsListData->fetch_assoc()){ ?>
+
+                              <option value="<?php echo $row["dep_id"]; ?>"> <?php echo $row["dep_name"]; ?> </option>
+
+                            <?php } ?>
+                        </select>                         
+                            
+                        <button class="btn btn-default" type="submit" name="search" style="font-family:Prompt;">ค้นหา</button>
+
+                    </form>
+
+                  </div>
+                  <br/>
     
-    </script>
+                  <div id="map"></div> 
+                  <br/>
+                
+                  <div class="table-responsive" align="center" style="font-family:Prompt;">
+                    <table border="0">
+                      <tr >
+                        <td style="text-align: right;"><b>รหัสหน่วยงาน : </b></td>
+                        <td><?php echo  $infomation["dep_no"]; ?><br/></td>
+                      </tr>
+                      <tr>
+                        <td style="text-align: right;"><b>ชื่อหน่วยงาน : </b></td>
+                        <td><?php echo  $infomation["dep_name"]; ?></td>
+                      </tr>
+                    </table>
+                  </div>
+                  <br/>
+
+
+              </div>
+           	</div>  
+				  </div>
+        </div>  
+			</div>
+                 
+
+        <footer class="footer">
+            <div class="container-fluid clearfix">
+                  <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
+            </div>
+        </footer>
+
+      </div> 
+    </div>
+  </div>
+
+
+    
+
+<style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+</style>
+
+
+<script>
+function initMap() {
+  // The location of 
+  var sut = {lat: 14.8803505, lng: 102.0156959};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 15, center: sut});
+  // The marker, positioned at Uluru
+
+    <?php while($row_dep = $objQuery->fetch_assoc()){ ?>  
+
+
+            var marker = new google.maps.Marker({position: {lat: <?php echo $row_dep["lat"]; ?>, lng: <?php echo $row_dep["lng"]; ?>}, map: map});
+              
+     <?php } ?>  
+ 
+}
+
+</script>
+
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXkgT4Hw83wzhkNsSJ05qL_dMkzX8EsuE&callback=initMap"
     async defer></script>
-  </body>
+
+    </div>
+  </div>
+
+
+</body>
 </html>
+
+                

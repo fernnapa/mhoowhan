@@ -1,7 +1,6 @@
 <?php
 require_once 'db_connect.php';
 include 'datatable.php';
-
 $output = '';
 if(isset($_POST["query"]))
 {
@@ -44,10 +43,10 @@ if(mysqli_num_rows($result) > 0)
   
     <td style="text-align: center;width:100px; font-family:Prompt;"><b>ชื่อ TOR</b></td>
     <td style="text-align: center; width:300px; font-family:Prompt;"><b>รายละเอียด TOR</b></td>
-    <td style="text-align: center; width:200px; font-family:Prompt;"><b>ประเภท TOR</b></td>
+    <td style="text-align: center; width:100px; font-family:Prompt;"><b>ประเภท TOR</b></td>
     <td style="text-align: center; font-family:Prompt;"><b>สัญญา</b></td>
     <td style="text-align: center; font-family:Prompt;"><b></b></td>
-    <td style="text-align: center; font-family:Prompt;"><b></b></td>
+    
 
 </tr>
 </thead>
@@ -64,8 +63,8 @@ if(mysqli_num_rows($result) > 0)
    <td style="text-align:left font-family:Prompt;">'.$type_name.'</td>
    <td style="text-align:left font-family:Prompt;">'.$con_name.'</td>
    
-    <td><button type="button" class="btn btn-warning btn-block" data-toggle="modal" value="'.$row["tor_id"].'" onclick="showTor(this.value)" data-target="#ModalEditTor" style="font-family:Prompt;">เเก้ไข</button></td>
-    <td><button type="button" class="btn btn-danger btn-block" onclick="removeTor('.$row["tor_id"].')" style="font-family:Prompt;">ลบ</button></td>                    
+    <td><button type="button" class="btn btn-icons btn-rounded btn-warning" data-toggle="modal" value="'.$row["tor_id"].'" onclick="showTor(this.value)" data-target="#ModalEditTor"><i class="mdi mdi-pencil"></i></button>
+    <button type="button" class="btn btn-icons btn-rounded btn-danger" onclick="removeTor('.$row["tor_id"].')"><i class="mdi mdi-delete"></i></button></td>                    
     </tr>
 
    

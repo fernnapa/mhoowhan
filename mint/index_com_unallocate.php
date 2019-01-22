@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php 
-     include ("connection.php");
+     include("../Home/db_connect.php");
 ?>	
 <html lang="en">
-     <head>
+     <head> 
           <meta charset="utf-8">
           <title>เพิ่มข้อมูลการจัดสรรครุภัณฑ์ศูนย์คอมพิวเตอร์</title>
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,8 +17,7 @@
 </head>
 <body>    
 
-	<!-- Navbar
-    ================================================== -->
+	
 
 <div class="navbar navbar-inverse navbar-fixed-top" >
       <div class="navbar-inner">
@@ -60,14 +59,16 @@
          </div>
 		
 
+
           <table class="table table-bordered" >
              <thead>
                       <tr>
 	
-	<th>Bar Code</th>
-	<th>รายการ</th>
-	<th>Serial Number.</th>
-	<th width="15%">สถานะ</th>				 
+	                    <th>Bar Code</th>
+	                    <th>รายการ</th>
+	                    <th>Serial Number.</th>
+	                    <th width="15%">สถานะ</th>				 
+                      
                       </tr>	
              </thead>
 <?php

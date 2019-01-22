@@ -90,7 +90,7 @@ data:{ dep_no:dep_no,location_name:location_name,lat:lat,lng:lng   }
 	<div class="row">
 
 		<div class="col-8">
-		<div id="map_canvas" style="width:100%;height:600px"></div>
+			<div id="map_canvas" style="width:100%;height:600px"></div>
 		</div>
 
 		<div class="col-3"><br/>
@@ -121,8 +121,7 @@ data:{ dep_no:dep_no,location_name:location_name,lat:lat,lng:lng   }
 					</form>
 		</div>
 		</div>
-
 	</div>
 
-	</body>
-	</html>
+</body>
+</html>

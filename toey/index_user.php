@@ -233,7 +233,7 @@ include_once 'db_connect.php';
 
 <!-- /.script  insert data and popup-->
 <!-- /.script  upload data and popup-->
-<script>          
+            <script>          
                 $(document).ready(function(){  
                   $('#sub_create').on("click", function(){  
                        $('#upload_form').submit();  

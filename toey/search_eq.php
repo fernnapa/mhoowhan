@@ -49,7 +49,7 @@ if(mysqli_num_rows($result) > 0)
 <th style="text-align: center;font-family:Prompt;"><b>TOR</b></th>
 <th style="text-align: center;font-family:Prompt; " ><b>สัญญา</b></th>
 <th style="text-align: center;font-family:Prompt;"><b>สถานะ</b></th>
-<th style="text-align: center;font-family:Prompt;"><b>Action</b></th>
+<th style="text-align: center;font-family:Prompt;"><b></b></th>
 
 </tr>
 </thead>

@@ -19,7 +19,8 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../admin/images/favicon.png" />
 
- 
+  <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
+
 </head>
 
 <body>
@@ -30,9 +31,9 @@
           <div class="col-lg-4 mx-auto">
             <div class="auto-form-wrapper">
                 <header class="head-form" align ="center">
-                    <img class="user" src="../images/user1.png" style="width:30%">
-                    <h2>Log In</h2>
-                    <p>login here using your username and password</p>
+                    <img class="user" src="../images/logo01.png" style="width:30%">
+                    <h2 font style="font-family:Prompt;">Log In</h2>
+                    <p><font size="2" color="red" style="font-family:Prompt;">*เฉพาะเจ้าหน้าที่ศูนย์คอมพิวเตอร์ มหาวิทยาเทคโนโลยีสุรนารี</font></p>
                 </header><br/>
                 <form name="frmlogin"  method="post" action="check_log.php">
                 <div class="form-group">
@@ -57,11 +58,11 @@
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>
                       </span>
-                    </div>
+                    </div> 
                   </div>
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-primary submit-btn btn-block" type="submit" name="" vlue="Login">Login</button>
+                  <button class="btn btn-primary submit-btn btn-block" type="submit" name="" vlue="Login" style="font-family:Prompt;">เข้าสู่ระบบ</button>
                 </div>
                 <div class="form-group d-flex justify-content-between">
                   <div class="form-check form-check-flat mt-0">
@@ -72,10 +73,9 @@
                 </div>
               </form>
             </div>
-            <br/><br/>
             <p>
-                <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
-		    </p>
+                <br/><span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
+		        </p>
             <!-- <p class="footer-text text-center">copyright © 2018 Bootstrapdash. All rights reserved.</p> -->
           </div>
         </div>

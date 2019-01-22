@@ -33,51 +33,43 @@ echo '<link rel="stylesheet" href="style.css">';
 
 echo  
 '
+    <input type="hidden" id="tor_id" name="tor_id"  value="'.$id.'">
+        <tr>
+            <th style="text-align: center; font-family:Prompt;">ชื่อ TOR</th>
+            <th style="text-align: center; font-family:Prompt;"><input type="text" id="tor_name" name="tor_name" style="width:99%" class="form-control" value="'.$name.'"></th>
+        </tr>
 
-<tr>
-                                            </tr>
-                                            <input type="hidden" id="tor_id" name="tor_id"  value="'.$id.'">
-
-                                            <tr>
-                                                <th style="text-align: right; font-family:Prompt;">ชื่อ TOR</th>
-                                                <th style="text-align: center;"><input type="text" id="tor_name" name="tor_name" style="width:99%" class="form-control" value="'.$name.'"></th>
-                                            </tr>
-
+        <tr>
+            <th style="text-align: center; font-family:Prompt;">ประเภท TOR</th>
+            <th style="text-align: center; font-family:Prompt;"><select name="tor_type" id="tor_type" style="width: 99%" class="form-control">
+                <option value="'.$type_id.'" >'.$type_name.'</option>';
                                             
-                                            <tr>
-                                                <th style="text-align: right; font-family:Prompt;">ประเภท TOR</th>
-                                                <th style="text-align: center;"><select name="tor_type" id="tor_type" style="width: 99%" class="form-control">
-                                                            <option value="'.$type_id.'" >'.$type_name.'</option>';
-                                            
-                                                    $type = "SELECT * FROM type";
-                                                    $result = mysqli_query($conn, $type);
-                                                    while($data = mysqli_fetch_array($result)):
-                                                     $tid =  $data["type_id"];
-                                                     $tname     = $data["type_name"];
+                $type = "SELECT * FROM type";
+                $result = mysqli_query($conn, $type);
+                while($data = mysqli_fetch_array($result)):
+                $tid =  $data["type_id"];
+                $tname     = $data["type_name"];
+                echo  '<option value="'.$tid.'">'.$tname.'</option>';
+                endwhile;
 
-      echo                                              '<option value="'.$tid.'">'.$tname.'</option>';
-                                                    endwhile;
-
-      echo                                          '</select></th>        
-                                            </tr>
-                                            <tr>
-                                                <th style="text-align: right; font-family:Prompt;">สัญญา</th>
-                                                <th style="text-align: center;"><select name="tor_contract" id="tor_contract" style="width: 99%" class="form-control">
-                                                            <option value="'.$con_id.'">'.$con_name.'</option>';
-                                            
-                                                        $cont = "SELECT * FROM contract";
-                                                        $result = mysqli_query($conn, $cont);
-                                                        while($data = mysqli_fetch_array($result)):
-                                                          $cid =  $data["con_id"];
-                                                          $cname =  $data["con_name"];
-        echo                                     '<option value="'.$cid.'">'.$cname.'</option>';
-                                            endwhile;
-        echo                                       '</select></th>
-                                            </tr>
-                                            <tr>
-                                                <th style="text-align: right; vertical-align:top; font-family:Prompt; ">รายละเอียด TOR</th>
-                                                <th style="text-align: center;"><textarea class="form-control" rows="5" id="comment" name="tor_des" >'.$des.'</textarea></th>
-                                            </tr>';
-
+                echo    '</select></th>        
+        </tr>
+        <tr>
+            <th style="text-align: center; font-family:Prompt;">สัญญา</th>
+            <th style="text-align: center; font-family:Prompt;"><select name="tor_contract" id="tor_contract" style="width: 99%" class="form-control">
+                <option value="'.$con_id.'">'.$con_name.'</option>';
+                $cont = "SELECT * FROM contract";
+                $result = mysqli_query($conn, $cont);
+                while($data = mysqli_fetch_array($result)):
+                $cid =  $data["con_id"];
+                $cname =  $data["con_name"];
+                echo    '<option value="'.$cid.'">'.$cname.'</option>';
+                endwhile;
+                echo    '</select></th>
+        </tr>
+        <tr>
+            <th style="text-align: center; vertical-align:top; font-family:Prompt; ">รายละเอียด TOR</th>
+            <th style="text-align: center; font-family:Prompt;"><textarea class="form-control" rows="5" id="comment" name="tor_des" >'.$des.'</textarea></th>
+        </tr>';
 ?>
 

@@ -1,8 +1,6 @@
 <?php  
 session_start();
-?>  
-<?php
-include_once("../../Home/db_connect.php");
+include("../../Home/db_connect.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,19 +11,19 @@ include_once("../../Home/db_connect.php");
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>ข้อมูลประเภทครุภัณฑ์</title>
-  <?php include("../link1.php");?>
+  <?php include("link.php");?>
+  
   <style>
 .modal-dialog.a{
   max-width : 70%;
 }
 .modal-dialog.b{
-  max-width : 50%;
+  max-width : 500px;
 }
-
 </style>
   </head>
   <?php
-		include("../navbar.php");
+		include("navbar.php");
   ?>
   <body>
       
@@ -241,8 +239,8 @@ include_once("../../Home/db_connect.php");
                                             </form>
                                         </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success" value="submit" name="Con_update" id="submit" form="Edit_Con" style="font-family:Prompt;">อัพเดท</button>
                                 <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ยกเลิก</button>
+                                <button type="submit" class="btn btn-success" value="submit" name="Con_update" id="submit" form="Edit_Con" style="font-family:Prompt;">อัพเดท</button>
                             </div>
                             </div>
                             </div>
@@ -263,7 +261,7 @@ include_once("../../Home/db_connect.php");
                     <div class="card-body">
                     <div class="modal-header">
                           <h4 class="modal-title" style="font-family:Prompt;" style="font-family:Prompt;">เพิ่มข้อมูล TOR</h4>
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                             <div class="modal-body" style="font-family:Prompt;">
                                     <form id="Add_tor" method="POST">
@@ -325,13 +323,15 @@ include_once("../../Home/db_connect.php");
 <div class="modal fade" tabindex="-1" role="dialog" id="ModalEditTor">
                             <div class="modal-dialog" role="document">
                             <div class="modal-content">
+                            <div class="card">
+                            <div class="card-body">
                             <div class="modal-header">
                             <h4 class="modal-title" style="font-family:Prompt;">เเก้ไขข้อมูลสัญญา</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                                     <div class="modal-body">
                                             <form id="Edit_Tor" method="POST">
-                                            <table style="width:100%" align="center" id="getTor">
+                                            <table style="width:100%" align="center" id="getTor"  border="1">
                                             <tr>
                                             </tr>
                                                
@@ -340,8 +340,10 @@ include_once("../../Home/db_connect.php");
                                             </form>
                                         </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success" value="submit" name="Tor_update" id="submit" form="Edit_Tor" style="font-family:Prompt;">อัพเดท</button>
                                 <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ยกเลิก</button>
+                                <button type="submit" class="btn btn-success" value="submit" name="Tor_update" id="submit" form="Edit_Tor" style="font-family:Prompt;">อัพเดท</button>
+                            </div>
+                            </div>
                             </div>
                             </div>
                             </div>
@@ -395,7 +397,6 @@ include_once("../../Home/db_connect.php");
                         <td style="text-align:left font-family:Prompt;"><?php echo $data['tor_des']; ?></td>
                         <td style="text-align:left font-family:Prompt;"><?php echo $data['tor_type']; ?></td>
                         <td style="text-align:left font-family:Prompt;"><?php echo $data['tor_contract']; ?></td>
-
                         <td><button type="button" class="btn btn-warning btn-block" data-toggle="modal" onclick="showTor(<?php echo $data['tor_id']; ?>)" data-target="#ModalEditTor" style="font-family:Prompt;">เเก้ไข</button></td></form>
                         <td><button type="button" class="btn btn-danger btn-block" onclick="removeTor(<?php echo $data['tor_id']; ?>)" style="font-family:Prompt;">ลบ</button></td>
                     </tr>
@@ -403,7 +404,7 @@ include_once("../../Home/db_connect.php");
                 </table>
                     </form>      
 
-
+                    <?php include ("footer.php"); ?>
 <!-- /.data -->
 <!-- /.script modal add -->
 

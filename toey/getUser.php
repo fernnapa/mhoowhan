@@ -1,3 +1,10 @@
+<style>
+input[type="text"] {
+  height: 30px; 
+  font-size:15px;
+}
+</style>
+
 <?php
 include_once 'db_connect.php';
 
@@ -35,46 +42,60 @@ while($row = mysqli_fetch_assoc($rs)){
 
 echo  
 '
-<tr>
+<tr style="text-align: center;">
 <td><img src="upload/'.$pic.'" width="125px;" height="120px;" /></td>
-</tr>
-<tr>
-<th style="text-align: center; font-family:Prompt;">หมายเลขพนักงาน</th>
-<th style="text-align: center; font-family:Prompt;">ชื่อ</th>
-<th style="text-align: center; font-family:Prompt;">สกุล</th>
-<th style="text-align: center; font-family:Prompt">ตำเเหน่ง</th>
-<th style="text-align: center; font-family:Prompt">โทรศัพท์</th>
-                                       
-</tr>
-<tr>
 <input type="hidden" id="emp_id" name="emp_id" value="'.$id.'">
-<td><input type="text" style="width:99%"  placeholder="'.$id.'" readonly class="form-control"></td>
-<td><input type="text" id="emp_fname" name="emp_fname" style="width:99%" value="'.$fname.'" class="form-control"></td>
-<td><input type="text" id="emp_lname" name="emp_lname" style="width:99%" value="'.$lname.'" class="form-control"></td>
-<td><input type="text" id="emp_position" name="emp_position" style="width:99%" value="'.$position.'" class="form-control"></td>
-<td><input type="text" id="emp_tel" name="emp_tel" style="width:99%" value="'.$tel.'" class="form-control"></td>
+</tr>
 
+<tr style="text-align: center;">
+<td style="text-align: center; font-family:Prompt;"><b>หมายเลขพนักงาน</b></td>
+<td><input type="text" style="font-family:Prompt;"  placeholder="'.$id.'" readonly class="form-control"></td>
+</tr>
+<tr style="text-align: center;">
+<td style="text-align: center; font-family:Prompt;"><b>ชื่อ</b></td>
+<td><input type="text" id="emp_fname" name="emp_fname" style="font-family:Prompt;" value="'.$fname.'" class="form-control"></td>
+</tr>
+<tr style="text-align: center;">
+<td style="text-align: center; font-family:Prompt;"><b>สกุล</b></td>
+<td><input type="text" id="emp_lname" name="emp_lname" style="font-family:Prompt;" value="'.$lname.'" class="form-control"></td>
 </tr>
 <tr>
-<th style="text-align: center;">อีเมล์</th>
-<th style="text-align: center;">รูปภาพ</th>
-<th style="text-align: center;">Username</th>
-<th style="text-align: center;">Password</th>
-<th style="text-align: center;">status</th>       
+<td style="text-align: center; font-family:Prompt"><b>ตำเเหน่ง</b></td>
+<td><input type="text" id="emp_position" name="emp_position" style="font-family:Prompt;" value="'.$position.'" class="form-control"></td>
 </tr>
 <tr>
+<td style="text-align: center; font-family:Prompt"><b>โทรศัพท์</b></td>
+<td><input type="text" id="emp_tel" name="emp_tel" style="font-family:Prompt;" value="'.$tel.'" class="form-control"></td>
+<tr>
+<td style="text-align: center; font-family:Prompt""><b>อีเมล์</b></td>
+<td><input type="text" id="emp_mail" name="emp_mail" style="font-family:Prompt;" value="'.$mail.'" class="form-control"></td>
+</tr>
 
-<td><input type="text" id="emp_mail" name="emp_mail" style="width:99%" value="'.$mail.'" class="form-control"></td>
-<td><input type="file" name="images[]" id="select_image" multiple /></td>
-<input type="hidden" id="emp_pic" name="emp_pic" style="width:99%" value="'.$pic.'">
-<td><input type="text" id="emp_user" name="emp_user" style="width:99%" value="'.$user.'" class="form-control"></td>
-<td><input type="text" id="emp_pass" name="emp_pass" style="width:99%" value="'.$pass.'" class="form-control"></td>
-<td><select name="emp_status" id="emp_status" style="width: 99%" class="form-control">
+<tr>
+<td style="text-align: center; font-family:Prompt"><b>Username</b></td>
+<td><input type="text" id="emp_user" name="emp_user" style="font-family:Prompt;" value="'.$user.'" class="form-control"></td>
+</tr>
+<tr>
+<td style="text-align: center; font-family:Prompt"><b>Password</b></td>
+<td><input type="text" id="emp_pass" name="emp_pass" style="font-family:Prompt;" value="'.$pass.'" class="form-control"></td>
+</tr>
+<tr>
+<td style="text-align: center; font-family:Prompt"><b>status</b></td>   
+<td><select name="emp_status" id="emp_status" class="form-control">
                 <option >'.$status.'</option>
                 <option value="user">User</option>
+                <option value="head">Head</option>
+                <option value="leader">Leader</option>
                 <option value="admin">Admin</option>
-            </select></td>
-</tr>'
+    </select>
+</td>
+</tr>
+<tr>
+<td style="text-align: center; font-family:Prompt"><b>รูปภาพ</b></td>
+<td><input type="file" name="images[]" id="select_image" multiple /></td>
+<input type="hidden" id="emp_pic" name="emp_pic" style="font-family:Prompt; " value="'.$pic.'"></td>
+</tr>
+'
 ;
 
 ?>
