@@ -1,5 +1,5 @@
 <?php
-include ("db_connect.php");
+include_once 'db_connect.php';
 session_start();
 $_SESSION['chooseEq'] = array();
 ?>
@@ -8,10 +8,7 @@ $_SESSION['chooseEq'] = array();
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <?php 
-        include("link.php");
-        ?>
+        <?php include("link.php");?>
         <link rel="stylesheet" href="style.css">
     <style>
             table, th, td    {
@@ -30,19 +27,19 @@ $_SESSION['chooseEq'] = array();
          
     </style>
     </head>
-    <title>จัดสรรครุภัณฑ์</title>
+    <title>ยืม-คืนครุภัณฑ์</title>
         <body>
                 <br>       
                     <div class="container w3-card-4 w3-round" style="width:80% " > 
                     <br>
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3><b>จัดสรรครุภัณฑ์</b></h3></a></button></td>
+                    <td><h3><b>ยืม-คืนครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
                     <table border="0" align="right" style="width:17%;">
                     <tr>
-                    <td><a href="create_AC.php" class="btn btn-primary btn-block"> ข้อมูลครุภัณฑ์ที่เลือก</a></button></td>
+                    <td><a href="create_PM.php" class="btn btn-primary btn-block"> ข้อมูลครุภัณฑ์ที่เลือก</a></button></td>
                     </tr>
                     </table>
                     <br>
@@ -111,7 +108,7 @@ $(document).ready(function(){
           $(document).ready(function(){
                 $.ajax({
 
-                        url: 'insert_chooseAC.php',
+                        url: 'insert_PM.php',
                         type: 'POST',
                         data: {'id':a},
                         success:function(res){

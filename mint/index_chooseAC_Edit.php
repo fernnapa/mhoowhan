@@ -1,5 +1,5 @@
 <?php
-include ("db_connect.php");
+include_once 'db_connect.php';
 session_start();
 $_SESSION['chooseEq'] = array();
 ?>
@@ -8,10 +8,7 @@ $_SESSION['chooseEq'] = array();
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <?php 
-        include("link.php");
-        ?>
+        <?php include("link.php");?>
         <link rel="stylesheet" href="style.css">
     <style>
             table, th, td    {
@@ -32,6 +29,9 @@ $_SESSION['chooseEq'] = array();
     </head>
     <title>จัดสรรครุภัณฑ์</title>
         <body>
+<?php
+        $id = $_POST['id_add'];
+?>
                 <br>       
                     <div class="container w3-card-4 w3-round" style="width:80% " > 
                     <br>
@@ -40,13 +40,7 @@ $_SESSION['chooseEq'] = array();
                     <td><h3><b>จัดสรรครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
-                    <table border="0" align="right" style="width:17%;">
-                    <tr>
-                    <td><a href="create_AC.php" class="btn btn-primary btn-block"> ข้อมูลครุภัณฑ์ที่เลือก</a></button></td>
-                    </tr>
-                    </table>
-                    <br>
-                    <br>
+                   
                     <br>
                     <div class="table-responsive" id="result">
                     <p></p>
@@ -93,6 +87,11 @@ $_SESSION['chooseEq'] = array();
                 </table>
                 </form>
                 </div>
+                <table border="0" align="center" style="width:25%;">
+                    <tr>
+                    <td><button type="button" name="addEdit" class="btn btn-primary btn-block" value="<?php echo $id; ?>" onclick="Addac(this)"> ยืนยันการเลือกครุภัณฑ์ </button></td>
+                    </tr>
+                </table>
                 <br>
                 </div>
 <!-- /.data -->
@@ -111,10 +110,11 @@ $(document).ready(function(){
           $(document).ready(function(){
                 $.ajax({
 
-                        url: 'insert_chooseAC.php',
+                        url: 'insert_Edit_AC.php',
                         type: 'POST',
                         data: {'id':a},
                         success:function(res){
+                            alert(res);
                             if(res == 2){
                             swal( {
                                                      title: "เลือกข้อมูลไม่สำเร็จ",
@@ -138,5 +138,44 @@ $(document).ready(function(){
           });
 }  
 </script>
+
+<script>          
+      function Addac(str){
+         var a = str.value;
+         var b = str.id;
+          $(document).ready(function(){
+                $.ajax({
+
+                        url: 'Add_edit_AC.php',
+                        type: 'POST',
+                        data: {'id':a},
+                        success:function(res){
+                            alert(res);
+                            if(res == 6){
+                            swal( {
+                                                     title: "อัพเดทข้อมูลไม่สำเร็จ",
+                                                     text: "เกิดข้อผิดพลาดเกี่ยวกับฐานข้อมูล",
+                                                     icon: "error",
+                                                     button: "ตกลง",
+                                                    }
+                                                  );
+                        }if(res == 1){
+                            swal( {
+                                                     title: "เพิ่มข้อมูลสำเร็จ",
+                                                     icon: "success",
+                                                     button: "ตกลง",
+                                                     }).then (function(){ 
+                                                    location.href = "Edit_AC.php?id=" +a;
+                                                    }
+                                                    );
+                           
+                            }
+                        }
+                });
+          });
+}  
+</script>
+
+
         </body>
 </html>

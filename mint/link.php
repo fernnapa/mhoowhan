@@ -35,5 +35,10 @@
         <script type="text/่javascript" src="sweetalert2.js"></script>
 <!-- alert -->
 
+
+        <script src ="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"></script>
+        <script src ="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css"></script>
+
+
   
 
