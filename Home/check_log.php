@@ -16,7 +16,8 @@ session_start();
 
                       $row = mysqli_fetch_array($result);
 
-                      $_SESSION["emp_id"] = $row["emp_id"];                      
+                      $_SESSION["emp_id"] = $row["emp_id"]; 
+                      $_SESSION["emp_no"] = $row["emp_no"];                                           
                       $_SESSION["User"] = $row["emp_fname"]." ".$row["emp_lname"];
                       $_SESSION["emp_status"] = $row["emp_status"];
                       $_SESSION["emp_position"] = $row["emp_position"];
@@ -30,7 +31,7 @@ session_start();
 
                       if ($_SESSION["emp_status"]=="member"){  //ถ้าเป็น เจ้าหน้าที่ ให้กระโดดไปหน้า index_emp.php
 
-                        Header("Location: ../Employee/index_emp.php");
+                        Header("Location: ../Employee/index.php");
                       }
 
                       if ($_SESSION["emp_status"]=="head"){  //ถ้าเป็น หัวหน้าฝ่าย ให้กระโดดไปหน้า index_head.php

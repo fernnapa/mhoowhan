@@ -202,9 +202,7 @@
                 		</div>  
            			</div> 
 					</div>
-					<div id="div-2" class="col-30">
-						<?php include("../chart/static.php");   ?>
-					</div>
+					
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,5 @@
 <?php  
- require_once 'db_connect.php';
+ include("../Home/db_connect.php");
  
 
 
@@ -8,10 +8,18 @@
                 $note = $_POST['ac_note'];
                 $id = $_POST['id_ac'];
                 $achead = $_POST['ac_head'];
+                $acheposi = $_POST['ac_hd_position'];
+                
+
 
                 $sql = "UPDATE `allocate` SET `ac_status`= '$status',
                                               `ac_note`= '$note',
-                                              `ac_head`= '$achead' WHERE `ac_id` = $id";
+                                              `ac_head`= '$achead', 
+                                              `ac_hd_position`= '$acheposi' 
+                                              WHERE `ac_id` = $id";
+
+                                          //     echo $sql;
+                                          //     return;
                 if(mysqli_query($conn, $sql))
                           {
                                 $data = 1; 

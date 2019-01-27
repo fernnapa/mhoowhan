@@ -10,7 +10,6 @@
  WHERE equipment.eq_status in(1,2,3) 
  GROUP by eq_status
  
- 
  ";  
 
 

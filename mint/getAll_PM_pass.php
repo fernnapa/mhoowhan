@@ -1,9 +1,7 @@
-
-        
-
+   
 <?php
-include_once 'db_connect.php';
-
+session_start();
+include("../Home/db_connect.php");
 
 if(isset($_GET['id'])){
 
@@ -35,6 +33,8 @@ $pm_empno = "";
 $pm_date = "";
 $pm_head = "";
 $pm_head_dc = "";
+$pm_hd_position  = "";
+$pm_dc_position  = "";
 
 
 
@@ -53,7 +53,9 @@ while($row = mysqli_fetch_assoc($rs)){
     $pm_empno = $row["pm_empno"];
     $pm_date = $row["pm_date"];
     $pm_head = $row["pm_head"];
-    $pm_head_pc = $row["pm_head_dc"];
+    $pm_head_dc = $row["pm_head_dc"];
+    $pm_hd_position  = $row["pm_hd_position"];
+    $pm_dc_position  = $row["pm_dc_position"];
 
  
 }
@@ -109,11 +111,13 @@ echo
     </tr>
     <tr>
     <td style="text-align: right;"><b>ผู้ทำการตรวจสอบ </b></td>
-    <td ><input type="text" name="pm_head" id="pm_head" class="form-control" value="'.$pm_head.'" ></td> 
+    <td ><input type="text" name="pm_head" id="pm_head" value="'.$pm_head.'" readonly style="cursor: not-allowed; border: none;"></td> 
+    <td ><input type="hidden" name="pm_hd_position" id="pm_hd_position" value="'.$pm_hd_position.'" ></td> 
     </tr>
     <tr>
     <td style="text-align: right;"><b>ผู้ทำการอนุมัติ </b></td>
-    <td ><input type="text" name="pm_head_dc" id="pm_head_dc" class="form-control" value="'.$pm_head_dc.'" ></td> 
+    <td ><input type="text" name="pm_head_dc" id="pm_head_dc"  value="'.$pm_head_dc.'" readonly style="cursor: not-allowed; border: none;"></td> 
+    <td ><input type="hidden" name="pm_dc_position" id="pm_dc_position" value="'.$pm_dc_position.'" ></td> 
     </tr>
     </table>
     </div>

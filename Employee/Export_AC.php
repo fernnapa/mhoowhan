@@ -1,15 +1,17 @@
 <?php
-include_once 'db_connect.php';
+session_start();
+
+include("../Home/db_connect.php");
 
 ?>
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="en">
+
+<head>
   
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <?php include("link.php");?>
-        <link rel="stylesheet" href="style.css">      
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <?php include("menu/link.php"); ?>     
     <style>
             table, th, td    {
             }
@@ -27,15 +29,17 @@ include_once 'db_connect.php';
             .w3-theme-l2 {color:#fff !important;background-color:#78acce !important}
     </style>
     </head>
+    <?php include("menu/navbar_emp.php"); ?>
+
     <title>ดาวน์โหลดไฟล์การจัดสรรครุภัณฑ์คอมพิวเตอร์</title>
         <body >
 
                 <br>       
-                    <div class="container w3-card-4 w3-round" style="width:80% " > 
+                    <div class="container" > 
                     <br>
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3><b>ดาวน์โหลดไฟล์การจัดสรรครุภัณฑ์คอมพิวเตอร์</b></h3></a></button></td>
+                    <td><h3 style="font-family:Prompt;"><b>ดาวน์โหลดไฟล์การจัดสรรครุภัณฑ์คอมพิวเตอร์</b></h3></a></button></td>
                     </tr>
                     </table>
                     
@@ -43,7 +47,7 @@ include_once 'db_connect.php';
                     <div class="table-responsive" id="result">
                     <table align="right">
                     <tr>
-                    <form method="post" action="Download_AC.php">
+                    <form method="post" action="../mint/Download_AC.php">
                     
                     <td><input type="submit" name="export" class="btn btn-success" value="Export" /></td>
                     </tr>
@@ -122,6 +126,39 @@ include_once 'db_connect.php';
                 <br>
                 </div>
 <!-- /.data -->
+
+
+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+          <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- /.script modal add -->
                                         <script>
                                         $(document).ready(function(){  
@@ -132,3 +169,8 @@ include_once 'db_connect.php';
                                         </script>
                                         </body>
                                         </html>
+
+
+
+                                        </body>
+</html>

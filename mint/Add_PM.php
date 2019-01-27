@@ -1,32 +1,32 @@
 <?php  
- require_once 'db_connect.php';
- session_start();
+include("../Home/db_connect.php");
+session_start();
  
  $data=0;
 
                if($_POST['pm_username'] != "" && $_POST['pm_userTname'] != ""  && $_POST['pm_name'] != "" && $_POST['pm_userno'] != "" && $_POST['pm_position'] != "" && $_POST['pm_dep'] != "test" && $_POST['pm_TypeR'] != "" && $_POST['pm_firstdate'] != "" && $_POST['pm_enddate'] != ""  && $_POST['pm_empno'] != "" ){
-                // echo $_POST['pm_userTname'];
-                // echo $_POST['pm_username'];
-                // echo $_POST['pm_userno'];
-                // echo $_POST['pm_position'];
+               //  echo $_POST['pm_userTname'];
+               //  echo $_POST['pm_username'];
+               //  echo $_POST['pm_userno'];
+               //  echo $_POST['pm_position'];
                //  echo $_POST['pm_dep'];
-                // echo $_POST['pm_TypeR'];
-                // echo $_POST['pm_empno'];
-                // echo $_POST['pm_firstdate'];
-                // echo $_POST['pm_enddate'];
-                // echo $_POST['date'];
-                // return;
+               //  echo $_POST['pm_TypeR'];
+               //  echo $_POST['pm_empno'];
+               //  echo $_POST['pm_firstdate'];
+               //  echo $_POST['pm_enddate'];
+               //  echo $_POST['date'];
+               //  return;
 
-                $pm_name =  $_POST['pm_name'];
+                 $pm_name =  $_POST['pm_name'];
                 $pm_userTname =  $_POST['pm_userTname'];
-                $pm_username =  $_POST['pm_username'];
+             $pm_username =  $_POST['pm_username'];
                 $pm_userno =  $_POST['pm_userno'];
                 $pm_position = $_POST['pm_position'];
-                $pm_dep = $_POST['pm_dep'];
+             $pm_dep = $_POST['pm_dep'];
                 $pm_TypeR = $_POST['pm_TypeR'];
                 $pm_empno =  $_POST['pm_empno'];
                 $pm_firstdate = $_POST['pm_firstdate'];
-                $pm_enddate =  $_POST['pm_enddate'];
+             $pm_enddate =  $_POST['pm_enddate'];
                 $date = $_POST['date'];
                 $dateAN = $_POST['date'];
 
@@ -34,7 +34,7 @@
 
                             $status = 7;
                             $sql = "INSERT INTO `permit`( `pm_name`, `pm_userTname`, `pm_username`, `pm_userno`, `pm_position`, `pm_dep`, `pm_TypeR`, `pm_firstdate`, `pm_enddate`, `pm_empno`, `pm_date`, `pm_status`, `pm_date_analys`) 
-                                            VALUES ( '$pm_name','$pm_userTname','$pm_username','$pm_userno','$pm_position','$pm_dep',' $pm_TypeR','$pm_firstdate','$pm_enddate','$pm_empno ','$date', '$status', '$dateAN')";
+                                            VALUES ('$pm_name','$pm_userTname','$pm_username','$pm_userno','$pm_position','$pm_dep',' $pm_TypeR','$pm_firstdate','$pm_enddate','$pm_empno ','$date', '$status', '$dateAN')";
                                     if(mysqli_query($conn, $sql)){
 
                             $choose = $_SESSION['chooseEq'];
@@ -44,7 +44,7 @@
                             if(mysqli_query($conn, $updateeq)){ 
 
                              }else{
-                                           $data = 6;
+                                           $data = "6";
                                            echo $data;
                                            return;  
                                   }
@@ -63,8 +63,8 @@
                                      ON equipment.eq_tor = tor.tor_id
                                      LEFT JOIN contract
                                      ON tor.tor_contract = contract.con_id
-                                     LEFT JOIN type
-                                     ON tor.tor_type = type.type_id 
+                                     LEFT JOIN type_eq
+                                     ON tor.tor_type = type_eq.type_id 
                                      WHERE eq_id = '$value'";
                             
                               $result = mysqli_query($conn, $eq_choose);
@@ -90,7 +90,7 @@
                                                                         $data = 1;
                                                                         
                                                             }else{
-                                                                          $data = 6;
+                                                                          $data = "6";
                                                                           echo $data;
                                                                           return;
                                                                  }
@@ -107,7 +107,7 @@
                              echo $data;
                                         
                                     }else{
-                                                  $data = 6;
+                                                  $data = "6";
                                                   echo $data;
                                                   return;
                                          }

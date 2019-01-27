@@ -1,18 +1,15 @@
 <?php
-include ("db_connect.php");
+
 session_start();
+include("../Home/db_connect.php");
 $_SESSION['chooseEq'] = array();
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <?php 
-        include("link.php");
-        ?>
-        <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <?php include("menu/link.php"); ?>
     <style>
             table, th, td    {
             }
@@ -30,19 +27,21 @@ $_SESSION['chooseEq'] = array();
          
     </style>
     </head>
+    <?php include("menu/navbar_emp.php"); ?>
+
     <title>จัดสรรครุภัณฑ์</title>
         <body>
-                <br>       
-                    <div class="container w3-card-4 w3-round" style="width:80% " > 
-                    <br>
+                      
+                    <div class="container" > 
+                    
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3><b>จัดสรรครุภัณฑ์</b></h3></a></button></td>
+                    <td><h3 style="font-family:Prompt;"><b>จัดสรรครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
                     <table border="0" align="right" style="width:17%;">
                     <tr>
-                    <td><a href="create_AC.php" class="btn btn-primary btn-block"> ข้อมูลครุภัณฑ์ที่เลือก</a></button></td>
+                    <td><a href="create_AC.php" class="btn btn-primary btn-block"><i class="mdi mdi-bell-ring"> ข้อมูลครุภัณฑ์ที่เลือก</i></a></button></td>
                     </tr>
                     </table>
                     <br>
@@ -95,6 +94,34 @@ $_SESSION['chooseEq'] = array();
                 </div>
                 <br>
                 </div>
+
+
+
+
+
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+          <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+
+
 <!-- /.data -->
 <!-- /.script modal add -->
 <script>
@@ -111,7 +138,7 @@ $(document).ready(function(){
           $(document).ready(function(){
                 $.ajax({
 
-                        url: 'insert_chooseAC.php',
+                        url: '../mint/insert_AC.php',
                         type: 'POST',
                         data: {'id':a},
                         success:function(res){

@@ -1,10 +1,10 @@
 <?php  
 
-include ("db_connect.php");
+include("../Home/db_connect.php");
 $output = '';
 if(isset($_POST["export"]))
 {
-              $torn = "";
+              
                        $status_name = "จัดสรร";
                        $sql = "SELECT * FROM allocate_detail 
                        LEFT JOIN allocate
@@ -14,7 +14,6 @@ if(isset($_POST["export"]))
                        WHERE ald_status_name = '$status_name'";
 
                          $result = mysqli_query($conn, $sql);
-                       while($data = mysqli_fetch_array($result)){
                              
                            
  
@@ -41,6 +40,9 @@ if(isset($_POST["export"]))
     while($data = mysqli_fetch_array($result))
             {
 
+            
+
+             
               $cn  =   $data['ald_con_name'];
               $tn  =   $data['ald_type_name'];
 
@@ -74,16 +76,15 @@ if(isset($_POST["export"]))
    ';
   }
           
-
-  
+       
                         
   $output .= '</table>';
   header("Content-Disposition: attachment; filename='รายงานการจัดสรรครุภัณฑ์คอมพิวเตอร์.xls'");
   header("Content-Type: application/vnd.ms-excel");
-  header("Content-Type: application/download");
+ 
   
   echo $output;
- }
+ 
 }
 
 ?>

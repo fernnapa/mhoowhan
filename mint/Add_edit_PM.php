@@ -1,5 +1,6 @@
 <?php  
- require_once 'db_connect.php';
+ include("../Home/db_connect.php");
+
  session_start();
  
  $data=0;
@@ -36,8 +37,8 @@
                     ON equipment.eq_tor = tor.tor_id
                     LEFT JOIN contract
                     ON tor.tor_contract = contract.con_id
-                    LEFT JOIN type
-                    ON tor.tor_type = type.type_id 
+                    LEFT JOIN type_eq
+                    ON tor.tor_type = type_Eq.type_id 
                     WHERE eq_id = '$value'";
 
                     $result = mysqli_query($conn, $sql);

@@ -1,6 +1,6 @@
 <?php  
 
-include ("db_connect.php");
+include("../Home/db_connect.php");
 $output = '';
 if(isset($_POST["export"]))
 {
@@ -15,7 +15,6 @@ if(isset($_POST["export"]))
                                         WHERE pmd_status_name = '$status_name'";
 
                          $result = mysqli_query($conn, $sql);
-                       while($data = mysqli_fetch_array($result)){
                               
                            
  
@@ -86,7 +85,7 @@ if(isset($_POST["export"]))
 //   header("Content-Type: application/download");
   
   echo $output;
- }
+ 
 }
 
 ?>

@@ -1,15 +1,15 @@
 <?php
-include_once 'db_connect.php';
+session_start();
+include("../Home/db_connect.php");
 
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-  
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <?php include("link.php");?>
-        <link rel="stylesheet" href="style.css">      
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home</title>
+    <?php include("menu/link.php"); ?>   
     <style>
             table, th, td    {
             }
@@ -27,6 +27,7 @@ include_once 'db_connect.php';
             .w3-theme-l2 {color:#fff !important;background-color:#e9657b !important}
     </style>
     </head>
+    <?php include("menu/navbar_head.php"); ?>
     <title>รายการจัดสรรครุภัณฑ์ที่รอตรวจสอบ</title>
         <body >
 <!-- Modal ดูข้อมูลPM -->
@@ -34,10 +35,10 @@ include_once 'db_connect.php';
                             <div class="modal-dialog " role="document">
                             <div class="modal-content">
                             <div class="modal-header">
+                            <h4 class="modal-title"><b>ข้อมูลการจัดสรรครุภัณฑ์</b></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title"><b>ข้อมูลการจัดสรรครุภัณฑ์</b></h4>
                             </div>
-                                    <div class="modal-body">
+                                    <div class="modal-body table-responsive">
                                             <form id="ViewAC" >
                                             </form>
                                         </div>
@@ -54,21 +55,22 @@ include_once 'db_connect.php';
                 <div class="modal-dialog" role="document">
                 <div class="modal-content w3-theme-l2" >
                 <div class="modal-header">
+                <h4 class="modal-title"><b>เหตุผลที่ไม่ผ่านการตรวจสอบ</b></h4>
+
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title"><b>เหตุผลที่ไม่ผ่านการตรวจสอบ</b></h4>
                     </div>
-                        <div class="modal-body">
+                        <div class="modal-body table-responsive">
                             <form id="NoteAC" >
                             <table align="center">
                             <tr>
                             <td><input type="hidden" name="id_ac" id="id_ac" class="form-control"></td>
+                            <td><input type="hidden" name="ac_head" id="ac_head" class="form-control" value="<?php echo $_SESSION["User"] ?>"></td>
+                            <td><input type="hidden" name="ac_hd_position" id="ac_hd_position" class="form-control" value="<?php echo $_SESSION["emp_position"]?>"></td>
+                            
                             <td>เหตุผลที่ไม่ผ่านการตรวจสอบ: </td>
                             <td><input type="text" name="ac_note" id="ac_note" class="form-control"></td>
                             </tr>
-                            <tr>
-                            <td>ชื่อผู้ตรวจสอบ</td>
-                            <td><input type="text" name="ac_head" id="ac_head" class="form-control" ></td>
-                            </tr>
+                            
                             </table>
                             </form>
                             </div>
@@ -81,7 +83,7 @@ include_once 'db_connect.php';
                                 </div>
 <!-- Modal บอกเหตุผที่ไม่ให้ผ่าน -->
                 <br>       
-                    <div class="container w3-card-4 w3-round" style="width:80% " > 
+                    <div class="container" > 
                     <br>
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
@@ -130,6 +132,43 @@ include_once 'db_connect.php';
                 </div>
                 <br>
                 </div>
+
+
+
+
+
+                
+                        
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+          <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+<!-- /.data -->
+<!-- /.script modal add -->
+
+
+
+
+
+
+
+
+
 <!-- /.data -->
 <!-- /.script modal add -->
                     <script>
@@ -156,7 +195,7 @@ include_once 'db_connect.php';
                                 document.getElementById("ViewAC").innerHTML = this.responseText;
                                 }
                             };
-                            xhttp.open("GET", "getAC_head.php?id="+str, true);
+                            xhttp.open("GET", "../mint/getAC_head.php?id="+str, true);
                             xhttp.send();
                             }
                 </script>
@@ -171,7 +210,7 @@ include_once 'db_connect.php';
                             $('#NoteAC').on('submit', function(e){  
                                 e.preventDefault();  
                                 $.ajax({  
-                                        url :"Not_pass_AC.php",  
+                                        url :"../mint/Not_pass_AC.php",  
                                         method:"POST",  
                                         data:new FormData(this),  
                                         contentType:false,  
@@ -246,7 +285,7 @@ include_once 'db_connect.php';
                             $('#ViewAC').on('submit', function(e){  
                                 e.preventDefault();  
                                 $.ajax({  
-                                        url :"Pass_AC.php",  
+                                        url :"../mint/Pass_AC.php",  
                                         method:"POST",  
                                         data:new FormData(this),  
                                         contentType:false,  

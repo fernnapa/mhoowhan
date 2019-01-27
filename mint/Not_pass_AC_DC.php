@@ -7,13 +7,16 @@
                 $status = 11;
                 $note = $_POST['ac_note'];
                 $id = $_POST['id_ac'];
-                $achead = $_POST['ac_head_DC'];
+                $achead = $_POST['ac_head_dc'];
+                $acdcposi = $_POST['ac_dc_position'];
                
                
 
                 $sql = "UPDATE `allocate` SET `ac_status`= '$status',
                                               `ac_note`= '$note',
-                                              `ac_head_dc`= '$achead' WHERE `ac_id` = $id";
+                                              `ac_head_dc`= '$achead',
+                                              `ac_dc_position`= '$acdcposi'
+                                              WHERE `ac_id` = $id";
 
                 if(mysqli_query($conn, $sql))
                           {

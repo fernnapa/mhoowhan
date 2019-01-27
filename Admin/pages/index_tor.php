@@ -143,6 +143,8 @@ include("../../Home/db_connect.php");
 <div class="modal fade" tabindex="-1" role="dialog" id="myModalCon" style="font-family:Prompt;">
                     <div class="modal-dialog a">
                     <div class="modal-content" >
+                    <div class="card">
+                    <div class="card-body">
                     <div class="modal-header">
                     <div class="card" style="width: 100%;">
                     <div class="card-body" > 
@@ -182,6 +184,8 @@ include("../../Home/db_connect.php");
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success"  value="submit" name="con_create" id="submit" data-toggle="modal" data-target="#ModalAddCon" style="font-family:Prompt;">เพิ่มข้อมูลสัญญา</button>
                         <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
+                    </div>
+                    </div>
                     </div>
                     </div>
                     </div>

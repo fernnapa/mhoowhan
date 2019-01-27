@@ -1,6 +1,7 @@
 <?php  
 session_start();
 include("../Home/db_connect.php");
+$_SESSION['chooseEq'] = array();
 ?>  
 <!DOCTYPE html>
 <html lang="en">
@@ -33,37 +34,36 @@ include("../Home/db_connect.php");
 
 </head>
 
-  
-
-
-<?php include("menu/navbar_head.php"); ?>
+<?php include("menu/navbar_emp.php"); ?>
 
 <body>
   
-                                <div class="modal fade" tabindex="1" role="dialog" id="ModalViewAC">
-                                        <div class="modal-dialog " role="document">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h4 class="modal-title"><b>รายการจัดสรรครุภัณฑ์</b></h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="modal fade" tabindex="1" role="dialog" id="ModalViewAC">
+                            <div class="modal-dialog " role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                            <h4 class="modal-title"><b>รายการจัดสรรครุภัณฑ์</b></h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                                    <div class="modal-body table-responsive">
+                                            <form id="ViewAC" >
+                                            </form>
                                         </div>
-                                                <div class="modal-body table-responsive">
-                                                        <form id="ViewAC" >
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                      <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
-                                                    </div>
-
-                                        </div>
-                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
                                         </div>
 
-                                        <div class="container" > 
+                            </div>
+                            </div>
+                            </div>
+
+
+                                  
+                    <div class="container" > 
                     
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3 align="center" style="width:100%;"><b>รายการจัดสรร/ยืม-คืน ครุภัณฑ์</b></h3></a></button></td>
+                    <td><h3><b>รายการจัดสรร/ยืม-คืน ครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
                     
@@ -79,16 +79,12 @@ include("../Home/db_connect.php");
                         <td style="text-align: center;">หน่วยงาน</td>
                         <td style="text-align: center;">พนักงานจัดสรร</td>
                         <td style="text-align: center;">สถานะ</td>
-                      
                         <td style="text-align: center;">รายละเอียด</td>
                        
 
 
                         </tr>
                     </thead>
-
-    
-
                     <tr>
                     <?php
                        $sql = "SELECT * FROM allocate
@@ -153,33 +149,34 @@ include("../Home/db_connect.php");
                   </table>
                   </form>
                   </div>
-                  <br>
+                  
                   </div>
-
-
-
-
+   
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="container-fluid clearfix">
+            <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
+            </div>
+          </footer>
+          <!-- partial -->
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-          <div class="container-fluid clearfix">
-          <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
-          </div>
-        </footer>
-        <!-- partial -->
+        <!-- main-panel ends -->
       </div>
-      <!-- main-panel ends -->
+      <!-- page-body-wrapper ends -->
     </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
-
-
+    <!-- container-scroller -->
+  <!-- /.data -->
+  <!-- /.script modal add -->
+  
+  
+  <!-- /.data -->
+  <!-- /.script modal add -->
   <script>
   $(document).ready(function(){  
           $('#tableshow').DataTable({
@@ -203,7 +200,7 @@ include("../Home/db_connect.php");
                   document.getElementById("ViewAC").innerHTML = this.responseText;
                   }
               };
-              xhttp.open("GET", "../Employee/getAC_DC_dt.php?id="+str, true);
+              xhttp.open("GET", "getAC_DC_dt.php?id="+str, true);
               xhttp.send();
               }
   </script>
@@ -221,11 +218,35 @@ include("../Home/db_connect.php");
                   document.getElementById("ViewAC").innerHTML = this.responseText;
                   }
               };
-              xhttp.open("GET", "../Employee/getPM_DC_dt.php?id="+str, true);
+              xhttp.open("GET", "getPM_DC_dt.php?id="+str, true);
               xhttp.send();
               }
   </script>
   
+  
+  
+  
+  
+  
+  
+  
+          </body>
+  </html>
+  
+  
 
-</body>
-</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

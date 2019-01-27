@@ -1,9 +1,6 @@
-
-        
-
-<?php
-include_once 'db_connect.php';
-
+<?php  
+session_start();
+include("../Home/db_connect.php");
 
 if(isset($_GET['id'])){
 
@@ -27,8 +24,8 @@ $pm_firstdate = "";
 $pm_enddate = "";
 $pm_empno = "";
 $pm_date = "";
-
-
+$pm_head = "";
+$pm_hd_position ="";
 
 $rs = $conn->query($sql);
 while($row = mysqli_fetch_assoc($rs)){
@@ -43,6 +40,8 @@ while($row = mysqli_fetch_assoc($rs)){
     $pm_enddate = $row["pm_enddate"];
     $pm_empno = $row["pm_empno"];
     $pm_date = $row["pm_date"];
+    $pm_head = $_SESSION["User"];
+    $pm_hd_position = $_SESSION["emp_position"];
  
 }
 
@@ -97,7 +96,8 @@ echo
     </tr>
     <tr>
     <td style="text-align: right;"><b>ผู้ทำการตรวจสอบ </b></td>
-    <td ><input type="text" name="pm_head" id="pm_head" class="form-control" ></td> 
+    <td ><input type="text" name="pm_head" id="pm_head"  value="'.$pm_head.'" readonly style="cursor: not-allowed; border: none;" ></td> 
+    <td ><input type="hidden" name="pm_hd_position" id="pm_hd_position" value="'.$pm_hd_position.'" ></td> 
     </tr>
     </table>
     </div>

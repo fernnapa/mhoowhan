@@ -1,18 +1,17 @@
 <?php
-include_once 'db_connect.php';
 session_start();
-
+include("../Home/db_connect.php");
+$_SESSION['chooseEq'] = array();
 ?>
 <!DOCTYPE html>
-<html>
-    <head>
-  
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <?php include("link.php");?>
-       
+<html lang="en">
 
-        <link rel="stylesheet" href="style.css">
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Home</title>
+  <?php include("menu/link.php"); ?>
 
         
     <style>
@@ -32,9 +31,19 @@ session_start();
          
     </style>
     </head>
-    <title>ยืนยันการจัดสรรครุภัณฑ์</title>
+    <?php include("menu/navbar_emp.php"); ?>
+    <title>เเก้ไขรายการจัดสรรครุภัณฑ์</title>
         <body>
+<?php
+        if(isset($_GET['ID'])){
+            $id = $_GET['ID'];
+        }
+     
+        if(isset($_GET['id'])){
+            $id = $_GET['id'];
+        }
 
+?>
         <div class="modal fade" tabindex="-1" role="dialog" id="ModalDep">
                     <div class="modal-dialog" role="document" style="width:500x";>
                     <div class="modal-content">
@@ -76,15 +85,37 @@ session_start();
                 </div>
 
 
-                <br>           
+                <br>   
+                <?php
+               
+                $ac = "SELECT * FROM `allocate` 
+                LEFT JOIN department ON allocate.ac_dep = department.dep_id
+                WHERE ac_id = $id";
+                $result = mysqli_query($conn, $ac);
+                while($data = mysqli_fetch_array($result)){
+                          
+                    $ac_tname = $data['ac_tname'];
+                    $ac_name = $data['ac_name'];
+                    $ac_empid = $data['ac_empid'];
+                    $ac_position = $data['ac_position'];
+                    $ac_dep = $data['ac_dep'];
+                    $ac_dep_name = $data['dep_name'];
+                    $ac_title = $data['ac_title'];
+                    $date = $data['ac_date'];
+                    $ac_emp = $data['ac_emp'];
+                    $ac_typeR = $data['ac_typeR'];
+
+
+                }
+                ?>
                     
                     <form id="Add_AC"> 
                     <table border="0" align="center" style="width:80%;" class="w3-teal">
                     <tr>
-                    <td><h3><b>ยืนยันการจัดสรรครุภัณฑ์</b></h3></a></button></td>
+                    <td><h3><b>เเก้ไขรายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
-                    <div class="container w3-card-2 w3-round" style="width:80% " > 
+                    <div class="container" > 
                     <div class="table-responsive">
                     <br>
                     <table border="1" align="center" style="width:100%" class="w3-round ">
@@ -92,10 +123,8 @@ session_start();
                     <td style="text-align: left">คำนำหน้าชื่อ</td>
                     <td style="text-align: left">ชื่อผู้เช่ายืม</td>
                     </tr>
-
-                    <tr>
-                    <td><input type="text" name="ac_tname" class="form-control" ></td>
-                    <td ><input type="text" name="ac_name" class="form-control"></td>
+                    <td><input type="text" name="ac_tname" class="form-control" value="<?php echo $ac_tname; ?>"></td>
+                    <td ><input type="text" name="ac_name" class="form-control" value="<?php echo $ac_name; ?>"></td>
                     </tr>
 
                     
@@ -103,58 +132,50 @@ session_start();
                     <td  style="text-align: left">รหัสพนักงาน</td>
                     <td  style="text-align: left">ตำเเหน่ง</td>
                     </tr>
-
                     <tr>
-                    <td ><input type="text" name="ac_empid" class="form-control"></td>
-                    <td><input type="text" name="ac_position" class="form-control"></td>
+                    <td ><input type="text" name="ac_empid" class="form-control" value="<?php echo $ac_empid; ?>"></td>
+                    <td><input type="text" name="ac_position" class="form-control" value="<?php echo $ac_position; ?>"></td>
                     </tr>
+
 
                     <tr>
                     </tr>
                     <td style="text-align: left">หน่วยงาน </td>
                     <td style="text-align: left" >จุดประสงค์การจัดสรร</td>
                     </tr>
-
                     <tr>
-                    <td class="form-inline"><input type="text" name="pm_ex" placeholder="หน่วยงาน"  class="form-control " id="pm_ex" readonly style="width:100%;">
-                    <input type="hidden" name="ac_dep" placeholder="กรุณาเลือกหน่วยงาน"  class="form-control " id="ac_dep" style="width:100%;">
+                    <td class="form-inline"><input type="text" name="ac_ex" value="<?php echo $ac_dep_name; ?>"  class="form-control " id="ac_ex" readonly style="width:100%;">
+                    <input type="hidden" name="ac_dep" value="<?php echo $ac_dep; ?>" placeholder="หน่วยงาน"  class="form-control " id="ac_dep" style="width:100%;">
                     <form id="chooseDep"><input type="submit" name="AddDep" id="AddDep" value="เลือกหน่วยงาน" form="chooseDep" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModalDep"></button></form></td>
-                    <td style="vertical-align:top"><input type="text" name="ac_title" class="form-control"></td>
+                    <td style="vertical-align:top"><input type="text" name="ac_title" class="form-control" value="<?php echo $ac_title; ?>" ></td>
+                
                     </tr>
 
+                    
                     <tr>
-                    <input type="hidden"  name="date"  id="date" value="<?=date('d-m-Y')?> "readonly/>
+                    <input type="hidden"  name="date"  id="date" value="<?=date('Y-m-d')?> "readonly/>
                     <td style="text-align: left">รหัสพนักงานจัดสรร</td>
                     <td style="text-align: left">ประเภทห้อง</td>
                     </tr>
-
                     <tr>
-                    <td ><input type="text" name="ac_emp" class="form-control"></td>
-                    <td ><input type="text" name="ac_typeR" class="form-control"></td>
-                    </tr>
-
-                    </table>
-                    <br>
-                    </div>
-                    </div>
-                    </form>
-                    <br>
-                    <div class="container w3-card-4 w3-round" style="width:80% " > 
-                    <br>
-                    <table border="0" align="right">
-                    <tr>
-                    <td><a href="index_chooseAC.php" class="btn btn-primary btn-block">เลือกครุภัณฑ์</a></td>
+                    <td ><input type="text" name="ac_emp" class="form-control" value="<?php echo $ac_emp; ?>"></td>
+                    <td ><input type="text" name="ac_typeR" class="form-control" value="<?php echo $ac_typeR; ?>"></td>
                     </tr>
                     </table>
+                    </div>
                     <br>
-                    <br>
-                    <br>
+               
                     <div class="table-responsive" id="result">
-                    <p></p>
+                    <table align="right">
+                    <tr>
+                    <td><form id="id_edit_add" method="POST" action="index_chooseAC_Edit.php"><input type="hidden" name="id_add" id="id_add" value="<?php echo $id; ?>"><input type="submit" name="edit_add_ac" class="btn btn-success" form="id_edit_add"  value="เลือกครุภัณฑ์"></form></td>
+                    </tr>
+                    </table>
+                    <br>
+                    <br>
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
                     <tr >
-                        <td style="text-align: center;"></td>
                         <td style="text-align: center;">Barcode</td>
                         <td style="text-align: center;">Serial Number</td>
                         <td style="text-align: center;">สัญญา</td>
@@ -165,48 +186,59 @@ session_start();
                     </thead>
                     <tr>
                     <?php
-                          $choose = $_SESSION['chooseEq'];
-                          foreach ($choose as $key => $value) {
-                            
-                        
-                       $sql = "SELECT * FROM equipment
-                       LEFT JOIN a_status
-                            ON equipment.eq_status = a_status.status_id
-                            LEFT JOIN tor
-                            ON equipment.eq_tor = tor.tor_id
-                            LEFT JOIN contract
-                            ON tor.tor_contract = contract.con_id
-                            LEFT JOIN type_eq
-                            ON tor.tor_type = type_eq.type_id 
-                            WHERE eq_id = '$value'";
-                       $result = mysqli_query($conn, $sql);
+                         
+                       $pmd = "SELECT * FROM allocate_detail WHERE ac_id = $id";
+                       $result = mysqli_query($conn, $pmd);
                        while($data = mysqli_fetch_array($result)):
 
                     ?>
-                        <td style="text-align:left"><?php echo $data['eq_pic']; ?></td>
-                        <td style="text-align:left"><?php echo $data['eq_barcode']; ?></td>
-                        <td style="text-align:left"><?php echo $data['eq_serial']; ?></td>
-                        <td style="text-align:left"><?php echo $data['con_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['type_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['status_name']; ?></td>
-                        <input type="hidden" name="id" value="<?php echo $data['eq_id']; ?>">
+                                    <td style="text-align:left"><?php echo $data['ald_eq_barcode']; ?></td>
+                                    <td style="text-align:left"><?php echo $data['ald_eq_serial']; ?></td>
+                                    <td style="text-align:left"><?php echo $data['ald_con_name']; ?></td>
+                                    <td style="text-align:left"><?php echo $data['ald_type_name']; ?></td>
+                                    <td style="text-align:left"><?php echo $data['ald_status_name']; ?></td>
+                                    <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                    <td><button type="button" name="submit" id="submit<?php echo $data['ald_eq_id']; ?>" class="btn btn-danger btn-block" value="<?php echo $data['ald_eq_id']; ?>" onclick="getid(this)">ลบครุภัณฑ์</button></td>
+                                </tr>
+                            <?php endwhile;?>
+                   
+                        </table>
+              
+                        <table border="0" align="center" style="width:25%;">
+                            <tr>
+                                <td><input type="button" name="Update_AC" id="Update_AC" value="ส่งรายการจัดสรรอีกครั้ง" form="Add_AC" class="btn btn-success btn-block"></td>
+                            </tr>
+                        </table>
+                    </form>
+              
+                    <br>
+                    </div>
+                   
                     
 
-                        <td><button type="button" name="submit" id="submit<?php echo $data['eq_id']; ?>" class="btn btn-danger btn-block" value="<?php echo $data['eq_id']; ?>" onclick="getid(this)" >ลบครุภัณฑ์</button></td></form>
-                    </tr>
-                       <?php endwhile;?>
-                      <?php } ?>
-                </table>
-                <br>
-                    <table border="0" align="center" style="width:25%;">
-                    <tr>
-                    <td><input type="submit" name="submitAdd" id="submit" value="บันทึกข้อมูล" form="Add_AC" class="btn btn-success btn-block"></td>
-                    </tr>
-                    </table>
-                <br>
 
+
+                  
                 </div>
-                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+          <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller --> 
+            
 <!-- /.data -->
 <!-- /.script modal add -->
 
@@ -235,18 +267,18 @@ $(document).ready(function(){
           $(document).ready(function(){
                 $.ajax({
 
-                        url: 'delete_AC.php',
+                        url: '../mint/delete_AC_EDIT.php',
                         type: 'POST',
-                        data: {'id':a},
+                        data: {'eqid':a},
                         success:function(res){
                         
                             alert(res);
                             if(res == 2){
                             swal( {
-                                                     title: "เลือกข้อมูลไม่สำเร็จ",
-                                                     text: "ข้อมูลนี้ถูกเลือกไปเเล้ว",
+                                                     title: "ลบข้อมูลไม่สำเร็จ",
+                                                     text: "เกิดข้อผิดพลาดเกี่ยวกับฐานข้อมูล",
                                                      icon: "error",
-                                                     button: "กรอกข้อมูลอีกครั้ง",
+                                                     button: "กรุณาลองอีกครั้ง",
                                                     }
                                                   );
                         }if(res == 1){
@@ -268,13 +300,13 @@ $(document).ready(function(){
 
 <script>          
                 $(document).ready(function(){  
-                  $('#submitAdd').on("click", function(){  
+                  $('#Update_AC').on("click", function(){  
                        $('#Add_AC').submit();  
                   });  
                   $('#Add_AC').on('submit', function(e){  
                        e.preventDefault();  
                        $.ajax({  
-                            url :"Add_AC.php",  
+                            url :"../mint/Update_AC.php",  
                             method:"POST",  
                             data:new FormData(this),  
                             contentType:false,  
@@ -284,11 +316,11 @@ $(document).ready(function(){
                                 alert(a);
                                 if(data == 1){
                                              swal( {
-                                                     title: "เพิ่มข้อมูลสำเร็จ",
+                                                     title: "อัพเดทข้อมูลสำเร็จ",
                                                      icon: "success",
                                                      button: "ตกลง",
                                                      }).then (function(){ 
-                                                    location.href = "index_AC.php";
+                                                    location.href = "Result_AC.php";
                                                     }
                                                     );
                                 }if(data == 2){
@@ -322,7 +354,7 @@ $(document).ready(function(){
                                                     });
                                 }if (data == 6){
                                             swal( {
-                                                     title: "เพิ่มข้อมูลไม่สำเร็จ",
+                                                     title: "อัพเดทข้อมูลไม่สำเร็จ",
                                                      text: "เกิดข้อผิดพลาดเกี่ยวกับฐานข้อมูล",
                                                      icon: "error",
                                                      button: "ตกลง",
@@ -346,7 +378,7 @@ $(document).ready(function(){
             var value = str.value;
             var id = str.id;
               
-            document.getElementById("pm_ex").value = value;
+            document.getElementById("ac_ex").value = value;
             document.getElementById("ac_dep").value = id;
             swal( {
                                                      title: "ท่านได้ทำการเลือกข้อมูลเเล้ว",

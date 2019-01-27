@@ -1,13 +1,12 @@
 
-        
-
 <?php
-include_once 'db_connect.php';
+include("../Home/db_connect.php");
 
 
 if(isset($_GET['id'])){
 
     $id = $_GET['id'];
+    
 }
 
 $sql = "SELECT * FROM permit
@@ -15,12 +14,12 @@ $sql = "SELECT * FROM permit
     ON permit.pm_status = a_status.status_id
     LEFT JOIN department
     ON permit.pm_dep = department.dep_id
-    LEFT JOIN employee
-    ON permit.pm_empno = employee.emp_no
-    LEFT JOIN employee
-    ON permit.pm_head = employee.emp_no
-    LEFT JOIN employee
-    ON permit.pm_head_dc = employee.emp_no
+    -- LEFT JOIN employee
+    -- ON permit.pm_empno = employee.emp_no
+    -- LEFT JOIN employee
+    -- ON permit.pm_head = employee.emp_no
+    -- LEFT JOIN employee
+    -- ON permit.pm_head_dc = employee.emp_no
     WHERE pm_id = $id";
 $pm_name = "";
 $pm_userTname = "";
@@ -33,8 +32,8 @@ $pm_firstdate = "";
 $pm_enddate = "";
 $pm_empno = "";
 $pm_date = "";
-$pm_head = "";
-$pm_head_dc = "";
+// $pm_head = "";
+// $pm_head_dc = "";
 
 
 
@@ -52,8 +51,8 @@ while($row = mysqli_fetch_assoc($rs)){
     $pm_enddate = $row["pm_enddate"];
     $pm_empno = $row["pm_empno"];
     $pm_date = $row["pm_date"];
-    $pm_head = $row["pm_head"];
-    $pm_head_pc = $row["pm_head_dc"];
+    // $pm_head = $row["pm_head"];
+    // $pm_head_pc = $row["pm_head_dc"];
 
  
 }

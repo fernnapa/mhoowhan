@@ -1,4 +1,6 @@
 
+        
+
 <?php
 session_start();
 include("../Home/db_connect.php");
@@ -22,12 +24,15 @@ include("../Home/db_connect.php");
                                         $ac_name = "";
                                         $ac_empid = "";
                                         $ac_position= "";
-                                        $dep_dep = "";
+                                        $dep_name = "";
                                         $ac_TypeR = "";
                                         $ac_emp = "";
                                         $ac_date = "";
                                         $ac_head = "";
                                         $ac_hd_position ="";
+                                        $ac_head_dc ="";
+                                        $ac_dc_position ="";
+                                        $ac_note = "";
 
 
 
@@ -35,16 +40,19 @@ include("../Home/db_connect.php");
                                         while($row = mysqli_fetch_assoc($rs)){
                                         
                                         $ac_title = $row["ac_title"];
-                                        $ac_tname = $row["ac_tname"];;
-                                        $ac_name = $row["ac_name"];;
-                                        $ac_empid = $row["ac_empid"];;
-                                        $ac_position= $row["ac_position"];;
-                                        $ac_dep = $row["dep_name"];;
-                                        $ac_typeR = $row["ac_typeR"];;
-                                        $ac_emp = $row["ac_emp"];;
+                                        $ac_tname = $row["ac_tname"];
+                                        $ac_name = $row["ac_name"];
+                                        $ac_empid = $row["ac_empid"];
+                                        $ac_position= $row["ac_position"];
+                                        $ac_dep = $row["dep_name"];
+                                        $ac_typeR = $row["ac_typeR"];
+                                        $ac_emp = $row["ac_emp"];
                                         $ac_date = $row["ac_date"];
-                                        $ac_head = $_SESSION["User"];
-                                        $ac_hd_position = $_SESSION["emp_position"];
+                                        $ac_head = $row["ac_head"];
+                                        $ac_hd_position =$row["ac_hd_position"];
+                                        $ac_head_dc = $row["ac_head_dc"];
+                                        $ac_dc_position = $row["ac_dc_position"];
+                                        $ac_note = $row["ac_note"];
                                         
                                         }
 
@@ -86,9 +94,18 @@ include("../Home/db_connect.php");
                                         <td ><input type="text" name="pm_empno" id="pm_empno" value="'.$ac_emp.'" readonly style="cursor: not-allowed; border: none;" ></td> 
                                         </tr>
                                         <tr>
-                                        <td style="text-align: right;"><b>ผู้ตรวจสอบ </b></td>
-                                        <td ><input type="text" name="ac_head" id="ac_head"  value="'.$ac_head.'" readonly style="cursor: not-allowed; border: none;"  ></td> 
-                                        <input type="hidden" name="ac_hd_position" id="ac_hd_position" value="'.$ac_hd_position.'" > 
+                                        <td style="text-align: right;"><b>หัวหน้าฝ่ายที่ตรวจสอบ </b></td>
+                                        <td ><input type="text" name="ac_head" id="ac_head" value="'.$ac_head.'" readonly style="cursor: not-allowed; border: none;"  ></td> 
+                                        <td ><input type="hidden" name="ac_hd_position" id="ac_hd_position" value="'.$ac_hd_position.'" ></td> 
+                                        </tr>
+                                        <tr>
+                                        <td style="text-align: right;"><b>ผู้อนุมัติการจัดสรร </b></td>
+                                        <td ><input type="text" name="ac_head_DC" id="ac_head_DC" value="'.$ac_head_dc.'" readonly style="cursor: not-allowed; border: none;" ></td> 
+                                        <td ><input type="hidden" name="ac_dc_position" id="ac_dc_position" value="'.$ac_dc_position.'" ></td> 
+                                        </tr>
+                                        <tr>
+                                        <td style="text-align: right;"><b>หมายเหตุ </b></td>
+                                        <td ><input type="text" name="ac_note" id="ac_note" value="'.$ac_note.'" readonly style="cursor: not-allowed; border: none;" ></td> 
                                         </tr>
                                         </table>
                                         </div>
@@ -99,7 +116,7 @@ include("../Home/db_connect.php");
 
 
                                         
-                                        <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
+                                        <table id="tableshow" align="center" style="width:70%;" class="table table-striped table-bordered " >
                                         <thead>
                                         <tr >
                                         <td style="text-align: center;">Barcode</td>

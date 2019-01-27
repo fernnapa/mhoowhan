@@ -15,7 +15,7 @@
         <ul class="navbar-nav navbar-nav-right" style="font-family:Prompt;">
           <li class="nav-item dropdown d-none d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-              <span class="profile-text">Hello, คุณ <?php echo $_SESSION["User"] ?></span>
+              <span class="profile-text">Hello, <?php echo $_SESSION["User"] ?></span>
 
               <img class="img-xs rounded-circle" src="img/<?php echo $_SESSION["emp_pic"]; ?>" alt="Profile image">    <!--    เอารูปมาแสดง  --->
 
@@ -63,7 +63,7 @@
                 
                 </div>
                 <div class="text-wrapper">
-                  <p class="profile-name">คุณ <?php echo $_SESSION["User"] ?></p>
+                  <p class="profile-name"> <?php echo $_SESSION["User"] ?></p>
                   <div>
                     <small class="designation text-muted"><?php echo $_SESSION["emp_position"] ?></small>      <!--    เอาตำแหน่งมาแสดง  --->
                     <span class="status-indicator online"></span>
@@ -80,9 +80,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">         
+            <a class="nav-link" href="index_AC_DC.php">         
               <i class="menu-icon mdi mdi-settings"></i>
               <span class="menu-title">จัดสรรครุภัณฑ์</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index_PM_DC.php">         
+              <i class="menu-icon mdi mdi-sync"></i>
+              <span class="menu-title">ยืม-คืน</span>
             </a>
           </li>
           <li class="nav-item">
@@ -92,15 +98,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="index_chart.php">
               <i class="menu-icon mdi mdi-chart-line"></i>
               <span class="menu-title">แผนภูมิ</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="menu-icon mdi mdi-table"></i>
-              <span class="menu-title">รายงาน</span>
             </a>
           </li>
         </ul>

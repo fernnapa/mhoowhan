@@ -1,4 +1,6 @@
 
+        
+
 <?php
 session_start();
 include("../Home/db_connect.php");
@@ -28,6 +30,7 @@ include("../Home/db_connect.php");
                                         $ac_date = "";
                                         $ac_head = "";
                                         $ac_hd_position ="";
+                                        $ac_note ="";
 
 
 
@@ -43,8 +46,10 @@ include("../Home/db_connect.php");
                                         $ac_typeR = $row["ac_typeR"];;
                                         $ac_emp = $row["ac_emp"];;
                                         $ac_date = $row["ac_date"];
-                                        $ac_head = $_SESSION["User"];
-                                        $ac_hd_position = $_SESSION["emp_position"];
+                                        $ac_head = $row["ac_head"];
+                                        $ac_hd_position =$row["ac_hd_position"]; 
+                                        $ac_note = $row["ac_note"];
+
                                         
                                         }
 
@@ -88,7 +93,11 @@ include("../Home/db_connect.php");
                                         <tr>
                                         <td style="text-align: right;"><b>ผู้ตรวจสอบ </b></td>
                                         <td ><input type="text" name="ac_head" id="ac_head"  value="'.$ac_head.'" readonly style="cursor: not-allowed; border: none;"  ></td> 
-                                        <input type="hidden" name="ac_hd_position" id="ac_hd_position" value="'.$ac_hd_position.'" > 
+                                        <td ><input type="hidden" name="ac_hd_position" id="ac_hd_position" value="'.$ac_hd_position.'" ></td> 
+                                        </tr>
+                                        <tr>
+                                        <td style="text-align: right;"><b>หมายเหตุ </b></td>
+                                        <td ><input type="text" name="ac_note" id="ac_note" value="'.$ac_note.'" readonly style="cursor: not-allowed; border: none;"  ></td> 
                                         </tr>
                                         </table>
                                         </div>
@@ -99,7 +108,7 @@ include("../Home/db_connect.php");
 
 
                                         
-                                        <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
+                                        <table id="tableshow" align="center" style="width:70%;" class="table table-striped table-bordered " >
                                         <thead>
                                         <tr >
                                         <td style="text-align: center;">Barcode</td>

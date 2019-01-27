@@ -5,14 +5,11 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-  
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <?php include("link.php");?>
-       
-
-        <link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home</title>
+    <?php include("menu/link.php"); ?>
 
         
     <style>
@@ -32,11 +29,13 @@ session_start();
          
     </style>
     </head>
-    <title>ยืนยันการยืม-คืนครุภัณฑ์</title>
+    <?php include("menu/navbar_emp.php"); ?>
+
+    <title>ยืนยันการจัดสรรครุภัณฑ์</title>
         <body>
 
         <div class="modal fade" tabindex="-1" role="dialog" id="ModalDep">
-                    <div class="modal-dialog" role="document" style="width:500x";>
+                    <div class="modal-dialog" role="document" style="width:100%";>
                     <div class="modal-content">
                     <div class="modal-header">
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -78,13 +77,13 @@ session_start();
 
                 <br>           
                     
-                    <form id="Add_PM"> 
+                    <form id="Add_AC"> 
                     <table border="0" align="center" style="width:80%;" class="w3-teal">
                     <tr>
-                    <td><h3><b>ยืนยันการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
+                    <td><h3><b>ยืนยันการจัดสรรครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
-                    <div class="container w3-card-2 w3-round" style="width:80% " > 
+                    <div class="container" > 
                     <div class="table-responsive">
                     <br>
                     <table border="1" align="center" style="width:100%" class="w3-round ">
@@ -92,8 +91,10 @@ session_start();
                     <td style="text-align: left">คำนำหน้าชื่อ</td>
                     <td style="text-align: left">ชื่อผู้เช่ายืม</td>
                     </tr>
-                    <td><input type="text" name="pm_userTname" class="form-control" ></td>
-                    <td ><input type="text" name="pm_username" class="form-control"></td>
+
+                    <tr>
+                    <td><input type="text" name="ac_tname" class="form-control" ></td>
+                    <td ><input type="text" name="ac_name" class="form-control"></td>
                     </tr>
 
                     
@@ -101,41 +102,34 @@ session_start();
                     <td  style="text-align: left">รหัสพนักงาน</td>
                     <td  style="text-align: left">ตำเเหน่ง</td>
                     </tr>
-                    <tr>
-                    <td ><input type="text" name="pm_userno" class="form-control"></td>
-                    <td><input type="text" name="pm_position" class="form-control"></td>
-                    </tr>
 
+                    <tr>
+                    <td ><input type="text" name="ac_empid" class="form-control"></td>
+                    <td><input type="text" name="ac_position" class="form-control"></td>
+                    </tr>
 
                     <tr>
                     </tr>
                     <td style="text-align: left">หน่วยงาน </td>
-                    <td style="text-align: left" >จุดประสงค์การยืม-คืน</td>
-                    </tr>
-                    <tr>
-                    <td class="form-inline"><input type="text" name="pm_ex" placeholder="หน่วยงาน"  class="form-control " id="pm_ex" readonly style="width:100%;">
-                    <input type="hidden" name="pm_dep" placeholder="หน่วยงาน"  class="form-control " id="pm_dep" style="width:100%;">
-                    <form id="chooseDep"><input type="submit" name="AddDep" id="AddDep" value="เลือกหน่วยงาน" form="chooseDep" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModalDep"></button></form></td>
-                    <td style="vertical-align:top"><input type="text" name="pm_name" class="form-control"></td>
-                
+                    <td style="text-align: left" >จุดประสงค์การจัดสรร</td>
                     </tr>
 
                     <tr>
-                    <td style="text-align: left">วันที่เริ่ม</td>
-                    <td style="text-align: left">วันที่สิ้นสุด</td>
+                    <td class="form-inline"><input type="text" name="pm_ex" placeholder="หน่วยงาน"  class="form-control " id="pm_ex" readonly style="width:100%;">
+                    <input type="hidden" name="ac_dep" placeholder="กรุณาเลือกหน่วยงาน"  class="form-control " id="ac_dep" style="width:100%;">
+                    <form id="chooseDep"><input type="submit" name="AddDep" id="AddDep" value="เลือกหน่วยงาน" form="chooseDep" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModalDep"></button></form></td>
+                    <td style="vertical-align:top"><input type="text" name="ac_title" class="form-control"></td>
                     </tr>
+
                     <tr>
-                    <td ><input type="date" name="pm_firstdate" class="form-control"></td>
-                    <td ><input type="date" name="pm_enddate" class="form-control"></td>
-                    </tr>
-                    <tr>
-                    <input type="hidden"  name="date"  id="date" value="<?=date('Y-m-d')?>"readonly/>
+                    <input type="hidden"  name="date"  id="date" value="<?=date('Y-m-d')?> "readonly/>
                     <td style="text-align: left">รหัสพนักงานจัดสรร</td>
                     <td style="text-align: left">ประเภทห้อง</td>
                     </tr>
+
                     <tr>
-                    <td ><input type="text" name="pm_empno" class="form-control"></td>
-                    <td ><input type="text" name="pm_TypeR" class="form-control"></td>
+                    <td ><input type="text" name="ac_emp" class="form-control" value="<?php echo $_SESSION["emp_id"] ?>"readonly/></td>
+                    <td ><input type="text" name="ac_typeR" class="form-control"></td>
                     </tr>
 
                     </table>
@@ -144,11 +138,11 @@ session_start();
                     </div>
                     </form>
                     <br>
-                    <div class="container w3-card-4 w3-round" style="width:80% " > 
+                    <div class="container" > 
                     <br>
                     <table border="0" align="right">
                     <tr>
-                    <td><a href="index_choosePM.php" class="btn btn-primary btn-block">เลือกครุภัณฑ์</a></td>
+                    <!-- <td><a href="index_chooseAC.php" class="btn btn-primary btn-block">เลือกครุภัณฑ์</a></td> -->
                     </tr>
                     </table>
                     <br>
@@ -205,13 +199,36 @@ session_start();
                 <br>
                     <table border="0" align="center" style="width:25%;">
                     <tr>
-                    <td><input type="submit" name="submitAdd" id="submit" value="บันทึกข้อมูล" form="Add_PM" class="btn btn-success btn-block"></td>
+                    <td><input type="submit" name="submitAdd" id="submit" value="บันทึกข้อมูล" form="Add_AC" class="btn btn-success btn-block"></td>
                     </tr>
                     </table>
                 <br>
 
                 </div>
                 </div>
+
+
+
+                        
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+          <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
 <!-- /.data -->
 <!-- /.script modal add -->
 
@@ -240,7 +257,7 @@ $(document).ready(function(){
           $(document).ready(function(){
                 $.ajax({
 
-                        url: '../mint/delete_PM.php',
+                        url: '../mint/delete_AC.php',
                         type: 'POST',
                         data: {'id':a},
                         success:function(res){
@@ -274,12 +291,12 @@ $(document).ready(function(){
 <script>          
                 $(document).ready(function(){  
                   $('#submitAdd').on("click", function(){  
-                       $('#Add_PM').submit();  
+                       $('#Add_AC').submit();  
                   });  
-                  $('#Add_PM').on('submit', function(e){  
+                  $('#Add_AC').on('submit', function(e){  
                        e.preventDefault();  
                        $.ajax({  
-                            url :"../mint/Add_PM.php",  
+                            url :"../mint/Add_AC.php",  
                             method:"POST",  
                             data:new FormData(this),  
                             contentType:false,  
@@ -293,7 +310,7 @@ $(document).ready(function(){
                                                      icon: "success",
                                                      button: "ตกลง",
                                                      }).then (function(){ 
-                                                    location.href = "index_PM.php";
+                                                    location.href = "index_ALL_AC.php";
                                                     }
                                                     );
                                 }if(data == 2){
@@ -352,7 +369,7 @@ $(document).ready(function(){
             var id = str.id;
               
             document.getElementById("pm_ex").value = value;
-            document.getElementById("pm_dep").value = id;
+            document.getElementById("ac_dep").value = id;
             swal( {
                                                      title: "ท่านได้ทำการเลือกข้อมูลเเล้ว",
                                                      icon: "success",

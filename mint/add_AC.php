@@ -1,6 +1,6 @@
 <?php  
- require_once 'db_connect.php';
- session_start();
+include("../Home/db_connect.php");
+session_start();
  
  $data=0;
 

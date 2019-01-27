@@ -82,17 +82,23 @@
               <span class="menu-title">หน้าแรก</span>
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="index_import.php">           
-              <i class="menu-icon mdi mdi-folder-download"></i>
-              <span class="menu-title">อัพโหลดข้อมูล</span>
-            </a>
-          </li> -->
+
           <li class="nav-item">
-            <a class="nav-link" href="#">         
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="menu-icon mdi mdi-settings"></i>
-              <span class="menu-title">จัดสรรครุภัณฑ์</span>
+              <span class="menu-title" >ครุภัณฑ์ที่รอตรวจสอบ</span>
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="ui-basic">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="index_AC.php">ข้อมูลการจัดสรร</a>         <!-----  หน้า จัดการ ----->
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="index_PM.php">ข้อมูลการยืม-คืน</a>
+                </li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="index_map.php">
@@ -107,10 +113,21 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="menu-icon mdi mdi-table"></i>
-              <span class="menu-title">รายงาน</span>
+            <a class="nav-link" data-toggle="collapse" href="#basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-folder-download"></i>
+              <span class="menu-title" >ดาวน์โหลดรายงาน</span>  <!-----  หน้า จัดการ ----->
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="basic">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="Export_AC.php">ข้อมูลการจัดสรร</a>         
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="Export_PM.php">ข้อมูลการยืม-คืน</a>
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
       </nav>

@@ -1,9 +1,6 @@
+<?php  
 
-        
-
-<?php
-include_once 'db_connect.php';
-
+include("../Home/db_connect.php");
 
 if(isset($_GET['id'])){
 
@@ -14,13 +11,7 @@ $sql = "SELECT * FROM permit
     LEFT JOIN a_status
     ON permit.pm_status = a_status.status_id
     LEFT JOIN department
-    ON permit.pm_dep = department.dep_id
-    LEFT JOIN employee
-    ON permit.pm_empno = employee.emp_no
-    -- LEFT JOIN employee
-    -- ON permit.pm_head = employee.emp_no
-    -- LEFT JOIN employee
-    -- ON permit.pm_head_dc = employee.emp_no
+    ON permit.pm_dep = department.dep_id 
     WHERE pm_id = $id";
 $pm_name = "";
 $pm_userTname = "";
@@ -34,10 +25,8 @@ $pm_enddate = "";
 $pm_empno = "";
 $pm_date = "";
 $pm_head = "";
-$pm_hd_position  = "";
-
-
-
+$pm_note ="";
+$pm_hd_position ="";
 
 $rs = $conn->query($sql);
 while($row = mysqli_fetch_assoc($rs)){
@@ -53,9 +42,8 @@ while($row = mysqli_fetch_assoc($rs)){
     $pm_empno = $row["pm_empno"];
     $pm_date = $row["pm_date"];
     $pm_head = $row["pm_head"];
-    $pm_hd_position  = $row["pm_hd_dc"];
-
- 
+    $pm_note = $row["pm_note"];
+    $pm_hd_position = $row["pm_hd_position"];
 }
 
 echo  
@@ -109,10 +97,14 @@ echo
     </tr>
     <tr>
     <td style="text-align: right;"><b>ผู้ทำการตรวจสอบ </b></td>
-    <td ><input type="text" name="pm_head" id="pm_head"  value="'.$pm_head.'" ></td> 
+    <td ><input type="text" name="pm_head" id="pm_head" value="'.$pm_head.'" readonly style="cursor: not-allowed; border: none;" ></td> 
     <td ><input type="hidden" name="pm_hd_position" id="pm_hd_position" value="'.$pm_hd_position.'" ></td> 
     </tr>
-    
+    <tr>
+    <td style="text-align: right;"><b>หมายเหตุ </b></td>
+    <td ><input type="text" name="pm_head_DC" id="pm_head_DC"  value="'.$pm_note.'" readonly style="cursor: not-allowed; border: none;" ></td> 
+
+    </tr>
     </table>
     </div>
     <br>
@@ -122,7 +114,7 @@ echo
 
 
     
-  <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
+  <table id="tableshow" align="center" style="width:70%;" class="table table-striped table-bordered " >
                     <thead>
                     <tr >
                         <td style="text-align: center;">Barcode</td>

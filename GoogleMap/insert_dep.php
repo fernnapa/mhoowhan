@@ -7,8 +7,8 @@ $mysql->set_char_utf8();
 $arr = array(
     "dep_no" => $_POST["dep_no"],
     "dep_name" => $_POST["location_name"],
-    "lat" => $_POST["lat"],
-    "lng" => $_POST["lng"],
+    "lat" => $_POST["lat_value"],
+    "lng" => $_POST["lon_value"],
 );
 $rs = $mysql->J_Insert($arr,"department");
 $mysql->J_Close();

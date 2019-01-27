@@ -46,7 +46,7 @@ include("../Home/db_connect.php");
             $no = "SELECT * FROM `employee` WHERE emp_id = $empno"; 
             $emp = $conn->query($no);
             while($row = mysqli_fetch_assoc($emp)){
-               $empn = $row["emp_no"];
+               $empn = $row["emp_id"];
 
             }
             $result = mysqli_query($conn, "INSERT INTO `equipment`(`eq_barcode`, `eq_tor`, `eq_serial`,`eq_status`,`eq_date`) 

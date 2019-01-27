@@ -1,6 +1,6 @@
 <?php
-include_once 'db_connect.php';
-
+session_start();
+include("../Home/db_connect.php");
 
 
 if(isset($_GET['id'])){
@@ -26,6 +26,10 @@ $pm_enddate = "";
 $pm_empno = "";
 $pm_date = "";
 $pm_head = "";
+$pm_hd_position ="";
+$pm_head_dc = "";
+$pm_dc_position ="";
+
 
 
 $rs = $conn->query($sql);
@@ -42,6 +46,10 @@ while($row = mysqli_fetch_assoc($rs)){
     $pm_empno = $row["pm_empno"];
     $pm_date = $row["pm_date"];
     $pm_head = $row["pm_head"];
+    $pm_hd_position =$row["pm_hd_position"];
+    $pm_head_dc = $_SESSION["User"];
+    $pm_dc_position =  $_SESSION["emp_position"];
+
 
  
 }
@@ -94,10 +102,12 @@ echo
     <tr>
     <td style="text-align: right;"><b>หัวหน้าฝ่ายที่ตรวจสอบ </b></td>
     <td ><input type="text" name="pm_empno" id="pm_empno" value="'.$pm_head.'" readonly style="cursor: not-allowed; border: none;" ></td> 
+    <td ><input type="hidden" name="pm_hd_position" id="pm_hd_position" value="'.$pm_hd_position.'" ></td> 
     </tr>
     <tr>
     <td style="text-align: right;"><b>ผู้อนุมัติการยืม-คืน </b></td>
-    <td ><input type="text" name="pm_head_DC" id="pm_head_DC" class="form-control" ></td> 
+    <td ><input type="text" name="pm_head_dc" id="pm_head_dc"  value="'.$pm_head_dc.'"readonly style="cursor: not-allowed; border: none;"></td> 
+    <td ><input type="hidden" name="pm_dc_position" id="pm_dc_position" value="'.$pm_dc_position.'" ></td> 
     </tr>
     </table>
     </div>

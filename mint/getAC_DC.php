@@ -1,8 +1,6 @@
-
-        
-
 <?php
-include_once 'db_connect.php';
+session_start();
+include("../Home/db_connect.php");
 
 
                                         if(isset($_GET['id'])){
@@ -28,6 +26,9 @@ include_once 'db_connect.php';
                                         $ac_emp = "";
                                         $ac_date = "";
                                         $ac_head = "";
+                                        $ac_hd_position ="";
+                                        $ac_head_dc ="";
+                                        $ac_dc_position ="";
 
 
 
@@ -44,6 +45,9 @@ include_once 'db_connect.php';
                                         $ac_emp = $row["ac_emp"];;
                                         $ac_date = $row["ac_date"];
                                         $ac_head = $row["ac_head"];
+                                        $ac_hd_position = $row["ac_hd_position"];
+                                        $ac_head_dc = $_SESSION["User"];
+                                        $ac_dc_position =$_SESSION["emp_position"];
                                         
                                         }
 
@@ -87,10 +91,12 @@ include_once 'db_connect.php';
                                         <tr>
                                         <td style="text-align: right;"><b>หัวหน้าฝ่ายที่ตรวจสอบ </b></td>
                                         <td ><input type="text" name="ac_head" id="ac_head" value="'.$ac_head.'" readonly style="cursor: not-allowed; border: none;"  ></td> 
+                                        <td ><input type="hidden" name="ac_hd_position" id="ac_hd_position" value="'.$ac_hd_position.'" ></td> 
                                         </tr>
                                         <tr>
                                         <td style="text-align: right;"><b>ผู้อนุมัติการจัดสรร </b></td>
-                                        <td ><input type="text" name="ac_head_DC" id="ac_head_DC" class="form-control" ></td> 
+                                        <td ><input type="text" name="ac_head_dc" id="ac_head_dc" value="'.$ac_head_dc.'" readonly style="cursor: not-allowed; border: none;" ></td> 
+                                        <td ><input type="hidden" name="ac_dc_position" id="ac_dc_position" value="'.$ac_dc_position.'" ></td> 
                                         </tr>
                                         </table>
                                         </div>

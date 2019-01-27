@@ -1,15 +1,15 @@
 <?php
-include_once 'db_connect.php';
-session_start();
-$_SESSION['chooseEq'] = array();
+ session_start();
+ include("../Home/db_connect.php");
+ $_SESSION['chooseEq'] = array();
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <?php include("link.php");?>
-        <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home</title>
+    <?php include("menu/link.php"); ?>
     <style>
             table, th, td    {
             }
@@ -27,17 +27,19 @@ $_SESSION['chooseEq'] = array();
          
     </style>
     </head>
-    <title>จัดสรรครุภัณฑ์</title>
+    <?php include("menu/navbar_emp.php"); ?>
+
+    <title>ยืม-คืนครุภัณฑ์</title>
         <body>
 <?php
         $id = $_POST['id_add'];
 ?>
-                <br>       
-                    <div class="container w3-card-4 w3-round" style="width:80% " > 
-                    <br>
+                      
+                    <div class="container" > 
+                    
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3><b>จัดสรรครุภัณฑ์</b></h3></a></button></td>
+                    <td><h3><b>ยืม-คืนครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
                    
@@ -89,11 +91,38 @@ $_SESSION['chooseEq'] = array();
                 </div>
                 <table border="0" align="center" style="width:25%;">
                     <tr>
-                    <td><button type="button" name="addEdit" class="btn btn-primary btn-block" value="<?php echo $id; ?>" onclick="Addac(this)"> ยืนยันการเลือกครุภัณฑ์ </button></td>
+                    <td><button type="button" name="addEdit" class="btn btn-primary btn-block" value="<?php echo $id; ?>" onclick="Addpm(this)"> ยืนยันการเลือกครุภัณฑ์ </button></td>
                     </tr>
                 </table>
                 <br>
                 </div>
+
+
+
+
+                
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+          <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+
 <!-- /.data -->
 <!-- /.script modal add -->
 <script>
@@ -110,7 +139,7 @@ $(document).ready(function(){
           $(document).ready(function(){
                 $.ajax({
 
-                        url: 'insert_Edit_AC.php',
+                        url: '../mint/insert_Edit_PM.php',
                         type: 'POST',
                         data: {'id':a},
                         success:function(res){
@@ -140,13 +169,13 @@ $(document).ready(function(){
 </script>
 
 <script>          
-      function Addac(str){
+      function Addpm(str){
          var a = str.value;
          var b = str.id;
           $(document).ready(function(){
                 $.ajax({
 
-                        url: 'Add_edit_AC.php',
+                        url: '../mint/Add_edit_PM.php',
                         type: 'POST',
                         data: {'id':a},
                         success:function(res){
@@ -165,7 +194,7 @@ $(document).ready(function(){
                                                      icon: "success",
                                                      button: "ตกลง",
                                                      }).then (function(){ 
-                                                    location.href = "Edit_AC.php?id=" +a;
+                                                    location.href = "Edit_PM.php?id=" +a;
                                                     }
                                                     );
                            

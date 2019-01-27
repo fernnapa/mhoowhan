@@ -66,7 +66,7 @@ include("../../Home/db_connect.php");
             <tr>
                 <form class="form-inline">
                     <th colspan="6"><input type="text" style="width:100%;" size="50" name="search_text" id="search_text" class="form-control" placeholder="ระบุคำที่ต้องการค้นหา"></th>
-                    <th style="text-align:right;"><button type="button" class="btn btn-success btn-block" style="font-family:Prompt;" onclick="location.href='../../GoogleMap/create_dep.php';">เพิ่มข้อมูล</button></th>   
+                    <th style="text-align:right;"><button type="button" class="btn btn-success btn-block" style="font-family:Prompt;" onclick="location.href='add_dep.php';">เพิ่มข้อมูล</button></th>   
                 </form>                        
             </tr>
         </table>

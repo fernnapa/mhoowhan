@@ -1,18 +1,18 @@
-<?php
-include_once 'db_connect.php';
-
-?>
+<?php  
+session_start();
+include("../Home/db_connect.php");
+?>  
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="en">
+
+<head>
   
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <?php include("link.php");?>
-
-
-        <link rel="stylesheet" href="style.css">   
-    <style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Home</title>
+  <?php include("menu/link.php"); ?>
+  
+  <style>
             table, th, td    {
             }
             td {
@@ -28,28 +28,40 @@ include_once 'db_connect.php';
             .search-table-outter { overflow-x: scroll; }
             .w3-theme-l2 {color:#fff !important;background-color:#e9657b !important}
     </style>
-    </head>
-    <title>รายการจัดสรรครุภัณฑ์ที่รออนุมัติ</title>
-        <body >
+
+
+
+</head>
+<title>รายการยืม-คืนครุภัณฑ์ที่รออนุมัติ</title>
+
+<?php include("menu/navbar_leader.php"); ?>
+
+<body>
+  
+    
 <!-- Modal ดูข้อมูลPM -->
 
-        <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewAC">
+<div class="modal fade" tabindex="-1" role="dialog" id="ModalViewPM">
                             <div class="modal-dialog " role="document">
                             <div class="modal-content">
+                            <div class="card">
+                            <div class="card-body">
                             <div class="modal-header">
+                                <h4 class="modal-title"><b>ข้อมูลการยืม-คืนครุภัณฑ์</b></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title"><b>รายการจัดสรรครุภัณฑ์ที่รออนุมัติ</b></h4>
                             </div>
-                                    <div class="modal-body">
-                                            <form id="ViewAC" >
+                                    <div class="modal-body table-responsive">
+                                            <form id="ViewPM" >
                                             </form>
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">PDF</button>
-                                    <button type="button" class="btn btn-success"  value="AC_pass" name="AC_pass" id="AC_pass" form="ViewAC">อนุมัติ</button>
-                                    <button type="button" class="btn btn-danger"  value="To_note" data-toggle="modal" data-target="#ModalNote"  id="To_note" name="To_note" form="ViewAC">ไม่อนุมัติ</button>
+                                   
+                                    <button type="button" class="btn btn-success"  value="PM_pass" name="PM_pass" id="PM_pass" form="ViewPM">อนุมัติ</button>
+                                    <button type="button" class="btn btn-danger"  value="To_note" data-toggle="modal" data-target="#ModalNote"  id="To_note" name="To_note" form="ViewPM">ไม่อนุมัติ</button>
                                     </div>
 
+                            </div>
+                            </div>
                             </div>
                             </div>
                             </div>
@@ -58,38 +70,38 @@ include_once 'db_connect.php';
                 <div class="modal-dialog" role="document">
                 <div class="modal-content w3-theme-l2" >
                 <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title"><b>เหตุผลที่ไม่ผ่านการตรวจสอบ</b></h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
-                        <div class="modal-body">
-                            <form id="NoteAC" >
+                        <div class="modal-body table-responsive">
+                            <form id="NotePM" >
                             <table align="center">
                             <tr>
-                            <td><input type="hidden" name="id_ac" id="id_ac" class="form-control"></td>
+                            <td><input type="hidden" name="id_pm" id="id_pm" class="form-control"></td>
+                            <td><input type="hidden" name="pm_head_dc" id="pm_head_dc" class="form-control" value="<?php echo $_SESSION["User"] ?>"></td>
+                            <td><input type="hidden" name="pm_dc_position" id="pm_dc_position" class="form-control" value="<?php echo $_SESSION["emp_position"]?>"></td>
+
                             <td>เหตุผลที่ไม่ผ่านการตรวจสอบ: </td>
-                            <td><input type="text" name="ac_note" id="ac_note" class="form-control"></td>
-                            </tr>
-                            <tr>
-                            <td>ชื่อผู้อนุมัติ</td>
-                            <td><input type="text" name="ac_head_DC" id="ac_head_DC" class="form-control" ></td>
+                            <td><input type="text" name="pm_note" id="pm_note" class="form-control"></td>
                             </tr>
                             </table>
                             </form>
                             </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-success"  name="Note_AC" id="Note_AC" form="NoteAC">ส่งผลการตรวจสอบ</button>
+                                    <button type="button" class="btn btn-success"  name="Note_PM" id="Note_PM" form="NotePM">ส่งผลการตรวจสอบ</button>
                                     <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
                                 </div>
-                                </div>
-                                </div>
-                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 <!-- Modal บอกเหตุผที่ไม่ให้ผ่าน -->
                 <br>       
-                    <div class="container w3-card-4 w3-round" style="width:80% " > 
+                    <div class="container" > 
                     <br>
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3><b>รายการจัดสรรครุภัณฑ์ที่รออนุมัติ</b></h3></a></button></td>
+                    <td><h3><b>รายการยืม-คืนครุภัณฑ์ที่รออนุมัติ</b></h3></a></button></td>
                     </tr>
                     </table>
                     
@@ -100,7 +112,7 @@ include_once 'db_connect.php';
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
                     <tr >
-                        <td style="text-align: center;">จุดประสงค์การจัดสรร</td>
+                        <td style="text-align: center;">จุดประสงค์การยืม-คืน</td>
                         <td style="text-align: center;">ชื่อผู้เช่ายืม</td>
                         <td style="text-align: center;">หน่วยงาน</td>
                         <td style="text-align: center;">พนักงานจัดสรร</td>
@@ -110,21 +122,21 @@ include_once 'db_connect.php';
                     </thead>
                     <tr>
                     <?php
-                       $sql = "SELECT * FROM allocate
-                       LEFT JOIN a_status
-                       ON allocate.ac_status = a_status.status_id
-                       LEFT JOIN department
-                       ON allocate.ac_dep = department.dep_id
-                       WHERE ac_status= 6";
+                       $sql = "SELECT * FROM permit
+                            LEFT JOIN a_status
+                            ON permit.pm_status = a_status.status_id
+                            LEFT JOIN department
+                            ON permit.pm_dep = department.dep_id
+                            WHERE pm_status= 6";
                        $result = mysqli_query($conn, $sql);
                        while($data = mysqli_fetch_array($result)):
                     ?>
-                        <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
-                        <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
+                        <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
+                        <td style="text-align:left"><?php echo $data['pm_username']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['ac_emp']; ?></td>
+                        <td style="text-align:left"><?php echo $data['pm_empno']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
-                        <td><button type="button" name="submitviewAC" class="btn btn-success btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC(<?php echo $data['ac_id']; ?>)">ดูรายการจัดสรร</button></td></form>
+                        <td><button type="button" name="submitviewPM" class="btn btn-success btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM(<?php echo $data['pm_id']; ?>)">ดูรายการยืม-คืน</button></td></form>
                     </tr>
                        <?php endwhile;?>
                 </table>
@@ -133,6 +145,34 @@ include_once 'db_connect.php';
                 <br>
                 </div>
 <!-- /.data -->
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+          <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  
+</body>
+</html>
+
+
 <!-- /.script modal add -->
 <script>
 $(document).ready(function(){  
@@ -144,19 +184,19 @@ $(document).ready(function(){
 
 
 <script>
-            function showAC(str) {
+            function showPM(str) {
             var xhttp;    
             if (str == "") {
-                document.getElementById("ViewAC").innerHTML = "";
+                document.getElementById("ViewPM").innerHTML = "";
                 return;
             }
             xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("ViewAC").innerHTML = this.responseText;
+                document.getElementById("ViewPM").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "getAC_DC.php?id="+str, true);
+            xhttp.open("GET", "../mint/getPM_DC.php?id="+str, true);
             xhttp.send();
             }
 </script>
@@ -165,27 +205,26 @@ $(document).ready(function(){
 
  <script>          
                 $(document).ready(function(){  
-                  $('#Note_AC').on("click", function(){  
-                       $('#NoteAC').submit();  
+                  $('#Note_PM').on("click", function(){  
+                       $('#NotePM').submit();  
                   });  
-                  $('#NoteAC').on('submit', function(e){  
+                  $('#NotePM').on('submit', function(e){  
                        e.preventDefault();  
                        $.ajax({  
-                            url :"Not_pass_AC_DC.php",  
+                            url :"../mint/Not_pass_PM_DC.php",  
                             method:"POST",  
                             data:new FormData(this),  
                             contentType:false,  
                             processData:false,  
                             success:function(data){
                                 var b = data;
-                                alert(b);
                                 if(data == 1){
                                              swal( {
                                                      title: "ส่งผลการอนุมัติเรียบร้อย",
                                                      icon: "success",
                                                      button: "ตกลง",
                                                      }).then (function(){ 
-                                                    location.href = "index_AC_DC.php";
+                                                    location.href = "index_PM_DC.php";
                                                     }
                                                     );
                                 }if(data == 2){
@@ -240,13 +279,13 @@ $(document).ready(function(){
         
 
                 $(document).ready(function(){  
-                  $('#AC_pass').on("click", function(){  
-                       $('#ViewAC').submit();  
+                  $('#PM_pass').on("click", function(){  
+                       $('#ViewPM').submit();  
                   });  
-                  $('#ViewAC').on('submit', function(e){  
+                  $('#ViewPM').on('submit', function(e){  
                        e.preventDefault();  
                        $.ajax({  
-                            url :"Pass_AC_DC.php",  
+                            url :"../mint/Pass_PM_DC.php",  
                             method:"POST",  
                             data:new FormData(this),  
                             contentType:false,  
@@ -260,7 +299,7 @@ $(document).ready(function(){
                                                      icon: "success",
                                                      button: "ตกลง",
                                                      }).then (function(){ 
-                                                    location.href = "index_AC.php";
+                                                    location.href = "index_PM_DC.php";
                                                     }
                                                     );
                                 }if(data == 2){
@@ -284,7 +323,7 @@ $(document).ready(function(){
                                                      icon: "error",
                                                      button: "ตกลง",
                                                     });
-                                }if (data == 5){
+                                }if (data == 50){
                                             swal( {
                                                      title: "ส่งผลตรวจสอบไม่สำเร็จ",
                                                      text: "กรุณากรอกข้อมูลเหตุผล",
@@ -317,11 +356,8 @@ $(document).ready(function(){
                 $(document).ready(function(){  
                   $('#To_note').on("click", function(){  
 
-                      var ac_id = $("#ac_id").val();
-                       document.getElementById("id_ac").value = ac_id;
+                      var pm_id = $("#pm_id").val();
+                       document.getElementById("id_pm").value = pm_id;
                   });  
              });     
-            </script> 
-
-        </body>
-</html>
+</script>

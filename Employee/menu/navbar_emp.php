@@ -5,11 +5,11 @@
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
 
-        <a class="navbar-brand brand-logo" href="index_emp.php">
+        <a class="navbar-brand brand-logo" href="index.php">
           <img src="../images/banner.png" alt="logo" style="width: 170px; height: 50px;"/>
         </a>
 
-        <a class="navbar-brand brand-logo-mini" href="index_emp.php">
+        <a class="navbar-brand brand-logo-mini" href="index.php">
           <img src="../images/favicon.png" alt="logo" />
         </a>
 
@@ -77,22 +77,82 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index_emp.php">           <!-----  หน้าแรก----->
+            <a class="nav-link" href="index.php">           <!-----  หน้าแรก----->
               <i class="menu-icon mdi mdi-television"></i>
               <span class="menu-title">หน้าแรก</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="index_import.php">           
-              <i class="menu-icon mdi mdi-folder-download"></i>
+              <i class="menu-icon mdi mdi-folder-move"></i>
               <span class="menu-title">อัพโหลดข้อมูล</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">         
+            <a class="nav-link" href="index_chooseAC.php">         
               <i class="menu-icon mdi mdi-settings"></i>
               <span class="menu-title">จัดสรรครุภัณฑ์</span>
             </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index_emp.php">         
+              <i class="menu-icon mdi  mdi-sync"></i>
+              <span class="menu-title">ยืม-คืน</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-file-document"></i>
+              <span class="menu-title" >ผลการดำเนินการ</span>  
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="Result_AC.php">ข้อมูลการจัดสรร</a>         
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="Result_PM.php">ข้อมูลการยืม-คืน</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#pd" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-file-document"></i>
+              <span class="menu-title" >แบบฟอร์ม</span>  
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="pd">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="index_ALL_AC.php">แบบฟอร์มการจัดสรร</a>         
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="index_ALL_PM.php">แบบฟอร์มการยืม-คืน</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-folder-download"></i>
+              <span class="menu-title" >ดาวน์โหลดรายงาน</span>  <!-----  หน้า จัดการ ----->
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="Export_AC.php">ข้อมูลการจัดสรร</a>         
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="Export_PM.php">ข้อมูลการยืม-คืน</a>
+                </li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="index_map.php">
@@ -101,15 +161,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="index_chart.php">
               <i class="menu-icon mdi mdi-chart-line"></i>
               <span class="menu-title">แผนภูมิ</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="menu-icon mdi mdi-table"></i>
-              <span class="menu-title">รายงาน</span>
             </a>
           </li>
         </ul>

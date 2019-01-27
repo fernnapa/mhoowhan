@@ -1,7 +1,6 @@
-
 <?php
-session_start();
 include("../Home/db_connect.php");
+session_start();
 
 
                                         if(isset($_GET['id'])){
@@ -16,18 +15,18 @@ include("../Home/db_connect.php");
                             ON allocate.ac_status = a_status.status_id
                             LEFT JOIN department
                             ON allocate.ac_dep = department.dep_id
+                            LEFT JOIN employee
+                            ON allocate.ac_emp = employee.emp_no
                             WHERE ac_id = $id";
                                         $ac_title = "";
                                         $ac_tname = "";
                                         $ac_name = "";
                                         $ac_empid = "";
                                         $ac_position= "";
-                                        $dep_dep = "";
+                                        $dep_name = "";
                                         $ac_TypeR = "";
                                         $ac_emp = "";
                                         $ac_date = "";
-                                        $ac_head = "";
-                                        $ac_hd_position ="";
 
 
 
@@ -43,8 +42,6 @@ include("../Home/db_connect.php");
                                         $ac_typeR = $row["ac_typeR"];;
                                         $ac_emp = $row["ac_emp"];;
                                         $ac_date = $row["ac_date"];
-                                        $ac_head = $_SESSION["User"];
-                                        $ac_hd_position = $_SESSION["emp_position"];
                                         
                                         }
 
@@ -85,11 +82,7 @@ include("../Home/db_connect.php");
                                         <td style="text-align: right;"><b>พนักงานที่ทำรายการจัดสรร </b></td>
                                         <td ><input type="text" name="pm_empno" id="pm_empno" value="'.$ac_emp.'" readonly style="cursor: not-allowed; border: none;" ></td> 
                                         </tr>
-                                        <tr>
-                                        <td style="text-align: right;"><b>ผู้ตรวจสอบ </b></td>
-                                        <td ><input type="text" name="ac_head" id="ac_head"  value="'.$ac_head.'" readonly style="cursor: not-allowed; border: none;"  ></td> 
-                                        <input type="hidden" name="ac_hd_position" id="ac_hd_position" value="'.$ac_hd_position.'" > 
-                                        </tr>
+                                        
                                         </table>
                                         </div>
                                         <br>
