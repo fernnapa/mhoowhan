@@ -11,7 +11,15 @@
           <img src="../../images/favicon.png" alt="logo" />
         </a>
       </div>
+
       <div class="navbar-menu-wrapper d-flex align-items-center">
+        <ul class="navbar-nav navbar-nav-left header-links d-none d-md-flex">
+          <li class="nav-item">
+            <a href="gen_qr.php" class="nav-link"><i class="mdi mdi-qrcode"></i>สร้าง QR Code
+            </a>
+          </li>
+        </ul>
+
         <ul class="navbar-nav navbar-nav-right" style="font-family:Prompt;">
           <li class="nav-item dropdown d-none d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -114,6 +122,12 @@
             <a class="nav-link" href="#">
               <i class="menu-icon mdi mdi-table"></i>
               <span class="menu-title">รายงาน</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../Home/logout.php">
+              <i class="menu-icon mdi mdi-logout"></i>
+              <span class="menu-title">ออกจากระบบ</span>
             </a>
           </li>
         </ul>

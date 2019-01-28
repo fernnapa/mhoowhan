@@ -129,6 +129,12 @@
               </ul>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../Home/logout.php">
+              <i class="menu-icon mdi mdi-logout"></i>
+              <span class="menu-title">ออกจากระบบ</span>
+            </a>
+          </li>
         </ul>
       </nav>
 

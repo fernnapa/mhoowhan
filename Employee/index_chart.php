@@ -182,6 +182,20 @@ BODY {
         </script>
 
 
+        /********************************************************* */
+        <?php 
+            if(isset($_POST["type_select"])){
+                $type_select = $_POST["type_select"];
+
+                $sql = "SELECT ald_type_name, count(ald_type_name) as number FROM allocate_detail WHERE ald_status_name in("จัดสรร") GROUP by ald_type_name";
+
+                
+            }else{
+                $sql = "SELECT ald_type_name FROM allocate_detail ORDER BY ald_id DESC LIMIT 1";
+            }
+
+            $rs = $conn->query($sql);
+            $result = "SELECT * FROM "
 
 
 

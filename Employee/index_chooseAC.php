@@ -32,7 +32,7 @@ $_SESSION['chooseEq'] = array();
     <title>จัดสรรครุภัณฑ์</title>
         <body>
                       
-                    <div class="container" > 
+                   
                     
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
@@ -93,7 +93,7 @@ $_SESSION['chooseEq'] = array();
                 </form>
                 </div>
                 <br>
-                </div>
+            
 
 
 

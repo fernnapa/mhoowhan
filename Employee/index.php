@@ -10,11 +10,10 @@ $_SESSION['chooseEq'] = array();
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Home</title>
+  <title>หน้าแรก</title>
   <?php include("menu/link.php"); ?>
-  <title>รายการจัดสรรครุภัณฑ์</title>
   
-
+  
   <style>
             table, th, td    {
             }
@@ -38,35 +37,34 @@ $_SESSION['chooseEq'] = array();
 
 <body>
   
-                    <div class="modal fade" tabindex="1" role="dialog" id="ModalViewAC">
-                            <div class="modal-dialog " role="document">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                            <h4 class="modal-title"><b>รายการจัดสรรครุภัณฑ์</b></h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                                    <div class="modal-body table-responsive">
-                                            <form id="ViewAC" >
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
-                                        </div>
+  <!-----------------detail---------------------------->
+    <div class="modal fade" tabindex="1" role="dialog" id="ModalViewAC">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="font-family:Prompt;"><b>รายการจัดสรรครุภัณฑ์</b></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body table-responsive">
+                    <form id="ViewAC" ></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                            </div>
-                            </div>
-                            </div>
-
+  <!-----------------detail---------------------------->
 
                                   
-                    <div class="container" > 
-                    
-                    <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
-                    <tr>
-                    <td><h3><b>รายการจัดสรร/ยืม-คืน ครุภัณฑ์</b></h3></a></button></td>
-                    </tr>
-                    </table>
-                    
+    <div class="container" >    
+        <table border="0" align="center" style="width:100%;" class="w3-round">
+            <tr>
+                <td><h3 style="font-family:Prompt;"><b>รายการจัดสรร/ยืม-คืน ครุภัณฑ์</b></h3></a></button></td>
+            </tr>
+        </table>
+        <hr>
                     
                     <div class="table-responsive" id="result">
                     <p></p>
@@ -74,13 +72,13 @@ $_SESSION['chooseEq'] = array();
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
                     <tr >
-                        <td style="text-align: center;">จุดประสงค์การจัดสรร</td>
-                        <td style="text-align: center;">ชื่อผู้เช่ายืม</td>
-                        <td style="text-align: center;">หน่วยงาน</td>
-                        <td style="text-align: center;">พนักงานจัดสรร</td>
-                        <td style="text-align: center;">สถานะ</td>
-                        <td style="text-align: center;">รายละเอียด</td>
-                       
+                        <td style="text-align: center; font-weight: bold; width='350px'">ชื่อผู้เช่ายืม</td>
+                        <td style="text-align: center; font-weight: bold; width='500px'">หน่วยงาน</td>
+                        <td style="text-align: center; font-weight: bold; width='500px'">จุดประสงค์การจัดสรร</td>
+                        <td style="text-align: center; font-weight: bold; width='100px'">สถานะ</td>
+                        <td style="text-align: center; font-weight: bold; width='100px'">พนักงานจัดสรร</td>
+                        <td></td>
+
 
 
                         </tr>
@@ -101,14 +99,13 @@ $_SESSION['chooseEq'] = array();
                          $stn = $data['status_name'];
 
                          if($stn == "จัดสรร"){ ?>
-                          <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
                           <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
                           <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
+                          <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
+                          <td style="text-align:left"><?php echo $data['status_name']; ?></td>             
                           <td style="text-align:left"><?php echo $data['ac_empid']; ?></td>
-                          <td style="text-align:left"><?php echo $data['status_name']; ?></td>
-                          
-                          <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC_dt(<?php echo $data['ac_id']; ?>)">ดูรายละเอียด</button></td>
-                          
+                          <td><button type="button" name="submitview" class="btn btn-icons  btn-primary btn-md"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC_dt(<?php echo $data['ac_id']; ?>)"><i class="mdi mdi-file-document"></i></button></td>
+
                               
                       <?php } ?>
   
@@ -122,6 +119,7 @@ $_SESSION['chooseEq'] = array();
                                 ON permit.pm_status = a_status.status_id
                                 LEFT JOIN department
                                 ON permit.pm_dep = department.dep_id
+                               
                               
                                 WHERE pm_status= 3 ";
                               $result2 = mysqli_query($conn, $sql2);
@@ -133,10 +131,10 @@ $_SESSION['chooseEq'] = array();
                                 <td style="text-align:left"><?php echo $data1['pm_name']; ?></td>
                                 <td style="text-align:left"><?php echo $data1['pm_username']; ?></td>
                                 <td style="text-align:left"><?php echo $data1['dep_name']; ?></td>
-                                <td style="text-align:left"><?php echo $data1['pm_userno']; ?></td>
                                 <td style="text-align:left"><?php echo $data1['status_name']; ?></td>
+                                <td style="text-align:left"><?php echo $data1['pm_userno']; ?></td>
                           
-                          <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showPM_DC_dt(<?php echo $data1['pm_id']; ?>)">ดูรายละเอียด</button></td>
+                          <td><button type="button" name="submitview" class="btn btn-icons  btn-primary btn-md"  data-toggle="modal" data-target="#ModalViewAC" onclick="showPM_DC_dt(<?php echo $data1['pm_id']; ?>)"><i class="mdi mdi-file-document"></i></button></td>
                           
                               
                       <?php } ?>
@@ -157,25 +155,17 @@ $_SESSION['chooseEq'] = array();
               </div>
             </div>
           </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
+
           <footer class="footer">
             <div class="container-fluid clearfix">
             <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
             </div>
           </footer>
-          <!-- partial -->
         </div>
-        <!-- main-panel ends -->
       </div>
-      <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-  <!-- /.data -->
-  <!-- /.script modal add -->
   
   
-  <!-- /.data -->
   <!-- /.script modal add -->
   <script>
   $(document).ready(function(){  
@@ -203,7 +193,7 @@ $_SESSION['chooseEq'] = array();
               xhttp.open("GET", "getAC_DC_dt.php?id="+str, true);
               xhttp.send();
               }
-  </script>
+</script>
 
 <script>
               function showPM_DC_dt(str) {

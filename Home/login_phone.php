@@ -1,3 +1,10 @@
+<?php
+       if(isset($_GET['ERFdfgRTsTR'])){
+        $id_eq = $_GET['ERFdfgRTsTR'];
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,11 +53,13 @@
                     <h2 font style="font-family:Prompt;">Log In</h2>
                     <p><font size="2" color="red" style="font-family:Prompt;">*เฉพาะเจ้าหน้าที่ศูนย์คอมพิวเตอร์ มหาวิทยาเทคโนโลยีสุรนารี</font></p>
                 </header><br/>
-                <form name="frmlogin"  method="post" action="check_log.php">
+                <form name="frmlogin"  method="post" action="check_phone.php">
                 <div class="form-group">
                   <label class="label"><b>Username</b></label>
                   <div class="input-group">
                     <input type="text" class="form-control" id="emp_user" name="emp_user" placeholder="Username" required>
+                    <input type="hidden" class="form-control" id="id_eq" name="id_eq" value="<?php echo $id_eq; ?>" >
+
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>

@@ -71,8 +71,13 @@
     </script>
   </head>
   <body>
-    <button id="change-chart">Change to Classic</button>
-    <br><br>
-    <div id="chart_div" style="width: 800px; height: 500px;"></div>
+
+  
+    
+
+
+
+
+
   </body>
 </html>

@@ -1,15 +1,19 @@
 <?php
-include("../Home/db_connect.php");
 session_start();
+include("../../Home/db_connect.php");
 
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <?php include("menu/link.php"); ?>
+    <head>
+  
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+        <?php include("link_phone.php"); ?>
+
+        <title>ยืนยันการจัดสรรครุภัณฑ์</title>
         
     <style>
             table, th, td    {
@@ -28,13 +32,14 @@ session_start();
          
     </style>
     </head>
-    <?php include("menu/navbar_emp.php"); ?>
-
-    <title>ยืนยันการจัดสรรครุภัณฑ์</title>
+    
         <body>
-
+     <?php   if(isset($_GET['ID'])){
+            $eqid = $_GET['ID'];
+        }
+     ?>
         <div class="modal fade" tabindex="-1" role="dialog" id="ModalDep">
-                    <div class="modal-dialog" role="document" style="width:100%";>
+                    <div class="modal-dialog" role="document" style="width:500x";>
                     <div class="modal-content">
                     <div class="modal-header">
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -77,21 +82,18 @@ session_start();
                 <br>           
                     
                     <form id="Add_AC"> 
-                    <table border="0" align="center" style="width:80%;" class="w3-teal">
+                    <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
                     <td><h3><b>ยืนยันการจัดสรรครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
-                    <div class="container" > 
-                    <div class="table-responsive">
-                    <br>
-                    <table border="1" align="center" style="width:100%" class="w3-round ">
+                    <div class="container w3-card-2 w3-round" style="width:100% " > 
+                    <p></p>
+                    <table border="1" align="center" style="width:100%" class="w3-round table-bordered ">
                     <tr>
                     <td style="text-align: left">คำนำหน้าชื่อ</td>
                     <td style="text-align: left">ชื่อผู้เช่ายืม</td>
                     </tr>
-
-                    <tr>
                     <td><input type="text" name="ac_tname" class="form-control" ></td>
                     <td ><input type="text" name="ac_name" class="form-control"></td>
                     </tr>
@@ -101,71 +103,50 @@ session_start();
                     <td  style="text-align: left">รหัสพนักงาน</td>
                     <td  style="text-align: left">ตำเเหน่ง</td>
                     </tr>
-
                     <tr>
-                    <td ><input type="text" name="ac_empid" class="form-control"></td>
+                    <td ><input type="text" name="ac_empid" class="form-control" ></td>
                     <td><input type="text" name="ac_position" class="form-control"></td>
                     </tr>
+
 
                     <tr>
                     </tr>
                     <td style="text-align: left">หน่วยงาน </td>
-                    <td style="text-align: left" >จุดประสงค์การจัดสรร</td>
+                    <td style="text-align: left" >จุดประสงค์การยืม-คืน</td>
                     </tr>
-
                     <tr>
                     <td class="form-inline"><input type="text" name="pm_ex" placeholder="หน่วยงาน"  class="form-control " id="pm_ex" readonly style="width:100%;">
-                    <input type="hidden" name="ac_dep" placeholder="กรุณาเลือกหน่วยงาน"  class="form-control " id="ac_dep" style="width:100%;">
+                    <input type="hidden" name="ac_dep" placeholder="หน่วยงาน"  class="form-control " id="ac_dep" style="width:100%;">
                     <form id="chooseDep"><input type="submit" name="AddDep" id="AddDep" value="เลือกหน่วยงาน" form="chooseDep" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModalDep"></button></form></td>
                     <td style="vertical-align:top"><input type="text" name="ac_title" class="form-control"></td>
+                
                     </tr>
 
+                   
                     <tr>
-                    <input type="hidden"  name="date"  id="date" value="<?=date('Y-m-d')?> "readonly/>
+                    <input type="hidden"  name="date"  id="date" value="<?=date('Y-m-d')?>"readonly/>
                     <td style="text-align: left">รหัสพนักงานจัดสรร</td>
                     <td style="text-align: left">ประเภทห้อง</td>
                     </tr>
-
                     <tr>
-                    <td ><input type="text" name="ac_emp" class="form-control" value="<?php echo $_SESSION["emp_id"] ?>"readonly/></td>
+                    <td ><input type="text" name="ac_emp" class="form-control" value="<?php echo $_SESSION["emp_id"] ?>" readonly></td>
                     <td ><input type="text" name="ac_typeR" class="form-control"></td>
                     </tr>
 
                     </table>
-                    <br>
-                    </div>
-                    </div>
-                    </form>
-                    <br>
-                    <div class="container" > 
-                    <br>
-                    <table border="0" align="right">
-                    <tr>
-                    <!-- <td><a href="index_chooseAC.php" class="btn btn-primary btn-block">เลือกครุภัณฑ์</a></td> -->
-                    </tr>
-                    </table>
-                    <br>
-                    <br>
-                    <br>
-                    <div class="table-responsive" id="result">
                     <p></p>
-                    <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
+                    <table  align="center" style="width:100%;" class="w3-round table-bordered " border="1" >
                     <thead>
                     <tr >
-                        <td style="text-align: center;"></td>
                         <td style="text-align: center;">Barcode</td>
                         <td style="text-align: center;">Serial Number</td>
                         <td style="text-align: center;">สัญญา</td>
                         <td style="text-align: center;">ประเภทครุภัณฑ์</td>
-                        <td style="text-align: center;">สถานะ</td>
-                        <td style="text-align: center;">เลือกครุภัณฑ์</td>
                     </tr>
                     </thead>
                     <tr>
                     <?php
-                          $choose = $_SESSION['chooseEq'];
-                          foreach ($choose as $key => $value) {
-                            
+                                      
                         
                        $sql = "SELECT * FROM equipment
                        LEFT JOIN a_status
@@ -176,59 +157,32 @@ session_start();
                             ON tor.tor_contract = contract.con_id
                             LEFT JOIN type_eq
                             ON tor.tor_type = type_eq.type_id 
-                            WHERE eq_id = '$value'";
+                            WHERE eq_id = $eqid";
                        $result = mysqli_query($conn, $sql);
                        while($data = mysqli_fetch_array($result)):
 
                     ?>
-                        <td style="text-align:left"><?php echo $data['eq_pic']; ?></td>
                         <td style="text-align:left"><?php echo $data['eq_barcode']; ?></td>
                         <td style="text-align:left"><?php echo $data['eq_serial']; ?></td>
                         <td style="text-align:left"><?php echo $data['con_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['type_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                         <input type="hidden" name="id" value="<?php echo $data['eq_id']; ?>">
                     
 
-                        <td><button type="button" name="submit" id="submit<?php echo $data['eq_id']; ?>" class="btn btn-danger btn-block" value="<?php echo $data['eq_id']; ?>" onclick="getid(this)" >ลบครุภัณฑ์</button></td></form>
                     </tr>
                        <?php endwhile;?>
-                      <?php } ?>
+                      
                 </table>
-                <br>
-                    <table border="0" align="center" style="width:25%;">
+                    <table border="0" align="center" style="width:100%;">
                     <tr>
-                    <td><input type="submit" name="submitAdd" id="submit" value="บันทึกข้อมูล" form="Add_AC" class="btn btn-success btn-block"></td>
+                    <td style="width:50%"><input type="submit" name="submitAdd" id="submit" value="บันทึกข้อมูล" form="Add_AC" class="btn btn-success btn-block"></td>
+                    <td style="width:50%"><a href="viewQR_Admin.php?ID=<?php echo $eqid; ?>" class="btn btn-danger btn-block">ยกเลิก</a></td>
                     </tr>
                     </table>
-                <br>
-
-                </div>
-                </div>
-
-
-
-                        
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-          <div class="container-fluid clearfix">
-          <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
-          </div>
-        </footer>
-        <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
-<!-- /.data -->
+                    </div>
+                    </div>
+                    </form>
+               
 <!-- /.script modal add -->
 
 <script>
@@ -249,43 +203,7 @@ $(document).ready(function(){
  }); 
 </script>
 
-<script>          
-      function getid(str){
-         var a = str.value;
-         var b = str.id;
-          $(document).ready(function(){
-                $.ajax({
 
-                        url: '../mint/delete_AC.php',
-                        type: 'POST',
-                        data: {'id':a},
-                        success:function(res){
-                        
-                            alert(res);
-                            if(res == 2){
-                            swal( {
-                                                     title: "เลือกข้อมูลไม่สำเร็จ",
-                                                     text: "ข้อมูลนี้ถูกเลือกไปเเล้ว",
-                                                     icon: "error",
-                                                     button: "กรอกข้อมูลอีกครั้ง",
-                                                    }
-                                                  );
-                        }if(res == 1){
-                            swal( {
-                                                     title: "ลบข้อมูลสำเร็จ",
-                                                     icon: "success",
-                                                     button: "ตกลง",
-                                                     }).then (function(){ 
-                                                    location.reload();
-                              }
-                            );   
-                                                   
-                        }
-                        }
-                });
-          });
-}
-</script>
 
 <script>          
                 $(document).ready(function(){  
@@ -295,7 +213,7 @@ $(document).ready(function(){
                   $('#Add_AC').on('submit', function(e){  
                        e.preventDefault();  
                        $.ajax({  
-                            url :"../mint/Add_AC.php",  
+                            url :"Add_AC_QR.php",  
                             method:"POST",  
                             data:new FormData(this),  
                             contentType:false,  
@@ -309,7 +227,7 @@ $(document).ready(function(){
                                                      icon: "success",
                                                      button: "ตกลง",
                                                      }).then (function(){ 
-                                                    location.href = "index_ALL_AC.php";
+                                                    location.href = "indexAC_phone.php";
                                                     }
                                                     );
                                 }if(data == 2){
