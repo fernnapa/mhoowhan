@@ -180,7 +180,7 @@
                         <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['ac_empid']; ?></td>
-                        <td style="text-align:left"><?php echo $data['status_name']; ?></td>
+                        <td style="text-align:center"  class="w3-blue-gray"><?php echo $data['status_name']; ?></td>
                       
                     <?php } ?>
                         </tr>
