@@ -94,11 +94,26 @@
               <span class="menu-title">จัดสรรครุภัณฑ์</span>
             </a>
           </li>
+         
           <li class="nav-item">
-            <a class="nav-link" href="index_emp.php">         
+            <a class="nav-link" data-toggle="collapse" href="#uix" aria-expanded="false" aria-controls="ui-basic">
               <i class="menu-icon mdi  mdi-sync"></i>
-              <span class="menu-title">ยืม-คืน</span>
+              <span class="menu-title" >ยืม-คืน</span>  
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="uix">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="index_emp.php">ทำรายการยืม-คืนครุภัณฑ์</a>         
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="index_ALL.php">รวมรายการทั้งหมด</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="Backup_PM.php">ประวัติการยืม-คืน</a>
+                </li>
+              </ul>
+            </div>
           </li>
 
           <li class="nav-item">
@@ -154,6 +169,7 @@
               </ul>
             </div>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="index_map.php">
               <i class="menu-icon mdi mdi-flag-variant"></i>

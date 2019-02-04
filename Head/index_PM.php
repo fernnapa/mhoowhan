@@ -1,6 +1,6 @@
 <?php  
 session_start();
-include("../Home/db_connect.php");
+include("../db_connect.php");
 ?>  
 <!DOCTYPE html>
 <html lang="en">
@@ -92,23 +92,20 @@ include("../Home/db_connect.php");
                                 </div>
                                 </div>
 <!-- Modal บอกเหตุผที่ไม่ให้ผ่าน -->
-                <br>       
-                    <div class="container" > 
+                <div class="container w3-card-2 w3-round" style="width:100% " > 
                     <br>
-                    <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
+                    <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
-                    <td><h3><b>รายการยืม-คืนครุภัณฑ์ที่รอตรวจสอบ</b></h3></a></button></td>
+                    <td><p><h3 style="font-family:Prompt;"><b>รายการยืม-คืนครุภัณฑ์ที่รอตรวจสอบ</b></h3></a></button></td>
                     </tr>
                     </table>
-                    
-                    <br>
                     <div class="table-responsive" id="result">
                     <p></p>
                     <form id="form3"> 
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
                     <tr >
-                        <td style="text-align: center;">จุดประสงค์การยืม-คืน</td>
+                        <td style="text-align: center; ">จุดประสงค์การยืม-คืน</td>
                         <td style="text-align: center;">ชื่อผู้เช่ายืม</td>
                         <td style="text-align: center;">หน่วยงาน</td>
                         <td style="text-align: center;">พนักงานจัดสรร</td>
@@ -125,7 +122,10 @@ include("../Home/db_connect.php");
                             ON permit.pm_dep = department.dep_id
                             WHERE pm_status= 7";
                        $result = mysqli_query($conn, $sql);
-                       while($data = mysqli_fetch_array($result)):
+                       $num_rows = mysqli_num_rows($result);        
+                       if($num_rows > 0){
+                       while($data = mysqli_fetch_array($result))
+                       {
 
                     ?>
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
@@ -136,7 +136,10 @@ include("../Home/db_connect.php");
 
                         <td><button type="button" name="submitviewPM" class="btn btn-success btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM(<?php echo $data['pm_id']; ?>)">ดูรายการยืม-คืน</button></td></form>
                     </tr>
-                       <?php endwhile;?>
+                       <?php } 
+                       }else{ ?>
+                        <td style="text-align: center;" colspan="6" ><font color="#FF3333"; size="2px;" ><b>ไม่มีรายการยืมครุภัณฑ์ที่รอตรวจสอบ</b></font></td>
+                       <?php } ?>
                 </table>
                 </form>
                 </div>
@@ -153,11 +156,11 @@ include("../Home/db_connect.php");
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-        <footer class="footer">
+        <!-- <footer class="footer">
           <div class="container-fluid clearfix">
           <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
           </div>
-        </footer>
+        </footer> -->
         <!-- partial -->
       </div>
       <!-- main-panel ends -->
@@ -181,7 +184,17 @@ include("../Home/db_connect.php");
 <script>
 $(document).ready(function(){  
         $('#tableshow').DataTable({
-        "searching": true
+        "searching": true,
+        "language": {
+            "lengthMenu": "ข้อมูลเเสดง _MENU_ ต่อหน้า",
+            "info": " _PAGE_ หน้าจาก _PAGES_",
+            "sSearch": "ค้นหา"
+
+        },
+  
+      retrieve: true,
+
+      
 });  
  }); 
 </script>

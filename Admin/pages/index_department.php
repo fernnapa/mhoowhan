@@ -1,57 +1,56 @@
 <?php  
 session_start();
-include("../../Home/db_connect.php");
+include("../../db_connect.php");
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>ข้อมูลหน่วยงาน</title>
-  <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ข้อมูลหน่วยงาน</title>
+    <?php include("link.php"); ?>
 
-  <?php include("link.php"); ?>
-
-<style>
-.modal-dialog.a{
-  max-width : 70%;
-}
-</style>
+    <style>
+    .modal-dialog.a{
+        max-width : 70%;
+    } body{
+        font-family: 'Kanit', sans-serif;
+    }
+    </style>
 </head>
+
   <?php include("navbar.php"); ?>
+
 <body>
 
     <!-- /.modal edit-->
     <div class="modal fade" tabindex="-1" role="dialog" id="myModal2">
-        <div class="modal-dialog a" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
+              <div class="card">
+                <div class="card-body">
                 <div class="modal-header">
-                    <h4 class="modal-title" style="font-family:Prompt;">แก้ไขข้อมูลหน่วยงาน</h4>
+                    <h4 class="modal-title" style="font-family:Prompt; font-weight: bold;">แก้ไขข้อมูลหน่วยงาน</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        
                 </div>
+
                 <div class="modal-body">
-                    <form id="form2">
-                        <table style="width:90%" align="center" >
-                            <tr>
-                            </tr>
-                            <tr>
-                                <th style="text-align: left; font-family:Prompt;">หมายเลขหน่วยงาน</th>
-                                <th style="text-align: left; font-family:Prompt;">ชื่อหน่วยงาน</th>
-                                <th style="text-align: left; font-family:Prompt;">แลตติจูด</th>
-                                <th style="text-align: left; font-family:Prompt;">ลองติจูด</th>
-                            </tr>
-                            <tr id="txtHint" >
-                            </tr>
-                        </table>
+                    <form id="form2" method="POST">
+                        <table style="width:100%" align="center" id="txtHint" border="0"  class="table-responsive"></table>
                     </form>
                 </div>
+
                 <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" value="submit" name="submit" id="submit" onclick="update()" style="font-family:Prompt;">บันทึกข้อมูล</button>
                     <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ยกเลิก</button>
-                    <button type="submit" class="btn btn-success" value="submit" name="submit" id="submit" onclick="update()" style="font-family:Prompt;">อัพเดท</button>
                 </div>
             </div>
+            </div>
+        </div>
         </div>
     </div>
     <!-- /.modal edit-->
@@ -66,43 +65,20 @@ include("../../Home/db_connect.php");
             <tr>
                 <form class="form-inline">
                     <th colspan="6"><input type="text" style="width:100%;" size="50" name="search_text" id="search_text" class="form-control" placeholder="ระบุคำที่ต้องการค้นหา"></th>
-                    <th style="text-align:right;"><button type="button" class="btn btn-success btn-block" style="font-family:Prompt;" onclick="location.href='add_dep.php';">เพิ่มข้อมูล</button></th>   
+                    <th style="text-align:right;"><button type="button" class="btn btn-success btn-block" style="font-family:Prompt;" onclick="location.href='create_dep.php';">เพิ่มข้อมูล</button></th>   
                 </form>                        
             </tr>
         </table>
         <br>
     </div>
-    <br>             
-    <div class="table-responsive" id="result">
+    <br>          
+
+
+    <div class="table-responsive" id="result" style="font-family:Prompt;">
         <p></p>
-        <form id="form3"> 
-            <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
-                <thead>
-                    <tr >
-                        <td style="text-align: center;">หมายเลขหน่วยงาน</td>
-                        <td style="text-align: center;">ชื่อหน่วยงาน</td>
-                        <td style="text-align: center;">แลตติจูด</td>
-                        <td style="text-align: center;">ลองติจูด</td>
-                        <td style="text-align: center;"></td>
-                    </tr>
-                </thead>
-                    <tr>
-                    <?php
-                       $sql = "SELECT * FROM department";
-                       $result = mysqli_query($conn, $sql);
-                       while($data = mysqli_fetch_array($result)):
-                    ?>
-                        <td style="text-align:left"><?php echo $data['dep_no']; ?></td>
-                        <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['lat']; ?></td>
-                        <td style="text-align:left"><?php echo $data['lng']; ?></td>
-                        <td><button type="button" class="btn btn-warning btn-block" data-toggle="modal" onclick="showDepartment(<?php echo $data['dep_id']; ?>)" data-target="#myModal2"></button></form>
-                        <span  class="btn btn-danger btn-block" form="form3"  onclick="remove(<?php echo $data['dep_id']; ?>)"></span></td>                    
-                    </tr>
-                       <?php endwhile;?>
-            </table>
-        </form>
-     </div>          
+          <form id="form3"> </form>
+    </div>
+        
     <!-- /.data -->
     <?php include ("footer.php"); ?>
     
@@ -130,7 +106,7 @@ include("../../Home/db_connect.php");
                 document.getElementById("txtHint").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "../../toey/getDepartment.php?id="+str, true);
+            xhttp.open("GET", "getDepartment.php?id="+str, true);
             xhttp.send();
         }
     </script>
@@ -142,7 +118,7 @@ include("../../Home/db_connect.php");
         function update(){              
             $(document).ready(function(){
                 $.ajax({
-                    url: " ../../toey/update_dep.php", 
+                    url: "update_dep.php", 
                     type: "POST",
                     data: $("#form2").serialize(),
                     success: function(result){
@@ -192,7 +168,7 @@ include("../../Home/db_connect.php");
         }).then (function (isConfirm){
             if (isConfirm) {
                 $.ajax({
-                    url: "../../toey/delete_dep.php", 
+                    url: "delete_dep.php", 
                     type: "POST",
                     data: {"x": str},
                     success: function(result){
@@ -226,7 +202,7 @@ include("../../Home/db_connect.php");
             load_data();
                 function load_data(query){
                     $.ajax({
-                        url:"../../toey/search_dep.php",
+                        url:"search_dep.php",
                         method:"POST",
                         data:{query:query},
                         success:function(data)

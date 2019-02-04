@@ -8,9 +8,9 @@ session_start();
  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Map</title>
+  <title>ข้อมูลส่วนตัว</title>
 
-    <?php include("menu/link.php")  ?>
+  <?php include("menu/link.php"); ?>
 </head>
 
 <body>
@@ -18,7 +18,7 @@ session_start();
     <?php include("menu/navbar_head.php")  ?>
 
     <?php 
-      include("../Home/db_connect.php");
+      include("../db_connect.php");
       if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
       }
@@ -37,12 +37,10 @@ session_start();
                   <div class="row">
                       <div class="col-md-3">
                           <div class="text-center">
-                              <img src="img/<?php echo $row["emp_pic"]; ?>"width='100%' height='100%' class="img-fluid">
+                              <img src="images/<?php echo $row["emp_pic"]; ?>"width='100%' height='100%' class="img-fluid">
                                   <h6 style="font-family:Prompt;">รูปภาพ</h6>
                           </div>
                       </div>
-                     
-  
                       <div class="col-md-8">
                           <div class="tab-content profile-tab" id="myTabContent">
                               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -112,7 +110,7 @@ session_start();
                                                   <label class="control-label" style="font-family:Prompt;">Password:</label>
                                               </div>
                                               <div class="col-md-8">
-                                                  <p style="font-family:Prompt;"><?php echo $row["emp_pass"]; ?></p>
+                                              <p style="font-family:Prompt;"> <input class="form-control" name="emp_pass" type="password" value="<?php echo $row["emp_pass"];?>" readonly></p>
                                               </div>
                                           </div>
   

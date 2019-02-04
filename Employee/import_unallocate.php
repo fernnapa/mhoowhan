@@ -1,5 +1,5 @@
 <?php
-include("../Home/db_connect.php");
+include("../db_connect.php");
         if(isset($_POST["Import"])){
 
               echo $filename=$_FILES["file"]["tmp_name"];

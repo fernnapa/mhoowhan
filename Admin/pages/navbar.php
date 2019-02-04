@@ -107,21 +107,21 @@
             </div>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="Backup_CON.php">
+              <i class="menu-icon mdi mdi-package"></i>
+              <span class="menu-title">Back Up สัญญา</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="index_map.php">
               <i class="menu-icon mdi mdi-flag-variant"></i>
               <span class="menu-title">แผนที่</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="chart.php">
               <i class="menu-icon mdi mdi-chart-line"></i>
               <span class="menu-title">แผนภูมิ</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="menu-icon mdi mdi-table"></i>
-              <span class="menu-title">รายงาน</span>
             </a>
           </li>
           <li class="nav-item">

@@ -1,92 +1,164 @@
 <?php  
 session_start();
-include("../../Home/db_connect.php");
-
+include("../../db_connect.php");
 ?>  
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>ข้อมูลเจ้าหน้าที่</title>
-  <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
-  <?php include("link.php"); ?>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>หน้าแรก</title>
+    <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
+    <?php include("link.php"); ?>
 
-<style>
-.modal-dialog.a{
-  max-width : 500px;
-  max-height: 650px;
-}
-</style>
+    <style>
+    .modal-dialog.a{
+        max-width : 650px;
+        max-height: 550px;
+    }
+
+    table, th, td{
+    }
+    td {
+        padding: 5px;
+        text-align: center;    
+    }
+    th {
+        padding: 5px;
+    }
+    body{
+        font-family: 'Kanit', sans-serif;
+    }
+    .search-table-outter { overflow-x: scroll; }
+    </style>
+
 </head>
+
 
 <body>
     <?php include("navbar.php"); ?>
 
 
-<!------------------------------------------ /.modal detail------------------------------------------------------->
+    <!-----------------detail---------------------------->
+    <div class="modal fade" tabindex="1" role="dialog" id="ModalViewAC">
+        <div class="modal-dialog a" role="document">
+            <div class="modal-content">
+            <div class="card">
+              <div class="card-body">
+                <div class="modal-header">
+                    <h4 class="modal-title" style="font-family:Prompt;"><b>รายการจัดสรรครุภัณฑ์</b></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body table-responsive">
+                    <form id="ViewAC" ></form>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
+                </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
 
-                  <h3 align="center" style="font-family:Prompt;">การจัดสรรการใช้งานครุภัณฑ์ของศูนย์คอมพิวเตอร์</h3>  
-                	<br />  
-                  <div class="table-responsive">  
-                    		    <table id="allocate_data" align="center" class="table table-striped table-bordered">  
-                          		<thead>  
-                               	<tr>  
-											            <th style="text-align: center; font-family:Prompt;">รหัสบาร์โคด</th>  
-                                  <th style="text-align: center; font-family:Prompt;">รายการ</th>  
-                                  <th style="text-align: center; font-family:Prompt;">ชื่อ</th>  
-                                  <th style="text-align: center; font-family:Prompt;">สถานะ</th>  
-                                  <th style="text-align: center; font-family:Prompt;"></th>  
-                               	</tr>  
-                         		  </thead>  
-                              <?php  
-                              $result =  mysqli_query( $conn, "SELECT * FROM `allocate` 
-                              RIGHT JOIN allocate_detail
-                              ON allocate_detail.ac_id = allocate.ac_id 
-                              LEFT JOIN a_status
-                              ON a_status.status_id = allocate.ac_status
-                              LEFT JOIN department
-                              ON department.dep_id = allocate.ac_dep");
-                              while($row = mysqli_fetch_array($result)) 
+  <!-----------------detail---------------------------->
+
+  <div class="container" >    
+        <table border="0" align="center" style="width:100%;" class="w3-round">
+            <tr>
+                <td><h3 style="font-family:Prompt;"><b>รายการการจัดการครุภัณฑ์คอมพิวเตอร์</b></h3></a></button></td>
+            </tr>
+        </table>
+        <hr>
+                    
+                    <div class="table-responsive" id="result">
+                    <p></p>
+                    <form id="form3"> 
+                    <table id="tableshow" align="center" style="width:100%;" class="table table-hover table table-striped table-bordered" >
+                    <thead>
+                    <tr >
+                        <td style="text-align: center; font-weight: bold; width='350px'">รายชื่อ</td>
+                        <td style="text-align: center; font-weight: bold; width='500px'">หน่วยงาน</td>
+                        <td style="text-align: center; font-weight: bold; width='100px'">สถานะ</td>
+                        <td style="text-align: center; font-weight: bold; width='100px'">พนักงานจัดสรร</td>
+                        <td></td>
+
+
+
+                        </tr>
+                    </thead>
+                    <tr>
+                    <?php
+                       $sql = "SELECT * FROM allocate
+                            LEFT JOIN a_status
+                            ON allocate.ac_status = a_status.status_id
+                            LEFT JOIN department
+                            ON allocate.ac_dep = department.dep_id
+                            LEFT JOIN employee
+							ON allocate.ac_emp = employee.emp_id      
+                          
+                          
+                            WHERE ac_status = 2";
+                         $result = mysqli_query($conn, $sql);
+                       while($data = mysqli_fetch_array($result)):
+                         $id = $data['ac_id'];
+                         $stn = $data['status_name'];
+
+                         if($stn == "จัดสรร"){ ?>
+                          <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
+                          <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
+                          <td style="text-align:left"><?php echo $data['status_name']; ?></td>             
+                          <td style="text-align:left"><?php echo $data['emp_fname']." ".$data['emp_lname']; ?></td>
+                          <td><button type="button" name="submitview" class="btn btn-icons  btn-primary btn-md"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC_dt(<?php echo $data['ac_id']; ?>)"><i class="mdi mdi-file-document"></i></button></td>
+
+                              
+                      <?php } ?>
+  
+                     
+                          </tr>
+                         <?php endwhile; ?>
+
+                         <?php
+                                $sql2 = "SELECT * FROM permit
+                                LEFT JOIN a_status
+                                ON permit.pm_status = a_status.status_id
+                                LEFT JOIN department
+                                ON permit.pm_dep = department.dep_id
+                                LEFT JOIN employee
+								ON permit.pm_empno = employee.emp_id
                                
-                          		{  
-                               	echo '  
-                               		<tr>  
-											            <td style="text-align:left; font-family:Prompt;">'.$row["ald_eq_barcode"].'</td>  
-                                  <td style="text-align:left; font-family:Prompt;">'.$row["ald_type_name"].'</td>  
-							   				          <td style="text-align:left; font-family:Prompt;">'.$row["ac_name"].'</td>  
-                                   <td style="text-align:left; font-family:Prompt;">'.$row["status_name"].'</td>   
-                                   <td><button type="button" id="detail" class="btn btn-icons  btn-primary btn-md" data-toggle="modal" data-target="#myModalView" value="'.$row["ac_id"].'" onclick="showAllocate('.$row["ac_id"].')" form="myFormView"><i class="mdi mdi-file-document"></i></button> 
-											            <button type="button" id="view" class="btn btn-icons  btn-success btn-md" data-toggle="modal" data-target="#myModalView" value="'.$row["ac_id"].'" onclick="showPic('.$row["ac_id"].')" form="myFormView"><i class="mdi mdi-image-area"></i></button> 
-                                  </tr>  
-                               	';  
-                          		}  
-                          		?>  
-                    		    </table>  
+                              
+                                WHERE pm_status= 3 ";
+                              $result2 = mysqli_query($conn, $sql2);
+                              while($data1 = mysqli_fetch_array($result2)):
+                              $idpm = $data1['pm_id'];
+                              $stnpm = $data1['status_name'];
 
-                            <div class="modal fade" tabindex="-1" role="dialog" id="myModalView">
-                         		  <div class="modal-dialog" role="document">
-                            		<div class="modal-content">  
-                                  <div class="card">
-                                    <div class="card-body">
-                              			<div class="modal-header">
-                                      <h4 class="modal-title" style="font-family:Prompt;">รายละเอียด</h4>
-                                			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>  	
-                              			</div>
-                              		  <div class="modal-body">          
-                                   		<table style="width:100%" id="txtHint" class="table-responsive"></table>       
-                              		  </div>  
-                              		  <div class="modal-footer">
-                                    	<button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
-                              		  </div>
-           			                  </div>  
-				                        </div>
-                              </div>  
-				                    </div>
+                              if($stnpm == "ยืม - คืน"){ ?>  
+                                <td style="text-align:left"><?php echo $data1['pm_username']; ?></td>
+                                <td style="text-align:left"><?php echo $data1['dep_name']; ?></td>
+                                <td style="text-align:left"><?php echo $data1['status_name']; ?></td>
+                                <td style="text-align:center"><?php echo $data1['emp_fname']." ".$data1['emp_lname']; ?></td>  
+
+                          
+                          <td><button type="button" name="submitview" class="btn btn-icons  btn-primary btn-md"  data-toggle="modal" data-target="#ModalViewAC" onclick="showPM_DC_dt(<?php echo $data1['pm_id']; ?>)"><i class="mdi mdi-file-document"></i></button></td>
+                          
+                              
+                      <?php } ?>
+  
+                     
+                          </tr>
+                         <?php endwhile; ?>
+
+
+                  </table>
+                  </form>
+                  </div>
+                  
                   </div>
 <!------------------------------------------ /.modal detail------------------------------------------------------->
                 </div>  
@@ -125,66 +197,59 @@ include("../../Home/db_connect.php");
 </body>
 </html>
 
+
+<!-- /.script modal ค้นหา -->
 <script>
-        $(document).ready(function(){  
-            $('#tableshow').DataTable({
-            "searching": false
-            });  
-        }); 
+$(document).ready(function(){  
+      $('#tableshow').DataTable({
+        "searching": true,
+        
+        "oLanguage": {
+        "sSearch": "ค้นหา : "
+        },
+        retrieve: true,
+      });  
+}); 
+</script>
+  
+  
+<script>
+              function showAC_DC_dt(str) {
+              var xhttp;    
+              if (str == "") {
+                  document.getElementById("ViewAC").innerHTML = "";
+                  return;
+              }
+              xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                  document.getElementById("ViewAC").innerHTML = this.responseText;
+                  }
+              };
+              xhttp.open("GET", "../../getAC_DC_dt.php?id="+str, true);
+              xhttp.send();
+              }
 </script>
 
-
-
-<!--  read data  -->							  	
-<script>  
- 		$(document).ready(function(){  
-      		$('#allocate_data').DataTable();  
- 		});  
-</script>  
-
 <script>
-        $('#myFormView').on('submit', function(e){
-            $('#myModalView').modal('show');
-            e.preventDefault();
-        });
-</script>
-            
+              function showPM_DC_dt(str) {
+              var xhttp;    
+              if (str == "") {
+                  document.getElementById("ViewAC").innerHTML = "";
+                  return;
+              }
+              xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                  document.getElementById("ViewAC").innerHTML = this.responseText;
+                  }
+              };
+              xhttp.open("GET", "../../getPM_DC_dt.php?id="+str, true);
+              xhttp.send();
+              }
+  </script>
+  
+  
+  
+  
 
-<!-- /.script show Detail -->   
-<script>
-        function showAllocate(str) {
-        var xhttp;    
-            if (str == "") {
-                document.getElementById("txtHint").innerHTML = "";
-                return;
-            }
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function(){
-                if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("txtHint").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "getallocate.php?id="+str, true);
-            xhttp.send();
-        }
-</script>	
-
-
-<!-- /.script show View Pic -->   
-<script>
-        function showPic(str) {
-        var xhttp;    
-            if (str == "") {
-                document.getElementById("txtHint").innerHTML = "";
-                return;
-            }
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("txtHint").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "../../Home/getPic.php?id="+str, true);
-            xhttp.send();
-        }
-</script>	

@@ -1,5 +1,5 @@
 <?php
-include("../Home/db_connect.php");
+include("../db_connect.php");
 session_start();
 
 
@@ -10,9 +10,12 @@ session_start();
   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Home</title>
     <?php include("menu/link.php"); ?>     
     <style>
+             .modal-dialog.a{
+                max-width : 650px;
+                max-height: 550px;
+            }
             table, th, td    {
             }
             td {
@@ -31,14 +34,14 @@ session_start();
     </head>
     <?php include("menu/navbar_emp.php"); ?>
 
-    <title>รายการจัดสรรครุภัณฑ์</title>
+    <title>แบบฟอร์มการจัดสรร</title>
         <body >
 <!-- Modal ดูข้อมูลPM -->
         <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewAC">
-                            <div class="modal-dialog " role="document">
+                            <div class="modal-dialog a" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                            <h4 class="modal-title"><b>รายการจัดสรรครุภัณฑ์</b></h4>
+                            <h4 style="font-family:Prompt;" class="modal-title"><b>รายการจัดสรรครุภัณฑ์</b></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                                     <div class="modal-body table-responsive">
@@ -59,9 +62,27 @@ session_start();
                    
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3><b>รายการจัดสรรครุภัณฑ์</b></h3></a></button></td>
+                    <td><h3 style="font-family:Prompt;"><b>รายการจัดสรรครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
+
+                    <table border="0" align="right"  >
+                    <tr>
+                    <td>เลือกจาก</td>
+                    <td><select name="search_text" id="search_text" style="width: 100%; font-family:Prompt; font-size: 15px;" class="form-control">
+                                                            <option value="ทั้งหมด">สถานะทั้งหมด</option>
+                                            <?php
+                                                    $type = "SELECT * FROM a_status WHERE status_id = 2 OR status_id = 5 OR status_id = 6 OR status_id = 7 OR status_id = 8 OR status_id = 10 OR status_id = 11  ORDER BY status_id";
+                                                    $result = mysqli_query($conn, $type);
+                                                    while($data = mysqli_fetch_array($result)):
+                                             ?>
+                                                    <option value="<?php echo $data['status_id']; ?>"><?php echo $data['status_name']; ?></option>
+                                            <?php endwhile;?>
+                                                </select></td>
+                                       </tr>
+                    </table>
+
+
                     
                     <br>
                     <div class="table-responsive" id="result">
@@ -72,10 +93,9 @@ session_start();
                     <tr >
                         <td style="text-align: center;">จุดประสงค์การจัดสรร</td>
                         <td style="text-align: center;">ชื่อผู้เช่ายืม</td>
-                        <td style="text-align: center;">หน่วยงาน</td>
+                        <td style="text-align: center;">หน่วปปปปยงาน</td>
                         <td style="text-align: center;">พนักงานจัดสรร</td>
                         <td style="text-align: center;">สถานะ</td>
-                      
                         <td style="text-align: center;">รายละเอียด</td>
                         <td></td>
 
@@ -307,6 +327,38 @@ $(document).ready(function(){
 
 
 
+<script>
+$(document).ready(function()
+{
+        load_data();
+                function load_data(query)
+                {
+                        $.ajax(
+                        {
+                        url:"search_index_All_AC.php",
+                        method:"POST",
+                        data:{query:query},
+                        success:function(data)
+                        {
+                            $('#result').html(data);
+                        }
+                        }
+                            );
+                }
+                $('#search_text').change(function()
+                {
+                    var search = $(this).val();
+                    if(search != '' )
+                    {
+                        load_data(search);
+                    }else
+                    {
+                        load_data();
+                    }
+                }
+                );
+});
+</script>
 
 
 

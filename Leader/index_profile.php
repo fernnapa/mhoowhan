@@ -1,26 +1,24 @@
 <?php  
 session_start();
-include("../Home/db_connect.php");
 ?>  
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  
+ 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Home</title>
+  <title>ข้อมูลส่วนตัว</title>
+
   <?php include("menu/link.php"); ?>
-  
 </head>
 
-<?php include("menu/navbar_leader.php"); ?>
-
 <body>
-  
-                
-<?php 
-      include("../Home/db_connect.php");
+
+    <?php include("menu/navbar_leader.php")  ?>
+
+    <?php 
+      include("../db_connect.php");
       if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
       }
@@ -43,8 +41,6 @@ include("../Home/db_connect.php");
                                   <h6 style="font-family:Prompt;">รูปภาพ</h6>
                           </div>
                       </div>
-                     
-  
                       <div class="col-md-8">
                           <div class="tab-content profile-tab" id="myTabContent">
                               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -114,7 +110,7 @@ include("../Home/db_connect.php");
                                                   <label class="control-label" style="font-family:Prompt;">Password:</label>
                                               </div>
                                               <div class="col-md-8">
-                                                  <p style="font-family:Prompt;"><?php echo $row["emp_pass"]; ?></p>
+                                              <p style="font-family:Prompt;"> <input class="form-control" name="emp_pass" type="password" value="<?php echo $row["emp_pass"];?>" readonly></p>
                                               </div>
                                           </div>
   
@@ -153,27 +149,5 @@ include("../Home/db_connect.php");
   
     ?>
 
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-          <div class="container-fluid clearfix">
-          <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
-          </div>
-        </footer>
-        <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
-
-  
 </body>
 </html>

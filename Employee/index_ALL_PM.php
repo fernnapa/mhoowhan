@@ -1,6 +1,6 @@
 <?php  
 session_start();
-include("../Home/db_connect.php");
+include("../db_connect.php");
 $_SESSION['chooseEq'] = array();
 ?>  
 <!DOCTYPE html>
@@ -10,10 +10,13 @@ $_SESSION['chooseEq'] = array();
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Home</title>
   <?php include("menu/link.php"); ?>
   
   <style>
+            .modal-dialog.a{
+                max-width : 650px;
+                max-height: 550px;
+            }
             table, th, td    {
             }
             td {
@@ -40,12 +43,12 @@ $_SESSION['chooseEq'] = array();
 
 <!-- Modal ดูข้อมูลPM -->
 <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewPM">
-                            <div class="modal-dialog " role="document">
+                            <div class="modal-dialog a" role="document">
                             <div class="modal-content">
                             <div class="card">
                             <div class="card-body">
                             <div class="modal-header">
-                            <h4 class="modal-title"><b>ข้อมูลการยืม-คืนครุภัณฑ์</b></h4>
+                            <h4 class="modal-title" style="font-family:Prompt;"><b>ข้อมูลการยืม-คืนครุภัณฑ์</b></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                                     <div class="modal-body table-responsive">
@@ -67,7 +70,7 @@ $_SESSION['chooseEq'] = array();
                 <div class="modal-content w3-theme-l2" >
                 <div class="modal-header">
                 
-                <h4 class="modal-title"><b>วันที่คืนครุภัณฑ์</b></h4>
+                <h4 class="modal-title" style="font-family:Prompt;"><b>วันที่คืนครุภัณฑ์</b></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                         <div class="modal-body">
@@ -94,10 +97,28 @@ $_SESSION['chooseEq'] = array();
                     
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3><b>รายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
+                    <td><h3 style="font-family:Prompt;"><b>รายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
-                    
+
+                    <table border="0" align="right"  >
+                    <tr>
+                    <td>เลือกจาก</td>
+                    <td><select name="search_text" id="search_text" style="width: 100%" class="form-control">
+                                                            <option value="ทั้งหมด">สถานะทั้งหมด</option>
+                                            <?php
+                                                    $type = "SELECT * FROM a_status WHERE status_id = 3 OR status_id = 5 OR status_id = 6 OR status_id = 7 OR status_id = 8 OR status_id = 10 OR status_id = 11 OR status_id = 12 ORDER BY status_id";
+                                                    $result = mysqli_query($conn, $type);
+                                                    while($data = mysqli_fetch_array($result)):
+                                             ?>
+                                                    <option value="<?php echo $data['status_id']; ?>"><?php echo $data['status_name']; ?></option>
+                                            <?php endwhile;?>
+                                                </select></td>
+                                       </tr>
+                    </table>
+                  
+
+
                     <br>
                     <div class="table-responsive" id="result">
                     <p></p>
@@ -225,7 +246,6 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:center"  class="w3-blue-gray"><?php echo $data['status_name']; ?></td>
                         <td><button type="button" name="submitRFN" class="btn btn-success btn-block" data-toggle="modal" data-target="#ModalRefund"  value="<?php echo $id; ?>" onclick="idrefund(this)">คืนครุภัณฑ์</button></td>
                         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_pass(<?php echo $data['pm_id']; ?>)">ดูรายละเอียด</button></td>
-                        <td><a href='PDF_PM.php?pm_id=<?php echo $data['pm_id'];?>' class='btn btn-danger' data-role='pdf'>แบบฟอร์ม</a></button></td>
 
                     <?php }if($stn == "ผ่านการตรวจสอบ"){ ?>
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
@@ -303,7 +323,7 @@ $(document).ready(function(){
                 document.getElementById("ViewPM").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "../mint/getAll_PM_pass.php?id="+str, true);
+            xhttp.open("GET", "getAll_PM_pass.php?id="+str, true);
             xhttp.send();
             }
 </script>
@@ -362,7 +382,7 @@ $(document).ready(function(){
                                 alert(b);
                                 if(data == 1){
                                              swal( {
-                                                     title: "ครภัณฑ์นี้ทำการคืนเรียบร้อย",
+                                                     title: "ครุภัณฑ์นี้ทำการคืนเรียบร้อย",
                                                      icon: "success",
                                                      button: "ตกลง",
                                                      }).then (function(){ 
@@ -418,57 +438,6 @@ $(document).ready(function(){
              });     
             </script>  
 
-
-<!-- <script>          
-      function expired(str){
-         var a = str.value;
-         var b = str.id;
-         swal({
-  title: "คุณต้องการลบข้อมูลนี้ใช่หรือไม่",
-  icon: "warning",
-  buttons: true,
-  dangerMode: true,
-}).then (function (isConfirm){
-    if (isConfirm) {
-          $(document).ready(function(){
-                $.ajax({
-
-                        url: 'All_expired_PM.php',
-                        type: 'POST',
-                        data: {'id':a},
-                        success:function(res){
-                            alert(res);
-                            if(res == 2){
-                            swal( {
-                                                     title: "เกิดข้อผิดพลาด",
-                                                     text: "เกิดข้อผิดพลาดเกี่ยวกับฐานข้อมูล",
-                                                     icon: "error",
-                                                     button: "กรุณาลองอีกครั้ง",
-                                                    }
-                                                  );
-                        }if(res == 1){
-                            swal( {
-                                                     title: "ลบข้อมูลนี้เรียบร้อย",
-                                                     icon: "success",
-                                                     button: "ตกลง",
-                                                     }).then (function(){ 
-                                                     location.reload();
-                                                    }
-                                                    );
-                                                 
-                        }
-                        }
-                });
-
-          });
-
-    }else{
-        swal("ยกเลิกการลบ", "ข้อมูลนี้ยังคงอยู่ :)", "error");
-    }
-
-    });
-}  
-</script> -->
 <script>          
       function idrefund(str){
          var a = str.value;
@@ -485,6 +454,52 @@ $(document).ready(function(){
 
 }  
 </script>
+
+
+
+<script>
+$(document).ready(function()
+{
+        load_data();
+                function load_data(query)
+                {
+                        $.ajax(
+                        {
+                        url:"search_index_All_PM.php",
+                        method:"POST",
+                        data:{query:query},
+                        success:function(data)
+                        {
+                            $('#result').html(data);
+                        }
+                        }
+                            );
+                }
+                $('#search_text').change(function()
+                {
+                    var search = $(this).val();
+                    if(search != '' )
+                    {
+                        load_data(search);
+                    }else
+                    {
+                        load_data();
+                    }
+                }
+                );
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

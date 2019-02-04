@@ -1,6 +1,6 @@
 <?php  
 session_start();
-include("../Home/db_connect.php");
+include("../db_connect.php");
 ?>  
 
 <!DOCTYPE html>
@@ -12,10 +12,12 @@ include("../Home/db_connect.php");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>ข้อมูลส่วนตัว</title>
  
-  <?php include("menu/link.php")  ?>
+  <?php include("menu/link.php"); ?>
+
   </head>
-  <?php include("menu/navbar_head.php")  ?>
+  
   <body>
+  <?php include("menu/navbar_head.php")  ?>
 
   <?php
   
@@ -39,19 +41,19 @@ include("../Home/db_connect.php");
                     <!-- left column -->
                             <div class="col-md-3">
                                 <div class="text-center">
-                                <img src="img/<?php echo $row["emp_pic"]; ?>"width='100%' height='100%' class="img-fluid">
+                                <img src="images/<?php echo $row["emp_pic"]; ?>" width='100%' height='100%' class="img-fluid">
                                 </div>
                             </div>
       
                     <!-- edit form column -->
                             <div class="col-md-9 personal-info">
                                  <h4 style="font-family:Prompt;"><b>ข้อมูลส่วนตัว</b></h4><br/>
-                                <form action="save_profile.php" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
+                                <form id="update_form">
                                     <div class="form-group">
                                     <label class="col-lg-3 control-label" style="font-family:Prompt; font-weight: bold;">อัพโหลดรูปภาพ</label>
                                         <div class="col-lg-8">
-                                        <input type="file" name="file" class="text-center center-block file-upload">
-                                        <input type="hidden" name="hdnOldFile" value="<?php echo $row["emp_pic"];?>">
+                                        <th style="text-align: center;"><input type="file" name="images[]" id="select_image" multiple  onchange="namepic()"></th>
+                                        <input type="hidden" name="emp_pic" value="<?php echo $row["emp_pic"];?>">
                                         </div>
                                     </div> <hr/>     
                                     <div class="form-group">
@@ -106,7 +108,7 @@ include("../Home/db_connect.php");
                                     <div class="form-group">
                                         <div class="col-xs-12">
                                         <br>
-                              	        <button class="btn btn-success" type="submit" value="Save"><i class="glyphicon glyphicon-ok-sign"></i>บันทึก</button>
+                              	        <button class="btn btn-success" type="submit" name="Save" value="Save"><i class="glyphicon glyphicon-ok-sign" form="update_form"></i>บันทึก</button>
                                	        <a href="index_profile.php"><button class="btn btn-danger" type="button"><i class=""></i>ยกเลิก</button></a>
                                         </div>
                                     </div>
@@ -127,6 +129,54 @@ $conn->close();
 
 ?>
   <?php include ("../Admin/pages/footer.php"); ?>
+
+  <script>
+                $(document).ready(function(){  
+                  $('#Save').on("click", function(){  
+                       $('#update_form').submit();  
+                  });  
+                  $('#update_form').on('submit', function(e){  
+                       e.preventDefault();  
+                       $.ajax({  
+                            url :"save_profile.php",  
+                            method:"POST",  
+                            data:new FormData(this),  
+                            contentType:false,  
+                            processData:false,  
+                            success:function(data){
+                                var b = data;
+                                alert(b);
+                                if(data == 1){
+                                             swal( {
+                                                     title: "เพิ่มข้อมูลสำเร็จ",
+                                                     icon: "success",
+                                                     button: "ตกลง",
+                                                     }).then (function(){ 
+                                                        location.href = "index_profile.php";
+                                                    }
+                                                    );
+                                }else{
+                                             swal( {
+                                                     title: "เพิ่มข้อมูลไม่สำเร็จ",
+                                                     text: "ท่านกรอกข้อมูลไม่ครบถ้วนหรือไม่ถูกต้อง",
+                                                     icon: "error",
+                                                     button: "ตกลง",
+                                                    });
+                                                   }     
+                                                }  
+                       })  
+                  });  
+             });     
+</script>
+<script>
+function namepic()
+{
+    var name = document.getElementById('select_image');
+      var x = name.files.item(0).name;
+      document.getElementById('emp_pic').value = x;
+}
+</script>
+
 </body>
 </html>
 

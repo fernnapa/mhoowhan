@@ -1,15 +1,5 @@
 <?php  
  include("db_connect.php");
-
- $query ="SELECT * FROM `allocate` 
- RIGHT JOIN allocate_detail
- ON allocate_detail.ac_id = allocate.ac_id 
- LEFT JOIN a_status
- ON a_status.status_id = allocate.ac_status
- LEFT JOIN department
- ON department.dep_id = allocate.ac_dep"; 
- $result = mysqli_query($conn, $query); 
-
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -22,7 +12,6 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
-	
 	
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
@@ -47,6 +36,24 @@
         <!-- <![endif] -->
 
 	<link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
+
+
+	<style>
+            table, th, td{
+            }
+            td {
+                padding: 5px;
+                text-align: center;    
+            }
+            th {
+                padding: 5px;
+            }
+            body{
+                font-family: 'Kanit', sans-serif;
+            }
+            .search-table-outter { overflow-x: scroll; }
+         
+    </style>
 	</head>
 	<body>
 		
@@ -62,13 +69,9 @@
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
 								<li class="active"><a href="index.php">Home</a></li>
-								<li class="has-dropdown">
-									<a href="#">Report</a>
-									<ul class="dropdown">
-										<li><a href="#">สถิติการใช้งาน</a></li>
-									</ul>
-								</li>
-								<li><a href="#">About Me</a></li>
+								<li><a href="report.php">Report</a></li>
+								<li><a href="map.php">Map</a></li>
+								<li><a href="aboutus.php">About Me</a></li>
 								<li><button type="button" class="btn btn-warning btn-md" onclick="window.location='Home/login.php'">
           										<span class="glyphicon glyphicon-log-in"></span> Log In
         						</button></li>
@@ -127,8 +130,8 @@
 				   						<p class="meta">
 												<span class="cat" style="font-family:Prompt;"><a href="http://its.sut.ac.th/">Events</a></span>
 											</p>
-					   					<h1 style="font-family:Prompt;">IT Fundamental Services</h1>
-										<h4 style="font-family:Prompt;">“Internet of Things” คือ แนวคิดที่เชื่อมต่อคอมพิวเตอร์อัจฉริยะให้คุยกันได้เองโดยไม่ต้องผ่านคน </h4>
+					   					<h1 style="font-family:Prompt;">INTERNET DATA CENTER</h1>
+										<h4 style="font-family:Prompt;">Internet data center ณ ศูนย์คอมพิวเตอร์ มีการเชื่อมต่อเข้าอินเตอร์เน็ตผ่านโครงข่ายความเร็วสูง มีระบบรักษาความปลอดภัยที่น่าเชื่อถือ </h4>
 				   					</div>
 				   				</div>
 				   			</div>
@@ -139,139 +142,126 @@
 		  	</div>
 		</aside>
 
-		<!--------------------------------ตารางการจัดสรร--------------------------------------->
+		<br/><br/><br/><br/>
 
+		<!-----------------detail---------------------------->
+		<div class="modal fade" tabindex="1" role="dialog" id="ModalViewAC">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+			<div class="card">
+            <div class="card-body" >   
+                <div class="modal-header">
+                    <h4 class="modal-title" style="font-family:Prompt;"><b>รายการครุภัณฑ์</b></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body table-responsive">
+                    <form id="ViewAC" ></form>
+                </div>
+                <div class="modal-footer" style="font-family:Prompt;">
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                </div>
+            </div>
+            </div>
+			</div>
+        </div>
+    	</div>
+
+  		<!-----------------detail---------------------------->
 		<div id="colorlib-container">
 			<div class="container">
 				<div class="row row-pb-md">
 					<div id="div-1" class="col-70">   
-					<div class="container table table-striped table-bordered ">  
-               			<h3 align="center" style="font-family:Prompt;">การจัดสรรการใช้งานครุภัณฑ์ของศูนย์คอมพิวเตอร์</h3>  
-                		<br />  
-                		<div class="table-responsive">  
-                    		<table id="allocate_data" align="center" class="table table-striped table-bordered" style="font-family:Prompt;">  
-                          		<thead>  
-                               		<tr>  
-									   		
-											<td style="text-align: center;">รหัสบาร์โคด</td>   
-                                    		<td style="text-align: center;">รายการ</td>  
-                                    		<td style="text-align: center;">ชื่อ</td>  
-                                    		<td style="text-align: center;">หน่วยงาน</td>  
-                                    		<td style="text-align: center;">สถานะ</td>  
-                                    		<td style="text-align: center;"></td>  
-											<td style="text-align: center;"></td>  
+					<div class="container table table-striped table-bordered">
+               		<h3 align="center" style="font-family:Prompt;">การติดตามการใช้งานครุภัณฑ์ของศูนย์คอมพิวเตอร์</h3>  
+                	<hr/><br /><br />
 
-                               		</tr>  
-                         		</thead>  
+					<div class="table-responsive" id="result" style="font-family:Prompt;">
+                    <p></p>
+                    <form id="form3"> 
+                    <table id="tableshow" align="center" style="width:100%;" class="table table-hover table table-striped table-bordered " >
+                    <thead>
+                    <tr>
+						<td style="text-align: center; font-weight: bold; width='150px'">ลำดับที่</td>
+						<td style="text-align: center; font-weight: bold; width='500px'">หน่วยงาน</td>
+						<td style="text-align: center; font-weight: bold; width='350px'">ชื่อ-สกุล</td>
+                        <td style="text-align: center; font-weight: bold; width='500px'">ตำแหน่ง</td>
+                        <td style="text-align: center; font-weight: bold; width='100px'">สถานะ</td>
+                        <td style="text-align: center; font-weight: bold; width='100px'">พนักงานจัดสรร</td>
+						<td></td>
+                    </tr>
+                    </thead>
+                    <tr>
+                    <?php
+                       	$sql = "SELECT * FROM allocate
+                            LEFT JOIN a_status
+                            ON allocate.ac_status = a_status.status_id
+                            LEFT JOIN department
+                            ON allocate.ac_dep = department.dep_id
+							LEFT JOIN employee
+							ON allocate.ac_emp = employee.emp_id          
+                          
+                            WHERE ac_status = 2";
+                         $result = mysqli_query($conn, $sql);
+                       	 while($data = mysqli_fetch_array($result)):
+                         $id = $data['ac_id'];
+                         $stn = $data['status_name'];
 
-								 <?php  
-                          		while($row = mysqli_fetch_array($result))  
-                          		{  
-                               	echo '  
-									   	<tr>  
-									   		     
-									  		<td style="text-align:left">'.$row["ald_eq_barcode"].'</td>  
-									   		<td style="text-align:center">'.$row["ald_type_name"].'</td>									
-							   				<td style="text-align:left">'.$row["ac_name"].'</td>  
-							   				<td style="text-align:left">'.$row["dep_name"].'</td>
-							   				<td style="text-align:left">'.$row["status_name"].'</td>  
-							   				<td><button type="submit" id="detail" class="btn btn-info btn-block btn-sm" data-toggle="modal" data-target="#myModalView" value="'.$row["ac_id"].'" onclick="showAllocate('.$row["ac_id"].')" form="myFormView"><i class="glyphicon glyphicon-file">&nbsp;</i>รายละเอียด</button> </td>
-											<td><button type="submit" id="view" class="btn btn-success btn-block btn-sm" data-toggle="modal" data-target="#myModalView" value="'.$row["ac_id"].'" onclick="showPic('.$row["ac_id"].')" form="myFormView"><i class="glyphicon glyphicon-picture">&nbsp;</i>รูปภาพ</button> </td>
+                         if($stn == "จัดสรร"){ ?>
+						  <td style="text-align:center"><?php echo $data['ac_id']; ?></td>
+						  <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
+						  <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
+                          <td style="text-align:left"><?php echo $data['ac_position']; ?></td>
+                          <td style="text-align:left"><?php echo $data['status_name']; ?></td>             
+                          <td style="text-align:center"><?php echo $data['emp_fname']." ".$data['emp_lname']; ?></td>
+                          <td style="text-align:center"><button type="button" name="submitview" class="btn btn-info btn-md"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC_dt(<?php echo $data['ac_id']; ?>)"><i class="glyphicon glyphicon-file"></i>&nbsp;รายละเอียด</button></td>
 
-										</tr>  
-                               	';  
-                          		}  
-                          		?>  
-                    		</table>  
+                              
+                      <?php } ?>
 
-							<div class="modal fade" tabindex="-1" role="dialog" id="myModalView">
-                         		<div class="modal-dialog" role="document">
-                            		<div class="modal-content">
-                              			<div class="modal-header">
-                                			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    		<h4 class="modal-title">รายละเอียด</h4>
-                              			</div>
-                              		<div class="modal-body">          
-                                   		<table style="width:90%" align="center" id="txtHint"></table>       
-                              		</div>  
-                              		<div class="modal-footer">
-                                    	<button type="reset" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
-                              		</div>
-                            	</div>
-                        	</div>       
-                		</div>  
-           			</div> 
-					</div>
-					
+                    </tr>
+                         <?php endwhile; ?>
+
+                         	<?php
+                                $sql2 = "SELECT * FROM permit
+                                LEFT JOIN a_status
+                                ON permit.pm_status = a_status.status_id
+                                LEFT JOIN department
+                                ON permit.pm_dep = department.dep_id
+								LEFT JOIN employee
+								ON permit.pm_empno = employee.emp_id
+                               
+                              
+                                WHERE pm_status= 3 ";
+                              $result2 = mysqli_query($conn, $sql2);
+                              while($data1 = mysqli_fetch_array($result2)):
+                              $idpm = $data1['pm_id'];
+                              $stnpm = $data1['status_name'];
+
+                        	if($stnpm == "ยืม - คืน"){ ?>  
+								<td style="text-align:center"><?php echo $data1['pm_id']; ?></td>
+								<td style="text-align:left"><?php echo $data1['dep_name']; ?></td>
+								<td style="text-align:left"><?php echo $data1['pm_username']; ?></td>
+								<td style="text-align:left"><?php echo $data1['pm_position']; ?></td>
+                                <td style="text-align:left"><?php echo $data1['status_name']; ?></td>
+								<td style="text-align:center"><?php echo $data1['emp_fname']." ".$data1['emp_lname']; ?></td>  
+                     			<td style="text-align:center"><button type="button" name="submitview" class="btn btn-info btn-md"  data-toggle="modal" data-target="#ModalViewAC" onclick="showPM_DC_dt(<?php echo $data1['pm_id']; ?>)"><i class="glyphicon glyphicon-file"></i>&nbsp;รายละเอียด</button></td>
+                            
+                      		  <?php } ?>
+                			</tr>
+                         	 <?php endwhile; ?>
+
+                  	</table>
+                  	</form>
+                  	</div>
 				</div>
 			</div>
-            </div>
+		</div>
+		</div>
 	</div>
 
-	
-<!-- Footer -->
-<footer id = "colorlib-footer" role="contentinfo" class="page-footer font-small blue pt-4">
-    <!-- Footer Links -->
-    <div class="container-fluid text-md-left text-center">
-      <!-- Grid row -->
-      <div class="row">
-        <!-- Grid column -->
-        <div class="col-md-4 mt-md-0 mt-3">
-          <!-- Content -->
-          <h5 class="text-uppercase" style="color:white" style="font-family:Prompt;">Address</h5>
-          <hr class = "deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 100px;">
-						<p><font face="verdana" color="white" style="font-family:Prompt;">
-						อาคารวิจัย ชั้นที่ 2 
-						<br/> มหาวิทยาลัยเทคโนโลยีสุรนารี 
-						<br/> 111 ถนนมหาวิทยาลัย ตำบลสุรนารี 
-						<br/>อำเภอเมืองนครราชสีมา 
-						<br/>จังหวัดนครราชสีมา 30000 
-						</p></font>
-        </div>
-        <!-- Grid column -->
-        <div class="col-md-4 mb-md-0 mb-3">
-            <!-- Links -->
-            <h5 class="text-uppercase" style="color:white">Contact</h5>
-			      <hr  class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto " style="width: 100px;">
-					  <ul class="list-unstyled">
-                        <li><img src="images/google.svg" style="width:30px">
-                                                        <a target="_blank" href="mailto:administrator@sut.ac.th"> &nbsp; administrator@sut.ac.th</a>
-                        </li><br/>
-                        <li><img src="images/viber.svg" style="width:30px">
-                                                        <a target="_blank" href="tel:044-224801"> &nbsp; 044-224801</a>
-                        </li><br/>
-                        <li><img src="images/fax.svg" style="width:30px">
-                                                        <a target="_blank" href="tel:044-224790"> &nbsp; 044-224790</a>
-                        </li>
-					</ul>	
-        </div>
-          <!-- Grid column -->
-          <div class="col-md-4 mb-md-0 mb-3">
-            <!-- Links --> 
-			<a target="_blank" href="https://www.facebook.com/ccs.sut/"><img src="images/ccs.jpg" style="width:100px"></a>
-			<hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 100px;">
-				<p><font face="verdana" color="white" style="font-family:Prompt;">ศูนย์คอมพิวเตอร์
-				<br/>มหาวิทยาลัยเทคโนโลยีสุรนารี
-				<br/>The Center for Computer Services 
-				<br/>Suranaree University fo Thechnology
-				</font></p>
-		  </div>
-          <!-- Grid column -->
-      </div>
-      <!-- Grid row -->
-    </div>
-    <!-- Footer Links -->
-
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">
-		<p>
-            <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
-		</p>
-    </div>
-
-    <!-- Copyright -->
-  </footer>
-  <!-- Footer -->
+	<?php
+			include ('Home/footer.php');
+	?>
 
 	<!-- table advance -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
@@ -281,59 +271,6 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />  
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<!--  read data  -->							  	
-	<script>  
- 		$(document).ready(function(){  
-      		$('#allocate_data').DataTable();  
- 		});  
- 	</script>  
-
- 	<script>
-        $('#myFormView').on('submit', function(e){
-            $('#myModalView').modal('show');
-            e.preventDefault();
-        });
-    </script>
-            
-	<!-- /.script show Detail -->   
-	<script>
-        function showAllocate(str) {
-        var xhttp;    
-            if (str == "") {
-                document.getElementById("txtHint").innerHTML = "";
-                return;
-            }
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("txtHint").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "getDetail.php?id="+str, true);
-            xhttp.send();
-        }
-    </script>	
-
-
-	<!-- /.script show View Pic -->   
-	<script>
-        function showPic(str) {
-        var xhttp;    
-            if (str == "") {
-                document.getElementById("txtHint").innerHTML = "";
-                return;
-            }
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("txtHint").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "getPic.php?id="+str, true);
-            xhttp.send();
-        }
-    </script>	
-	
 
 	<!-- Waypoints -->
 	<script src="js/jquery.waypoints.min.js"></script>
@@ -343,6 +280,65 @@
 	<script src="js/owl.carousel.min.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script> 
-	</body>
+
+
+
+<!-- /.script modal ค้นหา -->
+<script>
+
+$(document).ready(function(){  
+      $('#tableshow').DataTable({
+  		"searching": true,
+  
+    	"oLanguage": {
+   		"sSearch": "ค้นหา : "
+ 		},
+        retrieve: true,
+	  });  
+}); 
+</script>
+
+  
+<!-- /.script modal การจัดสรร --> 
+<script>
+        function showAC_DC_dt(str) {
+        var xhttp;    
+        if (str == "") {
+            document.getElementById("ViewAC").innerHTML = "";
+                return;
+        }
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("ViewAC").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "getAC_DC_dt.php?id="+str, true);
+        xhttp.send();
+        }
+</script>
+
+
+<!-- /.script modal การยืม-คืน -->
+<script>
+        function showPM_DC_dt(str) {
+        var xhttp;    
+        if (str == "") {
+            document.getElementById("ViewAC").innerHTML = "";
+                return;
+        }
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        	if (this.readyState == 4 && this.status == 200) {
+            	document.getElementById("ViewAC").innerHTML = this.responseText;
+        	}
+        };
+        xhttp.open("GET", "getPM_DC_dt.php?id="+str, true);
+        xhttp.send();
+        }
+  </script>
+  
+
+</body>
 </html>
 

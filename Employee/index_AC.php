@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../Home/db_connect.php");
+include("../db_connect.php");
 
 ?>
 <!DOCTYPE html>
@@ -115,7 +115,10 @@ include("../Home/db_connect.php");
                             ON allocate.ac_dep = department.dep_id
                             WHERE ac_status= 7";
                        $result = mysqli_query($conn, $sql);
-                       while($data = mysqli_fetch_array($result)):
+                       $num_rows = mysqli_num_rows($result);        
+                       if($num_rows > 0){
+                       while($data = mysqli_fetch_array($result))
+                       {
 
                     ?>
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
@@ -126,7 +129,10 @@ include("../Home/db_connect.php");
 
                         <td><button type="button" name="submitviewAC" class="btn btn-success btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC(<?php echo $data['ac_id']; ?>)">ดูรายการจัดสรร</button></td></form>
                     </tr>
-                       <?php endwhile;?>
+                       <?php } ?>
+                       <?php }else{ ?>
+                        <td style="text-align: center;" colspan="6" ><font color="#FF3333"; size="2px;" ><b>ไม่มีรายการจัดสรรครุภัณฑ์ที่รอตรวจสอบ</b></font></td>
+                       <?php } ?>
                 </table>
                 </form>
                 </div>

@@ -1,7 +1,6 @@
 <?php
 session_start();
-include("../Home/db_connect.php");
-
+include("../db_connect.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -82,16 +81,15 @@ include("../Home/db_connect.php");
                                 </div>
                                 </div>
 <!-- Modal บอกเหตุผที่ไม่ให้ผ่าน -->
-                <br>       
-                    <div class="container" > 
+                    <div class="container w3-card-2 w3-round" style="width:100% " > 
                     <br>
-                    <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
+                    <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
-                    <td><h3><b>รายการจัดสรรครุภัณฑ์ที่รอตรวจสอบ</b></h3></a></button></td>
+                    <td><p><h3 style="font-family:Prompt;"><b>รายการจัดสรรครุภัณฑ์ที่รอตรวจสอบ</b></h3></a></button></td>
                     </tr>
                     </table>
                     
-                    <br>
+           
                     <div class="table-responsive" id="result">
                     <p></p>
                     <form id="form3"> 
@@ -115,7 +113,10 @@ include("../Home/db_connect.php");
                             ON allocate.ac_dep = department.dep_id
                             WHERE ac_status= 7";
                        $result = mysqli_query($conn, $sql);
-                       while($data = mysqli_fetch_array($result)):
+                       $num_rows = mysqli_num_rows($result);        
+                       if($num_rows > 0){
+                       while($data = mysqli_fetch_array($result))
+                       {
 
                     ?>
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
@@ -126,7 +127,10 @@ include("../Home/db_connect.php");
 
                         <td><button type="button" name="submitviewAC" class="btn btn-success btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC(<?php echo $data['ac_id']; ?>)">ดูรายการจัดสรร</button></td></form>
                     </tr>
-                       <?php endwhile;?>
+                       <?php } ?>
+                       <?php }else{    ?>
+                        <td style="text-align: center;" colspan="6" ><font color="#FF3333"; size="2px;" ><b>ไม่มีรายการจัดสรรครุภัณฑ์ที่รอตรวจสอบ</b></font></td>
+                       <?php } ?>
                 </table>
                 </form>
                 </div>
@@ -171,13 +175,23 @@ include("../Home/db_connect.php");
 
 <!-- /.data -->
 <!-- /.script modal add -->
-                    <script>
-                    $(document).ready(function(){  
-                            $('#tableshow').DataTable({
-                            "searching": true
-                    });  
-                    }); 
-                    </script>
+<script>
+$(document).ready(function(){  
+        $('#tableshow').DataTable({
+        "searching": true,
+        "language": {
+            "lengthMenu": "ข้อมูลเเสดง _MENU_ ต่อหน้า",
+            "info": " _PAGE_ หน้าจาก _PAGES_",
+            "sSearch": "ค้นหา"
+
+        },
+  
+      retrieve: true,
+
+      
+});  
+ }); 
+</script>
 
 
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../Home/db_connect.php");
+include("../db_connect.php");
 $_SESSION['chooseEq'] = array();
 ?>
 <!DOCTYPE html>
@@ -28,9 +28,10 @@ $_SESSION['chooseEq'] = array();
     </style>
     </head>
     <?php include("menu/navbar_emp.php"); ?>
-    <title>ผลการดำเนินการการจัดสรรครุภัณฑ์</title>
+    
         <body >
 <!-- Modal ดูข้อมูลPM -->
+<title>ผลการดำเนินการการจัดสรรครุภัณฑ์</title>
         <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewAC">
                             <div class="modal-dialog " role="document">
                             <div class="modal-content">
@@ -111,7 +112,10 @@ $_SESSION['chooseEq'] = array();
                             ON allocate.ac_dep = department.dep_id
                             WHERE ac_status= 8 OR ac_status= 10 OR ac_status= 11";
                          $result = mysqli_query($conn, $sql);
-                       while($data = mysqli_fetch_array($result)):
+                         $num_rows = mysqli_num_rows($result);        
+                        if($num_rows > 0){
+                       while($data = mysqli_fetch_array($result))
+                       {
                          $id = $data['ac_id'];
                          $stn = $data['status_name'];
 
@@ -148,7 +152,10 @@ $_SESSION['chooseEq'] = array();
                         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC(<?php echo $data['ac_id']; ?>)">ดูรายละเอียด</button></td>
                     <?php } ?>
                         </tr>
-                       <?php endwhile; ?>
+                    <?php } ?>
+                    <?php }else{ ?>
+                        <td style="text-align: center;" colspan="7" ><font color="#FF3333"; size="2px;" ><b>ไม่มีผลการดำเนินการรายการจัดสรรครุภัณฑ์</b></font></td>
+                    <?php } ?>
                 </table>
                 </form>
                 </div>

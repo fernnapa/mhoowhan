@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../Home/db_connect.php");
+include("../db_connect.php");
 ?>
 
 <!DOCTYPE html>
@@ -87,21 +87,22 @@ include("../Home/db_connect.php");
                 </div>
 
 
-                <br>           
-                    
+                         
+                <div class="container w3-card-2 w3-round" style="width:100% " > 
+                <br>
                     <form id="Add_PM"> 
-                    <table border="0" align="center" style="width:80%;" class="w3-teal">
+                    <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
-                    <td><h3><b>ยืนยันการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
+                    <td><p><h3 align="center" style="font-family:Prompt;"><b>ยืนยันการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
                     <div class="container "> 
                     <div class="table-responsive">
                     <br>
-                    <table border="1" align="center" style="width:100%" class="w3-round ">
+                    <table border="0" align="center" style="width:100%" class="w3-round ">
                     <tr>
-                    <td style="text-align: left">คำนำหน้าชื่อ</td>
-                    <td style="text-align: left">ชื่อผู้เช่ายืม</td>
+                    <td style="text-align: left" width="50%">คำนำหน้าชื่อ</td>
+                    <td style="text-align: left" width="50%">ชื่อผู้เช่ายืม</td>
                     </tr>
                     <td><input type="text" name="pm_userTname" class="form-control" ></td>
                     <td ><input type="text" name="pm_username" class="form-control"></td>
@@ -126,8 +127,8 @@ include("../Home/db_connect.php");
                     <tr>
                     <td class="form-inline"><input type="text" name="pm_ex" placeholder="หน่วยงาน"  class="form-control " id="pm_ex" readonly style="width:100%;">
                     <input type="hidden" name="pm_dep" placeholder="หน่วยงาน"  class="form-control " id="pm_dep" style="width:100%;">
-                    <form id="chooseDep"><input type="submit" name="AddDep" id="AddDep" value="เลือกหน่วยงาน" form="chooseDep" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModalDep"></button></form></td>
-                    <td style="vertical-align:top"><input type="text" name="pm_name" class="form-control"></td>
+                    <form id="chooseDep"><input type="submit" name="AddDep" id="AddDep" style="font-family:Prompt;" value="เลือกหน่วยงาน" form="chooseDep" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModalDep"></button></form></td>
+                    <td style="vertical-align:top"><textarea type="text" name="pm_name" class="form-control"></textarea></td>
                 
                     </tr>
 
@@ -154,24 +155,23 @@ include("../Home/db_connect.php");
                     </div>
                     </div>
                     </form>
-                    <br>
-                    <div class="container w3-card-4 w3-round" style="width:100% " > 
+                 </div>
+                 <br>
+                    <div class="container w3-card-2 w3-round" style="width:100% " > 
                     <br>
                     <table border="0" align="right">
                     <tr>
                     <!-- <td><a href="../mint/index_choosePM.php" class="btn btn-primary btn-block">เลือกครุภัณฑ์</a></td> -->
                     </tr>
                     </table>
-                    <br>
-                    <br>
-                    <br>
+                  
+            
                     <div class="table-responsive" id="result">
-                    <p></p>
-                    <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
+                    
+                    <table id="tableshow" align="center" style="width:100%; " class="table table-striped table-bordered " >
                     <thead>
-                    <tr >
-                        <td style="text-align: center;"></td>
-                        <td style="text-align: center;">Barcode</td>
+                    <tr style="font-weight: bold;">
+                        <td style="text-align: center; ">Barcode</td>
                         <td style="text-align: center;">Serial Number</td>
                         <td style="text-align: center;">สัญญา</td>
                         <td style="text-align: center;">ประเภทครุภัณฑ์</td>
@@ -199,7 +199,6 @@ include("../Home/db_connect.php");
                        while($data = mysqli_fetch_array($result)):
 
                     ?>
-                        <td style="text-align:left"><?php echo $data['eq_pic']; ?></td>
                         <td style="text-align:left"><?php echo $data['eq_barcode']; ?></td>
                         <td style="text-align:left"><?php echo $data['eq_serial']; ?></td>
                         <td style="text-align:left"><?php echo $data['con_name']; ?></td>
@@ -208,7 +207,7 @@ include("../Home/db_connect.php");
                         <input type="hidden" name="id" value="<?php echo $data['eq_id']; ?>">
                     
 
-                        <td><button type="button" name="submit" id="submit<?php echo $data['eq_id']; ?>" class="btn btn-danger btn-block" value="<?php echo $data['eq_id']; ?>" onclick="getid(this)" >ลบครุภัณฑ์</button></td></form>
+                        <td><button type="button" name="submit" id="submit<?php echo $data['eq_id']; ?>" class="btn btn-danger btn-block" value="<?php echo $data['eq_id']; ?>" onclick="getid(this)" style="font-family:Prompt;">ลบครุภัณฑ์</button></td></form>
                     </tr>
                        <?php endwhile;?>
                       <?php } ?>
@@ -216,7 +215,7 @@ include("../Home/db_connect.php");
                 <br>
                     <table border="0" align="center" style="width:25%;">
                     <tr>
-                    <td><input type="submit" name="submitAdd" id="submit" value="บันทึกข้อมูล" form="Add_PM" class="btn btn-success btn-block"></td>
+                    <td><input type="submit" name="submitAdd" id="submit" value="บันทึกข้อมูล" form="Add_PM" class="btn btn-success btn-block" style="font-family:Prompt;"></td>
                     </tr>
                     </table>
                 <br>
@@ -256,10 +255,15 @@ include("../Home/db_connect.php");
 
             
 <script>
-
 $(document).ready(function(){  
       $('#tableshow').DataTable({
-  "searching": true
+  "searching": false,
+  "lengthChange": false,
+  "paging":   false,
+  "oLanguage": {
+        "sSearch": "ค้นหา : "
+        },
+        retrieve: true,
 });  
  }); 
 </script>
@@ -268,7 +272,11 @@ $(document).ready(function(){
 
 $(document).ready(function(){  
       $('#tableType').DataTable({
-  "searching": true
+  "searching": true,
+  "oLanguage": {
+        "sSearch": "ค้นหา : "
+        },
+        retrieve: true,
 });  
  }); 
 </script>

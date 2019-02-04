@@ -1,7 +1,7 @@
 
 <?php 
 
-include("../../Home/db_connect.php");
+include("../../db_connect.php");
   $id = $_GET['ID'];
   
   ?>
@@ -29,10 +29,10 @@ include("../../Home/db_connect.php");
   $result = mysqli_query($conn, $sql);
   while($data = mysqli_fetch_array($result))
   {
-    $serial = $data['eq_serial']; 
+    $barcode = $data['eq_barcode']; 
   }
   ?>
-    <td style="text-align:center;"><h5><b> Serial Number: <?php echo $serial;?></b></h5></td>
+    <td style="text-align:center;"><h5><b> Barcode: <?php echo $barcode;?></b></h5></td>
   </tr>
   </tr>
   </body>

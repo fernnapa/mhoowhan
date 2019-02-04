@@ -1,6 +1,6 @@
 <?php  
 session_start();
-include("../../Home/db_connect.php");
+include("../../db_connect.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +11,7 @@ include("../../Home/db_connect.php");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>ข้อมูลครุภัณฑ์คอมพิวเตอร์</title>
   <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
+
   
   <?php include("link.php"); ?>
 
@@ -46,29 +47,26 @@ include("../../Home/db_connect.php");
     <!-- /.modal edit-->
 
 
-    <!-- /.Table Data-->
-    <div class="container w3-card-2 w3-round" style="width:80%; font-family:Prompt;">  
-        <p><br>
+    <!-- /.table add ครุภัณฑ์ -->
+        
         <form id="Add_eq" method="POST">
-            <table  style="width:80%"  align="center">
+            <table   align="center" style="width:100%; font-family:Prompt;" border="1">
                 <tr>
-                    <th colspan="6"><h3 style="text-align:center; font-family:Prompt;"><b>ข้อมูลครุภัณฑ์</b></h3></th>
+                    <th colspan="6"><h3 style="text-align:center; font-family:Prompt;" class="w3-teal"><b>เพิ่มข้อมูลครุภัณฑ์</b></h3></th>
                 </tr>
                 <tr>
-                    <th style="text-align: right;" class="w3-small">Barcode</th>
+                    <th style="text-align: right;" >Barcode : </th>
                     <th><input type="text" name="eq_barcode" class="form-control name_list" /></th>
                 </tr>
                 <tr>
-                    <th style="text-align: right;" class="w3-small">SERIAL NUMBER</th>
+                    <th style="text-align: right;" >SERIAL NO :</th>
                     <th><input type="text" name="eq_sr" class="form-control name_list" /></th>
                 </tr>
                 <tr>
-                    <th style="text-align: right; width: 100px" class="w3-small">รูปภาพ</th>
-                    <th ><input type="file" name="images[]"  id="select_image" multiple  onchange="namepic()" class="form-control"></th>                               
-                    <input type="hidden" id="eq_pic" name="eq_pic" class="form-control">
+                
                 </tr>
                 <tr>
-                    <th style="text-align: right;" class="w3-small">สัญญา</th>
+                    <th style="text-align: right;" >สัญญา : </th>
                     <th><select name="eq_con" id="eq_con" class="form-control" onchange="filterType(this.value)">
                             <option value="null">เลือกสัญญา</option>
                             <?php
@@ -81,21 +79,24 @@ include("../../Home/db_connect.php");
                     </select></th>
                 </tr>
                 <tr>
-                    <th style="text-align: right;" class="w3-small">ประเภทครุภัณฑ์</th>
+                    <th style="text-align: right;" >ประเภทครุภัณฑ์ : </th>
                     <th id="getdltype"><select name="eq_type" id="eq_type"  class="form-control" >
                         <option value="null">เลือกประเภท</option>           
                         <option value="<?php echo $data['con_name']; ?>"><?php echo $data['con_name']; ?></option>
                     </select></th>
-                </tr>     
+                </tr>
+             
                 <tr>
-                    <td colspan="2"><button type="submit" class=" btn btn-success btn-block w3-medium" value="submit" name="Eq_create" id="submit" form="Add_eq" style="font-family:Prompt;">บันทึกข้อมูล</button></td>
+                    <td colspan="6"><button type="submit" class=" btn btn-success btn-block w3-medium" value="submit" name="Eq_create" id="submit" form="Add_eq" style="font-family:Prompt;">บันทึกข้อมูล</button></td>
                 </tr>
             </table>
         </form>
         <p><br>
-    </div>
+    <!-- /.table add ครุภัณฑ์ -->
     <br><br>
     
+    
+    <!-- ช่อง Search และ Datateble -->
     <div style="width:100%;" class="input-group mb-3">
         <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default"><b>Search :</b></span>
@@ -106,18 +107,13 @@ include("../../Home/db_connect.php");
         <p></p>
         <form id="form3"></form>
     </div>
-    <!-- /.data -->
+    <!-- ช่อง Search และ Datateble -->
+
+    
     <?php include ("footer.php"); ?>
 </body>
 </html>
 
-    <script>
-        $(document).ready(function(){  
-            $('#tableshow').DataTable({
-            "searching": false
-            });  
-        }); 
-    </script>
 
 
     <script>
@@ -126,7 +122,7 @@ include("../../Home/db_connect.php");
                 function load_data(query)
                 {
                     $.ajax({
-                        url:"../../toey/search_eq.php",
+                        url:"search_eq.php",
                         method:"POST",
                         data:{query:query},
                         success:function(data){
@@ -160,7 +156,7 @@ include("../../Home/db_connect.php");
                 document.getElementById("getdltype").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "../../toey/getDLtype.php?id="+str, true);
+            xhttp.open("GET", "getDLtype.php?id="+str, true);
             xhttp.send();
         }
     </script>
@@ -174,7 +170,7 @@ include("../../Home/db_connect.php");
             $('#Add_eq').on('submit', function(e){  
                 e.preventDefault();  
                 $.ajax({  
-                    url :"../../toey/create_Eq.php",  
+                    url :"create_Eq.php",  
                     method:"POST",  
                     data:new FormData(this),  
                     contentType:false,  
@@ -248,7 +244,7 @@ include("../../Home/db_connect.php");
             $('#Edit_Eq').on('submit', function(e){  
                 e.preventDefault();  
                     $.ajax({  
-                        url :"../../toey/update_eq.php",  
+                        url :"update_eq.php",  
                         method:"POST",  
                         data:new FormData(this),  
                         contentType:false,  
@@ -324,7 +320,7 @@ include("../../Home/db_connect.php");
             }).then (function (isConfirm){
                 if (isConfirm) {
                     $.ajax({
-                        url: "../../toey/delete_Eq.php", 
+                        url: "delete_Eq.php", 
                         type: "POST",
                         data: {"x": str},
                         success: function(result){
@@ -377,7 +373,7 @@ include("../../Home/db_connect.php");
                 document.getElementById("getEq").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "../../toey/getEq.php?id="+str, true);
+            xhttp.open("GET", "getEq.php?id="+str, true);
             xhttp.send();
             }
     </script>

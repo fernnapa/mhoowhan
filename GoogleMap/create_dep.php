@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
+
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-	<link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   	<!-- Bootstrap core CSS -->
@@ -16,7 +18,6 @@
 	type="text/javascript"></script>
 	<script language="JavaScript">
 
-	
 	
 function initMap() { 
 	var myOptions = {
@@ -67,7 +68,7 @@ var lng  = $("#lng").val();
 $.ajax({
 method:"POST",
 url:"insert_dep.php",
-data:{ dep_no:dep_no,location_name:location_name,lat:lat,lng:lng   }
+data:{ dep_no:dep_no,location_name:location_name,lat:lat,lng:lng}
 }).done(function(){
 	swal( {
 		    title: "เพิ่มข้อมูลสำเร็จ",
@@ -100,19 +101,19 @@ data:{ dep_no:dep_no,location_name:location_name,lat:lat,lng:lng   }
 						<h3 align="center" style="font-family:Prompt;">เพิ่มข้อมูลหน่วยงาน</h3><br/>
 						<div class="form-group" style="font-family:Prompt;">
 						  <label for="location_name">รหัสหน่วยงาน</label>
-						  <input type="text" class="form-control" id="dep_no" style="font-family:Prompt;" placeholder="ระบุรหัสหน่วยงาน" required>
+						  <input type="text" class="form-control" id="dep_no" name="dep_no" style="font-family:Prompt;" placeholder="ระบุรหัสหน่วยงาน" required>
 						</div>
 						<div class="form-group" style="font-family:Prompt;">
 						  <label for="location_name">ชื่อหน่วยงาน</label>
-						  <input type="text" class="form-control" id="location_name" style="font-family:Prompt;" placeholder="ระบุชื่อสถานที่" required>
+						  <input type="text" class="form-control" id="location_name" name="location_name" style="font-family:Prompt;" placeholder="ระบุชื่อสถานที่" required>
 						</div>
 						<div class="form-group" style="font-family:Prompt;">
 								<label for="lat">ละติจูด</label>
-								<input type="text" class="form-control" id="lat" style="font-family:Prompt;" placeholder="ระบุละติจูด" required>
+								<input type="text" class="form-control" id="lat" name="lat" style="font-family:Prompt;" placeholder="ระบุละติจูด" required>
 						</div>
 						<div class="form-group" style="font-family:Prompt;">
 							<label for="Lng">ลองจิจูด</label>
-							<input type="text" class="form-control" id="lng" style="font-family:Prompt;" placeholder="ระบุลองจิจูด" required>
+							<input type="text" class="form-control" id="lng" name="lng" style="font-family:Prompt;" placeholder="ระบุลองจิจูด" required>
 						</div>
 						<div align="center" style="font-family:Prompt;">
 							<button type="button" onclick="saveLocation()" class="btn btn-success" style="font-family:Prompt;">บันทึกข้อมูล</button>

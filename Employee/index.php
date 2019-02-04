@@ -1,6 +1,6 @@
 <?php  
 session_start();
-include("../Home/db_connect.php");
+include("../db_connect.php");
 $_SESSION['chooseEq'] = array();
 ?>  
 <!DOCTYPE html>
@@ -15,20 +15,24 @@ $_SESSION['chooseEq'] = array();
   
   
   <style>
-            table, th, td    {
-            }
-            td {
-                padding: 5px;
-                text-align: center;    
-            }
-            th {
-                padding: 5px;
-            }
-            body{
-                font-family: 'Kanit', sans-serif;
-            }
-            .search-table-outter { overflow-x: scroll; }
-         
+    .modal-dialog.a{
+        max-width : 650px;
+        max-height: 550px;
+    }
+
+    table, th, td{
+    }
+    td {
+        padding: 5px;
+        text-align: center;    
+    }
+    th {
+        padding: 5px;
+    }
+    body{
+        font-family: 'Kanit', sans-serif;
+    }
+    .search-table-outter { overflow-x: scroll; }
     </style>
 
 </head>
@@ -39,18 +43,22 @@ $_SESSION['chooseEq'] = array();
   
   <!-----------------detail---------------------------->
     <div class="modal fade" tabindex="1" role="dialog" id="ModalViewAC">
-        <div class="modal-dialog " role="document">
+        <div class="modal-dialog a" role="document">
             <div class="modal-content">
+            <div class="card">
+              <div class="card-body">
                 <div class="modal-header">
-                    <h4 class="modal-title" style="font-family:Prompt;"><b>รายการจัดสรรครุภัณฑ์</b></h4>
+                    <h4 class="modal-title" style="font-family:Prompt;"><b>รายการครุภัณฑ์</b></h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body table-responsive">
                     <form id="ViewAC" ></form>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
                 </div>
+            </div>
+            </div>
             </div>
         </div>
     </div>
@@ -61,7 +69,7 @@ $_SESSION['chooseEq'] = array();
     <div class="container" >    
         <table border="0" align="center" style="width:100%;" class="w3-round">
             <tr>
-                <td><h3 style="font-family:Prompt;"><b>รายการจัดสรร/ยืม-คืน ครุภัณฑ์</b></h3></a></button></td>
+                <td><h3 style="font-family:Prompt;"><b>รายการจัดการครุภัณฑ์คอมพิวเตอร์</b></h3></a></button></td>
             </tr>
         </table>
         <hr>
@@ -69,12 +77,11 @@ $_SESSION['chooseEq'] = array();
                     <div class="table-responsive" id="result">
                     <p></p>
                     <form id="form3"> 
-                    <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
+                    <table id="tableshow" align="center" style="width:100%;" class="table table-hover table table-striped table-bordered" >
                     <thead>
                     <tr >
-                        <td style="text-align: center; font-weight: bold; width='350px'">ชื่อผู้เช่ายืม</td>
+                        <td style="text-align: center; font-weight: bold; width='350px'">รายชื่อ</td>
                         <td style="text-align: center; font-weight: bold; width='500px'">หน่วยงาน</td>
-                        <td style="text-align: center; font-weight: bold; width='500px'">จุดประสงค์การจัดสรร</td>
                         <td style="text-align: center; font-weight: bold; width='100px'">สถานะ</td>
                         <td style="text-align: center; font-weight: bold; width='100px'">พนักงานจัดสรร</td>
                         <td></td>
@@ -90,6 +97,8 @@ $_SESSION['chooseEq'] = array();
                             ON allocate.ac_status = a_status.status_id
                             LEFT JOIN department
                             ON allocate.ac_dep = department.dep_id
+                            LEFT JOIN employee
+							ON allocate.ac_emp = employee.emp_id      
                           
                           
                             WHERE ac_status = 2";
@@ -101,9 +110,8 @@ $_SESSION['chooseEq'] = array();
                          if($stn == "จัดสรร"){ ?>
                           <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
                           <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                          <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
                           <td style="text-align:left"><?php echo $data['status_name']; ?></td>             
-                          <td style="text-align:left"><?php echo $data['ac_empid']; ?></td>
+                          <td style="text-align:left"><?php echo $data['emp_fname']." ".$data['emp_lname']; ?></td>
                           <td><button type="button" name="submitview" class="btn btn-icons  btn-primary btn-md"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC_dt(<?php echo $data['ac_id']; ?>)"><i class="mdi mdi-file-document"></i></button></td>
 
                               
@@ -119,6 +127,8 @@ $_SESSION['chooseEq'] = array();
                                 ON permit.pm_status = a_status.status_id
                                 LEFT JOIN department
                                 ON permit.pm_dep = department.dep_id
+                                LEFT JOIN employee
+								ON permit.pm_empno = employee.emp_id
                                
                               
                                 WHERE pm_status= 3 ";
@@ -128,11 +138,11 @@ $_SESSION['chooseEq'] = array();
                               $stnpm = $data1['status_name'];
 
                               if($stnpm == "ยืม - คืน"){ ?>  
-                                <td style="text-align:left"><?php echo $data1['pm_name']; ?></td>
                                 <td style="text-align:left"><?php echo $data1['pm_username']; ?></td>
                                 <td style="text-align:left"><?php echo $data1['dep_name']; ?></td>
                                 <td style="text-align:left"><?php echo $data1['status_name']; ?></td>
-                                <td style="text-align:left"><?php echo $data1['pm_userno']; ?></td>
+                                <td style="text-align:center"><?php echo $data1['emp_fname']." ".$data1['emp_lname']; ?></td>  
+
                           
                           <td><button type="button" name="submitview" class="btn btn-icons  btn-primary btn-md"  data-toggle="modal" data-target="#ModalViewAC" onclick="showPM_DC_dt(<?php echo $data1['pm_id']; ?>)"><i class="mdi mdi-file-document"></i></button></td>
                           
@@ -170,7 +180,12 @@ $_SESSION['chooseEq'] = array();
   <script>
   $(document).ready(function(){  
           $('#tableshow').DataTable({
-          "searching": true
+          "searching": true,
+
+            "oLanguage": {
+            "sSearch": "ค้นหา : "
+            },
+            retrieve: true,
   });  
    }); 
   </script>
@@ -190,7 +205,7 @@ $_SESSION['chooseEq'] = array();
                   document.getElementById("ViewAC").innerHTML = this.responseText;
                   }
               };
-              xhttp.open("GET", "getAC_DC_dt.php?id="+str, true);
+              xhttp.open("GET", "../getAC_DC_dt.php?id="+str, true);
               xhttp.send();
               }
 </script>
@@ -208,7 +223,7 @@ $_SESSION['chooseEq'] = array();
                   document.getElementById("ViewAC").innerHTML = this.responseText;
                   }
               };
-              xhttp.open("GET", "getPM_DC_dt.php?id="+str, true);
+              xhttp.open("GET", "../getPM_DC_dt.php?id="+str, true);
               xhttp.send();
               }
   </script>

@@ -10,4 +10,8 @@
   <link rel="stylesheet" href="../css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="../../images/favicon.png" />
+  
+  <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css?family=Sarabun" rel="stylesheet">  
 

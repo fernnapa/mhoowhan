@@ -1,8 +1,7 @@
 <?php
 session_start();
 
-include("../Home/db_connect.php");
-
+include("../db_connect.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +40,7 @@ include("../Home/db_connect.php");
                     <br>
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3><b>ดาวน์โหลดรายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
+                    <td><h3 style="font-family:Prompt;"><b>ดาวน์โหลดรายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
                     

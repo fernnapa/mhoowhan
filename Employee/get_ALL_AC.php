@@ -1,5 +1,5 @@
 <?php
-include("../Home/db_connect.php");
+include("../db_connect.php");
 session_start();
 
 

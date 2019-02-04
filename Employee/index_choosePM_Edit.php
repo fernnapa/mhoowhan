@@ -1,6 +1,6 @@
 <?php
  session_start();
- include("../Home/db_connect.php");
+ include("../db_connect.php");
  $_SESSION['chooseEq'] = array();
 ?>
 <!DOCTYPE html>
@@ -10,6 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Home</title>
     <?php include("menu/link.php"); ?>
+
+    <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
+
     <style>
             table, th, td    {
             }
@@ -39,11 +42,42 @@
                     
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3><b>ยืม-คืนครุภัณฑ์</b></h3></a></button></td>
+                    <td><h3 ><b>ยืม-คืนครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
+                    <br/>
+                  
+
+                    
+                    <table border="0" align="center" style="width:100%;" >
+                    <tr>
+                    <td><select name="search_text" id="search_text" style="width: 100%" class="form-control">
+                                                            <option value="ทั้งหมด">ประเภททั้งหมด</option>
+                                            <?php
+                                                    $type = "SELECT * FROM type_eq ORDER BY type_name";
+                                                    $result = mysqli_query($conn, $type);
+                                                    while($data = mysqli_fetch_array($result)):
+                                             ?>
+                                                    <option value="<?php echo $data['type_name']; ?>"><?php echo $data['type_name']; ?></option>
+                                            <?php endwhile;?>
+                                                </select></td>
+                    <td><select name="search_text2" id="search_text2" style="width: 100%" class="form-control">
+                                                            <option value="ทั้งหมด">สัญญาทั้งหมด</option>
+                                            <?php
+                                                    $cont = "SELECT * FROM contract ORDER BY con_name";
+                                                    $result2 = mysqli_query($conn, $cont);
+                                                    while($data = mysqli_fetch_array($result2)):
+                                             ?>
+                                                    <option value="<?php echo $data['con_name']; ?>"><?php echo $data['con_name']; ?></option>
+                                            <?php endwhile;?>
+                                                </select></td>
+
+                    </tr>
+                    </table>
+
+
+
                    
-                    <br>
                     <div class="table-responsive" id="result">
                     <p></p>
                     <form id="form3"> 
@@ -208,3 +242,73 @@ $(document).ready(function(){
 
         </body>
 </html>
+
+
+<!-------------------Search Dynamic------------------------------->
+<script>
+$(document).ready(function()
+{
+        load_data();
+                function load_data(query, query2)
+                {
+                        $.ajax(
+                        {
+                        url:"search_choosePM_Edit.php",
+                        method:"POST",
+                        data:{query:query, query2},
+                        success:function(data)
+                        {
+                            $('#result').html(data);
+                        }
+                        }
+                            );
+                }
+                $('#search_text').change(function()
+                {
+                    var search = $(this).val();
+                    var search2 = $('#search_text2').val();
+                    if(search != '' && search2 != '')
+                    {
+                        load_data(search, search2);
+                    }else
+                    {
+                        load_data();
+                    }
+                }
+                );
+});
+</script>
+
+<script>
+$(document).ready(function()
+{
+        load_data();
+                function load_data(query2, query)
+                {
+                        $.ajax(
+                        {
+                        url:"search_choosePM_Edit.php",
+                        method:"POST",
+                        data:{query2:query2, query},
+                        success:function(data)
+                        {
+                            $('#result').html(data);
+                        }
+                        }
+                            );
+                }
+                $('#search_text2').change(function()
+                {
+                    var search2 = $(this).val();
+                    var search = $('#search_text').val();
+                    if(search2 != '' && search != '')
+                    {
+                        load_data(search2, search);
+                    }else
+                    {
+                        load_data();
+                    }
+                }
+                );
+});
+</script>

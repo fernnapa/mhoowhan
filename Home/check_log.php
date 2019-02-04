@@ -2,7 +2,7 @@
 session_start();
         if(isset($_REQUEST['emp_user'])){
 				//connection
-                  include("db_connect.php");
+                  include("../db_connect.php");
 				//รับค่า user & password
                   $emp_user = $_REQUEST['emp_user'];
                   $emp_pass = $_REQUEST['emp_pass'];
@@ -43,8 +43,6 @@ session_start();
 
                         Header("Location: ../Leader/index_leader.php");
                       }
-
-
 
                   }else{
                     echo "<script>";

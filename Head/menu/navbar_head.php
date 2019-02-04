@@ -20,7 +20,7 @@
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <span class="profile-text">Hello, คุณ <?php echo $_SESSION["User"] ?></span>
 
-              <img class="img-xs rounded-circle" src="img/<?php echo $_SESSION["emp_pic"]; ?>" alt="Profile image">    <!--    เอารูปมาแสดง  --->
+              <img class="img-xs rounded-circle" src="images/<?php echo $_SESSION["emp_pic"]; ?>" alt="Profile image">    <!--    เอารูปมาแสดง  --->
 
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -62,7 +62,7 @@
               <div class="user-wrapper">
                 <div class="profile-image">
 
-                  <img src="img/<?php echo $_SESSION["emp_pic"]; ?>" alt="profile image">      <!--    เอารูปมาแสดง  --->
+                <img src="images/<?php echo $_SESSION["emp_pic"]; ?>" alt="profile image">      <!--    เอารูปมาแสดง  --->
                 
                 </div>
                 <div class="text-wrapper">

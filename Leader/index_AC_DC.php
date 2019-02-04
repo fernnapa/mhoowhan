@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../Home/db_connect.php");
+include("../db_connect.php");
 
 ?>
 <!DOCTYPE html>
@@ -41,7 +41,7 @@ include("../Home/db_connect.php");
                             <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title"><b>รายการจัดสรรครุภัณฑ์ที่รออนุมัติ</b></h4>
+                                    <h4 class="modal-title" style="font-family:Prompt;"><b>รายการจัดสรรครุภัณฑ์ที่รออนุมัติ</b></h4>
                             </div>
                                     <div class="modal-body table-responsive">
                                             <form id="ViewAC" >
@@ -61,7 +61,7 @@ include("../Home/db_connect.php");
                 <div class="modal-dialog" role="document">
                 <div class="modal-content w3-theme-l2" >
                 <div class="modal-header">
-                <h4 class="modal-title"><b>เหตุผลที่ไม่ผ่านการตรวจสอบ</b></h4>
+                <h4 class="modal-title" style="font-family:Prompt;"><b>เหตุผลที่ไม่ผ่านการตรวจสอบ</b></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                         <div class="modal-body table-responsive">
@@ -91,7 +91,7 @@ include("../Home/db_connect.php");
                     <br>
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3><b>รายการจัดสรรครุภัณฑ์ที่รออนุมัติ</b></h3></a></button></td>
+                    <td><h3 style="font-family:Prompt;"><b>รายการจัดสรรครุภัณฑ์ที่รออนุมัติ</b></h3></a></button></td>
                     </tr>
                     </table>
                     
@@ -119,7 +119,10 @@ include("../Home/db_connect.php");
                        ON allocate.ac_dep = department.dep_id
                        WHERE ac_status= 6";
                        $result = mysqli_query($conn, $sql);
-                       while($data = mysqli_fetch_array($result)):
+                       $num_rows = mysqli_num_rows($result);        
+                       if($num_rows > 0){
+                       while($data = mysqli_fetch_array($result))
+                       {
                     ?>
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
                         <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
@@ -128,7 +131,10 @@ include("../Home/db_connect.php");
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                         <td><button type="button" name="submitviewAC" class="btn btn-success btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC(<?php echo $data['ac_id']; ?>)">ดูรายการจัดสรร</button></td></form>
                     </tr>
-                       <?php endwhile;?>
+                       <?php } ?>
+                       <?php }else{ ?>
+                        <td style="text-align: center;" colspan="6" ><font color="#FF3333"; size="2px;" ><b>ไม่มีรายการจัดสรรครุภัณฑ์ที่รออนุมัติ</b></font></td>
+                       <?php } ?>
                 </table>
                 </form>
                 </div>

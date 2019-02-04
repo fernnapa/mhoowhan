@@ -18,7 +18,7 @@ session_start();
     <?php include("menu/navbar_emp.php")  ?>
 
     <?php 
-      include("../Home/db_connect.php");
+      include("../db_connect.php");
       if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
       }
@@ -41,8 +41,6 @@ session_start();
                                   <h6 style="font-family:Prompt;">รูปภาพ</h6>
                           </div>
                       </div>
-                     
-  
                       <div class="col-md-8">
                           <div class="tab-content profile-tab" id="myTabContent">
                               <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -112,7 +110,7 @@ session_start();
                                                   <label class="control-label" style="font-family:Prompt;">Password:</label>
                                               </div>
                                               <div class="col-md-8">
-                                                  <p style="font-family:Prompt;"><?php echo $row["emp_pass"]; ?></p>
+                                              <p style="font-family:Prompt;"> <input class="form-control" name="emp_pass" type="password" value="<?php echo $row["emp_pass"];?>" readonly></p>
                                               </div>
                                           </div>
   

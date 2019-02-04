@@ -1,5 +1,5 @@
 <?php
-include("../Home/db_connect.php");
+include("../db_connect.php");
 session_start();
 
 ?>
@@ -24,7 +24,11 @@ session_start();
             body{
                 font-family: 'Kanit', sans-serif;
             }
-            .search-table-outter { overflow-x: scroll; }
+            .search-table-outter { overflow-x: scroll; 
+            }
+            .modal-dialog.a{
+                max-width : 50%;
+            }
          
     </style>
     </head>
@@ -34,20 +38,21 @@ session_start();
         <body>
 
         <div class="modal fade" tabindex="-1" role="dialog" id="ModalDep">
-                    <div class="modal-dialog" role="document" style="width:100%";>
+                    <div class="modal-dialog a" role="document" style="width:100%";>
                     <div class="modal-content">
+                    <div class="card">
+                    <div class="card-body">
                     <div class="modal-header">
+                         <h4 class="modal-title" style="font-family:Prompt; font-weight: bold;">ข้อมูลหน่วยงาน</h4>
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">ข้อมูลหน่วยงาน</h4>
-
                     </div>
-                            <div class="modal-body">
+                    <div class="modal-body table-responsive">
                     <table id="tableType" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
                     <tr >
-                        <td style="text-align: center; ">รหัสหน่วยงาน</td>
-                        <td style="text-align: center; ">ชื่อหน่วยงาน</td>
-                        <td style="text-align: center; ">Action</td>
+                        <td style="text-align: center; font-weight: bold;">รหัสหน่วยงาน</td>
+                        <td style="text-align: center; font-weight: bold;">ชื่อหน่วยงาน</td>
+                        <td style="text-align: center; font-weight: bold;">Action</td>
 
                     </tr>
                     </thead>
@@ -60,35 +65,35 @@ session_start();
                     ?>
                         <td style="text-align:left"><?php echo $data['dep_no']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td><button type="button" class="btn btn-success btn-block" id="<?php echo $data['dep_id']; ?>" value="<?php echo $data['dep_name']; ?>" onclick="Dep(this)">เลือก</button></td>
+                        <td><button type="button" class="btn btn-success btn-block" id="<?php echo $data['dep_id']; ?>" value="<?php echo $data['dep_name']; ?>" onclick="Dep(this)" style="font-family:Prompt;">เลือก</button></td>
                         </form>
                     </tr>
                        <?php endwhile;?>
                 </table>
                                 </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                        <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
+                    </div>
+                    </div>
                     </div>
                     </div>
                     </div>
                 </div>
 
-
-                <br>           
-                    
+                <div class="container w3-card-2 w3-round" style="width:100% " > 
                     <form id="Add_AC"> 
-                    <table border="0" align="center" style="width:80%;" class="w3-teal">
+                    <br>
+                    <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
-                    <td><h3><b>ยืนยันการจัดสรรครุภัณฑ์</b></h3></a></button></td>
+                    <td><p><h3 align="center" style="font-family:Prompt;"><b>ยืนยันการจัดสรรครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
-                    <div class="container" > 
                     <div class="table-responsive">
                     <br>
-                    <table border="1" align="center" style="width:100%" class="w3-round ">
+                    <table border="0" align="center" style="width:100%" class="w3-round ">
                     <tr>
-                    <td style="text-align: left">คำนำหน้าชื่อ</td>
-                    <td style="text-align: left">ชื่อผู้เช่ายืม</td>
+                    <td style="text-align: left;"  width="50%">คำนำหน้าชื่อ</td>
+                    <td style="text-align: left; " width="50%">ชื่อผู้เช่ายืม</td>
                     </tr>
 
                     <tr>
@@ -116,8 +121,8 @@ session_start();
                     <tr>
                     <td class="form-inline"><input type="text" name="pm_ex" placeholder="หน่วยงาน"  class="form-control " id="pm_ex" readonly style="width:100%;">
                     <input type="hidden" name="ac_dep" placeholder="กรุณาเลือกหน่วยงาน"  class="form-control " id="ac_dep" style="width:100%;">
-                    <form id="chooseDep"><input type="submit" name="AddDep" id="AddDep" value="เลือกหน่วยงาน" form="chooseDep" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModalDep"></button></form></td>
-                    <td style="vertical-align:top"><input type="text" name="ac_title" class="form-control"></td>
+                    <form id="chooseDep"><input type="submit" name="AddDep" id="AddDep" style="font-family:Prompt;" value="เลือกหน่วยงาน" form="chooseDep" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModalDep"></button></form></td>
+                    <td style="vertical-align:top"><textarea name="ac_title" class="form-control" style="width:100%;" ></textarea></td>
                     </tr>
 
                     <tr>
@@ -136,29 +141,28 @@ session_start();
                     </div>
                     </div>
                     </form>
-                    <br>
-                    <div class="container" > 
-                    <br>
+                   <br>
+                    <div class="container w3-card-2 w3-round" style="width:100% " > 
                     <table border="0" align="right">
                     <tr>
                     <!-- <td><a href="index_chooseAC.php" class="btn btn-primary btn-block">เลือกครุภัณฑ์</a></td> -->
                     </tr>
                     </table>
-                    <br>
-                    <br>
-                    <br>
+
+                    
+                    
                     <div class="table-responsive" id="result">
                     <p></p>
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
                     <tr >
-                        <td style="text-align: center;"></td>
-                        <td style="text-align: center;">Barcode</td>
-                        <td style="text-align: center;">Serial Number</td>
-                        <td style="text-align: center;">สัญญา</td>
-                        <td style="text-align: center;">ประเภทครุภัณฑ์</td>
-                        <td style="text-align: center;">สถานะ</td>
-                        <td style="text-align: center;">เลือกครุภัณฑ์</td>
+                       
+                        <td style="text-align: center; font-weight: bold;">Barcode</td>
+                        <td style="text-align: center; font-weight: bold;">Serial Number</td>
+                        <td style="text-align: center; font-weight: bold;">สัญญา</td>
+                        <td style="text-align: center; font-weight: bold;">ประเภทครุภัณฑ์</td>
+                        <td style="text-align: center; font-weight: bold;">สถานะ</td>
+                        <td style="text-align: center; font-weight: bold;">เลือกครุภัณฑ์</td>
                     </tr>
                     </thead>
                     <tr>
@@ -181,7 +185,6 @@ session_start();
                        while($data = mysqli_fetch_array($result)):
 
                     ?>
-                        <td style="text-align:left"><?php echo $data['eq_pic']; ?></td>
                         <td style="text-align:left"><?php echo $data['eq_barcode']; ?></td>
                         <td style="text-align:left"><?php echo $data['eq_serial']; ?></td>
                         <td style="text-align:left"><?php echo $data['con_name']; ?></td>
@@ -190,7 +193,7 @@ session_start();
                         <input type="hidden" name="id" value="<?php echo $data['eq_id']; ?>">
                     
 
-                        <td><button type="button" name="submit" id="submit<?php echo $data['eq_id']; ?>" class="btn btn-danger btn-block" value="<?php echo $data['eq_id']; ?>" onclick="getid(this)" >ลบครุภัณฑ์</button></td></form>
+                        <td><button type="button" name="submit" id="submit<?php echo $data['eq_id']; ?>" class="btn btn-danger btn-block" style="font-family:Prompt;" value="<?php echo $data['eq_id']; ?>" onclick="getid(this)" style="font-family:Prompt;">ลบครุภัณฑ์</button></td></form>
                     </tr>
                        <?php endwhile;?>
                       <?php } ?>
@@ -198,7 +201,7 @@ session_start();
                 <br>
                     <table border="0" align="center" style="width:25%;">
                     <tr>
-                    <td><input type="submit" name="submitAdd" id="submit" value="บันทึกข้อมูล" form="Add_AC" class="btn btn-success btn-block"></td>
+                    <td><input type="submit" style="font-family:Prompt;" name="submitAdd" id="submit" value="บันทึกข้อมูล" form="Add_AC" class="btn btn-success btn-block"></td>
                     </tr>
                     </table>
                 <br>
@@ -232,21 +235,32 @@ session_start();
 <!-- /.script modal add -->
 
 <script>
-
 $(document).ready(function(){  
       $('#tableshow').DataTable({
-  "searching": true
+  "searching": false,
+  "lengthChange": false,
+  "paging":   false,
+  "oLanguage": {
+        "sSearch": "ค้นหา : "
+        },
+        retrieve: true,
 });  
  }); 
 </script>
+
 
 <script>
 
 $(document).ready(function(){  
       $('#tableType').DataTable({
-  "searching": true
-});  
- }); 
+  "searching": true,
+
+  "oLanguage": {
+   		"sSearch": "ค้นหา : "
+ 		},
+        retrieve: true,
+    });  
+}); 
 </script>
 
 <script>          

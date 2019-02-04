@@ -24,13 +24,13 @@
             <h5 class="text-uppercase" style="color:white">Contact</h5>
 			      <hr  class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto " style="width: 100px;">
 					  <ul class="list-unstyled">
-                        <li><img src="../images/google.svg" style="width:30px">
+                        <li><img src="images/google.svg" style="width:30px">
                                                         <a target="_blank" href="mailto:administrator@sut.ac.th"> &nbsp; administrator@sut.ac.th</a>
                         </li><br/>
-                        <li><img src="../images/viber.svg" style="width:30px">
+                        <li><img src="images/viber.svg" style="width:30px">
                                                         <a target="_blank" href="tel:044-224801"> &nbsp; 044-224801</a>
                         </li><br/>
-                        <li><img src="../images/fax.svg" style="width:30px">
+                        <li><img src="images/fax.svg" style="width:30px">
                                                         <a target="_blank" href="tel:044-224790"> &nbsp; 044-224790</a>
                         </li>
 					</ul>	
@@ -38,7 +38,7 @@
           <!-- Grid column -->
           <div class="col-md-4 mb-md-0 mb-3">
             <!-- Links --> 
-			<a target="_blank" href="https://www.facebook.com/ccs.sut/"><img src="../images/ccs.jpg" style="width:100px"></a>
+			<a target="_blank" href="https://www.facebook.com/ccs.sut/"><img src="images/ccs.jpg" style="width:100px"></a>
 			<hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 100px;">
 				<p><font face="verdana" color="white" style="font-family:Prompt;">ศูนย์คอมพิวเตอร์
 				<br/>มหาวิทยาลัยเทคโนโลยีสุรนารี

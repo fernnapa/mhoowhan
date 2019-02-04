@@ -1,26 +1,27 @@
 <?php  
 session_start();
-include_once("../../Home/db_connect.php");
+include("../../db_connect.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>ข้อมูลเจ้าหน้าที่</title>
-  <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
-  <?php include("link.php"); ?>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ข้อมูลเจ้าหน้าที่</title>
+    <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
+    <?php include("link.php"); ?>
 
-<style>
-.modal-dialog.a{
-  max-width : 70%;
-}
-.modal-dialog.b{
-  max-width : 580px;
-}
-</style>
+    <style>
+    .modal-dialog.a{
+    max-width : 70%;
+    }
+    .modal-dialog.b{
+    max-width : 580px;
+    }
+    </style>
 </head>
 
 <?php include("navbar.php"); ?>
@@ -34,7 +35,7 @@ include_once("../../Home/db_connect.php");
                 <div class="card">
                     <div class="card-body" >    
                         <div class="modal-header">
-                            <h4 class="modal-title" style="font-family:Prompt;">เพิ่มข้อมูลเจ้าหน้าที่</h4>
+                            <h4 class="modal-title" style="font-family:Prompt; font-weight: bold;">เพิ่มข้อมูลเจ้าหน้าที่</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body" style="font-family:Prompt;">
@@ -77,16 +78,16 @@ include_once("../../Home/db_connect.php");
                                     </tr>
                                     <tr>
                                         <th style="text-align: center;">Password :</th>
-                                        <th style="text-align: center;"><input type="text" id="emp_pass" name="emp_pass" class="form-control"></th>
+                                        <th style="text-align: center;"><input type="password" id="emp_pass" name="emp_pass" class="form-control"></th>
                                     </tr>
                                     <tr>
                                         <th style="text-align: center;">สถานะผู้ใช้งาน :</th> 
                                         <th style="text-align: center;"><select name="emp_status" id="emp_status"  class="form-control">
                                                 <option>เลือกสถานะ</option>
-                                                <option value="user">User</option>
-                                                <option value="head">Head</option>
-                                                <option value="leader">Leader</option>
-                                                <option value="admin">Admin</option>
+                                                <option value="member">เจ้าหน้าที่ทั่วไป</option>
+                                                <option value="head">หัวหน้าศูนย์คอมพิวเตอร์</option>
+                                                <option value="leader">ผู้อำนวยการศูนย์คอมพิวเตอร์</option>
+                                                <option value="admin">ผู้ดูแลระบบ</option>
                                             </select></th>
                                     </tr>
                                 </table>
@@ -110,7 +111,7 @@ include_once("../../Home/db_connect.php");
             <div class="card">
                     <div class="card-body" >    
                         <div class="modal-header">
-                            <h4 class="modal-title" style="font-family:Prompt;">แก้ไขข้อมูลเจ้าหน้าที่</h4>
+                            <h4 class="modal-title" style="font-family:Prompt; font-weight: bold;">แก้ไขข้อมูลเจ้าหน้าที่</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body table-responsive">
@@ -119,8 +120,8 @@ include_once("../../Home/db_connect.php");
                             </form>
                         </div>
                         <div class="modal-footer table-responsive">
+                                <button type="submit" class="btn btn-success" value="submit" name="sub_update" id="submit" form="update_form" style="font-family:Prompt;">บันทีกข้อมูล</button>
                                 <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ยกเลิก</button>
-                                <button type="submit" class="btn btn-success" value="submit" name="sub_update" id="submit" form="update_form" style="font-family:Prompt;">อัพเดท</button>
                         </div>
                     </div>
             </div>
@@ -132,17 +133,17 @@ include_once("../../Home/db_connect.php");
 
 <!-- /.modal detail-->
 <div class="modal fade" tabindex="-1" role="dialog" id="myModal3">
-    <div class="modal-dialog  b" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">  
             <div class="card">
                     <div class="card-body" >    
                         <div class="modal-header">
-                            <h4 class="modal-title" style="font-family:Prompt;">รายละเอียด</h4>
+                            <h4 class="modal-title" style="font-family:Prompt; font-weight: bold;">รายละเอียด</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body table-responsive">
                            
-                        <table align="center" id="showEmp"></table>
+                            <table align="center" id="showEmp"></table>
 
                         </div>
                         <div class="modal-footer table-responsive">
@@ -158,8 +159,7 @@ include_once("../../Home/db_connect.php");
 
 
 <!-- /.data -->
-<div class="container w3-card-2 w3-round-large" style="font-family:Prompt; width:60%;">  
-    <table align="center"><br/>
+    <table align="center" style="width:100%"><br/>
         <tr>
             <th colspan="7"><h3 style="text-align:center; font-family:Prompt;"><b>ค้นหาข้อมูลเจ้าหน้าที่</b></h3></th>
         </tr>
@@ -170,44 +170,17 @@ include_once("../../Home/db_connect.php");
             </form>                        
         </tr>
     </table>
-    <br>
-</div>  
-<br>          
-<div class="table-responsive" id="result" style="font-family:Prompt;">
+   
+    <div class="table-responsive" id="result" style="font-family:Prompt;">
         <p></p>
-          <form id="form3"> 
-            <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
-              <thead>
-                  <tr >
-                      <td style="text-align: center;">หมายเลขพนักงาน</td>
-                      <td style="text-align: center;">ชื่อ</td>
-                      <td style="text-align: center;">นามสกุล</td>
-                      <td style="text-align: center;">อีเมล์</td>
-                      <td style="text-align: center;"></td>
-                      <td style="text-align: center;"></td>
-                  </tr>
-              </thead>
-              <tr>
-                  <?php
-                      $sql = "SELECT * FROM employee";
-                      $result = mysqli_query($conn, $sql);
-                      while($data = mysqli_fetch_array($result)):
-                  ?>
-                      <td style="text-align:left"><?php echo $data['emp_id']; ?></td>
-                      <td style="text-align:left"><?php echo $data['emp_fname']; ?></td>
-                      <td style="text-align:left"><?php echo $data['emp_lname']; ?></td>
-                      <td style="text-align:left"><?php echo $data['emp_mail']; ?></td>       
-                      <td><button type="button" class="btn btn-warning btn-block" data-toggle="modal" onclick="showUser(<?php echo $data['emp_id']; ?>)" data-target="#myModal2">เเก้ไข</button></td></form>
-                      <td><span  class="btn btn-danger btn-block" form="form3"  onclick="remove(<?php echo $data['emp_id']; ?>)">ลบ</span></td>                    
-              </tr>
-
-              <?php endwhile;?>
-            </table>
-          </form>
-</div>
+          <form id="form3"> </form>
+    </div>
 <!-- /.data -->
+
+
 <?php include ("footer.php"); ?>
-<!-------------------------------------------------------------------------------------------------------->
+
+
 
 <!-- /.script modal add -->
 <script>
@@ -241,13 +214,13 @@ include_once("../../Home/db_connect.php");
                 document.getElementById("showEmp").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "../../toey/getUser_detail.php?id="+str, true);
+            xhttp.open("GET", "getUser_detail.php?id="+str, true);
             xhttp.send();
         }
 </script>	
 <!-- /.script Detail Employee -->  
 
-<!-- /.script showdata in modal -->   
+<!-- /.script Edit in modal -->   
 <script>
         function showUser(str) {
         var xhttp;    
@@ -261,11 +234,11 @@ include_once("../../Home/db_connect.php");
                 document.getElementById("txtHint").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "../../toey/getUser.php?id="+str, true);
+            xhttp.open("GET", "getUser.php?id="+str, true);
             xhttp.send();
             }
 </script>
-<!-- /.script showdata in modal -->   
+<!-- /.script Edit in modal -->   
 
 <!-- /.script  create data and popup-->
 <script>          
@@ -276,7 +249,7 @@ include_once("../../Home/db_connect.php");
                   $('#upload_form').on('submit', function(e){  
                        e.preventDefault();  
                        $.ajax({  
-                            url :"../../toey/create_user.php",  
+                            url :"create_user.php",  
                             method:"POST",  
                             data:new FormData(this),  
                             contentType:false,  
@@ -326,7 +299,7 @@ include_once("../../Home/db_connect.php");
                   $('#update_form').on('submit', function(e){  
                        e.preventDefault();  
                        $.ajax({  
-                            url :"../../toey/update_user.php",  
+                            url :"update_user.php",  
                             method:"POST",  
                             data:new FormData(this),  
                             contentType:false,  
@@ -377,7 +350,7 @@ $(document).ready(function(){
     }).then (function (isConfirm){
     if (isConfirm) {
         $.ajax({
-                    url: "../../toey/delete_user.php", 
+                    url: "delete_user.php", 
                     type: "POST",
                     data: {"x": str},
                     success: function(result){
@@ -418,7 +391,7 @@ $(document).ready(function()
                 {
                         $.ajax(
                         {
-                        url:"../../toey/search_user.php",
+                        url:"search_user.php",
                         method:"POST",
                         data:{query:query},
                         success:function(data)
@@ -445,7 +418,8 @@ $(document).ready(function()
 <!-- script search -->
 <!-- script upload -->
 <script>
-function namepic(){
+function namepic()
+{
     var name = document.getElementById('select_image');
       var x = name.files.item(0).name;
       document.getElementById('emp_pic').value = x;

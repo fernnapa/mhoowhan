@@ -1,6 +1,6 @@
 <?php
-include("../../Home/db_connect.php");
-include("../../toey/datatable.php");
+include("../../db_connect.php");
+include("datatable.php");
 
 $output = '';
 if(isset($_POST["query"]))
@@ -43,7 +43,7 @@ if(mysqli_num_rows($result) > 0)
 <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
 <thead>
 <tr >
-<td style="text-align: center;"></td>
+
 <th style="text-align: center;font-family:Prompt;"><b>Barcode</b></th>
 <th style="text-align: center;font-family:Prompt;"><b>Serial Number</b></th>
 <th style="text-align: center;font-family:Prompt;"><b>TOR</b></th>
@@ -64,7 +64,6 @@ if(mysqli_num_rows($result) > 0)
 
   $output .= '
    <tr>
-   <td><img src="equipment_pic/'.$row['eq_pic'].'" style="width:90px;height:80px;"" / class="img-md rounded w3-card-2"></td>
    <td style="text-align:left;font-family:Prompt;">'.$row['eq_barcode'].'</td>
    <td style="text-align:left;font-family:Prompt;">'.$row['eq_serial'].'</td>
    <td style="text-align:left;font-family:Prompt;">'.$tor_name.'</td>

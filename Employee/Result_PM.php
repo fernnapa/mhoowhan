@@ -1,6 +1,6 @@
 <?php  
 session_start();
-include("../Home/db_connect.php");
+include("../db_connect.php");
 $_SESSION['chooseEq'] = array();
 ?>  
 <!DOCTYPE html>
@@ -121,7 +121,10 @@ $_SESSION['chooseEq'] = array();
                             ON permit.pm_dep = department.dep_id
                             WHERE pm_status= 8 OR pm_status= 10 OR pm_status= 11";
                          $result = mysqli_query($conn, $sql);
-                       while($data = mysqli_fetch_array($result)):
+                         $num_rows = mysqli_num_rows($result);        
+                         if($num_rows > 0){
+                       while($data = mysqli_fetch_array($result))
+                       {
                          $id = $data['pm_id'];
                          $stn = $data['status_name'];
 
@@ -158,7 +161,11 @@ $_SESSION['chooseEq'] = array();
                         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_DC(<?php echo $data['pm_id']; ?>)">ดูรายละเอียด</button></td>
                     <?php } ?>
                         </tr>
-                       <?php endwhile; ?>
+                    <?php } ?>
+
+                    <?php }else{ ?>
+                        <td style="text-align: center;" colspan="7" ><font color="#FF3333"; size="2px;" ><b>ไม่มีผลการดำเนินการรายการยืมครุภัณฑ์</b></font></td>
+                    <?php } ?>
                 </table>
                 </form>
                 </div>

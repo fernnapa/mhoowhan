@@ -25,7 +25,7 @@
   <style>
             body{
                 font-family: 'Kanit', sans-serif;
-                background-image: url("../img/auth/login_1.jpg");
+                background-image: url("../images/bg/login_1.jpg");
                 height: auto; 
                 background-size: cover;
             }
@@ -48,7 +48,7 @@
                 </header><br/>
                 <form name="frmlogin"  method="post" action="check_log.php">
                 <div class="form-group">
-                  <label class="label"><b>Username</b></label>
+                  <label class="label" font style="font-family:Prompt; font-size: 15px;"><b>Username</b></label>
                   <div class="input-group">
                     <input type="text" class="form-control" id="emp_user" name="emp_user" placeholder="Username" required>
                     <div class="input-group-append">
@@ -59,7 +59,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="label"><b>Password</b></label>
+                  <label class="label" style="font-family:Prompt;font-size: 15px;"><b>Password</b></label>
                   <div class="input-group">
                     <input type="password" class="form-control" id="emp_pass" name="emp_pass"  placeholder="*********" required>
       
