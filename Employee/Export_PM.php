@@ -33,7 +33,8 @@ include("../db_connect.php");
     <title>ดาวน์โหลดรายการยืม-คืนครุภัณฑ์</title>
         <body >
 <!-- Modal ดูข้อมูลPM -->
-        
+<div class="card">
+      <div class="card-body">
 
                 <br>       
                     <div class="container" > 
@@ -144,8 +145,8 @@ include("../db_connect.php");
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
-
+  </div>
+  </div>
 
 
 

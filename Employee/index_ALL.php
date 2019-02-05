@@ -41,7 +41,8 @@ $_SESSION['chooseEq'] = array();
 <title>รายการยืม-คืนครุภัณฑ์</title>
 
 <body>
-
+<div class="card">
+      <div class="card-body">
 <!-- Modal ดูข้อมูลPM -->
 <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewPM">
                             <div class="modal-dialog a" role="document">
@@ -105,7 +106,7 @@ $_SESSION['chooseEq'] = array();
                     <table border="0" align="right"  >
                     <tr>
                     <td>เลือกจาก</td>
-                    <td><select name="search_text" id="search_text" style="width: 100%" class="form-control">
+                    <td><select name="search_text" id="search_text" style="width: 100%; font-family:Prompt; font-size: 15px;  " class="form-control">
                                                             <option value="ทั้งหมด">สถานะทั้งหมด</option>
                                             <?php
                                                     $type = "SELECT * FROM a_status WHERE status_id = 3 OR status_id = 5 OR status_id = 6 OR status_id = 7 OR status_id = 8 OR status_id = 10 OR status_id = 11 OR status_id = 12 ORDER BY status_id";
@@ -134,7 +135,6 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align: center;">สถานะ</td>
                         <td style="text-align: center;">จัดการ</td>
                         <td style="text-align: center;">รายละเอียด</td>
-                        <td></td>
 
                    </tr>
                     </thead>
@@ -297,7 +297,8 @@ $_SESSION['chooseEq'] = array();
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
+  </div>
+   </div>
 
 
 
@@ -307,7 +308,11 @@ $_SESSION['chooseEq'] = array();
 <script>
 $(document).ready(function(){  
         $('#tableshow').DataTable({
-        "searching": true
+        "searching": true,
+        "oLanguage": {
+        "sSearch": "ค้นหา : "
+        },
+        retrieve: true,
 });  
  }); 
 </script>
@@ -343,7 +348,7 @@ $(document).ready(function(){
                 document.getElementById("ViewPM").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "../mint/getAll_PM_wait.php?id="+str, true);
+            xhttp.open("GET", "getAll_PM_wait.php?id="+str, true);
             xhttp.send();
             }
 </script>
@@ -361,7 +366,7 @@ $(document).ready(function(){
                 document.getElementById("ViewPM").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "../mint/getAll_PM_notpass.php?id="+str, true);
+            xhttp.open("GET", "getAll_PM_notpass.php?id="+str, true);
             xhttp.send();
             }
 </script>

@@ -41,8 +41,9 @@ include("../db_connect.php");
 <?php include("menu/navbar_emp.php"); ?>
 <title>ยืนยันการยืม-คืนครุภัณฑ์</title>
 <body>
-  
-<div class="modal fade" tabindex="-1" role="dialog" id="ModalDep">
+        <div class="card">
+            <div class="card-body">
+                <div class="modal fade" tabindex="-1" role="dialog" id="ModalDep">
                     <div class="modal-dialog a" role="document" style="width:100%";>
                     <div class="modal-content">
                     <div class="card">
@@ -88,7 +89,7 @@ include("../db_connect.php");
 
 
                          
-                <div class="container w3-card-2 w3-round" style="width:100% " > 
+                <div class="container" style="width:100% " > 
                 <br>
                     <form id="Add_PM"> 
                     <table border="0" align="center" style="width:100%;" class="w3-teal">
@@ -156,6 +157,7 @@ include("../db_connect.php");
                     </div>
                     </form>
                  </div>
+                 <br>
                  <br>
                     <div class="container w3-card-2 w3-round" style="width:100% " > 
                     <br>
@@ -244,8 +246,8 @@ include("../db_connect.php");
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
-  
+  </div>
+  </div>
 </body>
 </html>
 

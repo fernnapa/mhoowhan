@@ -30,6 +30,8 @@ include("../db_connect.php");
     <?php include("menu/navbar_emp.php"); ?>
     <title>แบบฟอร์มการจัดสรรครุภัณฑ์คอมพิวเตอร์</title>
         <body >
+        <div class="card">
+        <div class="card-body">
 
 
         <?php 
@@ -200,7 +202,8 @@ include("../db_connect.php");
                         window.print()
                         }
                     </script> -->
-             
+                    </div>
+                    </div>
              </body>
        </html>
                     

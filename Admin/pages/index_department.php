@@ -40,7 +40,8 @@ include("../../db_connect.php");
 
                 <div class="modal-body">
                     <form id="form2" method="POST">
-                        <table style="width:100%" align="center" id="txtHint" border="0"  class="table-responsive"></table>
+                        <table style="width:100%" align="center" id="txtHint" border="0" >
+                        </table>
                     </form>
                 </div>
 
@@ -122,7 +123,9 @@ include("../../db_connect.php");
                     type: "POST",
                     data: $("#form2").serialize(),
                     success: function(result){
+                        // alert(result);
                         if(result == 1){
+                            
                             swal( {
                                 title: "อัพเดทข้อมูลสำเร็จ",
                                 icon: "success",

@@ -11,8 +11,6 @@ include("../../db_connect.php");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>ข้อมูลครุภัณฑ์คอมพิวเตอร์</title>
   <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
-
-  
   <?php include("link.php"); ?>
 
 </head>
@@ -32,7 +30,7 @@ include("../../db_connect.php");
                         </div>
                         <div class="modal-body">
                             <form id="Edit_Eq" method="POST">
-                                <table style="width:100%" align="center" id="getEq" border="1"></table>
+                                <table style="width:100%" align="center" id="getEq" border="0"></table>
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -50,23 +48,29 @@ include("../../db_connect.php");
     <!-- /.table add ครุภัณฑ์ -->
         
         <form id="Add_eq" method="POST">
-            <table   align="center" style="width:100%; font-family:Prompt;" border="1">
-                <tr>
-                    <th colspan="6"><h3 style="text-align:center; font-family:Prompt;" class="w3-teal"><b>เพิ่มข้อมูลครุภัณฑ์</b></h3></th>
+        <table align="center" style="width:100%; font-family:Prompt;" border="0" class="w3-teal ">
+        <tr>
+            <th><p><h3 style="text-align:center; font-family:Prompt;" class="w3-teal"><b>ข้อมูลครุภัณฑ์</b></h3></th>
+                </tr>
+        </table>
+        <br>
+            <table   align="center" style="width:70%; font-family:Prompt;" border="1" class="table-bordered">
+            <tr>
+            <td colspan="2" style="text-align: center; font-family:Prompt;"><b>เพิ่มข้อมูลครุภัณฑ์</b></td>
                 </tr>
                 <tr>
-                    <th style="text-align: right;" >Barcode : </th>
+                        <th style="text-align: right;" >Barcode </th>
                     <th><input type="text" name="eq_barcode" class="form-control name_list" /></th>
                 </tr>
                 <tr>
-                    <th style="text-align: right;" >SERIAL NO :</th>
+                    <th style="text-align: right;" >SERIAL NO</th>
                     <th><input type="text" name="eq_sr" class="form-control name_list" /></th>
                 </tr>
                 <tr>
                 
                 </tr>
                 <tr>
-                    <th style="text-align: right;" >สัญญา : </th>
+                    <th style="text-align: right;" >สัญญา </th>
                     <th><select name="eq_con" id="eq_con" class="form-control" onchange="filterType(this.value)">
                             <option value="null">เลือกสัญญา</option>
                             <?php
@@ -79,7 +83,7 @@ include("../../db_connect.php");
                     </select></th>
                 </tr>
                 <tr>
-                    <th style="text-align: right;" >ประเภทครุภัณฑ์ : </th>
+                    <th style="text-align: right;" >ประเภทครุภัณฑ์ </th>
                     <th id="getdltype"><select name="eq_type" id="eq_type"  class="form-control" >
                         <option value="null">เลือกประเภท</option>           
                         <option value="<?php echo $data['con_name']; ?>"><?php echo $data['con_name']; ?></option>
@@ -93,15 +97,37 @@ include("../../db_connect.php");
         </form>
         <p><br>
     <!-- /.table add ครุภัณฑ์ -->
-    <br><br>
-    
+  
     
     <!-- ช่อง Search และ Datateble -->
     <div style="width:100%;" class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default"><b>Search :</b></span>
-        </div>
-        <input type="text" name="search_text" id="search_text" class="form-control" placeholder="ระบุคำที่ต้องการค้นหา">
+    <table border="0" align="center" style="width:100%;" >
+                    <tr>
+                    <td><select name="search_text" id="search_text" style="width: 100%" class="form-control">
+                                                            <option value="ทั้งหมด">ประเภททั้งหมด</option>
+                                            <?php
+                                                    $type = "SELECT * FROM type_eq ORDER BY type_name";
+                                                    $result = mysqli_query($conn, $type);
+                                                    while($data = mysqli_fetch_array($result)):
+                                             ?>
+                                                    <option value="<?php echo $data['type_name']; ?>"><?php echo $data['type_name']; ?></option>
+                                            <?php endwhile;?>
+                                                </select></td>
+                    <td><select name="search_text2" id="search_text2" style="width: 100%" class="form-control">
+                                                            <option value="ทั้งหมด">สถานะทั้งหมด</option>
+                                            <?php
+                                                    $cont = "SELECT * FROM a_status  
+                                                    WHERE status_id = 1 OR status_id = 2 OR status_id = 3 OR status_id = 5 OR status_id = 6 OR status_id = 7 OR status_id = 8 OR status_id = 10 OR status_id = 11
+                                                    ORDER BY status_id";
+                                                    $result2 = mysqli_query($conn, $cont);
+                                                    while($data = mysqli_fetch_array($result2)):
+                                             ?>
+                                                    <option value="<?php echo $data['status_id']; ?>"><?php echo $data['status_name']; ?></option>
+                                            <?php endwhile;?>
+                                                </select></td>
+
+                    </tr>
+                    </table>
     </div>
     <div class="table-responsive" id="result">
         <p></p>
@@ -111,8 +137,23 @@ include("../../db_connect.php");
 
     
     <?php include ("footer.php"); ?>
-</body>
-</html>
+    <script>
+$(document).ready(function(){  
+        $('#tableshow').DataTable({
+        "searching": true,
+        "language": {
+            "lengthMenu": "ข้อมูลเเสดง _MENU_ ต่อหน้า",
+            "info": " _PAGE_ หน้าจาก _PAGES_",
+            "sSearch": "ค้นหา"
+
+        },
+  
+      retrieve: true,
+
+      
+});  
+ }); 
+</script>
 
 
 
@@ -377,7 +418,74 @@ include("../../db_connect.php");
             xhttp.send();
             }
     </script>
+<script>
+$(document).ready(function()
+{
+        load_data();
+                function load_data(a, x)
+                {
+                        $.ajax(
+                        {
+                        url:"search_eq.php",
+                        method:"POST",
+                        data:{'type':a, 'b':x},
+                        success:function(data)
+                        {
+                            $('#result').html(data);
+                        }
+                        }
+                            );
+                }
+                $('#search_text').change(function()
+                {
+                    var search = $(this).val();
+                    var search2 = $('#search_text2').val();
+                    if(search != '' && search2 != '')
+                    {
+                        load_data(search, search2);
+                    }else
+                    {
+                        load_data();
+                    }
+                }
+                );
+});
+</script>
+
+<script>
+$(document).ready(function()
+{
+        load_data();
+                function load_data(b, x)
+                {
+                        $.ajax(
+                        {
+                        url:"search_eq.php",
+                        method:"POST",
+                        data:{'status':b, 'b':x},
+                        success:function(data)
+                        {
+                            $('#result').html(data);
+                        }
+                        }
+                            );
+                }
+                $('#search_text2').change(function()
+                {
+                    var search2 = $(this).val();
+                    var search = $('#search_text').val();
+                    if(search2 != '' && search != '')
+                    {
+                        load_data(search2, search);
+                    }else
+                    {
+                        load_data();
+                    }
+                }
+                );
+});
+</script>
 
 
-
-  
+</body>
+</html>

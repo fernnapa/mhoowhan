@@ -38,7 +38,8 @@ $_SESSION['chooseEq'] = array();
 
 <body>
   
-
+                <div class="card">
+                    <div class="card-body">
 
                     <div class="container "> 
                     
@@ -58,7 +59,7 @@ $_SESSION['chooseEq'] = array();
 
                     <table border="0" align="center" style="width:100%;" >
                     <tr>
-                    <td><select name="search_text" id="search_text" style="width: 100%" class="form-control">
+                                                    <td><select name="search_text" id="search_text" style="width: 100%; font-family:Prompt; font-size: 15px;" class="form-control">
                                                             <option value="ทั้งหมด">ประเภททั้งหมด</option>
                                             <?php
                                                     $type = "SELECT * FROM type_eq ORDER BY type_name";
@@ -68,7 +69,7 @@ $_SESSION['chooseEq'] = array();
                                                     <option value="<?php echo $data['type_name']; ?>"><?php echo $data['type_name']; ?></option>
                                             <?php endwhile;?>
                                                 </select></td>
-                    <td><select name="search_text2" id="search_text2" style="width: 100%" class="form-control">
+                                                    <td><select name="search_text2" id="search_text2" style="width: 100%; font-family:Prompt; font-size: 15px;" class="form-control">
                                                             <option value="ทั้งหมด">สัญญาทั้งหมด</option>
                                             <?php
                                                     $cont = "SELECT * FROM contract ORDER BY con_name";
@@ -150,7 +151,8 @@ $_SESSION['chooseEq'] = array();
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
+  </div>
+  </div>
   
 </body>
 </html>

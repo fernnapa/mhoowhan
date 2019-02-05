@@ -11,6 +11,12 @@ $_SESSION['chooseEq'] = array();
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <?php include("menu/link.php"); ?>     
     <style>
+
+            .modal-dialog.a{
+                max-width : 650px;
+                max-height: 550px;
+            }
+
             table, th, td    {
             }
             td {
@@ -30,27 +36,60 @@ $_SESSION['chooseEq'] = array();
     <?php include("menu/navbar_emp.php"); ?>
     
         <body >
+        <div class="card">
+      <div class="card-body">
 <!-- Modal ดูข้อมูลPM -->
 <title>ผลการดำเนินการการจัดสรรครุภัณฑ์</title>
         <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewAC">
-                            <div class="modal-dialog " role="document">
+                            <div class="modal-dialog a" role="document">
                             <div class="modal-content">
+                            <div class="card">
+                             <div class="card-body">
                             <div class="modal-header">
-                            <h4 class="modal-title"><b>ข้อมูลการจัดสรรครุภัณฑ์</b></h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" style="font-family:Prompt;"><b>ข้อมูลการจัดสรรครุภัณฑ์</b></h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                                     <div class="modal-body table-responsive">
-                                            <form id="ViewAC" >
-                                            </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
-                                        </div>
+                                            <form id="ViewAC" ></form> 
+                                    </div>
+                                    <div class="modal-footer">
+                                          <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
+                                    </div>
 
                             </div>
                             </div>
                             </div>
-<!-- Modal บอกเหตุผที่ไม่ให้ผ่าน -->
+                            </div>
+        </div>
+       
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewAC">
+                            <div class="modal-dialog " role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" style="font-family:Prompt;"><b>ข้อมูลการจัดสรรครุภัณฑ์</b></h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                                    <div class="modal-body table-responsive">
+                                            <form id="ViewAC_DC" ></form> 
+                                    </div>
+                                    <div class="modal-footer">
+                                          <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
+                                    </div>
+
+                            </div>
+                            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+<!-- Modal บอกเหตุผลที่ไม่ให้ผ่าน -->
             <div class="modal fade" tabindex="-1" role="dialog" id="ModalNote">
                 <div class="modal-dialog" role="document">
                 <div class="modal-content w3-theme-l2" >
@@ -77,7 +116,7 @@ $_SESSION['chooseEq'] = array();
                                 </div>
                                 </div>
 <!-- Modal บอกเหตุผที่ไม่ให้ผ่าน -->
-                <br>       
+                    
                     <div class="container" > 
                     <br>
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
@@ -93,13 +132,13 @@ $_SESSION['chooseEq'] = array();
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
                     <tr >
-                        <td style="text-align: center;">จุดประสงค์การจัดสรร</td>
-                        <td style="text-align: center;">ชื่อผู้เช่ายืม</td>
-                        <td style="text-align: center;">หน่วยงาน</td>
-                        <td style="text-align: center;">พนักงานจัดสรร</td>
-                        <td style="text-align: center;">สถานะ</td>
-                        <td style="text-align: center;">Action</td>
-                        <td style="text-align: center;"></td>
+                        <td style="text-align: center; font-weight: bold;">จุดประสงค์การจัดสรร</td>
+                        <td style="text-align: center; font-weight: bold;">ชื่อผู้เช่ายืม</td>
+                        <td style="text-align: center; font-weight: bold;">หน่วยงาน</td>
+                        <td style="text-align: center; font-weight: bold;">พนักงานจัดสรร</td>
+                        <td style="text-align: center; font-weight: bold;">สถานะ</td>
+                        <td style="text-align: center; font-weight: bold;">จัดการ</td>
+                        <td style="text-align: center; font-weight: bold;">รายละเอียด</td>
 
                    </tr>
                     </thead>
@@ -128,8 +167,8 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['ac_empid']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
 
-                        <td><button type="button" name="idEdit" class="btn btn-warning btn-block" value="<?php echo $data['ac_id']; ?>" onclick="getidTOedit(this)">เเก้ไขรายการ</button></td>
-                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC(<?php echo $data['ac_id']; ?>)">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="idEdit" class="btn btn-warning btn-block" value="<?php echo $data['ac_id']; ?>" onclick="getidTOedit(this)" style="font-family:Prompt;">เเก้ไขรายการ</button></td>
+                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC(<?php echo $data['ac_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
 
                     <?php  } if($stn == "ไม่อนุมัติ"){ ?>
                                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
@@ -138,8 +177,8 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['ac_empid']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
 
-                        <td><button type="button" name="submitviewRS" id="submitviewNopass" class="btn btn-danger btn-block"  value="<?php echo $id; ?>" onclick="notpass(this)">ยกเลิกรายการ</button></td>
-                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC(<?php echo $data['ac_id']; ?>)">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="submitviewRS" id="submitviewNopass" class="btn btn-danger btn-block"  value="<?php echo $id; ?>" onclick="notpass(this)" style="font-family:Prompt;">ยกเลิกรายการ</button></td>
+                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC(<?php echo $data['ac_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
 
                     <?php } if($stn == "อนุมัติ"){ ?>
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
@@ -148,13 +187,13 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['ac_empid']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                     
-                        <td><button type="button" name="submitviewRS" id="submitviewRS" class="btn btn-success btn-block"  value="<?php echo $id; ?>" onclick="pass(this)">ทำการจัดสรร</button></td>
-                        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC(<?php echo $data['ac_id']; ?>)">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="submitviewRS" id="submitviewRS" class="btn btn-success btn-block"  value="<?php echo $id; ?>" onclick="pass(this)" style="font-family:Prompt;">ทำการจัดสรร</button></td>
+                        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC(<?php echo $data['ac_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
                     <?php } ?>
                         </tr>
                     <?php } ?>
                     <?php }else{ ?>
-                        <td style="text-align: center;" colspan="7" ><font color="#FF3333"; size="2px;" ><b>ไม่มีผลการดำเนินการรายการจัดสรรครุภัณฑ์</b></font></td>
+                        <td style="text-align: center;" colspan="7" ><font color="#FF3333"; size="3px;" ><b>ไม่มีผลการดำเนินการรายการจัดสรรครุภัณฑ์</b></font></td>
                     <?php } ?>
                 </table>
                 </form>
@@ -184,7 +223,8 @@ $_SESSION['chooseEq'] = array();
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
+  </div>
+  </div>
 
 
 
@@ -202,7 +242,12 @@ $_SESSION['chooseEq'] = array();
 <script>
 $(document).ready(function(){  
         $('#tableshow').DataTable({
-        "searching": true
+        "searching": true,
+
+        "oLanguage": {
+        "sSearch": "ค้นหา : "
+        },
+        retrieve: true,
 });  
  }); 
 </script>
@@ -229,13 +274,13 @@ $(document).ready(function(){
             function showAC_DC(str) {
             var xhttp;    
             if (str == "") {
-                document.getElementById("ViewAC").innerHTML = "";
+                document.getElementById("ViewAC_DC").innerHTML = "";
                 return;
             }
             xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("ViewAC").innerHTML = this.responseText;
+                document.getElementById("ViewAC_DC").innerHTML = this.responseText;
                 }
             };
             xhttp.open("GET", "getAC_DC_dt.php?id="+str, true);
@@ -252,7 +297,7 @@ $(document).ready(function(){
           $(document).ready(function(){
                 $.ajax({
 
-                        url: '../mint/Result_pass_AC.php',
+                        url: 'Result_pass_AC.php',
                         type: 'POST',
                         data: {'id':a},
                         success:function(res){
@@ -298,7 +343,7 @@ $(document).ready(function(){
           $(document).ready(function(){
                 $.ajax({
 
-                        url: '../mint/Result_Notpass_AC.php',
+                        url: 'Result_Notpass_AC.php',
                         type: 'POST',
                         data: {'id':a},
                         success:function(res){

@@ -33,7 +33,8 @@ include("../db_connect.php");
 
     <title>ดาวน์โหลดไฟล์การจัดสรรครุภัณฑ์คอมพิวเตอร์</title>
         <body >
-
+        <div class="card">
+             <div class="card-body">
                 <br>       
                     <div class="container" > 
                     <br>
@@ -147,7 +148,8 @@ include("../db_connect.php");
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
+  </div>
+  </div>
 
 
 

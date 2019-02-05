@@ -95,7 +95,7 @@ if(mysqli_num_rows($result) > 0)
 <form id="form3"> 
 <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " class="hover" >
 <thead>
-<tr style="font-weight: bold;">
+<tr style="font-weight: bold; ">
 
                       
 <td style="text-align: center;">ผู้ยืม</td>

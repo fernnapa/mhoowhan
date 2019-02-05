@@ -36,10 +36,14 @@ session_start();
 
     <title>แบบฟอร์มการจัดสรร</title>
         <body >
+        <div class="card">
+        <div class="card-body">
 <!-- Modal ดูข้อมูลPM -->
         <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewAC">
                             <div class="modal-dialog a" role="document">
                             <div class="modal-content">
+                            <div class="card">
+                            <div class="card-body">
                             <div class="modal-header">
                             <h4 style="font-family:Prompt;" class="modal-title"><b>รายการจัดสรรครุภัณฑ์</b></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -49,17 +53,18 @@ session_start();
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                          <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                                          <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
                                         </div>
 
                             </div>
                             </div>
                             </div>
+                            </div>
+                            </div>
 
 
-                    
+                
                 <div class="container" > 
-                   
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
                     <td><h3 style="font-family:Prompt;"><b>รายการจัดสรรครุภัณฑ์</b></h3></a></button></td>
@@ -93,7 +98,7 @@ session_start();
                     <tr >
                         <td style="text-align: center;">จุดประสงค์การจัดสรร</td>
                         <td style="text-align: center;">ชื่อผู้เช่ายืม</td>
-                        <td style="text-align: center;">หน่วปปปปยงาน</td>
+                        <td style="text-align: center;">หน่วยงาน</td>
                         <td style="text-align: center;">พนักงานจัดสรร</td>
                         <td style="text-align: center;">สถานะ</td>
                         <td style="text-align: center;">รายละเอียด</td>
@@ -231,34 +236,23 @@ session_start();
                 </div>
                 <br>
                 </div>
-
-
-
-
-
-                
-                        
+                     
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="container-fluid clearfix">
           <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
           </div>
         </footer>
-        <!-- partial -->
       </div>
-      <!-- main-panel ends -->
     </div>
-    <!-- page-body-wrapper ends -->
   </div>
-  <!-- container-scroller -->
-<!-- /.data -->
-<!-- /.script modal add -->
+  </div>
+  </div>
+
 
 
 <!-- /.data -->
@@ -266,7 +260,12 @@ session_start();
 <script>
 $(document).ready(function(){  
         $('#tableshow').DataTable({
-        "searching": true
+        "searching": true,
+
+        "oLanguage": {
+        "sSearch": "ค้นหา : "
+        },
+        retrieve: true,
 });  
  }); 
 </script>
@@ -302,7 +301,7 @@ $(document).ready(function(){
                 document.getElementById("ViewAC").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "getAC_DC_dt.php?id="+str, true);
+            xhttp.open("GET", "../getAC_DC_dt.php?id="+str, true);
             xhttp.send();
             }
 </script>

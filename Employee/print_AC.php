@@ -77,8 +77,8 @@ include("../db_connect.php");
                   
                     </div>
                     <br>
-                    <div class="container" style="width:90% " > 
-                    <table border="0" align="center" style="width:90%;" >
+                    <div class="container" style="width:100% " > 
+                    <table border="0" align="center" style="width:100%;" >
                     <tr>
                     <td>แบบฟอร์มการจัดสรรเครื่องคอมพิวเตอร์</a></button></td>
                     </tr>

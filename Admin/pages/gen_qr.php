@@ -20,12 +20,40 @@ include("../../db_connect.php");
 
 
    
-    
+<table align="center" style="width:100%; font-family:Prompt;" border="0" class="w3-teal ">
+        <tr>
+            <th><p><h3 style="text-align:center; font-family:Prompt;" class="w3-teal"><b>สร้าง QR-code</b></h3></th>
+                </tr>
+        </table>
+        <br>
     <div style="width:100%;" class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default"><b>Search :</b></span>
-        </div>
-        <input type="text" name="search_text" id="search_text" class="form-control" placeholder="ระบุคำที่ต้องการค้นหา">
+    <table border="0" align="center" style="width:100%;" >
+                    <tr>
+                    <td><select name="search_text" id="search_text" style="width: 100%" class="form-control">
+                                                            <option value="ทั้งหมด">สัญญาทั้งหมด</option>
+                                            <?php
+                                                    $cont = "SELECT * FROM contract ORDER BY con_name";
+                                                    $result = mysqli_query($conn, $cont);
+                                                    while($data = mysqli_fetch_array($result)):
+                                             ?>
+                                                    <option value="<?php echo $data['con_name']; ?>"><?php echo $data['con_name']; ?></option>
+                                            <?php endwhile;?>
+                                                </select></td>
+                    <td><select name="search_text2" id="search_text2" style="width: 100%" class="form-control">
+                                                            <option value="ทั้งหมด">สถานะทั้งหมด</option>
+                                            <?php
+                                                    $cont = "SELECT * FROM a_status  
+                                                    WHERE status_id = 1 OR status_id = 2 OR status_id = 3 OR status_id = 5 OR status_id = 6 OR status_id = 7 OR status_id = 8 OR status_id = 10 OR status_id = 11
+                                                    ORDER BY status_id";
+                                                    $result2 = mysqli_query($conn, $cont);
+                                                    while($data = mysqli_fetch_array($result2)):
+                                             ?>
+                                                    <option value="<?php echo $data['status_id']; ?>"><?php echo $data['status_name']; ?></option>
+                                            <?php endwhile;?>
+                                                </select></td>
+
+                    </tr>
+                    </table>
     </div>
     <div class="table-responsive" id="result">
         <p></p>
@@ -44,32 +72,73 @@ include("../../db_connect.php");
         }); 
     </script>
 
-
-    <script>
-        $(document).ready(function(){
-            load_data();
-                function load_data(query)
+<script>
+$(document).ready(function()
+{
+        load_data();
+                function load_data(a, x)
                 {
-                    $.ajax({
+                        $.ajax(
+                        {
                         url:"search_qr.php",
                         method:"POST",
-                        data:{query:query},
-                        success:function(data){
+                        data:{'con':a, 'c':x},
+                        success:function(data)
+                        {
                             $('#result').html(data);
                         }
-                    });
+                        }
+                            );
                 }
-                $('#search_text').keyup(function()
+                $('#search_text').change(function()
                 {
                     var search = $(this).val();
-                    if(search != ''){
-                        load_data(search);
-                    }else{
+                    var search2 = $('#search_text2').val();
+                    if(search != '' && search2 != '')
+                    {
+                        load_data(search, search2);
+                    }else
+                    {
                         load_data();
                     }
-                });
-        });
-    </script>       
+                }
+                );
+});
+</script>
+
+<script>
+$(document).ready(function()
+{
+        load_data();
+                function load_data(b, x)
+                {
+                        $.ajax(
+                        {
+                        url:"search_qr.php",
+                        method:"POST",
+                        data:{'status':b, 'b':x},
+                        success:function(data)
+                        {
+                            $('#result').html(data);
+                        }
+                        }
+                            );
+                }
+                $('#search_text2').change(function()
+                {
+                    var search2 = $(this).val();
+                    var search = $('#search_text').val();
+                    if(search2 != '' && search != '')
+                    {
+                        load_data(search2, search);
+                    }else
+                    {
+                        load_data();
+                    }
+                }
+                );
+});
+</script>     
     
     
     <script>          

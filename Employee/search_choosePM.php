@@ -11,8 +11,9 @@ if(isset($_POST["query"]) )
         $search = mysqli_real_escape_string($conn, $_POST["query"]);
         $search2 = mysqli_real_escape_string($conn, $_POST["query2"]);
 
-        // echo $search;
-        // echo $search2;
+        // // echo $search;
+        // // echo $search2;
+
         // return;
     if($search != 'ทั้งหมด')
     {

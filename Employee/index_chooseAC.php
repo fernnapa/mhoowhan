@@ -32,7 +32,8 @@ $_SESSION['chooseEq'] = array();
     <title>จัดสรรครุภัณฑ์</title>
         <body>
                       
-                   
+            <div class="card">
+                <div class="card-body"> 
                     
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
@@ -155,6 +156,8 @@ $_SESSION['chooseEq'] = array();
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
+  </div>
+  </div>
 
 
 

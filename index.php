@@ -70,7 +70,7 @@
 							<ul>
 								<li class="active"><a href="index.php">Home</a></li>
 								<li><a href="report.php">Report</a></li>
-								<li><a href="map.php">Map</a></li>
+								<li><a href="Map_All.php">Map</a></li>
 								<li><a href="aboutus.php">About Me</a></li>
 								<li><button type="button" class="btn btn-warning btn-md" onclick="window.location='Home/login.php'">
           										<span class="glyphicon glyphicon-log-in"></span> Log In
@@ -102,7 +102,7 @@
 				   		</div>
 			   		</div>
 			   	</li>
-			   	<li style="background-image: url(images/img05.jpg);">
+			   	<li style="background-image: url(images/img06.jpg);">
 			   		<div class="overlay"></div>
 			   		<div class="container">
 			   			<div class="row">
@@ -173,7 +173,7 @@
 					<div id="div-1" class="col-70">   
 					<div class="container table table-striped table-bordered">
                		<h3 align="center" style="font-family:Prompt;">การติดตามการใช้งานครุภัณฑ์ของศูนย์คอมพิวเตอร์</h3>  
-                	<hr/><br /><br />
+                	<hr/>
 
 					<div class="table-responsive" id="result" style="font-family:Prompt;">
                     <p></p>

@@ -36,7 +36,7 @@ session_start();
 
     <title>ยืนยันการจัดสรรครุภัณฑ์</title>
         <body>
-
+       
         <div class="modal fade" tabindex="-1" role="dialog" id="ModalDep">
                     <div class="modal-dialog a" role="document" style="width:100%";>
                     <div class="modal-content">
@@ -79,8 +79,9 @@ session_start();
                     </div>
                     </div>
                 </div>
-
-                <div class="container w3-card-2 w3-round" style="width:100% " > 
+                <div class="card">
+                    <div class="card-body">
+                     <div class="container " style="width:100% " > 
                     <form id="Add_AC"> 
                     <br>
                     <table border="0" align="center" style="width:100%;" class="w3-teal">
@@ -229,6 +230,8 @@ session_start();
       <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->
+  </div>
+  </div>
   </div>
   <!-- container-scroller -->
 <!-- /.data -->

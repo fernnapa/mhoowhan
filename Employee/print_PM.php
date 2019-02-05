@@ -98,9 +98,9 @@ include("../db_connect.php");
                     
                     </div>
                     <br>
-                    <div class="container" style="width:90% " > 
+                    <div class="container" style="width:100% " > 
 
-                    <table border="0" align="center" style="width:100%" >
+                    <table border="0" align="center" style="width:90%" >
                     <tr>
                     <td style ="width:20%"><img src="img/sut.png" width="100%" ></td>
                     <td style ="width:80%">ใบยืมครุภัณฑ์คอมพิวเตอร์และอุปกรณ์ต่อพ่วง
@@ -109,7 +109,7 @@ include("../db_connect.php");
                     </tr>
                     </table>
                     </div>
-                    <table border="1" style="width:80%; font-size:13px;" align="center" >
+                    <table border="1" style="width:90%; font-size:13px;" align="center" >
                                         <tr>
                                         <td colspan="4" border="0"><div align='left'>เรียน ผู้อำนวยการศูนย์คอมพิวเตอร์<br>
                                         ข้าพเจ้า  &emsp;<?php echo $pm_fname; ?>&nbsp;<?php echo $pm_lname; ?> &emsp;

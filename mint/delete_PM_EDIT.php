@@ -1,5 +1,5 @@
 <?php 
-include_once 'db_connect.php';
+include("../db_connect.php");
 
     if(isset($_POST['eqid'])){
 

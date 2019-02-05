@@ -6,7 +6,6 @@ include("../db_connect.php");
 if(isset($_GET['id'])){
 
     $id = $_GET['id'];
-    
 }
 
 $sql = "SELECT * FROM permit
@@ -14,26 +13,29 @@ $sql = "SELECT * FROM permit
     ON permit.pm_status = a_status.status_id
     LEFT JOIN department
     ON permit.pm_dep = department.dep_id
-    -- LEFT JOIN employee
-    -- ON permit.pm_empno = employee.emp_no
+    LEFT JOIN employee
+    ON permit.pm_empno = employee.emp_id
     -- LEFT JOIN employee
     -- ON permit.pm_head = employee.emp_no
     -- LEFT JOIN employee
     -- ON permit.pm_head_dc = employee.emp_no
     WHERE pm_id = $id";
-$pm_name = "";
-$pm_userTname = "";
-$pm_username = "";
-$pm_userno = "";
-$pm_position= "";
-$pm_dep = "";
-$pm_TypeR = "";
-$pm_firstdate = "";
-$pm_enddate = "";
-$pm_empno = "";
-$pm_date = "";
-// $pm_head = "";
-// $pm_head_dc = "";
+
+    $pm_name = "";
+    $pm_userTname = "";
+    $pm_username = "";
+    $pm_userno = "";
+    $pm_position= "";
+    $pm_dep = "";
+    $pm_TypeR = "";
+    $pm_firstdate = "";
+    $pm_enddate = "";
+    $pm_empno = "";
+    $pm_fname = "";
+    $pm_lname = "";
+    $pm_date = "";
+    $pm_head = "";
+    $pm_hd_position  = "";
 
 
 
@@ -50,9 +52,11 @@ while($row = mysqli_fetch_assoc($rs)){
     $pm_firstdate = $row["pm_firstdate"];
     $pm_enddate = $row["pm_enddate"];
     $pm_empno = $row["pm_empno"];
+    $pm_fname = $row["emp_fname"];
+    $pm_lname =$row["emp_lname"];
     $pm_date = $row["pm_date"];
-    // $pm_head = $row["pm_head"];
-    // $pm_head_pc = $row["pm_head_dc"];
+    $pm_head = $row["pm_head"];
+    $pm_hd_position  = $row["pm_dc_position"];
 
  
 }
@@ -61,56 +65,63 @@ echo
 '
 
 <div class="table-responsive" >
-<table style="width:100%" align="center" border="1" class="table-bordered" >
+<table style="width:100%" align="center" border="1" class="table table-hover table-striped table-bordered" >
                                      
     <tr>
     <input type="hidden" name="pm_id" id="pm_id" value="'.$id.'" >
     <input type="hidden" name="pm_userTname" id="pm_userTname" value="'.$pm_userTname.'" >
 
     <td style="text-align: right;" width="40%;"><b>ชื่อผู้ยืม </b></td>
-    <td width="60%;"><input type="text"  name="pm_username" id="pm_username" value="'.$pm_username.'" readonly style="cursor: not-allowed; border: none;" ></td> 
+    <td style="text-align: left;" width="60%;">'.$pm_username.'</td> 
     </tr>
     <tr>
-    <td style="text-align: right;" width="30%;"><b>เลขประจำตัวผู้ยืม </b></td>
-    <td width="20%;"><input type="text" name="pm_userno" id="pm_userno" value="'.$pm_userno.'" readonly style="cursor: not-allowed; border: none;"  ></td> 
+    <td style="text-align: right;" ><b>เลขประจำตัวผู้ยืม </b></td>
+    <td style="text-align: left;" >'.$pm_userno.'</td> 
     </tr>
     <tr>
     <td style="text-align: right;"><b>ตำเเหน่ง </b></td>
-    <td ><input type="text" name="pm_position" id="pm_position" value="'.$pm_position.'" readonly style="cursor: not-allowed; border: none;" ></td> 
+    <td style="text-align: left;">'.$pm_position.'</td> 
     </tr>
     <tr>
     <td style="text-align: right;"><b>หน่วยงาน </b></td>
-    <td ><input type="text" name="pm_dep" id="pm_dep" value="'.$pm_dep.'" readonly style="cursor: not-allowed; border: none;"  ></td> 
+    <td style="text-align: left;">'.$pm_dep.'</td> 
     </tr>
     <tr>
     <td style="text-align: right;"><b>จุดประสงค์การยืม </b></td>
-    <td ><input type="text" name="pm_TypeR" id="pm_TypeR" value="'.$pm_name.'" readonly style="cursor: not-allowed; border: none;" ></td> 
+    <td style="text-align: left;">'.$pm_name.'</td> 
     </tr>
     <tr>
     <td style="text-align: right;"><b>ประเภทห้อง </b></td>
-    <td ><input type="text" name="pm_TypeR" id="pm_TypeR" value="'.$pm_TypeR.'" readonly style="cursor: not-allowed; border: none;" ></td> 
+    <td style="text-align: left;">'.$pm_TypeR.'</td> 
     </tr>
     <tr>
     <td style="text-align: right;"><b>วันที่เริ่มทำรายการ </b></td>
-    <td ><input type="text" name="pm_date" id="pm_date" value="'.$pm_date.'" readonly style="cursor: not-allowed; border: none;"  ></td> 
+    <td style="text-align: left;">'.$pm_date.'</td> 
     </tr>
     <tr>
     <td style="text-align: right;"><b>วันที่เริ่ม </b></td>
-    <td><input type="text" name="pm_firstdate" id="pm_firstdate" value="'.$pm_firstdate.'" readonly style="cursor: not-allowed; border: none;" ></td> 
+    <td style="text-align: left;">'.$pm_firstdate.'</td> 
     </tr>
     <tr>
     <td style="text-align: right;"><b>วันที่สิ้นสุด </b></td>
-    <td ><input type="text" name="pm_enddate" id="pm_enddate" value="'.$pm_enddate.'" readonly style="cursor: not-allowed; border: none;"  ></td> 
+    <td style="text-align: left;" >'.$pm_enddate.'</td> 
     </tr>
     <tr>
     <td style="text-align: right;"><b>พนักงานที่ทำรายการยืมคืน </b></td>
-    <td ><input type="text" name="pm_empno" id="pm_empno" value="'.$pm_empno.'" readonly style="cursor: not-allowed; border: none;" ></td> 
+    <td style="text-align: left;">'.$pm_fname.'&nbsp;&nbsp;'.$pm_lname.'</td> 
     </tr>
+    <tr>
+    <td style="text-align: right;"><b>ผู้ทำการตรวจสอบ </b></td>
+    <td style="text-align: left;">'.$pm_head.'
+    <input type="hidden" name="pm_hd_position" id="pm_hd_position" value="'.$pm_hd_position.'" ></td> 
+    </tr>
+    
     </table>
     </div>
-    <br>
+    <br><br>
         
     
+    <h4 align="center" style="font-family:Prompt; font-weight: bold;">รายการครุภัณฑ์ของศูนย์คอมพิวเตอร์</h4>  
 
 
 

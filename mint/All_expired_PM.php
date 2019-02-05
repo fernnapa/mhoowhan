@@ -1,5 +1,5 @@
 <?php
-require_once 'db_connect.php';
+include("../db_connect.php");
 
 if(isset($_POST['id_exp'])){
     $id =  $_POST['id_exp']; 

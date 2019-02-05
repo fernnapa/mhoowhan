@@ -25,7 +25,8 @@ include("../db_connect.php");
 
     <?php include("menu/navbar_emp.php")  ?>
 
-
+    <div class="card">
+      <div class="card-body">
     <div class="container w3-card-2 w3-round-large table-responsive" style="font-style: normal; font-family:Prompt; width:60%;">  
     <table align="center" border="0">
         <tr>
@@ -56,19 +57,15 @@ include("../db_connect.php");
                 <button type="submit"  id="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading...">Upload</button>				          
             </th>
         </tr>
-        
-        
-
-
-
-
-        </form>                        
-        
+        </form>                            
     </table>
     <br/>
-    </div> 
-    <br/><br/> 
+    </div>
     
+
+
+    <br/><br/> 
+   
     <div class="container">
         <div class="table-responsive" style="font-family:Prompt;"> 
             <table id="eq_data" class="table table-hover table table-striped table-bordered">
@@ -121,7 +118,8 @@ include("../db_connect.php");
                   <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
             </div>
         </footer>
-
+        </div>
+        </div>  
       </div> 
     </div>
   </div>

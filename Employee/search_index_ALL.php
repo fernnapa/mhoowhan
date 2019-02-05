@@ -55,13 +55,13 @@ if(mysqli_num_rows($result) > 0)
 <thead>
 <tr style="font-weight: bold;">
 
-<td style="text-align: center;">จุดประสงค์การยืม-คืน</td>
-<td style="text-align: center;">ชื่อผู้เช่ายืม</td>
-<td style="text-align: center;">หน่วยงาน</td>
-<td style="text-align: center;">พนักงานจัดสรร</td>
-<td style="text-align: center;">สถานะ</td>
-<td style="text-align: center;">จัดการ</td>
-<td style="text-align: center;">รายละเอียด</td>
+<td style="text-align: center; ">จุดประสงค์การยืม-คืน</td>
+<td style="text-align: center; ">ชื่อผู้เช่ายืม</td>
+<td style="text-align: center; ">หน่วยงาน</td>
+<td style="text-align: center; ">พนักงานจัดสรร</td>
+<td style="text-align: center; ">สถานะ</td>
+<td style="text-align: center; ">จัดการ</td>
+<td style="text-align: center; ">รายละเอียด</td>
 
 
 </tr>
@@ -122,7 +122,7 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$row['dep_name'].'</td>
         <td style="text-align:left">'.$row['pm_empno'].'</td>
         <td style="text-align:left">'.$row['status_name'].'</td>
-        <td></td>   
+        <td></td>
         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM('.$row['pm_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
        
     </tr>
@@ -137,7 +137,6 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$row['pm_empno'].'</td>
         <td style="text-align:left" >'.$row['status_name'].'</td>
         <td></td>
-        
         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_notpass('.$row['pm_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
         
         </tr>
@@ -153,8 +152,7 @@ if(mysqli_num_rows($result) > 0)
                         <td style="text-align:left">'.$row['pm_empno'].'</td>
                         <td style="text-align:left">'.$row['status_name'].'</td>
                         <td></td>
-
-         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_pass('.$row['pm_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_pass('.$row['pm_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
          
         </tr>';
     }
@@ -194,7 +192,6 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$row['dep_name'].'</td>
         <td style="text-align:left">'.$row['pm_empno'].'</td>
         <td style="text-align:left">'.$row['status_name'].'</td>
-        <td></td>
         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_notpass('.$row['pm_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
         <td></td>
         </tr>';   
@@ -204,7 +201,7 @@ if(mysqli_num_rows($result) > 0)
 }
 else
 {
-    echo '<br/><p style="text-align: center; font-size:20px;"><b>ไม่พบข้อมูล</b></p>';
+    echo '<br/><p style="color:red; text-align: center; font-family:Prompt; font-size:20px;"><b>ไม่พบข้อมูล</b></p>';
 }
 
 

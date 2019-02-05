@@ -40,7 +40,8 @@ $_SESSION['chooseEq'] = array();
 <title>รายการยืม-คืนครุภัณฑ์</title>
 
 <body>
-
+<div class="card">
+<div class="card-body">
 <!-- Modal ดูข้อมูลPM -->
 <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewPM">
                             <div class="modal-dialog a" role="document">
@@ -56,7 +57,7 @@ $_SESSION['chooseEq'] = array();
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                          <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                                          <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
                                         </div>
 
                             </div>
@@ -104,7 +105,7 @@ $_SESSION['chooseEq'] = array();
                     <table border="0" align="right"  >
                     <tr>
                     <td>เลือกจาก</td>
-                    <td><select name="search_text" id="search_text" style="width: 100%" class="form-control">
+                    <td><select name="search_text" id="search_text" style="width: 100%; font-family:Prompt; font-size: 15px;  " class="form-control">
                                                             <option value="ทั้งหมด">สถานะทั้งหมด</option>
                                             <?php
                                                     $type = "SELECT * FROM a_status WHERE status_id = 3 OR status_id = 5 OR status_id = 6 OR status_id = 7 OR status_id = 8 OR status_id = 10 OR status_id = 11 OR status_id = 12 ORDER BY status_id";
@@ -131,7 +132,6 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align: center;">หน่วยงาน</td>
                         <td style="text-align: center;">พนักงานจัดสรร</td>
                         <td style="text-align: center;">สถานะ</td>
-                        <td style="text-align: center;">จัดการ</td>
                         <td style="text-align: center;">รายละเอียด</td>
                         <td></td>
 
@@ -295,7 +295,8 @@ $_SESSION['chooseEq'] = array();
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
+  </div>
+  </div>
 
 
 
@@ -341,7 +342,7 @@ $(document).ready(function(){
                 document.getElementById("ViewPM").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "../mint/getAll_PM_wait.php?id="+str, true);
+            xhttp.open("GET", "getAll_PM_wait.php?id="+str, true);
             xhttp.send();
             }
 </script>
@@ -359,7 +360,7 @@ $(document).ready(function(){
                 document.getElementById("ViewPM").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "../mint/getAll_PM_notpass.php?id="+str, true);
+            xhttp.open("GET", "getAll_PM_notpass.php?id="+str, true);
             xhttp.send();
             }
 </script>
@@ -372,7 +373,7 @@ $(document).ready(function(){
                   $('#Date_RFN_PM').on('submit', function(e){  
                        e.preventDefault();  
                        $.ajax({  
-                            url :"../mint/All_refund_PM.php",  
+                            url :"All_refund_PM.php",  
                             method:"POST",  
                             data:new FormData(this),  
                             contentType:false,  

@@ -202,7 +202,7 @@ if(mysqli_num_rows($result) > 0)
 }
 else
 {
-    echo '<br/><p style="text-align: center; font-size:20px;"><b>ไม่พบข้อมูล</b></p>';
+    echo '<br/><p style="color:red; text-align: center; font-family:Prompt; font-size:20px;"><b>ไม่พบข้อมูล</b></p>';
 }
 
 

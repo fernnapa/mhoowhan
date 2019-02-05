@@ -46,16 +46,18 @@ $_SESSION['chooseEq'] = array();
         }
 
 ?>
+<div class="card">
+      <div class="card-body">
         <div class="modal fade" tabindex="-1" role="dialog" id="ModalDep">
                     <div class="modal-dialog" role="document" style="width:500x";>
                     <div class="modal-content">
                     <div class="modal-header">
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">ข้อมูลหน่วยงาน</h4>
+                            <h4 class="modal-title" style="font-family:Prompt;">ข้อมูลหน่วยงาน</h4>
 
                     </div>
                             <div class="modal-body">
-                    <table id="tableType" align="center" style="width:100%;" class="table table-striped table-bordered " >
+                    <table id="tableType" align="center" style="width:100%; font-family:Prompt;" class="table table-striped table-bordered " >
                     <thead>
                     <tr >
                         <td style="text-align: center; ">รหัสหน่วยงาน</td>
@@ -116,16 +118,16 @@ $_SESSION['chooseEq'] = array();
                     <form id="Add_PM"> 
                     <table border="0" align="center" style="width:80%;" class="w3-teal">
                     <tr>
-                    <td><h3><b>เเก้ไขรายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
+                    <td><h3 style="width:100%; font-family:Prompt;"><b>เเก้ไขรายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
                     <div class="container" > 
                     <div class="table-responsive">
                     <br>
-                    <table border="1" align="center" style="width:100%" class="w3-round ">
+                    <table border="1" align="center" style="width:100%;  font-family:Prompt;" class="w3-round ">
                     <tr>
-                    <td style="text-align: left">คำนำหน้าชื่อ</td>
-                    <td style="text-align: left">ชื่อผู้เช่ายืม</td>
+                    <td style="text-align: left; width:40%;">คำนำหน้าชื่อ</td>
+                    <td style="text-align: left; width:60%;">ชื่อผู้เช่ายืม</td>
                     </tr>
                     <td><input type="text" name="pm_userTname" class="form-control" value="<?php echo $pm_userTname; ?>"></td>
                     <td ><input type="text" name="pm_username" class="form-control" value="<?php echo $pm_username; ?>"></td>
@@ -149,8 +151,8 @@ $_SESSION['chooseEq'] = array();
                     </tr>
                     <tr>
                     <td class="form-inline"><input type="text" name="pm_ex" value="<?php echo $pm_dep_name; ?>"  class="form-control " id="pm_ex" readonly style="width:100%;">
-                    <input type="hidden" name="pm_dep" value="<?php echo $pm_dep; ?>" placeholder="หน่วยงาน"  class="form-control " id="pm_dep" style="width:100%;">
-                    <form id="chooseDep"><input type="submit" name="AddDep" id="AddDep" value="เลือกหน่วยงาน" form="chooseDep" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModalDep"></button></form></td>
+                    <input type="hidden" name="pm_dep" value="<?php echo $pm_dep; ?>" placeholder="หน่วยงาน"  class="form-control " id="pm_dep" style="width:100%; ">
+                    <form id="chooseDep"><input type="submit" name="AddDep" id="AddDep" value="เลือกหน่วยงาน" style="font-family:Prompt;" form="chooseDep" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModalDep"></button></form></td>
                     <td style="vertical-align:top"><input type="text" name="pm_name" class="form-control" value="<?php echo $pm_name; ?>" ></td>
                 
                     </tr>
@@ -179,7 +181,7 @@ $_SESSION['chooseEq'] = array();
                     <div class="table-responsive" id="result">
                     <table align="right">
                     <tr>
-                    <td><form id="id_edit_add" method="POST" action="index_choosePM_Edit.php"><input type="hidden" name="id_add" id="id_add" value="<?php echo $id; ?>"><input type="submit" name="edit_add_pm" class="btn btn-success" form="id_edit_add"  value="เลือกครุภัณฑ์"></form></td>
+                    <td ><form id="id_edit_add" method="POST" action="index_choosePM_Edit.php"><input type="hidden" name="id_add" id="id_add" value="<?php echo $id; ?>"><input type="submit" name="edit_add_pm" class="btn btn-success" form="id_edit_add" style="font-family:Prompt;"  value="เลือกครุภัณฑ์"></form></td>
                     </tr>
                     </table>
                     <br>
@@ -209,7 +211,7 @@ $_SESSION['chooseEq'] = array();
                                     <td style="text-align:left"><?php echo $data['pmd_type_name']; ?></td>
                                     <td style="text-align:left"><?php echo $data['pmd_status_name']; ?></td>
                                     <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                    <td><button type="button" name="submit" id="submit<?php echo $data['pmd_eq_id']; ?>" class="btn btn-danger btn-block" value="<?php echo $data['pmd_eq_id']; ?>" onclick="getid(this)">ลบครุภัณฑ์</button></td>
+                                    <td><button type="button" name="submit" id="submit<?php echo $data['pmd_eq_id']; ?>" class="btn btn-danger btn-block" value="<?php echo $data['pmd_eq_id']; ?>" onclick="getid(this)" style="font-family:Prompt;">ลบครุภัณฑ์</button></td>
                                 </tr>
                             <?php endwhile;?>
                    
@@ -217,7 +219,7 @@ $_SESSION['chooseEq'] = array();
               
                         <table border="0" align="center" style="width:25%;">
                             <tr>
-                                <td><input type="button" name="Update_PM" id="Update_PM" value="ส่งรายการยืม-คืนอีกครั้ง" form="Add_PM" class="btn btn-success btn-block"></td>
+                                <td><input type="button" name="Update_PM" id="Update_PM" value="ส่งรายการยืม-คืนอีกครั้ง" form="Add_PM" style="font-family:Prompt;" class="btn btn-success btn-block"></td>
                             </tr>
                         </table>
                     </form>
@@ -248,7 +250,8 @@ $_SESSION['chooseEq'] = array();
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
+  </div>
+  </div>
 
 
 

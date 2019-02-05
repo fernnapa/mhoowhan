@@ -1,5 +1,5 @@
 <?php  
-include("../Home/db_connect.php");
+include("../db_connect.php");
  
                if($_POST['pm_note'] != "" ){
                 $status = 8;

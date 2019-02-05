@@ -14,6 +14,11 @@ $_SESSION['chooseEq'] = array();
   
 
   <style>
+             .modal-dialog.a{
+                max-width : 650px;
+                max-height: 550px;
+            }
+
             table, th, td    {
             }
             td {
@@ -35,15 +40,16 @@ $_SESSION['chooseEq'] = array();
 <?php include("menu/navbar_emp.php"); ?>
 <title>ผลการดำเนินการยืม-คืน</title>
 <body>
-  
+<div class="card">
+      <div class="card-body">
 <!-- Modal ดูข้อมูลPM -->
 <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewPM">
-                            <div class="modal-dialog " role="document">
+                            <div class="modal-dialog a" role="document">
                             <div class="modal-content">
                             <div class="card">
                             <div class="card-body">
                             <div class="modal-header">
-                                <h4 class="modal-title"><b>ข้อมูลการยืม-คืนครุภัณฑ์</b></h4>
+                                <h4 class="modal-title" style="font-family:Prompt;"><b>ข้อมูลการยืม-คืนครุภัณฑ์</b></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                                     <div class="modal-body table-responsive">
@@ -51,7 +57,7 @@ $_SESSION['chooseEq'] = array();
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                          <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                                          <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
                                         </div>
 
                             </div>
@@ -101,14 +107,14 @@ $_SESSION['chooseEq'] = array();
                     <form id="form3"> 
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
-                    <tr >
+                    <tr style="font-weight: bold;">
                         <td style="text-align: center;">จุดประสงค์การยืม-คืน</td>
                         <td style="text-align: center;">ชื่อผู้เช่ายืม</td>
                         <td style="text-align: center;">หน่วยงาน</td>
                         <td style="text-align: center;">พนักงานจัดสรร</td>
                         <td style="text-align: center;">สถานะ</td>
-                        <td style="text-align: center;">Action</td>
-                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">จัดการ</td>
+                        <td style="text-align: center;">รายละเอียด</td>
 
                    </tr>
                     </thead>
@@ -137,8 +143,8 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['pm_empno']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
 
-                        <td><button type="button" name="idEdit" class="btn btn-warning btn-block" value="<?php echo $data['pm_id']; ?>" onclick="getidTOedit(this)">เเก้ไขรายการ</button></td>
-                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM(<?php echo $data['pm_id']; ?>)">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="idEdit" class="btn btn-warning btn-block" value="<?php echo $data['pm_id']; ?>" onclick="getidTOedit(this)" style="font-family:Prompt;">เเก้ไขรายการ</button></td>
+                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
 
                     <?php  } if($stn == "ไม่อนุมัติ"){ ?>
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
@@ -147,8 +153,8 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['pm_empno']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                     
-                        <td><button type="button" name="submitviewRS" id="submitviewNopass" class="btn btn-danger btn-block"  value="<?php echo $id; ?>" onclick="notpass(this)">ยกเลิกรายการ</button></td>
-                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_DC(<?php echo $data['pm_id']; ?>)">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="submitviewRS" id="submitviewNopass" class="btn btn-danger btn-block"  value="<?php echo $id; ?>" onclick="notpass(this)" style="font-family:Prompt;">ยกเลิกรายการ</button></td>
+                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_DC(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
 
                     <?php } if($stn == "อนุมัติ"){ ?>
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
@@ -157,14 +163,14 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['pm_empno']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                     
-                        <td><button type="button" name="submitviewRS" id="submitviewRS" class="btn btn-success btn-block"  value="<?php echo $id; ?>" onclick="pass(this)">ทำการยืม-คืน</button></td>
-                        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_DC(<?php echo $data['pm_id']; ?>)">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="submitviewRS" id="submitviewRS" class="btn btn-success btn-block"  value="<?php echo $id; ?>" onclick="pass(this)" style="font-family:Prompt;">ทำการยืม-คืน</button></td>
+                        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_DC(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
                     <?php } ?>
                         </tr>
                     <?php } ?>
 
                     <?php }else{ ?>
-                        <td style="text-align: center;" colspan="7" ><font color="#FF3333"; size="2px;" ><b>ไม่มีผลการดำเนินการรายการยืมครุภัณฑ์</b></font></td>
+                        <td style="text-align: center;" colspan="7" ><font color="#FF3333"; size="3px;" ><b>ไม่มีผลการดำเนินการรายการยืมครุภัณฑ์</b></font></td>
                     <?php } ?>
                 </table>
                 </form>
@@ -194,7 +200,8 @@ $_SESSION['chooseEq'] = array();
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
+  </div>
+  </div>
   
 </body>
 </html>
@@ -204,7 +211,12 @@ $_SESSION['chooseEq'] = array();
 <script>
 $(document).ready(function(){  
         $('#tableshow').DataTable({
-        "searching": true
+        "searching": true,
+
+        "oLanguage": {
+        "sSearch": "ค้นหา : "
+        },
+        retrieve: true,
 });  
  }); 
 </script>
@@ -252,7 +264,7 @@ $(document).ready(function(){
           $(document).ready(function(){
                 $.ajax({
 
-                        url: '../mint/Result_pass_PM.php',
+                        url: 'Result_pass_PM.php',
                         type: 'POST',
                         data: {'id':a},
                         success:function(res){
@@ -334,7 +346,7 @@ $(document).ready(function(){
           $(document).ready(function(){
                 $.ajax({
 
-                        url: '../mint/Result_Notpass_PM.php',
+                        url: 'Result_Notpass_PM.php',
                         type: 'POST',
                         data: {'id':a},
                         success:function(res){

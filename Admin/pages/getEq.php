@@ -32,7 +32,6 @@ $sql = "SELECT * FROM equipment
         $eq_id = $row["eq_id"];
         $barcode = $row["eq_barcode"];
         $sr = $row["eq_serial"];
-        $pic = $row["eq_pic"];
         $tor = $row["eq_tor"];
         $con = $row["con_name"];
         $con_i = $row["con_id"];
@@ -54,11 +53,7 @@ echo  '  <tr>
 <th style="text-align: center; font-family:Prompt; ">SERIAL NO</th>
 <th><input type="text" name="eq_sr" value="'.$sr.'" class="form-control name_list" /></th>
 </tr>
-<th style="text-align: center; width: 100px; font-family:Prompt;">รูปภาพ</th>
-<th ><input type="file" name="images[]" id="select_image" multiple  onchange="namepic()" class="form-control"></th>                               
-<input type="hidden" id="eq_pic" value="'.$pic.'" name="eq_pic" style="width:99%" class="form-control">
 
-</tr>
 <tr>
 <th style="text-align: center; font-family:Prompt;">สัญญาปี</th>
 <th><select name="eq_con" id="eq_con" style="width: 99%" class="form-control" onchange="filterType(this.value)">

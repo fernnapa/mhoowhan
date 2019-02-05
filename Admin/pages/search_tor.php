@@ -1,6 +1,6 @@
 <?php
 include("../../db_connect.php");
-include("datatable.php");
+include("datatable_TOR.php");
 $output = '';
 if(isset($_POST["query"]))
 {

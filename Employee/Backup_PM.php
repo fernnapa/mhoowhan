@@ -49,7 +49,9 @@ $_SESSION['chooseEq'] = array();
     <?php include("menu/navbar_emp.php"); ?>
     <title>ประวัติยืม-คืนครุภัณฑ์</title>
         <body>
-                <br>       
+        <div class="card">
+            <div class="card-body">
+              
                     <div class="container"> 
                     <br>
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
@@ -62,7 +64,7 @@ $_SESSION['chooseEq'] = array();
                     <br>
                     <table border="0" align="center" style="width:100%;" >
                     <tr>
-                    <td><select name="search_text" id="search_text" style="width: 100%" class="form-control">
+                    <td><select name="search_text" id="search_text" style="width: 100%; font-family:Prompt; font-size: 15px; " class="form-control">
                                                             <option value="ทั้งหมด">ประเภททั้งหมด</option>
                                             <?php
                                                     $type = "SELECT * FROM type_eq ORDER BY type_name";
@@ -72,7 +74,7 @@ $_SESSION['chooseEq'] = array();
                                                     <option value="<?php echo $data['type_name']; ?>"><?php echo $data['type_name']; ?></option>
                                             <?php endwhile;?>
                                                 </select></td>
-                    <td><select name="search_text2" id="search_text2" style="width: 100%" class="form-control">
+                    <td><select name="search_text2" id="search_text2" style="width: 100%; font-family:Prompt; font-size: 15px;" class="form-control">
                                                             <option value="ทั้งหมด">สัญญาทั้งหมด</option>
                                             <?php
                                                     $cont = "SELECT * FROM contract ORDER BY con_name";
@@ -91,7 +93,7 @@ $_SESSION['chooseEq'] = array();
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
                     <tr style="font-weight: bold;">
-                        <td style="text-align: center;">ผู้ยืม</td>
+                        <td style="text-align: center; ">ผู้ยืม</td>
                         <td style="text-align: center;">Serial Number</td>
                         <td style="text-align: center;">สัญญา</td>
                         <td style="text-align: center;">ประเภทครุภัณฑ์</td>
@@ -122,8 +124,27 @@ $_SESSION['chooseEq'] = array();
                 </div>
                 <br>
                 </div>
-<!-- /.data -->
-<!-- /.script modal add -->
+              
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="footer">
+          <div class="container-fluid clearfix">
+          <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+  </div>
+   </div>
+
+
+
+
+
 <script>
 $(document).ready(function(){  
         $('#tableshow').DataTable({

@@ -1,5 +1,5 @@
 <?php
-require_once 'db_connect.php';
+include("../db_connect.php");
 
 if($_POST['ac_name'] != "" && $_POST['ac_tname'] != ""  && $_POST['ac_title'] != "" && $_POST['ac_empid'] != "" && $_POST['ac_position'] != "" && $_POST['ac_dep'] != "test" && $_POST['ac_typeR'] != ""  && $_POST['ac_emp'] != "" )
 {

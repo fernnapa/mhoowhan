@@ -65,7 +65,8 @@ $_SESSION['chooseEq'] = array();
 
   <!-----------------detail---------------------------->
 
-                                  
+  <div class="card">
+      <div class="card-body">                 
     <div class="container" >    
         <table border="0" align="center" style="width:100%;" class="w3-round">
             <tr>
@@ -165,6 +166,7 @@ $_SESSION['chooseEq'] = array();
               </div>
             </div>
           </div>
+         
 
           <footer class="footer">
             <div class="container-fluid clearfix">
@@ -174,6 +176,8 @@ $_SESSION['chooseEq'] = array();
         </div>
       </div>
     </div>
+    </div>
+          </div>
   
   
   <!-- /.script modal add -->

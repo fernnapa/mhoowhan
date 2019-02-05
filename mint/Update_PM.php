@@ -1,5 +1,5 @@
 <?php
-require_once 'db_connect.php';
+include("../db_connect.php");
 
 if($_POST['pm_username'] != "" && $_POST['pm_userTname'] != ""  && $_POST['pm_name'] != "" && $_POST['pm_userno'] != "" && $_POST['pm_position'] != "" && $_POST['pm_dep'] != "test" && $_POST['pm_TypeR'] != "" && $_POST['pm_firstdate'] != "" && $_POST['pm_enddate'] != ""  && $_POST['pm_empno'] != "" )
 {

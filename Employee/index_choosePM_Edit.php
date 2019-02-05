@@ -51,7 +51,7 @@
                     
                     <table border="0" align="center" style="width:100%;" >
                     <tr>
-                    <td><select name="search_text" id="search_text" style="width: 100%" class="form-control">
+                    <td><select name="search_text" id="search_text" style="width: 100%; font-family:Prompt; font-size: 15px;" class="form-control">
                                                             <option value="ทั้งหมด">ประเภททั้งหมด</option>
                                             <?php
                                                     $type = "SELECT * FROM type_eq ORDER BY type_name";
@@ -61,7 +61,7 @@
                                                     <option value="<?php echo $data['type_name']; ?>"><?php echo $data['type_name']; ?></option>
                                             <?php endwhile;?>
                                                 </select></td>
-                    <td><select name="search_text2" id="search_text2" style="width: 100%" class="form-control">
+                    <td><select name="search_text2" id="search_text2" style="width: 100%; font-family:Prompt; font-size: 15px;" class="form-control">
                                                             <option value="ทั้งหมด">สัญญาทั้งหมด</option>
                                             <?php
                                                     $cont = "SELECT * FROM contract ORDER BY con_name";
@@ -77,6 +77,8 @@
 
 
 
+                    <div class="card">
+                    <div class="card-body">
                    
                     <div class="table-responsive" id="result">
                     <p></p>
@@ -125,7 +127,7 @@
                 </div>
                 <table border="0" align="center" style="width:25%;">
                     <tr>
-                    <td><button type="button" name="addEdit" class="btn btn-primary btn-block" value="<?php echo $id; ?>" onclick="Addpm(this)"> ยืนยันการเลือกครุภัณฑ์ </button></td>
+                    <td><button type="button" name="addEdit" class="btn btn-primary btn-block" value="<?php echo $id; ?>" onclick="Addpm(this)" style="font-family:Prompt;"> ยืนยันการเลือกครุภัณฑ์ </button></td>
                     </tr>
                 </table>
                 <br>
@@ -155,7 +157,8 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
+  </div>
+  </div>
 
 <!-- /.data -->
 <!-- /.script modal add -->
@@ -173,7 +176,7 @@ $(document).ready(function(){
           $(document).ready(function(){
                 $.ajax({
 
-                        url: '../mint/insert_Edit_PM.php',
+                        url: 'insert_Edit_PM.php',
                         type: 'POST',
                         data: {'id':a},
                         success:function(res){
@@ -209,7 +212,7 @@ $(document).ready(function(){
           $(document).ready(function(){
                 $.ajax({
 
-                        url: '../mint/Add_edit_PM.php',
+                        url: 'Add_edit_PM.php',
                         type: 'POST',
                         data: {'id':a},
                         success:function(res){

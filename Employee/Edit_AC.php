@@ -33,6 +33,7 @@ $_SESSION['chooseEq'] = array();
     <?php include("menu/navbar_emp.php"); ?>
     <title>เเก้ไขรายการจัดสรรครุภัณฑ์</title>
         <body>
+
 <?php
         if(isset($_GET['ID'])){
             $id = $_GET['ID'];
@@ -43,16 +44,18 @@ $_SESSION['chooseEq'] = array();
         }
 
 ?>
+<div class="card">
+      <div class="card-body">
         <div class="modal fade" tabindex="-1" role="dialog" id="ModalDep">
                     <div class="modal-dialog" role="document" style="width:500x";>
                     <div class="modal-content">
                     <div class="modal-header">
                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">ข้อมูลหน่วยงาน</h4>
+                            <h4 class="modal-title" style="font-family:Prompt;">ข้อมูลหน่วยงาน</h4>
 
                     </div>
                             <div class="modal-body">
-                    <table id="tableType" align="center" style="width:100%;" class="table table-striped table-bordered " >
+                    <table id="tableType" align="center" style="width:100%; font-family:Prompt;" class="table table-striped table-bordered " >
                     <thead>
                     <tr >
                         <td style="text-align: center; ">รหัสหน่วยงาน</td>
@@ -111,13 +114,13 @@ $_SESSION['chooseEq'] = array();
                     <form id="Add_AC"> 
                     <table border="0" align="center" style="width:80%;" class="w3-teal">
                     <tr>
-                    <td><h3><b>เเก้ไขรายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
+                    <td><h3 style="font-family:Prompt;"><b>เเก้ไขรายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
                     <div class="container" > 
                     <div class="table-responsive">
                     <br>
-                    <table border="1" align="center" style="width:100%" class="w3-round ">
+                    <table border="1" align="center" style="width:100%; font-family:Prompt;" class="w3-round ">
                     <tr>
                     <td style="text-align: left">คำนำหน้าชื่อ</td>
                     <td style="text-align: left">ชื่อผู้เช่ายืม</td>
@@ -175,12 +178,12 @@ $_SESSION['chooseEq'] = array();
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
                     <tr >
-                        <td style="text-align: center;">Barcode</td>
-                        <td style="text-align: center;">Serial Number</td>
-                        <td style="text-align: center;">สัญญา</td>
-                        <td style="text-align: center;">ประเภทครุภัณฑ์</td>
-                        <td style="text-align: center;">สถานะ</td>
-                        <td style="text-align: center;">เลือกครุภัณฑ์</td>
+                        <td style="text-align: center; font-weight: bold;">Barcode</td>
+                        <td style="text-align: center; font-weight: bold;">Serial Number</td>
+                        <td style="text-align: center; font-weight: bold;">สัญญา</td>
+                        <td style="text-align: center; font-weight: bold;">ประเภทครุภัณฑ์</td>
+                        <td style="text-align: center; font-weight: bold;">สถานะ</td>
+                        <td style="text-align: center; font-weight: bold;">เลือกครุภัณฑ์</td>
                     </tr>
                     </thead>
                     <tr>
@@ -235,6 +238,8 @@ $_SESSION['chooseEq'] = array();
       <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->
+  </div>
+  </div>
   </div>
   <!-- container-scroller --> 
             

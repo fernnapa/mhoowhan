@@ -1,5 +1,5 @@
 <?php  
- require_once 'db_connect.php';
+include("../db_connect.php");
             
                 $status = 6;
                 $id = $_POST['pm_id'];

@@ -1,6 +1,6 @@
 <?php  
 
-include("../Home/db_connect.php");
+include("../db_connect.php");
 $output = '';
 if(isset($_POST["export"]))
 {

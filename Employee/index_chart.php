@@ -32,7 +32,7 @@ include("../db_connect.php");
  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Map</title>
+  <title>รายงาน</title>
 
     <?php include("menu/link.php")  ?>
 </head>
@@ -42,6 +42,93 @@ include("../db_connect.php");
     <?php include("menu/navbar_emp.php")  ?>
 
 
+    <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+              <div class="card card-statistics">
+                <div class="card-body">
+                  <div class="clearfix">
+                    <div class="float-left">
+                      <i class="mdi mdi-cube text-danger icon-lg"></i>
+                    </div>
+                    <div class="float-right">
+                      <p class="mb-0 text-right" style="font-family:Prompt;">จำนวนครุภัณฑ์ทั้งหมด</p>
+                      <div class="fluid-container">
+                        <h3 class="font-weight-medium text-right mb-0">125</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-muted mt-3 mb-0">
+                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> 65% lower growth
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+              <div class="card card-statistics">
+                <div class="card-body">
+                  <div class="clearfix">
+                    <div class="float-left">
+                      <i class="mdi mdi-receipt text-warning icon-lg"></i>
+                    </div>
+                    <div class="float-right">
+                      <p class="mb-0 text-right" style="font-family:Prompt;">รายการจัดสรรทั้งหมด</p>
+                      <div class="fluid-container">
+                        <h3 class="font-weight-medium text-right mb-0">25</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-muted mt-3 mb-0">
+                    <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> Product-wise sales
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+              <div class="card card-statistics">
+                <div class="card-body">
+                  <div class="clearfix">
+                    <div class="float-left">
+                      <i class="mdi mdi-poll-box text-success icon-lg"></i>
+                    </div>
+                    <div class="float-right">
+                      <p class="mb-0 text-right" style="font-family:Prompt;">รายการยืม-คืนทั้งหมด</p>
+                      <div class="fluid-container">
+                        <h3 class="font-weight-medium text-right mb-0">2</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-muted mt-3 mb-0">
+                    <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> Weekly Sales
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+              <div class="card card-statistics">
+                <div class="card-body">
+                  <div class="clearfix">
+                    <div class="float-left">
+                      <i class="mdi mdi-account-location text-info icon-lg"></i>
+                    </div>
+                    <div class="float-right">
+                      <p class="mb-0 text-right" style="font-family:Prompt;">ประเภทครุภัณฑ์ทั้งหมด</p>
+                      <div class="fluid-container">
+                        <h3 class="font-weight-medium text-right mb-0">4</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-muted mt-3 mb-0">
+                    <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> Product-wise sales
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    
+
+    <div class="card">
+      <div class="card-body">
     <div class="container">
 				<div class="row row-pb-md">
 					<div id="div-1" class="col-70">   
@@ -186,6 +273,8 @@ include("../db_connect.php");
 
       </div> 
     </div>
+  </div>
+  </div>
   </div>
 
   </body>

@@ -32,7 +32,8 @@ include("../db_connect.php");
 
     <title>ใบยืมครุภัณฑ์คอมพิวเตอร์และอุปกรณ์ต่อพ่วง</title>
         <body >
-
+        <div class="card">
+        <div class="card-body">
 
         <?php 
 
@@ -100,9 +101,9 @@ include("../db_connect.php");
                     <a href="print_PM.php?print=<?php echo $pm_id; ?>" class="btn btn-info">พิมพ์แบบฟอร์ม</a>
                     </div>
                     <br>
-                    <div class="container" style="width:90% " > 
+                    <div class="container" style="width:100% " > 
 
-                    <table border="0" align="center" style="width:100%" >
+                    <table border="0" align="center" style="width:90%" >
                     <tr>
                     <td style ="width:20%"><img src="img/sut.png" width="100%" ></td>
                     <td style ="width:80%"><h4><b>ใบยืมครุภัณฑ์คอมพิวเตอร์และอุปกรณ์ต่อพ่วง</b></h4>
@@ -112,7 +113,7 @@ include("../db_connect.php");
                     </tr>
                     </table>
                     </div>
-                    <table border="1" style="width:70%" align="center" >
+                    <table border="1" style="width:90%" align="center" >
                                         <tr>
                                         <td colspan="4"><div align='left'>เรียน ผู้อำนวยการศูนย์คอมพิวเตอร์<br>
                                         ข้าพเจ้า  &emsp;<?php echo $pm_fname; ?>&nbsp;<?php echo $pm_lname; ?> &emsp;
@@ -292,6 +293,7 @@ include("../db_connect.php");
                         window.print()
                         }
                         </script> -->
-                        
+                        </div>
+                    </div>
                         </body>
                         </html>

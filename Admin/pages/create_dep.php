@@ -9,13 +9,10 @@ include("../../db_connect.php");
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>เพิ่มข้อมูลหน่วยงาน</title>
-  <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
   
+  <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
   <style type="text/css">
-html { height: 100% }
 body { 
     height:100%;
     margin:0;padding:0;
@@ -30,8 +27,12 @@ body {
 /*  margin-top:100px;*/
 }
 </style>
-
+  <title>เพิ่มข้อมูลหน่วยงาน</title>
+  
   <?php include("link.php"); ?>
+
+  <?php include("navbar.php"); ?>
+
 
 
     <script type="text/javascript" src="bootstrap-4/js/jquery-3.2.1.min.js" ></script>
@@ -110,9 +111,9 @@ data:{ dep_no:dep_no,location_name:location_name,lat:lat,lng:lng   }
 
 
 </head>
-  <?php include("navbar.php"); ?>
-<body>
-<h3 align="center" style="font-family:Prompt;"><b>เพิ่มข้อมูลหน่วยงาน</b></h3><br/><hr/>
+<body >
+
+<h3 align="center" style="font-family:Prompt;"><b>เพิ่มข้อมูลหน่วยงาน</b></h3><hr/>
 
 <div class="row">
 

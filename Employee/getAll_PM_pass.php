@@ -67,7 +67,7 @@ echo
 '
 
 <div class="table-responsive" >
-<table style="width:100%" align="center" border="1" class="table table-hover table table-striped table-bordered" >
+<table style="width:100%" align="center" border="1" class="table table-hover table-striped table-bordered" >
                                      
     <tr>
     <input type="hidden" name="pm_id" id="pm_id" value="'.$id.'" >
@@ -124,9 +124,10 @@ echo
     </tr>
     </table>
     </div>
-    <br>
+    <br><br>
         
     
+    <h4 align="center" style="font-family:Prompt; font-weight: bold;">รายการครุภัณฑ์ของศูนย์คอมพิวเตอร์</h4>  
 
 
 
