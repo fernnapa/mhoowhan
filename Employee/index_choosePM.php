@@ -40,23 +40,18 @@ $_SESSION['chooseEq'] = array();
   
                 <div class="card">
                     <div class="card-body">
-
                     <div class="container "> 
-                    
-                    <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
+                    <table border="0" align="center" style="width:100%;" class="w3-teal ">
                     <tr>
-                    <td><h3 style="font-family:Prompt;"><b>ยืม-คืนครุภัณฑ์</b></h3></a></button></td>
+                    <td><p><h3 style="font-family:Prompt;"><b>ยืมครุภัณฑ์คอมพิวเตอร์</b></h3></a></button></td>
                     </tr>
                     </table>
                     <table border="0" align="right" style="width:17%;">
                     <tr>
-                    <td><a href="create_PM.php" class="btn btn-primary btn-block"><i class="mdi mdi-bell-ring" style="font-family:Prompt;"> ข้อมูลครุภัณฑ์ที่เลือก</i></a></button></td>
+                    <td><a href="create_PM.php" class="btn btn-primary btn-block"><i class="mdi mdi-check" style="font-family:Prompt;"> ข้อมูลครุภัณฑ์ที่เลือก</i></a></button></td>
                     </tr>
                     </table>
-                    <br>
-                    <br>
-                    <br>
-
+                   
                     <table border="0" align="center" style="width:100%;" >
                     <tr>
                                                     <td><select name="search_text" id="search_text" style="width: 100%; font-family:Prompt; font-size: 15px;" class="form-control">
@@ -90,7 +85,6 @@ $_SESSION['chooseEq'] = array();
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
                     <tr>
-                        <td style="text-align: center; font-weight: bold;"></td>
                         <td style="text-align: center; font-weight: bold;">Barcode</td>
                         <td style="text-align: center; font-weight: bold;">Serial Number</td>
                         <td style="text-align: center; font-weight: bold;">สัญญา</td>
@@ -114,7 +108,6 @@ $_SESSION['chooseEq'] = array();
                        $result = mysqli_query($conn, $sql);
                        while($data = mysqli_fetch_array($result)):
                     ?>
-                        <td style="text-align:left"><?php echo $data['eq_pic']; ?></td>
                         <td style="text-align:left"><?php echo $data['eq_barcode']; ?></td>
                         <td style="text-align:left"><?php echo $data['eq_serial']; ?></td>
                         <td style="text-align:left"><?php echo $data['con_name']; ?></td>

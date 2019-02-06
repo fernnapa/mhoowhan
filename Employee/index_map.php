@@ -20,7 +20,9 @@ session_start();
 <body>
 
     <?php include("menu/navbar_emp.php")  ?>
-    
+    <div class="card">
+      <div class="card-body">
+
       <?php 
       include("../db_connect.php");
 
@@ -128,7 +130,8 @@ session_start();
 </div> 
 </div>
 </div>
-
+</div>
+</div>
 <style>
        /* Set the size of the div element that contains the map */
       #map {

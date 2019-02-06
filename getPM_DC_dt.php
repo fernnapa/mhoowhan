@@ -43,6 +43,7 @@ include("db_connect.php");
                                         $pm_note ="";
                                         $pm_fname ="";
                                         $pm_lname ="";
+                                        $status = "";
 
 
 
@@ -67,9 +68,10 @@ include("db_connect.php");
                                         $pm_dc_position = $row["pm_dc_position"];
                                         $pm_fname = $row["emp_fname"];
                                         $pm_lname = $row["emp_lname"];
- 
-                                        }
+                                        $status = $row["pm_status"];
 
+                                        }
+                                        if($status == 3){
                                         echo  
                                         '
 
@@ -80,54 +82,41 @@ include("db_connect.php");
                                             <input type="hidden" name="pm_id" id="pm_id" value="'.$id.'" >
                                             <input type="hidden" name="pm_userTname" id="pm_userTname" value="'.$pm_userTname.'" >
 
-                                            <td style="text-align: center;" width="40%;"><b>ชื่อผู้ยืม </b></td>
-                                            <td style="text-align: left;" width="60%;">'.$pm_username.'</td> 
-                                            </tr>
-                                            <tr>
-                                            <td style="text-align: center;" width="30%;"><b>เลขประจำตัวผู้ยืม </b></td>
-                                            <td style="text-align: left;" width="20%;">'.$pm_userno.'</td> 
+                                            <td style="text-align: center;"><b>ชื่อผู้ยืม </b></td>
+                                            <td style="text-align: left;" >'.$pm_username.'</td> 
+                                            <td style="text-align: center;"><b>เลขประจำตัวผู้ยืม </b></td>
+                                            <td style="text-align: left;" >'.$pm_userno.'</td> 
                                             </tr>
                                             <tr>
                                             <td style="text-align: center;"><b>ตำเเหน่ง </b></td>
                                             <td style="text-align: left;">'.$pm_position.'</td> 
-                                            </tr>
-                                            <tr>
                                             <td style="text-align: center;"><b>หน่วยงาน </b></td>
                                             <td style="text-align: left;">'.$pm_dep.'</td> 
                                             </tr>
                                             <tr>
                                             <td style="text-align: center;"><b>ประเภทห้อง </b></td>
                                             <td style="text-align: left;">'.$pm_TypeR.'</td> 
-                                            </tr>
-                                            <tr>
                                             <td style="text-align: center;"><b>วันที่เริ่มทำรายการ </b></td>
                                             <td style="text-align: left;">'.$pm_date.'</td> 
                                             </tr>
                                             <tr>
                                             <td style="text-align: center;"><b>วันที่เริ่ม </b></td>
                                             <td style="text-align: left;">'.$pm_firstdate.'</td> 
-                                            </tr>
-                                            <tr style="text-align: left;">
                                             <td style="text-align: center;"><b>วันที่สิ้นสุด: </b></td>
                                             <td style="text-align: left;">'.$pm_enddate.'</td> 
                                             </tr>
                                             <tr>
                                             <td style="text-align: center;"><b>พนักงานที่ทำรายการยืมคืน </b></td>
                                             <td style="text-align: left;">'.$pm_fname.'&nbsp;&nbsp;'.$pm_lname.'</td> 
-                                            </tr>
-                                            <tr>
                                             <td style="text-align: center;"><b>หัวหน้าฝ่ายที่ตรวจสอบ </b></td>
                                             <td style="text-align: left;">'.$pm_head.'
                                             <input type="hidden" name="pm_hd_position" id="pm_hd_position" value="'.$pm_hd_position.'" ></td> 
                                             </tr>
                                             <tr>
                                             <td style="text-align: center;"><b>ผู้อนุมัติการยืม-คืน </b></td>
-                                            <td style="text-align: left;">'.$pm_head_dc.'
+                                            <td style="text-align: left;" colspan="3">'.$pm_head_dc.'
                                             <input type="hidden" name="pm_dc_position" id="pm_dc_position" value="'.$pm_dc_position.'" ></td> 
-                                            </tr>
-                                            <tr>
-                                            <td style="text-align: center;"><b>หมายเหตุ </b></td>
-                                            <td style="text-align: left;">'.$pm_note.'</td> 
+                                            
                                             </tr>
                                         </table>
                                         </div>
@@ -167,6 +156,6 @@ include("db_connect.php");
                                         endwhile;
                                         echo '</table>';
                                                         
-                                                        
+                                    }              
                                         ?>
 

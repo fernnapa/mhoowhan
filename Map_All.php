@@ -70,7 +70,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-2">
-							<div id="colorlib-logo"><a href="index.php"><img src="images/banner.png" style="width: 200px;"></a></div>
+							<div id="colorlib-logo"><a href="index.php"><img src="images/logo1.png" style="width: 200px;"></a></div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
@@ -122,7 +122,7 @@
                             <table align="center" border="0">
                             <tr>
                             <td>
-                            <select name="address" class="form-control" style="width:100%">
+                            <select name="address" class="form-control" style="width:100%;  font-family:Prompt;">
                               <option selected value="all">ทั้งหมด</option>
                                 <?php while($row = $rsListData->fetch_assoc()){ ?>
                 

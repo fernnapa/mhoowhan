@@ -21,12 +21,18 @@ include("../../db_connect.php");
     .modal-dialog.b{
     max-width : 580px;
     }
+
+    body{
+                font-family: 'Kanit', sans-serif;
+            }
     </style>
 </head>
 
 <?php include("navbar.php"); ?>
 
 <body>
+<div class="card">
+      <div class="card-body">
 
   <!-- /.modal add-->
     <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
@@ -69,7 +75,7 @@ include("../../db_connect.php");
                                     </tr>
                                     <tr>
                                         <th style="text-align: center;">รูปภาพ :</th>
-                                        <th style="text-align: center;"><input type="file" name="images[]" id="select_image" multiple  onchange="namepic()"></th>
+                                        <th style="text-align: center;"><input type="file" name="images[]" id="select_image" multiple  onchange="namepic()" style="font-family:Prompt; font-size: 15px;"></th>
                                         <input type="hidden" id="emp_pic" name="emp_pic" class="form-control">
                                     </tr>
                                     <tr>
@@ -82,7 +88,7 @@ include("../../db_connect.php");
                                     </tr>
                                     <tr>
                                         <th style="text-align: center;">สถานะผู้ใช้งาน :</th> 
-                                        <th style="text-align: center;"><select name="emp_status" id="emp_status"  class="form-control">
+                                        <th style="text-align: center;"><select name="emp_status" id="emp_status"  class="form-control" style="font-family:Prompt; font-size: 15px;">
                                                 <option>เลือกสถานะ</option>
                                                 <option value="member">เจ้าหน้าที่ทั่วไป</option>
                                                 <option value="head">หัวหน้าศูนย์คอมพิวเตอร์</option>
@@ -159,10 +165,13 @@ include("../../db_connect.php");
 
 
 <!-- /.data -->
-    <table align="center" style="width:100%"><br/>
+        <table align="center" style="width:100%" class="w3-teal">
         <tr>
-            <th colspan="7"><h3 style="text-align:center; font-family:Prompt;"><b>ค้นหาข้อมูลเจ้าหน้าที่</b></h3></th>
+            <th colspan="7"><p><h3 style="text-align:center; font-family:Prompt;"><b>ข้อมูลเจ้าหน้าที่</b></h3></th>
         </tr>
+        </table>
+        <p>       
+    <table align="center" style="width:100%">
         <tr>
             <form class="form-inline" onsubmit="openModal()" id="myForm">
                 <th colspan="6"><input type="text" style="width:100%;" size="50" name="search_text" id="search_text" class="form-control" placeholder="ระบุคำที่ต้องการค้นหา"></th>
@@ -179,7 +188,8 @@ include("../../db_connect.php");
 
 
 <?php include ("footer.php"); ?>
-
+</div>
+</div>
 
 
 <!-- /.script modal add -->
@@ -309,7 +319,7 @@ include("../../db_connect.php");
                                 alert(b);
                                 if(data == 1){
                                              swal( {
-                                                     title: "เพิ่มข้อมูลสำเร็จ",
+                                                     title: "อัพเดทข้อมูลสำเร็จ",
                                                      icon: "success",
                                                      button: "ตกลง",
                                                      }).then (function(){ 

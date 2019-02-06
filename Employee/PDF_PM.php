@@ -98,7 +98,7 @@ include("../db_connect.php");
                     <br>
                     <div align='rigth'>
                     <!-- <input type="button" name="Button" class="btn btn-info" value="พิมพ์แบบฟอร์ม" onclick="javascript:this.style.display='none';printPage();"> -->
-                    <a href="print_PM.php?print=<?php echo $pm_id; ?>" class="btn btn-info">พิมพ์แบบฟอร์ม</a>
+                    <a href="print_PM.php?print=<?php echo $pm_id; ?>" class="btn btn-info" style="font-family:Prompt;">พิมพ์แบบฟอร์ม</a>
                     </div>
                     <br>
                     <div class="container" style="width:100% " > 
@@ -106,7 +106,7 @@ include("../db_connect.php");
                     <table border="0" align="center" style="width:90%" >
                     <tr>
                     <td style ="width:20%"><img src="img/sut.png" width="100%" ></td>
-                    <td style ="width:80%"><h4><b>ใบยืมครุภัณฑ์คอมพิวเตอร์และอุปกรณ์ต่อพ่วง</b></h4>
+                    <td style ="width:80%"><h4 style="font-family:Sarabun;"><b>ใบยืมครุภัณฑ์คอมพิวเตอร์และอุปกรณ์ต่อพ่วง</b></h4>
                     <br>
                     ศูนย์คอมพิวเตอร์ มหาวิทยาลัยเทคโนโลยีสุรนารี <br>
                     บริการแจ้งซ่อมผ่านระบบ Online ที่ http://eCCS.sut.ac.th สายด่วนโทร 1919</td>

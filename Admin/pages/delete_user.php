@@ -24,7 +24,7 @@ include("../../db_connect.php");
 
             if(mysqli_query($conn, $sql)){
               $data = 1;
-              unlink("upload/$pic");
+              unlink("img/$pic");
               echo $data;
             }else{
               $data = 0;

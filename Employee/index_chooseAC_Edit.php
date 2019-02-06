@@ -30,15 +30,21 @@ $_SESSION['chooseEq'] = array();
     <?php include("menu/navbar_emp.php"); ?>
     <title>จัดสรรครุภัณฑ์</title>
         <body>
-<?php
-        $id = $_POST['id_add'];
-?>
+
+        
+    <div class="card">
+      <div class="card-body">
+
+
+                <?php
+                        $id = $_POST['id_add'];
+                ?>
                      
                     <div class="container" > 
                     
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3><b>จัดสรรครุภัณฑ์</b></h3></a></button></td>
+                    <td><h3 style="font-family:Prompt;"><b>จัดสรรครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
                     <br>
@@ -79,8 +85,7 @@ $_SESSION['chooseEq'] = array();
                     <form id="form3"> 
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
-                    <tr >
-                        <td style="text-align: center;"></td>
+                    <tr style="font-family:Prompt; font-weight: bold; font-size: 15px;  ">
                         <td style="text-align: center;">Barcode</td>
                         <td style="text-align: center;">Serial Number</td>
                         <td style="text-align: center;">สัญญา</td>
@@ -105,7 +110,6 @@ $_SESSION['chooseEq'] = array();
                        while($data = mysqli_fetch_array($result)):
 
                     ?>
-                        <td style="text-align:left"><?php echo $data['eq_pic']; ?></td>
                         <td style="text-align:left"><?php echo $data['eq_barcode']; ?></td>
                         <td style="text-align:left"><?php echo $data['eq_serial']; ?></td>
                         <td style="text-align:left"><?php echo $data['con_name']; ?></td>
@@ -113,7 +117,7 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                         <input type="hidden" name="id" value="<?php echo $data['eq_id']; ?>">
 
-                        <td><button type="button" name="submit" id="submit<?php echo $data['eq_id']; ?>" class="btn btn-success btn-block" value="<?php echo $data['eq_id']; ?>" onclick="getid(this)" >เลือกครุภัณฑ์</button></td></form>
+                        <td><button type="button" name="submit" id="submit<?php echo $data['eq_id']; ?>" class="btn btn-success btn-block" value="<?php echo $data['eq_id']; ?>" onclick="getid(this)" style="font-family:Prompt;" >เลือกครุภัณฑ์</button></td></form>
                     </tr>
                        <?php endwhile;?>
                 </table>
@@ -154,7 +158,8 @@ $_SESSION['chooseEq'] = array();
   <!-- container-scroller -->
   </div>
   </div>
-
+  </div>
+  </div>
 <!-- /.data -->
 <!-- /.script modal add -->
 <script>

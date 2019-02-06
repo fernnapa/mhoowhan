@@ -41,24 +41,58 @@ include("../db_connect.php");
 
     <?php include("menu/navbar_emp.php")  ?>
 
+                             <?php
+                                  include("../db_connect.php");
+                                  
+                                  $sql = "SELECT COUNT(eq_id) as total1 FROM `equipment`";
+                                  $result = mysqli_query($conn, $sql);
+                                  while($eq = mysqli_fetch_array($result)){
+                                    $eq1= $eq["total1"];
+                                  }  
 
-    <div class="row">
+                                  $sql2 = "SELECT COUNT(ac_id) as total2 FROM `allocate` WHERE ac_status = 2";
+                                  $result2 = mysqli_query($conn, $sql2);
+                                  while($allocate = mysqli_fetch_array($result2)){
+                                    $ac = $allocate["total2"];
+                                  } 
+
+                                  $sql3 = "SELECT COUNT(pm_id) as total3 FROM `permit` WHERE pm_status = 3";
+                                  $result3 = mysqli_query($conn, $sql3);
+                                  while($permit = mysqli_fetch_array($result3)){
+                                    $pm = $permit["total3"];
+                                  } 
+
+                                  $sql4 = "SELECT COUNT(dep_id) as total4 FROM `department`";
+                                  $result4 = mysqli_query($conn, $sql4);
+                                  while($depart = mysqli_fetch_array($result4)){
+                                    $dp = $depart["total4"];
+                                  } 
+
+
+
+                                  
+                              ?>
+
+
+    <div class="row" style="font-family:Prompt;">
             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
               <div class="card card-statistics">
                 <div class="card-body">
                   <div class="clearfix">
                     <div class="float-left">
-                      <i class="mdi mdi-cube text-danger icon-lg"></i>
+                      <i class="mdi mdi-cellphone-link text-danger icon-lg"></i>
                     </div>
                     <div class="float-right">
                       <p class="mb-0 text-right" style="font-family:Prompt;">จำนวนครุภัณฑ์ทั้งหมด</p>
                       <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">125</h3>
+                        <h3 class="font-weight-medium text-right mb-0">
+                              <?php echo $eq1; ?>
+                        </h3>
                       </div>
                     </div>
                   </div>
                   <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> 65% lower growth
+                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> ครุภัณฑ์คอมพิวเตอร์
                   </p>
                 </div>
               </div>
@@ -73,12 +107,14 @@ include("../db_connect.php");
                     <div class="float-right">
                       <p class="mb-0 text-right" style="font-family:Prompt;">รายการจัดสรรทั้งหมด</p>
                       <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">25</h3>
+                        <h3 class="font-weight-medium text-right mb-0"> 
+                        <?php echo $ac; ?>
+                        </h3>
                       </div>
                     </div>
                   </div>
                   <p class="text-muted mt-3 mb-0">
-                    <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> Product-wise sales
+                    <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> การจัดสรรให้กับเจ้าหน้าที่
                   </p>
                 </div>
               </div>
@@ -88,12 +124,14 @@ include("../db_connect.php");
                 <div class="card-body">
                   <div class="clearfix">
                     <div class="float-left">
-                      <i class="mdi mdi-poll-box text-success icon-lg"></i>
+                      <i class="mdi  mdi-rotate-3d text-success icon-lg"></i>
                     </div>
                     <div class="float-right">
                       <p class="mb-0 text-right" style="font-family:Prompt;">รายการยืม-คืนทั้งหมด</p>
                       <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">2</h3>
+                        <h3 class="font-weight-medium text-right mb-0">
+                        <?php echo $pm; ?>
+                        </h3>
                       </div>
                     </div>
                   </div>
@@ -108,12 +146,14 @@ include("../db_connect.php");
                 <div class="card-body">
                   <div class="clearfix">
                     <div class="float-left">
-                      <i class="mdi mdi-account-location text-info icon-lg"></i>
+                      <i class="mdi mdi-home-variant text-info icon-lg"></i>
                     </div>
                     <div class="float-right">
-                      <p class="mb-0 text-right" style="font-family:Prompt;">ประเภทครุภัณฑ์ทั้งหมด</p>
+                      <p class="mb-0 text-right" style="font-family:Prompt;">หน่วยงานทั้งหมด</p>
                       <div class="fluid-container">
-                        <h3 class="font-weight-medium text-right mb-0">4</h3>
+                        <h3 class="font-weight-medium text-right mb-0">
+                        <?php echo $dp; ?>
+                        </h3>
                       </div>
                     </div>
                   </div>
@@ -129,7 +169,7 @@ include("../db_connect.php");
 
     <div class="card">
       <div class="card-body">
-    <div class="container">
+        <div class="container">
 				<div class="row row-pb-md">
 					<div id="div-1" class="col-70">   
           <h3 style="font-family:Prompt;">สถิติการจัดสรรครุภัณฑ์ให้กับหน่วยงาน</h3>  

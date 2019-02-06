@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <?php  
- include("../../db_connect.php");
+include("../../db_connect.php");
 
  if(isset($_GET["search"])){
 
@@ -32,7 +32,7 @@ session_start();
  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Map</title>
+  <title>รายงาน</title>
 
     <?php include("link.php")  ?>
 </head>
@@ -41,13 +41,140 @@ session_start();
 
     <?php include("navbar.php")  ?>
 
+                             <?php
+                                  include("../../db_connect.php");
+                                  
+                                  $sql = "SELECT COUNT(eq_id) as total1 FROM `equipment`";
+                                  $result = mysqli_query($conn, $sql);
+                                  while($eq = mysqli_fetch_array($result)){
+                                    $eq1= $eq["total1"];
+                                  }  
 
-    <div class="container">
+                                  $sql2 = "SELECT COUNT(ac_id) as total2 FROM `allocate` WHERE ac_status = 2";
+                                  $result2 = mysqli_query($conn, $sql2);
+                                  while($allocate = mysqli_fetch_array($result2)){
+                                    $ac = $allocate["total2"];
+                                  } 
+
+                                  $sql3 = "SELECT COUNT(pm_id) as total3 FROM `permit` WHERE pm_status = 3";
+                                  $result3 = mysqli_query($conn, $sql3);
+                                  while($permit = mysqli_fetch_array($result3)){
+                                    $pm = $permit["total3"];
+                                  } 
+
+                                  $sql4 = "SELECT COUNT(dep_id) as total4 FROM `department`";
+                                  $result4 = mysqli_query($conn, $sql4);
+                                  while($depart = mysqli_fetch_array($result4)){
+                                    $dp = $depart["total4"];
+                                  } 
+
+
+
+                                  
+                              ?>
+
+
+    <div class="row" style="font-family:Prompt;">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+              <div class="card card-statistics">
+                <div class="card-body">
+                  <div class="clearfix">
+                    <div class="float-left">
+                      <i class="mdi mdi-cellphone-link text-danger icon-lg"></i>
+                    </div>
+                    <div class="float-right">
+                      <p class="mb-0 text-right" style="font-family:Prompt;">จำนวนครุภัณฑ์ทั้งหมด</p>
+                      <div class="fluid-container">
+                        <h3 class="font-weight-medium text-right mb-0">
+                              <?php echo $eq1; ?>
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-muted mt-3 mb-0">
+                    <i class="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> ครุภัณฑ์คอมพิวเตอร์
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+              <div class="card card-statistics">
+                <div class="card-body">
+                  <div class="clearfix">
+                    <div class="float-left">
+                      <i class="mdi mdi-receipt text-warning icon-lg"></i>
+                    </div>
+                    <div class="float-right">
+                      <p class="mb-0 text-right" style="font-family:Prompt;">รายการจัดสรรทั้งหมด</p>
+                      <div class="fluid-container">
+                        <h3 class="font-weight-medium text-right mb-0"> 
+                        <?php echo $ac; ?>
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-muted mt-3 mb-0">
+                    <i class="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> รายการจัดสรรให้กับเจ้าหน้าที่
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+              <div class="card card-statistics">
+                <div class="card-body">
+                  <div class="clearfix">
+                    <div class="float-left">
+                      <i class="mdi  mdi-rotate-3d text-success icon-lg"></i>
+                    </div>
+                    <div class="float-right">
+                      <p class="mb-0 text-right" style="font-family:Prompt;">รายการยืม-คืนทั้งหมด</p>
+                      <div class="fluid-container">
+                        <h3 class="font-weight-medium text-right mb-0">
+                        <?php echo $pm; ?>
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-muted mt-3 mb-0">
+                    <i class="mdi mdi-calendar mr-1" aria-hidden="true"></i> รายการยืมครุภัณฑ์ให้กับเจ้าหน้าที่
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+              <div class="card card-statistics">
+                <div class="card-body">
+                  <div class="clearfix">
+                    <div class="float-left">
+                      <i class="mdi mdi-home-variant text-info icon-lg"></i>
+                    </div>
+                    <div class="float-right">
+                      <p class="mb-0 text-right" style="font-family:Prompt;">หน่วยงานทั้งหมด</p>
+                      <div class="fluid-container">
+                        <h3 class="font-weight-medium text-right mb-0">
+                        <?php echo $dp; ?>
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-muted mt-3 mb-0">
+                    <i class="mdi mdi-reload mr-1" aria-hidden="true"></i> หน่วยงานภายใน มทส.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    
+
+    <div class="card">
+      <div class="card-body">
+        <div class="container">
 				<div class="row row-pb-md">
 					<div id="div-1" class="col-70">   
           <h3 style="font-family:Prompt;">สถิติการจัดสรรครุภัณฑ์ให้กับหน่วยงาน</h3>  
 
-          <form action="chart.php" id="bar1" action="get">
+          <form action="index_chart.php" id="bar1" action="get">
             <table >      
               <tr>
                 <td style="font-family:Prompt;"><b>วันที่จัดสรร :</b> </td>
@@ -100,7 +227,7 @@ session_start();
 
 					<h3 style="font-family:Prompt;">สถิติการยืม-คืนครุภัณฑ์ให้กับหน่วยงาน</h3> 
 
-					<form action="chart.php" id="bar2" action="get">
+					<form action="index_chart.php" id="bar2" action="get">
             <table >      
               <tr>
                 <td style="font-family:Prompt;"><b>วันที่ยืม-คืน :</b> </td>
@@ -187,7 +314,10 @@ session_start();
       </div> 
     </div>
   </div>
-
+  </div>
+  </div>
+  </div>
+  </div>
   </body>
 </html>
 

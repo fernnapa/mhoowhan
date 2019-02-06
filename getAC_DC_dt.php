@@ -15,7 +15,8 @@ include("db_connect.php");
         $id = $_GET['id'];
     
     }
-
+                // echo $id;
+                // return;
 
                             $sql = "SELECT * FROM allocate
                             LEFT JOIN a_status
@@ -41,6 +42,8 @@ include("db_connect.php");
                                         $ac_note = "";
                                         $emp_fname = "";
                                         $emp_lname = "";
+                                        $status = "";
+
 
 
 
@@ -63,9 +66,12 @@ include("db_connect.php");
                                         $ac_note = $row["ac_note"];
                                         $emp_fname = $row["emp_fname"];
                                         $emp_lname = $row["emp_lname"];
+                                        $status = $row["ac_status"];
+
                                         
                                         }
 
+                                        if($status == 11){
                                         echo 
                                         '
 
@@ -78,32 +84,24 @@ include("db_connect.php");
 
                                             <td style="text-align: center;" width="40%;"><b>ชื่อผู้ยืม </b></td>
                                             <td style="text-align: left;" width="60%;">'.$ac_name.'</td> 
-                                            </tr>
-                                            <tr>
                                             <td style="text-align: center;" width="30%;"><b>เลขประจำตัว </b></td>
                                             <td style="text-align: left;" width="20%;">'.$ac_empid.'</td> 
                                             </tr>
                                             <tr>
                                             <td style="text-align: center;"><b>ตำเเหน่ง </b></td>
                                             <td style="text-align: left;">'.$ac_position.'</td> 
-                                            </tr>
-                                            <tr>
                                             <td style="text-align: center;"><b>หน่วยงาน </b></td>
                                             <td style="text-align: left;">'.$ac_dep.'</td> 
                                             </tr>
                                             <tr>
                                             <td style="text-align: center;"><b>ประเภทห้อง </b></td>
                                             <td style="text-align: left;">'.$ac_typeR.'</td> 
-                                            </tr>
-                                            <tr>
                                             <td style="text-align: center;"><b>วันที่เริ่มทำรายการ </b></td>
                                             <td style="text-align: left;">'.$ac_date.'</td> 
                                             </tr>
                                             <tr>
                                             <td style="text-align: center;"><b>พนักงานที่ทำรายการจัดสรร </b></td>
                                             <td style="text-align: left;">'.$emp_fname.'&nbsp;&nbsp;'.$emp_lname.'</td> 
-                                            </tr>
-                                            <tr>
                                             <td style="text-align: center;"><b>หัวหน้าฝ่ายที่ตรวจสอบ </b></td>
                                             <td style="text-align: left;">'.$ac_head.'</td> 
                                             <input type="hidden" name="ac_hd_position" id="ac_hd_position" value="'.$ac_hd_position.'" >
@@ -112,8 +110,6 @@ include("db_connect.php");
                                             <td style="text-align: center;"><b>ผู้อนุมัติการจัดสรร </b></td>
                                             <td style="text-align: left;">'.$ac_head_dc.'</td> 
                                             <input type="hidden" name="ac_dc_position" id="ac_dc_position" value="'.$ac_dc_position.'" >
-                                            </tr>
-                                            <tr>
                                             <td style="text-align: center;"><b>หมายเหตุ </b></td>
                                             <td style="text-align: left;">'.$ac_note.'</td> 
                                             </tr>
@@ -154,7 +150,85 @@ include("db_connect.php");
                                         </tr>';
                                         endwhile;
                                         echo '</table>';
+                                    }
+
+                                    if($status == 10 || $status == 2 || $status == 3 )
+                                    {
+                                        echo 
+                                        '
+
+                                        <div class="table-responsive">
+                                        <table style="width:100%; text-align: center; font-family:Prompt;" align="center" border="1" class="table table-hover table table-striped table-bordered " >
                                         
+                                            <tr>
+                                            <input type="hidden" name="ac_id" id="ac_id" value="'.$id.'" >
+                                            <input type="hidden" name="ac_tname" id="ac_tname" value="'.$ac_tname.'" >
+
+                                            <td style="text-align: center;"><b>ชื่อผู้ยืม </b></td>
+                                            <td style="text-align: left;">'.$ac_name.'</td> 
+                                            <td style="text-align: center;"><b>เลขประจำตัว </b></td>
+                                            <td style="text-align: left;">'.$ac_empid.'</td> 
+                                            </tr>
+                                            <tr>
+                                            <td style="text-align: center;"><b>ตำเเหน่ง </b></td>
+                                            <td style="text-align: left;">'.$ac_position.'</td> 
+                                            <td style="text-align: center;"><b>หน่วยงาน </b></td>
+                                            <td style="text-align: left;">'.$ac_dep.'</td> 
+                                            </tr>
+                                            <tr>
+                                            <td style="text-align: center;"><b>ประเภทห้อง </b></td>
+                                            <td style="text-align: left;">'.$ac_typeR.'</td> 
+                                            <td style="text-align: center;"><b>วันที่เริ่มทำรายการ </b></td>
+                                            <td style="text-align: left;">'.$ac_date.'</td> 
+                                            </tr>
+                                            <tr>
+                                            <td style="text-align: center;"><b>พนักงานที่ทำรายการจัดสรร </b></td>
+                                            <td style="text-align: left;">'.$emp_fname.'&nbsp;&nbsp;'.$emp_lname.'</td> 
+                                            <td style="text-align: center;"><b>หัวหน้าฝ่ายที่ตรวจสอบ </b></td>
+                                            <td style="text-align: left;">'.$ac_head.'</td> 
+                                            <input type="hidden" name="ac_hd_position" id="ac_hd_position" value="'.$ac_hd_position.'" >
+                                            </tr>
+                                            <tr>
+                                            <td style="text-align: center;"><b>ผู้อนุมัติการจัดสรร </b></td>
+                                            <td style="text-align: left;" colspan="3">'.$ac_head_dc.'</td> 
+                                            <input type="hidden" name="ac_dc_position" id="ac_dc_position" value="'.$ac_dc_position.'" >
+                                            
+                                            </tr>
+                                        </table>
+                                        </div>
+                                        <br>
+                                        
+                                  <h4 align="center" style="font-family:Prompt; font-weight: bold;">รายการครุภัณฑ์ของศูนย์คอมพิวเตอร์</h4>  
+
+                                        <table id="tableshow" align="center" style="width:90%; text-align: center; font-family:Prompt;" class="table table-striped table-bordered" >
+                                        <thead>
+                                        <tr >
+
+                                        <td style="text-align: center; font-weight: bold;">Barcode</td>
+                                        <td style="text-align: center; font-weight: bold;">Serial no.</td>
+                                        <td style="text-align: center; font-weight: bold;">ประเภทครุภัณฑ์</td>
+                                        <td style="text-align: center; font-weight: bold;">สัญญาปี</td>
+
+                                        </tr>
+                                        </thead>
+                                        
+                                        <tr>';
+                                        
+                                        $sql = "SELECT * FROM allocate_detail
+                                        WHERE ac_id = $id";
+                                        $result = mysqli_query($conn, $sql);
+                                        while($data = mysqli_fetch_array($result)):
+
+                                        echo    '<td style="text-align:left">'.$data['ald_eq_barcode'].'</td>
+                                        <td style="text-align:left">'.$data['ald_eq_serial'].'</td>
+                                        <td style="text-align:left">'.$data['ald_type_name'].'</td>
+                                        <td style="text-align:center">'.$data['ald_con_name'].'</td>
+
+                                        </tr>';
+                                        endwhile;
+                                        echo '</table>';
+
+                                    }
 
                                         ?>
 

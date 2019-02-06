@@ -83,7 +83,7 @@ session_start();
                     <div class="card-body">
                      <div class="container " style="width:100% " > 
                     <form id="Add_AC"> 
-                    <br>
+              
                     <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
                     <td><p><h3 align="center" style="font-family:Prompt;"><b>ยืนยันการจัดสรรครุภัณฑ์</b></h3></a></button></td>
@@ -128,12 +128,13 @@ session_start();
 
                     <tr>
                     <input type="hidden"  name="date"  id="date" value="<?=date('Y-m-d')?> "readonly/>
-                    <td style="text-align: left">รหัสพนักงานจัดสรร</td>
+                    <td style="text-align: left">พนักงานจัดสรร</td>
                     <td style="text-align: left">ประเภทห้อง</td>
                     </tr>
 
                     <tr>
-                    <td ><input type="text" name="ac_emp" class="form-control" value="<?php echo $_SESSION["emp_id"] ?>"readonly/></td>
+                    <td ><input type="text" name="ac_emp" class="form-control" value="<?php echo $_SESSION["User"] ?>"readonly/></td>
+                    <input type="hidden" name="ac_emp" class="form-control" value="<?php echo $_SESSION["emp_id"] ?>">
                     <td ><input type="text" name="ac_typeR" class="form-control"></td>
                     </tr>
 
@@ -142,8 +143,8 @@ session_start();
                     </div>
                     </div>
                     </form>
-                   <br>
-                    <div class="container w3-card-2 w3-round" style="width:100% " > 
+                
+                  
                     <table border="0" align="right">
                     <tr>
                     <!-- <td><a href="index_chooseAC.php" class="btn btn-primary btn-block">เลือกครุภัณฑ์</a></td> -->
@@ -204,15 +205,10 @@ session_start();
                     <tr>
                     <td><input type="submit" style="font-family:Prompt;" name="submitAdd" id="submit" value="บันทึกข้อมูล" form="Add_AC" class="btn btn-success btn-block"></td>
                     </tr>
-                    </table>
-                <br>
+                    </table> 
 
                 </div>
-                </div>
-
-
-
-                        
+                 
                 </div>
               </div>
             </div>

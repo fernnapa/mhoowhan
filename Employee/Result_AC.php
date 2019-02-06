@@ -13,7 +13,7 @@ $_SESSION['chooseEq'] = array();
     <style>
 
             .modal-dialog.a{
-                max-width : 650px;
+                max-width : 855px;
                 max-height: 550px;
             }
 
@@ -63,23 +63,6 @@ $_SESSION['chooseEq'] = array();
         </div>
        
 
-        <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewAC">
-                            <div class="modal-dialog " role="document">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" style="font-family:Prompt;"><b>ข้อมูลการจัดสรรครุภัณฑ์</b></h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                                    <div class="modal-body table-responsive">
-                                            <form id="ViewAC_DC" ></form> 
-                                    </div>
-                                    <div class="modal-footer">
-                                          <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
-                                    </div>
-
-                            </div>
-                            </div>
-        </div>
 
 
 
@@ -118,13 +101,11 @@ $_SESSION['chooseEq'] = array();
 <!-- Modal บอกเหตุผที่ไม่ให้ผ่าน -->
                     
                     <div class="container" > 
-                    <br>
-                    <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
+                    <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
-                    <td><h3 style="font-family:Prompt;"><b>ผลการดำเนินการการจัดสรรครุภัณฑ์</b></h3></a></button></td>
+                    <td><p><h3 style="font-family:Prompt;"><b>ผลการดำเนินการการจัดสรรครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
-                    
                     <br>
                     <div class="table-responsive" id="result">
                     <p></p>
@@ -168,7 +149,7 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
 
                         <td><button type="button" name="idEdit" class="btn btn-warning btn-block" value="<?php echo $data['ac_id']; ?>" onclick="getidTOedit(this)" style="font-family:Prompt;">เเก้ไขรายการ</button></td>
-                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC(<?php echo $data['ac_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData(<?php echo $data['ac_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
 
                     <?php  } if($stn == "ไม่อนุมัติ"){ ?>
                                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
@@ -178,7 +159,7 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
 
                         <td><button type="button" name="submitviewRS" id="submitviewNopass" class="btn btn-danger btn-block"  value="<?php echo $id; ?>" onclick="notpass(this)" style="font-family:Prompt;">ยกเลิกรายการ</button></td>
-                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC(<?php echo $data['ac_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData(<?php echo $data['ac_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
 
                     <?php } if($stn == "อนุมัติ"){ ?>
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
@@ -188,7 +169,7 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                     
                         <td><button type="button" name="submitviewRS" id="submitviewRS" class="btn btn-success btn-block"  value="<?php echo $id; ?>" onclick="pass(this)" style="font-family:Prompt;">ทำการจัดสรร</button></td>
-                        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC(<?php echo $data['ac_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData(<?php echo $data['ac_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
                     <?php } ?>
                         </tr>
                     <?php } ?>
@@ -243,17 +224,22 @@ $_SESSION['chooseEq'] = array();
 $(document).ready(function(){  
         $('#tableshow').DataTable({
         "searching": true,
+        "language": {
+            "lengthMenu": "ข้อมูลเเสดง _MENU_ ต่อหน้า",
+            "info": " _PAGE_ หน้าจาก _PAGES_",
+            "sSearch": "ค้นหา"
 
-        "oLanguage": {
-        "sSearch": "ค้นหา : "
         },
-        retrieve: true,
+  
+      retrieve: true,
+
+      
 });  
  }); 
 </script>
 
 <script>
-            function showAC(str) {
+            function showData(str) {
             var xhttp;    
             if (str == "") {
                 document.getElementById("ViewAC").innerHTML = "";
@@ -265,28 +251,12 @@ $(document).ready(function(){
                 document.getElementById("ViewAC").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "getAC_dt.php?id="+str, true);
+            xhttp.open("GET", "get_Result_AC.php?id="+str, true);
             xhttp.send();
             }
 </script>
 
-<script>
-            function showAC_DC(str) {
-            var xhttp;    
-            if (str == "") {
-                document.getElementById("ViewAC_DC").innerHTML = "";
-                return;
-            }
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("ViewAC_DC").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "getAC_DC_dt.php?id="+str, true);
-            xhttp.send();
-            }
-</script>
+
 
 
 

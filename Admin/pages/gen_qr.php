@@ -11,25 +11,43 @@ include("../../db_connect.php");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>ข้อมูลครุภัณฑ์คอมพิวเตอร์</title>
   <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
+    <?php include("link.php"); ?> 
+    
+ <style>
   
-  <?php include("link.php"); ?>
+
+    table, th, td{
+    }
+    td {
+        padding: 5px;
+        text-align: center;    
+    }
+    th {
+        padding: 5px;
+    }
+    body{
+        font-family: 'Kanit', sans-serif;
+    }
+    .search-table-outter { overflow-x: scroll; }
+    </style>
 
 </head>
   <?php include("navbar.php"); ?>
 <body>
 
-
+<div class="card">
+    <div class="card-body">
    
 <table align="center" style="width:100%; font-family:Prompt;" border="0" class="w3-teal ">
         <tr>
-            <th><p><h3 style="text-align:center; font-family:Prompt;" class="w3-teal"><b>สร้าง QR-code</b></h3></th>
+            <th><p><h3 style="text-align:center; font-family:Prompt;" class="w3-teal"><b>QR-code ครุภัณฑ์คอมพิวเตอร์</b></h3></th>
                 </tr>
         </table>
-        <br>
+
     <div style="width:100%;" class="input-group mb-3">
     <table border="0" align="center" style="width:100%;" >
                     <tr>
-                    <td><select name="search_text" id="search_text" style="width: 100%" class="form-control">
+                    <td><select name="search_text" id="search_text" style="width: 100%; font-family:Prompt; font-size: 15px;" class="form-control">
                                                             <option value="ทั้งหมด">สัญญาทั้งหมด</option>
                                             <?php
                                                     $cont = "SELECT * FROM contract ORDER BY con_name";
@@ -39,7 +57,7 @@ include("../../db_connect.php");
                                                     <option value="<?php echo $data['con_name']; ?>"><?php echo $data['con_name']; ?></option>
                                             <?php endwhile;?>
                                                 </select></td>
-                    <td><select name="search_text2" id="search_text2" style="width: 100%" class="form-control">
+                    <td><select name="search_text2" id="search_text2" style="width: 100%; font-family:Prompt; font-size: 15px;" class="form-control">
                                                             <option value="ทั้งหมด">สถานะทั้งหมด</option>
                                             <?php
                                                     $cont = "SELECT * FROM a_status  
@@ -56,11 +74,12 @@ include("../../db_connect.php");
                     </table>
     </div>
     <div class="table-responsive" id="result">
-        <p></p>
         <form id="form3"></form>
     </div>
     <!-- /.data -->
     <?php include ("footer.php"); ?>
+    </div>
+    </div>
 </body>
 </html>
 

@@ -39,6 +39,11 @@
 
 
 	<style>
+
+.modal-dialog.a{
+        max-width : 950px;
+        max-height: 550px;
+    }
             table, th, td{
             }
             td {
@@ -64,7 +69,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-2">
-							<div id="colorlib-logo"><a href="index.php"><img src="images/banner.png" style="width: 200px;"></a></div>
+							<div id="colorlib-logo"><a href="index.php"><img src="images/logo1.png" style="width: 200px;"></a></div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
@@ -84,7 +89,7 @@
 		<aside id="colorlib-hero">
 			<div class="flexslider">
 				<ul class="slides">
-			   	<li style="background-image: url(images/sut-iot.png);">
+			   	<li style="background-image: url(images/tracker2.jpg);">
 			   		<div class="overlay"></div>
 			   		<div class="container">
 			   			<div class="row">
@@ -92,17 +97,17 @@
 				   				<div class="slider-text-inner">
 				   					<div class="desc">
 				   						<p class="meta">
-											<span class="cat"  style="font-family:Prompt;"><a href="http://iot.sut.ac.th/mobile/login.php">Events</a></span>
+											<span class="cat"  style="font-family:Prompt;"><a href="http://it2.sut.ac.th/project61_g20/">Events</a></span>
 										</p>
-					   					<h1 align="center" style="font-family:Prompt;">SUT Internet of Things</h1>
-										<h4 style="font-family:Prompt;">ศูนย์คอมพิวเตอร์ ได้พัฒนาระบบเครือข่ายไร้สายสำหรับอุปกรณ์สมัยใหม่ (Internet of Thing) โดยใช้ชื่อสัญญาณว่า @SUT-IoT โดย @SUT-IoT ถูกออกแบบมาให้รองรับอุปกรณ์ที่ต้องการเชื่อมต่อ internet เช่น Smart TV, Smart watch, IP Camera เป็นต้น​</h4>
+					   					<h1 align="center" style="font-family:Prompt;">TRACKER CCS.</h1>
+										<h4 style="font-family:Prompt;">ระบบติดตามการใช้งานครุภัณฑ์คอมพิวเตอร์ เป็นระบบที่พัฒนาขึ้นเพื่ออำนวยความสะดวกแก่เจ้าหน้าที่ที่รับผิดชอบในการจัดการข้อมูลครุภัณฑ์ของศูนย์คอมพิวเตอร์ มหาวิทยาลัยเทคโนโลยีสุรนารี </h4>
 				   					</div>
 				   				</div>
 				   			</div>
 				   		</div>
 			   		</div>
 			   	</li>
-			   	<li style="background-image: url(images/img06.jpg);">
+			   	<li style="background-image: url(images/img11.jpg);">
 			   		<div class="overlay"></div>
 			   		<div class="container">
 			   			<div class="row">
@@ -120,7 +125,7 @@
 				   		</div>
 			   		</div>
 			   	</li>
-			   	<li style="background-image: url(images/img03.jpg);">
+			   	<li style="background-image: url(images/img10.jpg);">
 			   		<div class="overlay"></div>
 			   		<div class="container">
 			   			<div class="row">
@@ -146,10 +151,10 @@
 
 		<!-----------------detail---------------------------->
 		<div class="modal fade" tabindex="1" role="dialog" id="ModalViewAC">
-        <div class="modal-dialog " role="document">
+        <div class="modal-dialog a" role="document">
             <div class="modal-content">
-			<div class="card">
-            <div class="card-body" >   
+            <div class="card">
+              <div class="card-body">
                 <div class="modal-header">
                     <h4 class="modal-title" style="font-family:Prompt;"><b>รายการครุภัณฑ์</b></h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -157,14 +162,14 @@
                 <div class="modal-body table-responsive">
                     <form id="ViewAC" ></form>
                 </div>
-                <div class="modal-footer" style="font-family:Prompt;">
-                    <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
                 </div>
             </div>
             </div>
-			</div>
+            </div>
         </div>
-    	</div>
+    </div>
 
   		<!-----------------detail---------------------------->
 		<div id="colorlib-container">

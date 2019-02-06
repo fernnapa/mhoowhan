@@ -35,16 +35,16 @@ include("../db_connect.php");
         <body >
         <div class="card">
              <div class="card-body">
-                <br>       
+    
                     <div class="container" > 
-                    <br>
+    
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3 style="font-family:Prompt;"><b>ดาวน์โหลดไฟล์การจัดสรรครุภัณฑ์คอมพิวเตอร์</b></h3></a></button></td>
+                    <td><p><h3 style="font-family:Prompt;"><b>ดาวน์โหลดไฟล์การจัดสรรครุภัณฑ์คอมพิวเตอร์</b></h3></a></button></td>
                     </tr>
                     </table>
                     
-                    <br>
+               
                     <div class="table-responsive" id="result">
                     <table align="right">
                     <tr>
@@ -58,7 +58,7 @@ include("../db_connect.php");
                     <form id="form3"> 
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
-                    <tr >
+                    <tr style="font-family:Prompt; font-weight: bold; font-size: 15px;" >
                         <td style="text-align: center;">Barcode</td>
                         <td style="text-align: center;">รายการ</td>
                         <td style="text-align: center;">รหัสหน่วยงาน</td>
@@ -165,7 +165,9 @@ include("../db_connect.php");
                                         <script>
                                         $(document).ready(function(){  
                                         $('#tableshow').DataTable({
-                                        "searching": true
+                                        "searching": false,
+                                        "lengthChange": false,
+
                                         });  
                                         }); 
                                         </script>

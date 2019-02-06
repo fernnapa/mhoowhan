@@ -26,7 +26,7 @@ include("../../db_connect.php");
                               {  
                                    $new_name = $_FILES['images']['name'][$name];  
                                    $sourcePath = $_FILES["images"]["tmp_name"][$name];  
-                                   $targetPath = "../Admin/pages/img/".$new_name;
+                                   $targetPath = "img/".$new_name;
                                    $noup = 2;   
                               }
                          }else{

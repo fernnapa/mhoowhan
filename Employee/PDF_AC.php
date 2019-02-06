@@ -10,7 +10,7 @@ include("../db_connect.php");
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?php include("menu/link.php"); ?>
-        <link rel="stylesheet" href="style.css">      
+        <link rel="stylesheet" href="style.css">     
     <style>
             
             td {
@@ -76,13 +76,13 @@ include("../db_connect.php");
 <!-- Modal ดูข้อมูลPM -->
                <br>       
                     <div align='rigth'>
-                    <a href="print_AC.php?print=<?php echo $ac_id; ?>" class="btn btn-info">พิมพ์แบบฟอร์ม</a>
+                    <a href="print_AC.php?print=<?php echo $ac_id; ?>" class="btn btn-info" style="font-family:Prompt;">พิมพ์แบบฟอร์ม</a>
                     </div>
                     <br>
                     <div class="container" style="width:100% " > 
                     <table border="0" align="center" style="width:100%;" >
                     <tr>
-                    <td><h4><b>แบบฟอร์มการจัดสรรเครื่องคอมพิวเตอร์</b></h4></a></button></td>
+                    <td><h4 style="font-family:Sarabun;"><b >แบบฟอร์มการจัดสรรเครื่องคอมพิวเตอร์</b></h4></a></button></td>
                     </tr>
                     </table>
                     </div>

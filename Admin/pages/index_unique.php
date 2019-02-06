@@ -18,7 +18,8 @@ session_start();
 <body>
 
 <?php include("navbar.php")  ?>
-    
+<div class="card">
+      <div class="card-body">
       <?php 
       include("../../db_connect.php");
 
@@ -39,7 +40,7 @@ session_start();
                <div align="center">
           
           <form action="index_unique.php" method="post">
-              <h3 align ="center" style="font-family:Prompt;">หน่วยงานที่มีการจัดสรรครุภัณฑ์คอมพิวเตอร์</h3><br/>
+              <h3 align ="center" style="font-family:Prompt;">หน่วยงานที่มีการจัดสรรครุภัณฑ์คอมพิวเตอร์</h3>
             <table align="center" border="0">
               <tr>
               <td>
@@ -375,7 +376,8 @@ session_start();
 </div> 
 </div>
 </div>
-
+</div>
+</div>
     
 
 <style>

@@ -49,15 +49,17 @@ $_SESSION['chooseEq'] = array();
     <?php include("navbar.php"); ?>
     <title>ประวัติยืม-คืนครุภัณฑ์</title>
         <body>
+        <div class="card">
+      <div class="card-body">
                     <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
                     <td><p><h3 style="font-family:Prompt;"><b>ประวัติสัญญาที่หมดอายุ</b></h3></a></button></td>
                     </tr>
                     </table>
                   
-                    <table border="0" align="right" style="width:30%;" >
+                    <table border="0" align="right" style="width:20%;" >
                     <tr>
-                    <td><select name="search_text" id="search_text" style="width: 100%" class="form-control">
+                    <td><select name="search_text" id="search_text" style="width: 100%; font-family:Prompt; font-size: 15px;" class="form-control">
                                                             <option value="ทั้งหมด">ประเภททั้งหมด</option>
                                             <?php
                                                     $type = "SELECT * FROM type_eq ORDER BY type_name";
@@ -71,17 +73,16 @@ $_SESSION['chooseEq'] = array();
                     </tr>
                     </table>
                     <div class="table-responsive" id="result">
-                    <p></p>
                     <form id="form3"> 
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
-                    <tr style="font-weight: bold;">
-                        <td style="text-align: center;">ลำดับที่</td>
-                        <td style="text-align: center;">ชื่อสัญญา</td>
-                        <td style="text-align: center;">Barcode</td>
-                        <td style="text-align: center;">Serial Number</td>
-                        <td style="text-align: center;">ประเภท</td>
-                        <td style="text-align: center;">สถานะ</td>
+                    <tr style="font-weight: bold; font-family:Prompt;">
+                        <td style="text-align: center; font-size: 15px;">ลำดับที่</td>
+                        <td style="text-align: center; font-size: 15px;">ชื่อสัญญา</td>
+                        <td style="text-align: center; font-size: 15px;">Barcode</td>
+                        <td style="text-align: center; font-size: 15px;">Serial Number</td>
+                        <td style="text-align: center; font-size: 15px;">ประเภท</td>
+                        <td style="text-align: center; font-size: 15px;">สถานะ</td>
                    </tr>
                     </thead>
                     <tr>
@@ -92,7 +93,7 @@ $_SESSION['chooseEq'] = array();
                        {
 
                     ?>
-                        <td style="text-align:left"><?php echo $data['buc_id']; ?></td>
+                        <td style="text-align:center"><?php echo $data['buc_id']; ?></td>
                         <td style="text-align:left"><?php echo $data['buc_con_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['buc_barcode']; ?></td>
                         <td style="text-align:left"><?php echo $data['buc_serial']; ?></td>
@@ -104,6 +105,11 @@ $_SESSION['chooseEq'] = array();
                 </form>
                 </div>
                 <br>
+
+                
+<?php include ("footer.php"); ?>
+</div>
+</div>
 <!-- /.data -->
 <!-- /.script modal add -->
 <script>
@@ -148,39 +154,7 @@ $(document).ready(function()
 });
 </script>
 
-<script>
-$(document).ready(function()
-{
-        load_data();
-                function load_data(query2, query)
-                {
-                        $.ajax(
-                        {
-                        url:"search_BU_CON.php",
-                        method:"POST",
-                        data:{query2:query2, query},
-                        success:function(data)
-                        {
-                            $('#result').html(data);
-                        }
-                        }
-                            );
-                }
-                $('#search_text2').change(function()
-                {
-                    var search2 = $(this).val();
-                    var search = $('#search_text').val();
-                    if(search2 != '' && search != '')
-                    {
-                        load_data(search2, search);
-                    }else
-                    {
-                        load_data();
-                    }
-                }
-                );
-});
-</script>
+
 
 
         </body>

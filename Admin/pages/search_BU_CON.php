@@ -39,12 +39,12 @@ if(mysqli_num_rows($result) > 0)
 <thead>
 <tr style="font-weight: bold;">
 
-<td style="text-align: center;">ลำดับที่</td>
-<td style="text-align: center;">ชื่อสัญญา</td>
-<td style="text-align: center;">Barcode</td>
-<td style="text-align: center;">Serial Number</td>
-<td style="text-align: center;">ประเภท</td>
-<td style="text-align: center;">สถานะ</td>
+<td style="text-align: center; font-size: 15px;">ลำดับที่</td>
+<td style="text-align: center; font-size: 15px;">ชื่อสัญญา</td>
+<td style="text-align: center; font-size: 15px;">Barcode</td>
+<td style="text-align: center; font-size: 15px;">Serial Number</td>
+<td style="text-align: center; font-size: 15px;">ประเภท</td>
+<td style="text-align: center; font-size: 15px;">สถานะ</td>
 
 
 
@@ -57,7 +57,7 @@ if(mysqli_num_rows($result) > 0)
   $output .= '
    <tr >
 
-   <td style="text-align:left">'.$row['buc_id'].'</td>
+   <td style="text-align:center">'.$row['buc_id'].'</td>
    <td style="text-align:left">'.$row['buc_con_name'].'</td>
    <td style="text-align:left">'.$row['buc_barcode'].'</td>
    <td style="text-align:left">'.$row['buc_serial'].'</td>
@@ -75,7 +75,33 @@ if(mysqli_num_rows($result) > 0)
 }
 else
 {
- echo '<br/><p style="color:red; text-align: center; font-family:Prompt; font-size:20px;"><b>ไม่พบข้อมูล</b></p>';
+ echo '<div class="table-responsive">
+ <p></p>
+ <form id="form3"> 
+ <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " class="hover" >
+ <thead>
+ <tr style="font-weight: bold; font-family:Prompt;">
+ 
+ <td style="text-align: center; font-size: 15px;">ลำดับที่</td>
+ <td style="text-align: center; font-size: 15px;">ชื่อสัญญา</td>
+ <td style="text-align: center; font-size: 15px;">Barcode</td>
+ <td style="text-align: center; font-size: 15px;">Serial Number</td>
+ <td style="text-align: center; font-size: 15px;">ประเภท</td>
+ <td style="text-align: center; font-size: 15px;">สถานะ</td>
+ 
+ 
+ 
+ </tr>
+ </thead>
+ 
+ <tr >
+
+   <td style="text-align:center" colspan="6"><font size="3" color="red"><b>ไม่พบข้อมูล</b></font></td>
+   
+
+
+
+    </tr>';
 }
 
 

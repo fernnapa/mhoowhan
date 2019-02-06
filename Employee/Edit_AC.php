@@ -122,8 +122,8 @@ $_SESSION['chooseEq'] = array();
                     <br>
                     <table border="1" align="center" style="width:100%; font-family:Prompt;" class="w3-round ">
                     <tr>
-                    <td style="text-align: left">คำนำหน้าชื่อ</td>
-                    <td style="text-align: left">ชื่อผู้เช่ายืม</td>
+                    <td style="text-align: left; width:40%;">คำนำหน้าชื่อ</td>
+                    <td style="text-align: left; width:60%; ">ชื่อผู้เช่ายืม</td>
                     </tr>
                     <td><input type="text" name="ac_tname" class="form-control" value="<?php echo $ac_tname; ?>"></td>
                     <td ><input type="text" name="ac_name" class="form-control" value="<?php echo $ac_name; ?>"></td>
@@ -170,7 +170,7 @@ $_SESSION['chooseEq'] = array();
                     <div class="table-responsive" id="result">
                     <table align="right">
                     <tr>
-                    <td><form id="id_edit_add" method="POST" action="index_chooseAC_Edit.php"><input type="hidden" name="id_add" id="id_add" value="<?php echo $id; ?>"><input type="submit" name="edit_add_ac" class="btn btn-success" form="id_edit_add"  value="เลือกครุภัณฑ์"></form></td>
+                    <td><form id="id_edit_add" method="POST" action="index_chooseAC_Edit.php"><input type="hidden" name="id_add" id="id_add" value="<?php echo $id; ?>"><input type="submit" name="edit_add_ac" class="btn btn-success" form="id_edit_add"  value="เลือกครุภัณฑ์" style="font-family:Prompt;"></form></td>
                     </tr>
                     </table>
                     <br>
@@ -200,7 +200,7 @@ $_SESSION['chooseEq'] = array();
                                     <td style="text-align:left"><?php echo $data['ald_type_name']; ?></td>
                                     <td style="text-align:left"><?php echo $data['ald_status_name']; ?></td>
                                     <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                    <td><button type="button" name="submit" id="submit<?php echo $data['ald_eq_id']; ?>" class="btn btn-danger btn-block" value="<?php echo $data['ald_eq_id']; ?>" onclick="getid(this)">ลบครุภัณฑ์</button></td>
+                                    <td><button type="button" name="submit" id="submit<?php echo $data['ald_eq_id']; ?>" class="btn btn-danger btn-block" value="<?php echo $data['ald_eq_id']; ?>" onclick="getid(this)" style="font-family:Prompt;">ลบครุภัณฑ์</button></td>
                                 </tr>
                             <?php endwhile;?>
                    
@@ -208,7 +208,7 @@ $_SESSION['chooseEq'] = array();
               
                         <table border="0" align="center" style="width:25%;">
                             <tr>
-                                <td><input type="button" name="Update_AC" id="Update_AC" value="ส่งรายการจัดสรรอีกครั้ง" form="Add_AC" class="btn btn-success btn-block"></td>
+                                <td><input type="button" name="Update_AC" id="Update_AC" style="font-family:Prompt;" value="ส่งรายการจัดสรรอีกครั้ง" form="Add_AC" class="btn btn-success btn-block"></td>
                             </tr>
                         </table>
                     </form>

@@ -56,7 +56,7 @@ echo  '  <tr>
 
 <tr>
 <th style="text-align: center; font-family:Prompt;">สัญญาปี</th>
-<th><select name="eq_con" id="eq_con" style="width: 99%" class="form-control" onchange="filterType(this.value)">
+<th><select name="eq_con" id="eq_con" style="width: 100%" class="form-control" onchange="filterType(this.value)">
             <option value="'.$con.'">'.$con.'</option>';
             
     $year = "SELECT * FROM contract ORDER BY con_name";
@@ -71,7 +71,7 @@ echo '</select></th>
 </tr>
 <tr>
 <th style="text-align: center;font-family:Prompt;">ประเภทครุภัณฑ์</th>
-<th id="getdltype"><select name="eq_type" id="eq_type" style="width: 99%" class="form-control" >
+<th id="getdltype"><select name="eq_type" id="eq_type" style="width: 100%" class="form-control" >
                 <option value="'.$type.'">'.$type.'</option>';
         $t = "SELECT * FROM tor LEFT JOIN contract ON contract.con_id = tor_contract 
             LEFT JOIN type_eq ON type_eq.type_id = tor_type WHERE con_name = '$conname'";

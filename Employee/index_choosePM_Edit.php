@@ -34,15 +34,20 @@
 
     <title>ยืม-คืนครุภัณฑ์</title>
         <body>
-<?php
-        $id = $_POST['id_add'];
-?>
-                      
+
+
+        <div class="card">
+      <div class="card-body">
+
+                <?php
+                        $id = $_POST['id_add'];
+                ?>
+                                    
                     <div class="container" > 
                     
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3 ><b>ยืม-คืนครุภัณฑ์</b></h3></a></button></td>
+                    <td><h3 style="font-family:Prompt;"><b>ยืม-คืนครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
                     <br/>

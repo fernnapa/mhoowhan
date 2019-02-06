@@ -1,6 +1,6 @@
 <?php
 include("../db_connect.php");
-include("datatable_all.php");
+include("datatable_BU_PM.php");
 
 
 
@@ -98,13 +98,13 @@ if(mysqli_num_rows($result) > 0)
 <tr style="font-weight: bold; ">
 
                       
-<td style="text-align: center;">ผู้ยืม</td>
-<td style="text-align: center;">Serial Number</td>
-<td style="text-align: center;">สัญญา</td>
-<td style="text-align: center;">ประเภทครุภัณฑ์</td>
-<td style="text-align: center;">จุดประสงค์การยืม</td>
-<td style="text-align: center;">วันที่ยืม</td>
-<td style="text-align: center;">วันที่คืน</td>
+<td style="text-align: center; font-size: 15px;">ผู้ยืม</td>
+<td style="text-align: center; font-size: 15px;">Serial Number</td>
+<td style="text-align: center; font-size: 15px;">สัญญา</td>
+<td style="text-align: center; font-size: 15px;">ประเภทครุภัณฑ์</td>
+<td style="text-align: center; font-size: 15px;">จุดประสงค์การยืม</td>
+<td style="text-align: center; font-size: 15px;">วันที่ยืม</td>
+<td style="text-align: center; font-size: 15px;">วันที่คืน</td>
 
 </tr>
 </thead>

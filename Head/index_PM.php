@@ -13,6 +13,11 @@ include("../db_connect.php");
   <?php include("menu/link.php"); ?>
   
   <style>
+       .modal-dialog.a{
+                max-width : 835px;
+                max-height: 550px;
+
+            }
             table, th, td    {
             }
             td {
@@ -41,13 +46,14 @@ include("../db_connect.php");
 
 <body>
   
-                
+<div class="card">
+      <div class="card-body">          
 <!-- Modal ดูข้อมูลPM -->
 <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewPM">
-                            <div class="modal-dialog " role="document">
+                            <div class="modal-dialog a " role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title"><b>ข้อมูลการยืม-คืนครุภัณฑ์</b></h4>
+                            <h4 class="modal-title" style="font-family:Prompt;"><b>ข้อมูลการยืม-คืนครุภัณฑ์</b></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                                     <div class="modal-body table-responsive">
@@ -55,8 +61,8 @@ include("../db_connect.php");
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                        <button type="button" class="btn btn-success"  value="PM_pass" name="PM_pass" id="PM_pass" form="ViewPM" >ผ่านการตรวจสอบ</button>
-                                        <button type="button" class="btn btn-danger"  value="To_note" data-toggle="modal" data-target="#ModalNote"  id="To_note" name="To_note" form="ViewPM" >ไม่ผ่านการตรวจสอบ</button>
+                                        <button type="button" class="btn btn-success"  value="PM_pass" name="PM_pass" id="PM_pass" form="ViewPM" style="font-family:Prompt;">ผ่านการตรวจสอบ</button>
+                                        <button type="button" class="btn btn-danger"  value="To_note" data-toggle="modal" data-target="#ModalNote"  id="To_note" name="To_note" form="ViewPM" style="font-family:Prompt;">ไม่ผ่านการตรวจสอบ</button>
                                         </div>
 
                             </div>
@@ -67,7 +73,7 @@ include("../db_connect.php");
                 <div class="modal-dialog" role="document">
                 <div class="modal-content w3-theme-l2" >
                 <div class="modal-header">
-                                <h4 class="modal-title"><b>เหตุผลที่ไม่ผ่านการตรวจสอบ</b></h4>
+                                <h4 class="modal-title" style="font-family:Prompt;"><b>เหตุผลที่ไม่ผ่านการตรวจสอบ</b></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                         <div class="modal-body table-responsive">
@@ -92,8 +98,8 @@ include("../db_connect.php");
                                 </div>
                                 </div>
 <!-- Modal บอกเหตุผที่ไม่ให้ผ่าน -->
-                <div class="container w3-card-2 w3-round" style="width:100% " > 
-                    <br>
+                
+             
                     <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
                     <td><p><h3 style="font-family:Prompt;"><b>รายการยืม-คืนครุภัณฑ์ที่รอตรวจสอบ</b></h3></a></button></td>
@@ -134,7 +140,7 @@ include("../db_connect.php");
                         <td style="text-align:left"><?php echo $data['pm_empno']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
 
-                        <td><button type="button" name="submitviewPM" class="btn btn-success btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM(<?php echo $data['pm_id']; ?>)">ดูรายการยืม-คืน</button></td></form>
+                        <td><button type="button" name="submitviewPM" class="btn btn-success btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="ShowData(<?php echo $data['pm_id']; ?>)"><i class="mdi mdi-file-document"></i>ดูรายการยืม-คืน</button></td></form>
                     </tr>
                        <?php } 
                        }else{ ?>
@@ -144,7 +150,7 @@ include("../db_connect.php");
                 </form>
                 </div>
                 <br>
-                </div>
+       
 <!-- /.data -->
 <!-- /.script modal add -->
 
@@ -168,7 +174,8 @@ include("../db_connect.php");
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
+  </div>
+  </div>
 
 
 
@@ -201,7 +208,7 @@ $(document).ready(function(){
 
 
 <script>
-            function showPM(str) {
+            function ShowData(str) {
             var xhttp;    
             if (str == "") {
                 document.getElementById("ViewPM").innerHTML = "";
@@ -213,7 +220,7 @@ $(document).ready(function(){
                 document.getElementById("ViewPM").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "../mint/getPM_2.php?id="+str, true);
+            xhttp.open("GET", "get_index_PM.php?id="+str, true);
             xhttp.send();
             }
 </script>
@@ -228,7 +235,7 @@ $(document).ready(function(){
                   $('#NotePM').on('submit', function(e){  
                        e.preventDefault();  
                        $.ajax({  
-                            url :"../mint/Not_pass_PM.php",  
+                            url :"Not_pass_PM.php",  
                             method:"POST",  
                             data:new FormData(this),  
                             contentType:false,  
@@ -303,7 +310,7 @@ $(document).ready(function(){
                   $('#ViewPM').on('submit', function(e){  
                        e.preventDefault();  
                        $.ajax({  
-                            url :"../mint/Pass_PM.php",  
+                            url :"Pass_PM.php",  
                             method:"POST",  
                             data:new FormData(this),  
                             contentType:false,  

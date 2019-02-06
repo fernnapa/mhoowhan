@@ -48,7 +48,7 @@ if(mysqli_num_rows($result) > 0)
    <td style="text-align:left">'.$row['emp_fname'].'</td>
    <td style="text-align:left">'.$row['emp_lname'].'</td>
    <td style="text-align:left">'.$row['emp_mail'].'</td>  
-   <td><button type="button" class="btn btn-icons btn-rounded btn-primary" data-toggle="modal"  value="'.$row["emp_id"].'" onclick="showEmp(this.value)" data-target="#myModal3"><i class="mdi mdi-file-document"></i></button>
+   <td style="text-align:center"><button type="button" class="btn btn-icons btn-rounded btn-primary" data-toggle="modal"  value="'.$row["emp_id"].'" onclick="showEmp(this.value)" data-target="#myModal3"><i class="mdi mdi-file-document"></i></button>
     <button type="button" class="btn btn-icons btn-rounded btn-warning" data-toggle="modal" value="'.$row["emp_id"].'" onclick="showUser(this.value)" data-target="#myModal2"><i class="mdi mdi-pencil"></i></button>
     <button type="button" class="btn btn-icons btn-rounded btn-danger" value="'.$row["emp_id"].'" onclick="remove(this.value)"><i class="mdi mdi-delete"></i></button></td>                    
     </tr>

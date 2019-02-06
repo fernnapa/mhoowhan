@@ -33,13 +33,12 @@ include("../db_connect.php");
 
     <title>ดาวน์โหลดไฟล์การจัดสรรครุภัณฑ์คอมพิวเตอร์</title>
         <body >
-
-                <br>       
+      
                     <div class="container" > 
-                    <br>
-                    <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
+       
+                    <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
-                    <td><h3 style="font-family:Prompt;"><b>ดาวน์โหลดไฟล์การจัดสรรครุภัณฑ์คอมพิวเตอร์</b></h3></a></button></td>
+                    <td><p><h3 style="font-family:Prompt;"><b>ดาวน์โหลดไฟล์การจัดสรรครุภัณฑ์คอมพิวเตอร์</b></h3></a></button></td>
                     </tr>
                     </table>
                     
@@ -49,7 +48,7 @@ include("../db_connect.php");
                     <tr>
                     <form method="post" action="../mint/Download_AC.php">
                     
-                    <td><input type="submit" name="export" class="btn btn-success" value="Export" /></td>
+                    <td><input type="submit" name="export" class="btn btn-success"   value="Export" /></td>
                     </tr>
                     </table>
                     <br>
@@ -160,10 +159,12 @@ include("../db_connect.php");
 
 
 <!-- /.script modal add -->
-                                        <script>
+<script>
                                         $(document).ready(function(){  
                                         $('#tableshow').DataTable({
-                                        "searching": true
+                                        "searching": false,
+                                        "lengthChange": false,
+
                                         });  
                                         }); 
                                         </script>

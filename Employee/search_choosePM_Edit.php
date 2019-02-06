@@ -164,7 +164,7 @@ if(mysqli_num_rows($result) > 0)
 <form id="form3"> 
 <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " class="hover" >
 <thead>
-<tr >
+<tr style="font-family:Prompt; font-weight: bold; font-size: 15px;>
 
 <td style="text-align: center;">Barcode</td>
 <td style="text-align: center;">Serial Number</td>
@@ -192,7 +192,7 @@ if(mysqli_num_rows($result) > 0)
                         <td style="text-align:left">'.$row['status_name'].'</td>
                         <input type="hidden" name="id" value="'.$row['eq_id'].'">
 
-    <td><button type="button" name="submit" id="submit'.$row['eq_id'].'" class="btn btn-success btn-block" value="'.$row['eq_id'].'" onclick="getid(this)" >เลือกครุภัณฑ์</button></td>                    
+    <td><button type="button" name="submit" id="submit'.$row['eq_id'].'" class="btn btn-success btn-block" value="'.$row['eq_id'].'" onclick="getid(this)" style="font-family:Prompt;">เลือกครุภัณฑ์</button></td>                    
     </tr>
 
    

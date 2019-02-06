@@ -29,7 +29,9 @@ session_start();
           if (mysqli_num_rows($result) > 0) {
               while($row = mysqli_fetch_assoc($result)) {
   
-  ?>
+    ?>
+    <div class="card">
+      <div class="card-body">
         <div class="container">
             <h2 style="text-align: center; font-family:Prompt;">ข้อมูลส่วนตัว</h2>
             <hr> <br/> 
@@ -138,6 +140,12 @@ session_start();
                 </form>        
         </div>
  
+</div></div></div>
+<footer class="footer">
+  <div class="container-fluid clearfix">
+        <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
+  </div>
+</footer>
     <?php      
         
               }

@@ -20,7 +20,8 @@ session_start();
 <body>
 
     <?php include("navbar.php")  ?>
-    
+    <div class="card">
+      <div class="card-body">
       <?php 
       include("../../db_connect.php");
 
@@ -38,7 +39,7 @@ session_start();
                   <table align="center" border="0">
                   <tr>
                   <td>
-                  <select name="address" class="form-control" style="width:100%">
+                  <select name="address" class="form-control" style="width:100%; font-family:Prompt; font-size: 15px;">
                     <option selected value="all">ทั้งหมด</option>
                       <?php while($row = $rsListData->fetch_assoc()){ ?>
       
@@ -73,7 +74,7 @@ session_start();
                 $strSQL = "SELECT * FROM department"; ?>
                  <div align="center">
               <form action="index_map.php" method="post">
-                  <h3 align ="center" style="font-family:Prompt;">หน่วยงานที่มีการจัดสรรครุภัณฑ์คอมพิวเตอร์</h3><br/>
+                  <h3 align ="center" style="font-family:Prompt;">หน่วยงานที่มีการจัดสรรครุภัณฑ์คอมพิวเตอร์</h3>
                   <table align="center" border="0">
                   <tr>
                   <td>
@@ -126,6 +127,8 @@ session_start();
   </div>
 </footer>
 </div> 
+</div>
+</div>
 </div>
 </div>
 

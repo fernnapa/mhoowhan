@@ -5,7 +5,7 @@
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
         <a class="navbar-brand brand-logo" href="index_admin.php">
-        <img src="../../images/banner.png" alt="logo" style="width: 170px; height: 50px;"/>
+        <img src="../../images/logo1.png" alt="logo" style="width: 170px; height: 70px;"/>
         </a>
         <a class="navbar-brand brand-logo-mini" href="index_admin.php">
           <img src="../../images/favicon.png" alt="logo" />
@@ -84,6 +84,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="import_file.php">           
+              <i class="menu-icon mdi mdi-folder-move"></i>
+              <span class="menu-title">อัพโหลดข้อมูล</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="menu-icon mdi mdi-settings"></i>
               <span class="menu-title" >จัดการข้อมูล</span>
@@ -138,8 +144,7 @@
         <div class="content-wrapper">         
           <div class="row">
             <div class="col-lg-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
+             
 
 
 

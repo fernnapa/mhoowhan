@@ -53,14 +53,11 @@ $_SESSION['chooseEq'] = array();
             <div class="card-body">
               
                     <div class="container"> 
-                    <br>
-                    <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
+                    <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
-                    <td><h3 style="font-family:Prompt;"><b>ประวัติการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
+                    <td><p><h3 style="font-family:Prompt;"><b>ประวัติการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
                     </tr>
-                    </table>
-                    
-                    <br>
+                    </table>      
                     <br>
                     <table border="0" align="center" style="width:100%;" >
                     <tr>

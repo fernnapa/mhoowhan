@@ -69,13 +69,13 @@ input[type="text"] {
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-2">
-							<div id="colorlib-logo"><a href="index.php"><img src="images/banner.png" style="width: 200px;"></a></div>
+							<div id="colorlib-logo"><a href="index.php"><img src="images/logo1.png" style="width: 200px;"></a></div>
 						</div>
 						<div class="col-xs-10 text-right menu-1">
 							<ul>
 								<li><a href="index.php">Home</a></li>
 								<li><a href="report.php">Report</a></li>
-								<li class="active"><a href="map.php">Map</a></li>
+								<li class="active"><a href="Map_All.php">Map</a></li>
 								<li><a href="aboutus.php">About Me</a></li>
 								<li><button type="button" class="btn btn-warning btn-md" onclick="window.location='Home/login.php'">
           										<span class="glyphicon glyphicon-log-in"></span> Log In
@@ -120,7 +120,7 @@ input[type="text"] {
                           <table align="center" border="0">
                             <tr>
                             <td>
-                            <select name="address" class="form-control" style="width:100%">
+                            <select name="address" class="form-control" style="width:100%; font-family:Prompt;">
                             <option selected value="<?php echo  $infomation["dep_id"]; ?>"><?php echo  $infomation["dep_name"]; ?></option>
                               <option value="all">ทั้งหมด</option>
                                 <?php while($row = $rsListData->fetch_assoc()){ 

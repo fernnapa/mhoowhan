@@ -30,8 +30,9 @@ include("../db_connect.php");
             .search-table-outter { overflow-x: scroll; 
             }
             .modal-dialog.a{
-                max-width : 50%;
-            }
+        max-width : 600px;
+        max-height: 400px;
+    }
 
          
     </style>
@@ -90,7 +91,7 @@ include("../db_connect.php");
 
                          
                 <div class="container" style="width:100% " > 
-                <br>
+   
                     <form id="Add_PM"> 
                     <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
@@ -127,7 +128,7 @@ include("../db_connect.php");
                     </tr>
                     <tr>
                     <td class="form-inline"><input type="text" name="pm_ex" placeholder="หน่วยงาน"  class="form-control " id="pm_ex" readonly style="width:100%;">
-                    <input type="hidden" name="pm_dep" placeholder="หน่วยงาน"  class="form-control " id="pm_dep" style="width:100%;">
+                    <input type="hidden" name="pm_dep" placeholder="หน่วยงาน"  class="form-control " id="pm_dep" style="width:100%; font-family:Prompt;">
                     <form id="chooseDep"><input type="submit" name="AddDep" id="AddDep" style="font-family:Prompt;" value="เลือกหน่วยงาน" form="chooseDep" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModalDep"></button></form></td>
                     <td style="vertical-align:top"><textarea type="text" name="pm_name" class="form-control"></textarea></td>
                 
@@ -143,11 +144,12 @@ include("../db_connect.php");
                     </tr>
                     <tr>
                     <input type="hidden"  name="date"  id="date" value="<?=date('Y-m-d')?>"readonly/>
-                    <td style="text-align: left">รหัสพนักงานจัดสรร</td>
+                    <td style="text-align: left">พนักงานยืม-คืน</td>
                     <td style="text-align: left">ประเภทห้อง</td>
                     </tr>
                     <tr>
-                    <td ><input type="text" name="pm_empno" class="form-control" value="<?php echo $_SESSION["emp_id"] ?>"readonly/></td>
+                    <td ><input type="text" name="emp" class="form-control" value="<?php echo $_SESSION["User"] ?>"readonly/></td>
+                    <input type="hidden" name="pm_empno" class="form-control" value="<?php echo $_SESSION["emp_id"] ?>">
                     <td ><input type="text" name="pm_TypeR" class="form-control"></td>
                     </tr>
 
@@ -157,9 +159,6 @@ include("../db_connect.php");
                     </div>
                     </form>
                  </div>
-                 <br>
-                 <br>
-                    <div class="container w3-card-2 w3-round" style="width:100% " > 
                     <br>
                     <table border="0" align="right">
                     <tr>
@@ -223,7 +222,7 @@ include("../db_connect.php");
                 <br>
 
                 </div>
-                </div>
+         
 
     
 

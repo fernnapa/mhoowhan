@@ -30,6 +30,9 @@ session_start();
               while($row = mysqli_fetch_assoc($result)) {
   
   ?>
+  <div class="card">
+      <div class="card-body">
+
         <div class="container">
             <h2 style="text-align: center; font-family:Prompt;">ข้อมูลส่วนตัว</h2>
             <hr> <br/> 
@@ -37,7 +40,7 @@ session_start();
                   <div class="row">
                       <div class="col-md-3">
                           <div class="text-center">
-                              <img src="images/<?php echo $row["emp_pic"]; ?>"width='100%' height='100%' class="img-fluid">
+                              <img src="../Admin/pages/img/<?php echo $row["emp_pic"]; ?>"width='100%' height='100%' class="img-fluid">
                                   <h6 style="font-family:Prompt;">รูปภาพ</h6>
                           </div>
                       </div>
@@ -138,6 +141,12 @@ session_start();
                 </form>        
         </div>
  
+</div></div></div>
+<footer class="footer">
+  <div class="container-fluid clearfix">
+        <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
+  </div>
+</footer>
     <?php      
         
               }

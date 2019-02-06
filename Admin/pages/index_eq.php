@@ -12,11 +12,27 @@ include("../../db_connect.php");
   <title>ข้อมูลครุภัณฑ์คอมพิวเตอร์</title>
   <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
   <?php include("link.php"); ?>
-
+  <style>
+            table, th, td    {
+            }
+            td {
+                padding: 5px;
+                text-align: center;    
+            }
+            th {
+                padding: 5px;
+            }
+            body{
+                font-family: 'Kanit', sans-serif;
+            }
+            .search-table-outter { overflow-x: scroll; }
+         
+    </style>
 </head>
   <?php include("navbar.php"); ?>
 <body>
-
+<div class="card">
+      <div class="card-body">
 
     <!-- /.modal edit-->
     <div class="modal fade" tabindex="-1" role="dialog" id="myModal2">
@@ -46,17 +62,17 @@ include("../../db_connect.php");
 
 
     <!-- /.table add ครุภัณฑ์ -->
-        
         <form id="Add_eq" method="POST">
-        <table align="center" style="width:100%; font-family:Prompt;" border="0" class="w3-teal ">
+        <table align="center" style="width:100%; font-family:Prompt;"  class="w3-teal ">
         <tr>
-            <th><p><h3 style="text-align:center; font-family:Prompt;" class="w3-teal"><b>ข้อมูลครุภัณฑ์</b></h3></th>
+            <th><p><h3 style="text-align:center; font-family:Prompt;" class="w3-teal"><b>ข้อมูลครุภัณฑ์คอมพิวเตอร์</b></h3></th>
                 </tr>
         </table>
         <br>
+        <div class="container" style="width:70% " > 
             <table   align="center" style="width:70%; font-family:Prompt;" border="1" class="table-bordered">
             <tr>
-            <td colspan="2" style="text-align: center; font-family:Prompt;"><b>เพิ่มข้อมูลครุภัณฑ์</b></td>
+            <td colspan="2" style="text-align: center; font-family:Prompt; font-size: 20px;"><b>เพิ่มข้อมูลครุภัณฑ์</b></td>
                 </tr>
                 <tr>
                         <th style="text-align: right;" >Barcode </th>
@@ -71,7 +87,7 @@ include("../../db_connect.php");
                 </tr>
                 <tr>
                     <th style="text-align: right;" >สัญญา </th>
-                    <th><select name="eq_con" id="eq_con" class="form-control" onchange="filterType(this.value)">
+                    <th><select name="eq_con" id="eq_con" class="form-control" onchange="filterType(this.value)" style="font-family:Prompt; font-size: 15px; ">
                             <option value="null">เลือกสัญญา</option>
                             <?php
                                 $year = "SELECT * FROM contract ORDER BY con_name";
@@ -85,7 +101,7 @@ include("../../db_connect.php");
                 <tr>
                     <th style="text-align: right;" >ประเภทครุภัณฑ์ </th>
                     <th id="getdltype"><select name="eq_type" id="eq_type"  class="form-control" >
-                        <option value="null">เลือกประเภท</option>           
+                        <option value="null" >เลือกประเภท</option>           
                         <option value="<?php echo $data['con_name']; ?>"><?php echo $data['con_name']; ?></option>
                     </select></th>
                 </tr>
@@ -95,6 +111,7 @@ include("../../db_connect.php");
                 </tr>
             </table>
         </form>
+    </div>
         <p><br>
     <!-- /.table add ครุภัณฑ์ -->
   
@@ -103,7 +120,7 @@ include("../../db_connect.php");
     <div style="width:100%;" class="input-group mb-3">
     <table border="0" align="center" style="width:100%;" >
                     <tr>
-                    <td><select name="search_text" id="search_text" style="width: 100%" class="form-control">
+                    <td><select name="search_text" id="search_text" style="width: 100%; font-family:Prompt; font-size: 15px;" class="form-control">
                                                             <option value="ทั้งหมด">ประเภททั้งหมด</option>
                                             <?php
                                                     $type = "SELECT * FROM type_eq ORDER BY type_name";
@@ -113,7 +130,7 @@ include("../../db_connect.php");
                                                     <option value="<?php echo $data['type_name']; ?>"><?php echo $data['type_name']; ?></option>
                                             <?php endwhile;?>
                                                 </select></td>
-                    <td><select name="search_text2" id="search_text2" style="width: 100%" class="form-control">
+                    <td><select name="search_text2" id="search_text2" style="width: 100%; font-family:Prompt; font-size: 15px;" class="form-control">
                                                             <option value="ทั้งหมด">สถานะทั้งหมด</option>
                                             <?php
                                                     $cont = "SELECT * FROM a_status  
@@ -137,6 +154,11 @@ include("../../db_connect.php");
 
     
     <?php include ("footer.php"); ?>
+    </div>
+    </div>
+
+
+    
     <script>
 $(document).ready(function(){  
         $('#tableshow').DataTable({
@@ -392,13 +414,13 @@ $(document).ready(function(){
     </script>
 
 
-    <script>
+    <!-- <script>
         function namepic(){
             var name = document.getElementById('select_image');
             var x = name.files.item(0).name;
             document.getElementById('eq_pic').value = x;
         }
-    </script>
+    </script> -->
 
 
     <script>

@@ -24,17 +24,26 @@ include("../db_connect.php");
             }
             .search-table-outter { overflow-x: scroll; }
             .w3-theme-l2 {color:#fff !important;background-color:#e9657b !important}
+            .modal-dialog.a{
+                max-width : 835px;
+                max-height: 550px;
+
+            }
     </style>
     </head>
     <?php include("menu/navbar_head.php"); ?>
     <title>รายการจัดสรรครุภัณฑ์ที่รอตรวจสอบ</title>
         <body >
+        <div class="card">
+      <div class="card-body">
+
+
 <!-- Modal ดูข้อมูลPM -->
         <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewAC">
-                            <div class="modal-dialog " role="document">
+                            <div class="modal-dialog a" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                            <h4 class="modal-title"><b>ข้อมูลการจัดสรรครุภัณฑ์</b></h4>
+                            <h4 class="modal-title" style="font-family:Prompt;"><b>ข้อมูลการจัดสรรครุภัณฑ์</b></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                                     <div class="modal-body table-responsive">
@@ -54,7 +63,7 @@ include("../db_connect.php");
                 <div class="modal-dialog" role="document">
                 <div class="modal-content w3-theme-l2" >
                 <div class="modal-header">
-                <h4 class="modal-title"><b>เหตุผลที่ไม่ผ่านการตรวจสอบ</b></h4>
+                <h4 class="modal-title" style="font-family:Prompt;"><b>เหตุผลที่ไม่ผ่านการตรวจสอบ</b></h4>
 
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
@@ -81,8 +90,7 @@ include("../db_connect.php");
                                 </div>
                                 </div>
 <!-- Modal บอกเหตุผที่ไม่ให้ผ่าน -->
-                    <div class="container w3-card-2 w3-round" style="width:100% " > 
-                    <br>
+              
                     <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
                     <td><p><h3 style="font-family:Prompt;"><b>รายการจัดสรรครุภัณฑ์ที่รอตรวจสอบ</b></h3></a></button></td>
@@ -125,7 +133,7 @@ include("../db_connect.php");
                         <td style="text-align:left"><?php echo $data['ac_emp']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
 
-                        <td><button type="button" name="submitviewAC" class="btn btn-success btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC(<?php echo $data['ac_id']; ?>)">ดูรายการจัดสรร</button></td></form>
+                        <td><button type="button" name="submitviewAC" class="btn btn-success btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="ShowData(<?php echo $data['ac_id']; ?>)"><i class="mdi mdi-file-document"></i>ดูรายการจัดสรร</button></td></form>
                     </tr>
                        <?php } ?>
                        <?php }else{    ?>
@@ -135,7 +143,7 @@ include("../db_connect.php");
                 </form>
                 </div>
                 <br>
-                </div>
+            
 
 
 
@@ -160,6 +168,8 @@ include("../db_connect.php");
       <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->
+  </div>
+  </div>
   </div>
   <!-- container-scroller -->
 <!-- /.data -->
@@ -197,7 +207,7 @@ $(document).ready(function(){
 
 
                 <script>
-                            function showAC(str) {
+                            function ShowData(str) {
                             var xhttp;    
                             if (str == "") {
                                 document.getElementById("ViewAC").innerHTML = "";
@@ -209,7 +219,7 @@ $(document).ready(function(){
                                 document.getElementById("ViewAC").innerHTML = this.responseText;
                                 }
                             };
-                            xhttp.open("GET", "../mint/getAC_head.php?id="+str, true);
+                            xhttp.open("GET", "get_index_AC.php?id="+str, true);
                             xhttp.send();
                             }
                 </script>
@@ -224,7 +234,7 @@ $(document).ready(function(){
                             $('#NoteAC').on('submit', function(e){  
                                 e.preventDefault();  
                                 $.ajax({  
-                                        url :"../mint/Not_pass_AC.php",  
+                                        url :"Not_pass_AC.php",  
                                         method:"POST",  
                                         data:new FormData(this),  
                                         contentType:false,  
@@ -299,7 +309,7 @@ $(document).ready(function(){
                             $('#ViewAC').on('submit', function(e){  
                                 e.preventDefault();  
                                 $.ajax({  
-                                        url :"../mint/Pass_AC.php",  
+                                        url :"Pass_AC.php",  
                                         method:"POST",  
                                         data:new FormData(this),  
                                         contentType:false,  

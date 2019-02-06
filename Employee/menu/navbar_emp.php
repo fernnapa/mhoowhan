@@ -6,7 +6,7 @@
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
 
         <a class="navbar-brand brand-logo" href="index.php">
-          <img src="../images/banner.png" alt="logo" style="width: 170px; height: 50px;"/>
+          <img src="../images/logo1.png" alt="logo" style="width: 180px; height: 80px;"/>
         </a>
 
         <a class="navbar-brand brand-logo-mini" href="index.php">
@@ -20,7 +20,7 @@
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <span class="profile-text">Hello, คุณ <?php echo $_SESSION["User"] ?></span>
 
-              <img class="img-xs rounded-circle" src="img/<?php echo $_SESSION["emp_pic"]; ?>" alt="Profile image">    <!--    เอารูปมาแสดง  --->
+              <img class="img-xs rounded-circle" src="../Admin/pages/img/<?php echo $_SESSION["emp_pic"]; ?>" alt="Profile image">    <!--    เอารูปมาแสดง  --->
 
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -89,10 +89,21 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index_chooseAC.php">         
+          <a class="nav-link" data-toggle="collapse" href="#uiy" aria-expanded="false" aria-controls="ui-basic">
               <i class="menu-icon mdi mdi-settings"></i>
               <span class="menu-title">จัดสรรครุภัณฑ์</span>
+              <i class="menu-arrow"></i>
             </a>
+            <div class="collapse" id="uiy">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                  <a class="nav-link" href="index_chooseAC.php">ทำรายการจัดสรร</a>         
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="index_ALL_AC.php">รวมรายการทั้งหมด</a>
+                </li>
+              </ul>
+            </div>
           </li>
          
           <li class="nav-item">
@@ -104,10 +115,10 @@
             <div class="collapse" id="uix">
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="index_emp.php">ทำรายการยืม-คืนครุภัณฑ์</a>         
+                  <a class="nav-link" href="index_choosePM.php">ทำรายการยืม-คืนครุภัณฑ์</a>         
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="index_ALL.php">รวมรายการทั้งหมด</a>
+                  <a class="nav-link" href="index_ALL_PM.php">รวมรายการทั้งหมด</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="Backup_PM.php">ประวัติการยืม-คืน</a>
@@ -118,7 +129,7 @@
 
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui" aria-expanded="false" aria-controls="ui-basic">
-              <i class="menu-icon mdi mdi-file-document"></i>
+              <i class="menu-icon mdi mdi-calendar-multiple-check"></i>
               <span class="menu-title" >ผลการดำเนินการ</span>  
               <i class="menu-arrow"></i>
             </a>
@@ -143,10 +154,10 @@
             <div class="collapse" id="pd">
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="index_ALL_AC.php">แบบฟอร์มการจัดสรร</a>         
+                  <a class="nav-link" href="index_Form_AC.php">แบบฟอร์มการจัดสรร</a>         
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="index_ALL_PM.php">แบบฟอร์มการยืม-คืน</a>
+                  <a class="nav-link" href="index_Form_PM.php">แบบฟอร์มการยืม-คืน</a>
                 </li>
               </ul>
             </div>

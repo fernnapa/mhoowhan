@@ -14,9 +14,11 @@ $_SESSION['chooseEq'] = array();
   
   <style>
             .modal-dialog.a{
-                max-width : 650px;
+                max-width : 835px;
                 max-height: 550px;
+
             }
+
             table, th, td    {
             }
             td {
@@ -41,7 +43,7 @@ $_SESSION['chooseEq'] = array();
 
 <body>
 <div class="card">
-<div class="card-body">
+      <div class="card-body">
 <!-- Modal ดูข้อมูลPM -->
 <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewPM">
                             <div class="modal-dialog a" role="document">
@@ -57,7 +59,7 @@ $_SESSION['chooseEq'] = array();
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                          <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
+                                          <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
                                         </div>
 
                             </div>
@@ -85,9 +87,9 @@ $_SESSION['chooseEq'] = array();
                             </table>
                             </form>
                             </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success"  name="Date_rfn" id="Date_rfn" form="Date_RFN_PM">บันทึกข้อมูล</button>
-                                    <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                                <div class="modal-footer" >
+                                    <button type="button" class="btn btn-success"  name="Date_rfn" id="Date_rfn" form="Date_RFN_PM" style="font-family:Prompt;">บันทึกข้อมูล</button>
+                                    <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
                                 </div>
                                 </div>
                                 </div>
@@ -96,9 +98,9 @@ $_SESSION['chooseEq'] = array();
                  
                     <div class="container" > 
                     
-                    <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
+                    <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
-                    <td><h3 style="font-family:Prompt;"><b>รายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
+                    <td><p><h3 style="font-family:Prompt;"><b>รวมรายการยืม-คืนครุภัณฑ์ทั้งหมด</b></h3></a></button></td>
                     </tr>
                     </table>
 
@@ -108,7 +110,7 @@ $_SESSION['chooseEq'] = array();
                     <td><select name="search_text" id="search_text" style="width: 100%; font-family:Prompt; font-size: 15px;  " class="form-control">
                                                             <option value="ทั้งหมด">สถานะทั้งหมด</option>
                                             <?php
-                                                    $type = "SELECT * FROM a_status WHERE status_id = 3 OR status_id = 5 OR status_id = 6 OR status_id = 7 OR status_id = 8 OR status_id = 10 OR status_id = 11 OR status_id = 12 ORDER BY status_id";
+                                                    $type = "SELECT * FROM a_status WHERE status_id = 3  OR status_id = 6 OR status_id = 7 OR status_id = 8 OR status_id = 10 OR status_id = 11 ORDER BY status_id";
                                                     $result = mysqli_query($conn, $type);
                                                     while($data = mysqli_fetch_array($result)):
                                              ?>
@@ -132,8 +134,8 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align: center;">หน่วยงาน</td>
                         <td style="text-align: center;">พนักงานจัดสรร</td>
                         <td style="text-align: center;">สถานะ</td>
+                        <td style="text-align: center;">จัดการ</td>
                         <td style="text-align: center;">รายละเอียด</td>
-                        <td></td>
 
                    </tr>
                     </thead>
@@ -187,7 +189,6 @@ $_SESSION['chooseEq'] = array();
                             <td style="text-align:center" class="w3-red"><?php echo $status_name; ?></td>
                             <td><button type="button" name="submitRFN" class="btn btn-success btn-block" data-toggle="modal" data-target="#ModalRefund"  value="<?php echo $id; ?>" onclick="idrefund(this)">คืนครุภัณฑ์</button></td>
                             <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_pass(<?php echo $data['pm_id']; ?>)">ดูรายละเอียด</button></td>
-                            <td></td>
                        
                         <?php } }
                         if($stn == "รอตรวจสอบ"){ ?>
@@ -199,7 +200,6 @@ $_SESSION['chooseEq'] = array();
                         <td></td>
 
                         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM(<?php echo $data['pm_id']; ?>)">ดูรายละเอียด</button></td>
-                        <td></td>
                     
                     
                     <?php } ?>
@@ -212,7 +212,6 @@ $_SESSION['chooseEq'] = array();
                         <td></td>
 
                         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_notpass(<?php echo $data['pm_id']; ?>)">ดูรายละเอียด</button></td>
-                        <td></td>
                     
                     
                     <?php } if($stn == "ไม่อนุมัติ"){ ?>
@@ -224,7 +223,6 @@ $_SESSION['chooseEq'] = array();
                         <td></td>
 
                         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_pass(<?php echo $data['pm_id']; ?>)">ดูรายละเอียด</button></td>
-                        <td></td>
                     
                     
                     <?php } if($stn == "อนุมัติ"){ ?>
@@ -235,7 +233,6 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                         <td></td>
                         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_pass(<?php echo $data['pm_id']; ?>)">ดูรายละเอียด</button></td>
-                        <td></td>
                    
                    
                     <?php } if($stn == "ยืม - คืน"){ ?>
@@ -255,7 +252,6 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                         <td></td>
                         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM(<?php echo $data['pm_id']; ?>)">ดูรายละเอียด</button></td>
-                        <td></td>
                     <?php }if($stn == "รออนุมัติ"){?>
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
                          <td style="text-align:left"><?php echo $data['pm_username']; ?></td>
@@ -264,7 +260,6 @@ $_SESSION['chooseEq'] = array();
                          <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                          <td></td>
                          <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_notpass(<?php echo $data['pm_id']; ?>)">ดูรายละเอียด</button></td>
-                         <td></td>
                     <?php } ?>
                         </tr>
                        <?php endwhile; ?>
@@ -296,23 +291,23 @@ $_SESSION['chooseEq'] = array();
   </div>
   <!-- container-scroller -->
   </div>
-  </div>
-
-
-
-
+   </div>
 
 <!-- /.script modal add -->
 <script>
 $(document).ready(function(){  
         $('#tableshow').DataTable({
-        "searching": true
+        "searching": true,
+        "oLanguage": {
+        "sSearch": "ค้นหา : "
+        },
+        retrieve: true,
 });  
  }); 
 </script>
 
 <script>
-            function showPM_pass(str) {
+            function showData(str) {
             var xhttp;    
             if (str == "") {
                 document.getElementById("ViewPM").innerHTML = "";
@@ -324,46 +319,11 @@ $(document).ready(function(){
                 document.getElementById("ViewPM").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "getAll_PM_pass.php?id="+str, true);
+            xhttp.open("GET", "get_index_All_PM.php?id="+str, true);
             xhttp.send();
             }
 </script>
 
-<script>
-            function showPM(str) {
-            var xhttp;    
-            if (str == "") {
-                document.getElementById("ViewPM").innerHTML = "";
-                return;
-            }
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("ViewPM").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "getAll_PM_wait.php?id="+str, true);
-            xhttp.send();
-            }
-</script>
-
-<script>
-            function showPM_notpass(str) {
-            var xhttp;    
-            if (str == "") {
-                document.getElementById("ViewPM").innerHTML = "";
-                return;
-            }
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("ViewPM").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "getAll_PM_notpass.php?id="+str, true);
-            xhttp.send();
-            }
-</script>
 
 <script>          
                 $(document).ready(function(){  

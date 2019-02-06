@@ -11,7 +11,8 @@ include("../db_connect.php");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Home</title>
   <?php include("menu/link.php"); ?>
-  
+  <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
+
   <style>
             table, th, td    {
             }
@@ -27,6 +28,12 @@ include("../db_connect.php");
             }
             .search-table-outter { overflow-x: scroll; }
             .w3-theme-l2 {color:#fff !important;background-color:#e9657b !important}
+
+            .modal-dialog.a{
+                max-width : 835px;
+                max-height: 550px;
+
+            }
     </style>
 
 
@@ -37,17 +44,18 @@ include("../db_connect.php");
 <?php include("menu/navbar_leader.php"); ?>
 
 <body>
-  
+<div class="card">
+      <div class="card-body">
     
 <!-- Modal ดูข้อมูลPM -->
 
 <div class="modal fade" tabindex="-1" role="dialog" id="ModalViewPM">
-                            <div class="modal-dialog " role="document">
+                            <div class="modal-dialog a" role="document">
                             <div class="modal-content">
                             <div class="card">
                             <div class="card-body">
                             <div class="modal-header">
-                                <h4 class="modal-title"><b>ข้อมูลการยืม-คืนครุภัณฑ์</b></h4>
+                                <h4 class="modal-title" style="font-family:Prompt; font-weight: bold;"><b>ข้อมูลการยืม-คืนครุภัณฑ์</b></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                                     <div class="modal-body table-responsive">
@@ -95,23 +103,21 @@ include("../db_connect.php");
                         </div>
                     </div>
 
-<!-- Modal บอกเหตุผที่ไม่ให้ผ่าน -->
-                <br>       
+<!-- Modal บอกเหตุผที่ไม่ให้ผ่าน -->  
                     <div class="container" > 
-                    <br>
-                    <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
+
+                    <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
-                    <td><h3 style="font-family:Prompt;"><b>รายการยืม-คืนครุภัณฑ์ที่รออนุมัติ</b></h3></a></button></td>
+                    <td><p><h3 style="font-family:Prompt;"><b>รายการยืม-คืนครุภัณฑ์ที่รออนุมัติ</b></h3></a></button></td>
                     </tr>
                     </table>
-                    
-                    <br>
+           
                     <div class="table-responsive" id="result">
                     <p></p>
                     <form id="form3"> 
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
-                    <tr >
+                    <tr style="font-family:Prompt; font-weight: bold; font-size: 15px;">
                         <td style="text-align: center;">จุดประสงค์การยืม-คืน</td>
                         <td style="text-align: center;">ชื่อผู้เช่ายืม</td>
                         <td style="text-align: center;">หน่วยงาน</td>
@@ -139,7 +145,7 @@ include("../db_connect.php");
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['pm_empno']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
-                        <td><button type="button" name="submitviewPM" class="btn btn-success btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM(<?php echo $data['pm_id']; ?>)">ดูรายการยืม-คืน</button></td></form>
+                        <td><button type="button" name="submitviewPM" class="btn btn-success btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="ShowData(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายการยืม-คืน</button></td></form>
                     </tr>
                        <?php } ?>
                        <?php }else{ ?>
@@ -173,7 +179,8 @@ include("../db_connect.php");
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
+  </div>
+  </div>
   
 </body>
 </html>
@@ -181,16 +188,27 @@ include("../db_connect.php");
 
 <!-- /.script modal add -->
 <script>
-$(document).ready(function(){  
+$(document).ready(function(){
+      
         $('#tableshow').DataTable({
-        "searching": true
+        "searching": true,
+        "language": {
+            "lengthMenu": "ข้อมูลเเสดง _MENU_ ต่อหน้า",
+            "info": " _PAGE_ หน้าจาก _PAGES_",
+            "sSearch": "ค้นหา"
+
+        },
+  
+      retrieve: true,
+
+      
 });  
  }); 
 </script>
 
 
 <script>
-            function showPM(str) {
+            function ShowData(str) {
             var xhttp;    
             if (str == "") {
                 document.getElementById("ViewPM").innerHTML = "";
@@ -202,7 +220,7 @@ $(document).ready(function(){
                 document.getElementById("ViewPM").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "../mint/getPM_DC.php?id="+str, true);
+            xhttp.open("GET", "get_index_PM_DC.php?id="+str, true);
             xhttp.send();
             }
 </script>
@@ -217,7 +235,7 @@ $(document).ready(function(){
                   $('#NotePM').on('submit', function(e){  
                        e.preventDefault();  
                        $.ajax({  
-                            url :"../mint/Not_pass_PM_DC.php",  
+                            url :"Not_pass_PM_DC.php",  
                             method:"POST",  
                             data:new FormData(this),  
                             contentType:false,  
@@ -291,7 +309,7 @@ $(document).ready(function(){
                   $('#ViewPM').on('submit', function(e){  
                        e.preventDefault();  
                        $.ajax({  
-                            url :"../mint/Pass_PM_DC.php",  
+                            url :"Pass_PM_DC.php",  
                             method:"POST",  
                             data:new FormData(this),  
                             contentType:false,  

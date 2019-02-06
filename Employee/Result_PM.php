@@ -15,7 +15,7 @@ $_SESSION['chooseEq'] = array();
 
   <style>
              .modal-dialog.a{
-                max-width : 650px;
+                max-width : 850px;
                 max-height: 550px;
             }
 
@@ -65,39 +65,13 @@ $_SESSION['chooseEq'] = array();
                             </div>
                             </div>
                             </div>
-<!-- Modal บอกเหตุผที่ไม่ให้ผ่าน -->
-            <div class="modal fade" tabindex="-1" role="dialog" id="ModalNote">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content w3-theme-l2" >
-                <div class="modal-header">
-                                <h4 class="modal-title"><b>เหตุผลที่ไม่ผ่านการตรวจสอบ</b></h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                        <div class="modal-body table-responsive">
-                            <form id="NotePM" >
-                            <table align="center">
-                            <tr>
-                            <td><input type="hidden" name="id_pm" id="id_pm" class="form-control"></td>
-                            <td>เหตุผลที่ไม่ผ่านการตรวจสอบ: </td>
-                            <td><input type="text" name="pm_note" id="pm_note" class="form-control"></td>
-                            </tr>
-                            </table>
-                            </form>
-                            </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success"  name="Note_PM" id="Note_PM" form="NotePM">ส่งผลการตรวจสอบ</button>
-                                    <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
-                                </div>
-                                </div>
-                                </div>
-                                </div>
-<!-- Modal บอกเหตุผที่ไม่ให้ผ่าน -->
-                <br>       
+
+              
                     <div class="container" > 
-                    <br>
-                    <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
+             
+                    <table border="0" align="center" style="width:100%;" class="w3-teal w3-teal">
                     <tr>
-                    <td><h3 style="font-family:Prompt;"><b>ผลการดำเนินการยืม-คืน</b></h3></a></button></td>
+                    <td><p><h3 style="font-family:Prompt;"><b>ผลการดำเนินการยืม-คืน</b></h3></a></button></td>
                     </tr>
                     </table>
                     
@@ -144,7 +118,7 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
 
                         <td><button type="button" name="idEdit" class="btn btn-warning btn-block" value="<?php echo $data['pm_id']; ?>" onclick="getidTOedit(this)" style="font-family:Prompt;">เเก้ไขรายการ</button></td>
-                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="ShowData(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
 
                     <?php  } if($stn == "ไม่อนุมัติ"){ ?>
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
@@ -154,7 +128,7 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                     
                         <td><button type="button" name="submitviewRS" id="submitviewNopass" class="btn btn-danger btn-block"  value="<?php echo $id; ?>" onclick="notpass(this)" style="font-family:Prompt;">ยกเลิกรายการ</button></td>
-                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_DC(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="ShowData(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
 
                     <?php } if($stn == "อนุมัติ"){ ?>
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
@@ -164,7 +138,7 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                     
                         <td><button type="button" name="submitviewRS" id="submitviewRS" class="btn btn-success btn-block"  value="<?php echo $id; ?>" onclick="pass(this)" style="font-family:Prompt;">ทำการยืม-คืน</button></td>
-                        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_DC(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="ShowData(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
                     <?php } ?>
                         </tr>
                     <?php } ?>
@@ -222,7 +196,7 @@ $(document).ready(function(){
 </script>
 
 <script>
-            function showPM(str) {
+            function ShowData(str) {
             var xhttp;    
             if (str == "") {
                 document.getElementById("ViewPM").innerHTML = "";
@@ -234,28 +208,11 @@ $(document).ready(function(){
                 document.getElementById("ViewPM").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "getPM_dt.php?id="+str, true);
+            xhttp.open("GET", "get_Result_PM.php?id="+str, true);
             xhttp.send();
             }
 </script>
 
-<script>
-            function showPM_DC(str) {
-            var xhttp;    
-            if (str == "") {
-                document.getElementById("ViewPM").innerHTML = "";
-                return;
-            }
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("ViewPM").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "getPM_DC_dt.php?id="+str, true);
-            xhttp.send();
-            }
-</script>
 
 <script>          
       function pass(str){

@@ -84,11 +84,7 @@ echo
 <td><input type="text" id="emp_status" name="emp_status" style="font-family:Prompt;" value="'.$status.'" class="form-control" readonly></td>
 
 </tr>
-<tr>
-<td style="text-align: center; font-family:Prompt"><b>รูปภาพ</b></td>
-<td><input type="file" name="images[]" id="select_image" multiple /></td>
-<input type="hidden" id="emp_pic" name="emp_pic" style="font-family:Prompt; " value="'.$pic.'"></td>
-</tr>
+
 '
 ;
 

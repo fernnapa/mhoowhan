@@ -30,6 +30,10 @@ session_start();
               while($row = mysqli_fetch_assoc($result)) {
   
   ?>
+
+
+<div class="card">
+      <div class="card-body">
         <div class="container">
             <h2 style="text-align: center; font-family:Prompt;">ข้อมูลส่วนตัว</h2>
             <hr> <br/> 
@@ -49,15 +53,15 @@ session_start();
                                                   <label class="control-label" style="font-family:Prompt;">หมายเลขพนักงาน: </label>
                                               </div>
                                               <div class="col-md-8">
-                                                  <p style="font-family:Prompt;"><?php echo $row["emp_id"]; ?></p>
+                                                  <p style="font-family:Prompt; font-size: 15px;"><?php echo $row["emp_id"]; ?></p>
                                               </div>
                                           </div>
                                           <div class="row">
                                               <div class="col-md-4" style="text-align: right;">
-                                                  <label class="control-label" style="font-family:Prompt;">ชื่อ: </label>
+                                                  <label class="control-label" style="font-family:Prompt; ">ชื่อ: </label>
                                               </div>
                                               <div class="col-md-8">
-                                                  <p style="font-family:Prompt;"><?php echo $row["emp_fname"]; ?></p>
+                                                  <p style="font-family:Prompt; font-size: 15px;"><?php echo $row["emp_fname"]; ?></p>
                                               </div>
                                           </div>
                                           <div class="row">
@@ -65,7 +69,7 @@ session_start();
                                                   <label class="control-label" style="font-family:Prompt;">สกุล:</label>
                                               </div>
                                               <div class="col-md-8">
-                                                  <p style="font-family:Prompt;"><?php echo $row["emp_lname"]; ?></p>
+                                                  <p style="font-family:Prompt; font-size: 15px;"><?php echo $row["emp_lname"]; ?></p>
                                               </div>
                                           </div>
                                           <div class="row">
@@ -73,7 +77,7 @@ session_start();
                                                   <label class="control-label" style="font-family:Prompt;">ตำแหน่ง:</label>
                                               </div>
                                               <div class="col-md-8">
-                                                  <p style="font-family:Prompt;"><?php echo $row["emp_position"]; ?></p>
+                                                  <p style="font-family:Prompt; font-size: 15px;"><?php echo $row["emp_position"]; ?></p>
                                               </div>
                                           </div>
                                           <div class="row">
@@ -81,7 +85,7 @@ session_start();
                                                   <label class="control-label" style="font-family:Prompt;">โทรศัพท์:</label>
                                               </div>
                                               <div class="col-md-8">
-                                                  <p style="font-family:Prompt;"><?php echo $row["emp_tel"]; ?></p>
+                                                  <p style="font-family:Prompt; font-size: 15px;"><?php echo $row["emp_tel"]; ?></p>
                                               </div>
                                           </div>
   
@@ -90,7 +94,7 @@ session_start();
                                                   <label class="control-label" style="font-family:Prompt;">อีเมล์:</label>
                                               </div>
                                               <div class="col-md-8">
-                                                  <p style="font-family:Prompt;"><?php echo $row["emp_mail"]; ?></p>
+                                                  <p style="font-family:Prompt; font-size: 15px;"><?php echo $row["emp_mail"]; ?></p>
                                               </div>
                                           </div>
                                           <hr>
@@ -101,7 +105,7 @@ session_start();
                                                   <label class="control-label" style="font-family:Prompt;">Username:</label>
                                               </div>
                                               <div class="col-md-8">
-                                                  <p style="font-family:Prompt;"><?php echo $row["emp_user"]; ?></p>
+                                                  <p style="font-family:Prompt; font-size: 15px;"><?php echo $row["emp_user"]; ?></p>
                                               </div>
                                           </div>
   
@@ -119,7 +123,7 @@ session_start();
                                                   <label class="control-label" style="font-family:Prompt;">สถานะผู้ใช้งาน:</label>
                                               </div>
                                               <div class="col-md-8">
-                                                  <p style="font-family:Prompt;"><?php echo $row["emp_status"]; ?></p>
+                                                  <p style="font-family:Prompt; font-size: 15px;"><?php echo $row["emp_status"]; ?></p>
                                               </div>
                                           </div>
   
@@ -137,7 +141,17 @@ session_start();
                   </div> 
                 </form>        
         </div>
+        </div> 
+</div>
  
+
+</div></div></div>
+<footer class="footer">
+  <div class="container-fluid clearfix">
+        <span class="copytext">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="http://ccs.sut.ac.th/2012/" target="_blank">The Center for Computer Services. SUT</a></span>
+  </div>
+</footer>
+
     <?php      
         
               }

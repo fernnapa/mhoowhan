@@ -13,7 +13,7 @@ include("../db_connect.php");?>
   
   <style>
     .modal-dialog.a{
-        max-width : 650px;
+        max-width : 900px;
         max-height: 550px;
     }
 
@@ -40,7 +40,8 @@ include("../db_connect.php");?>
 <?php include("menu/navbar_head.php"); ?>
 
 <body>
-  
+<div class="card">
+      <div class="card-body">
                             <!-----------------detail---------------------------->
     <div class="modal fade" tabindex="1" role="dialog" id="ModalViewAC">
         <div class="modal-dialog a" role="document">
@@ -70,15 +71,14 @@ include("../db_connect.php");?>
 
                                   
     <div class="container" >    
-        <table border="0" align="center" style="width:100%;" class="w3-round">
+        <table border="0" align="center" style="width:100%;" class="w3-teal">
             <tr>
-                <td><h3 style="font-family:Prompt;"><b>รายการจัดการครุภัณฑ์คอมพิวเตอร์</b></h3></a></button></td>
+                <td><p><h3 style="font-family:Prompt;"><b>รายการจัดการครุภัณฑ์คอมพิวเตอร์</b></h3></a></button></td>
             </tr>
         </table>
         <hr>
                     
                     <div class="table-responsive" id="result">
-                    <p></p>
                     <form id="form3"> 
                     <table id="tableshow" align="center" style="width:100%;" class="table table-hover table table-striped table-bordered" >
                     <thead>
@@ -177,21 +177,28 @@ include("../db_connect.php");?>
         </div>
       </div>
     </div>
-  
+    </div>
+    </div>
   
   <!-- /.script modal add -->
   <script>
-  $(document).ready(function(){  
-          $('#tableshow').DataTable({
-          "searching": true,
+$(document).ready(function(){
+      
+        $('#tableshow').DataTable({
+        "searching": true,
+        "language": {
+            "lengthMenu": "ข้อมูลเเสดง _MENU_ ต่อหน้า",
+            "info": " _PAGE_ หน้าจาก _PAGES_",
+            "sSearch": "ค้นหา"
 
-            "oLanguage": {
-            "sSearch": "ค้นหา : "
-            },
-            retrieve: true,
-  });  
-   }); 
-  </script>
+        },
+  
+      retrieve: true,
+
+      
+});  
+ }); 
+</script>
   
   
   

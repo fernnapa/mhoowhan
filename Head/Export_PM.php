@@ -33,14 +33,12 @@ include("../db_connect.php");
     <title>ดาวน์โหลดรายการยืม-คืนครุภัณฑ์</title>
         <body >
 <!-- Modal ดูข้อมูลPM -->
-        
-
-                <br>       
+ 
                     <div class="container" > 
-                    <br>
-                    <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
+                
+                    <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
-                    <td><h3 style="font-family:Prompt;"><b>ดาวน์โหลดรายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
+                    <td><p><h3 style="font-family:Prompt;"><b>ดาวน์โหลดรายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
                     
@@ -153,11 +151,13 @@ include("../db_connect.php");
 
 <!-- /.script modal add -->
 <script>
-$(document).ready(function(){  
-        $('#tableshow').DataTable({
-        "searching": true
-});  
- }); 
-</script>
+                                        $(document).ready(function(){  
+                                        $('#tableshow').DataTable({
+                                        "searching": false,
+                                        "lengthChange": false,
+
+                                        });  
+                                        }); 
+                                        </script>
         </body>
 </html>

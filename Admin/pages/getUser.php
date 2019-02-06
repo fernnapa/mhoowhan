@@ -92,7 +92,7 @@ echo
 </tr>
 <tr>
 <td style="text-align: center; font-family:Prompt"><b>รูปภาพ</b></td>
-<td><input type="file" name="images[]" id="select_image" multiple /></td>
+<td><input type="file" name="images[]" id="select_image" multiple / ></td>
 <input type="hidden" id="emp_pic" name="emp_pic" style="font-family:Prompt; " value="'.$pic.'"></td>
 </tr>
 '

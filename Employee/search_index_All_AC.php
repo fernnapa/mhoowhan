@@ -21,7 +21,14 @@ if(isset($_POST["query"]) )
             ON allocate.ac_status = a_status.status_id
             LEFT JOIN department
             ON allocate.ac_dep = department.dep_id
-            WHERE ac_status = 9 OR ac_status = 7 OR ac_status = 6 OR ac_status= 2 OR ac_status= 8 OR ac_status= 10 OR ac_status= 11";
+            WHERE 
+            ac_status = 9 OR 
+            ac_status = 7 OR 
+            ac_status = 6 OR 
+            ac_status = 2 OR 
+            ac_status= 8 OR 
+            ac_status= 10 OR 
+            ac_status= 11";
         }
         else
         { $query = "SELECT * FROM allocate
@@ -40,14 +47,21 @@ else
     ON allocate.ac_status = a_status.status_id
     LEFT JOIN department
     ON allocate.ac_dep = department.dep_id
-    WHERE ac_status = 9 OR ac_status = 7 OR ac_status = 6 OR ac_status= 2 OR ac_status= 8 OR ac_status= 10 OR ac_status= 11";
+    WHERE 
+    ac_status = 9 OR 
+    ac_status = 7 OR 
+    ac_status = 6 OR 
+    ac_status = 2 OR 
+    ac_status= 8 OR 
+    ac_status= 10 OR 
+    ac_status= 11";
 }
 
 $result = mysqli_query($conn, $query);
 if(mysqli_num_rows($result) > 0)
 {
  $output .= 
-'<div class="table-responsive">
+'<div class="table-responsive" id="result">
 <p></p>
 <form id="form3"> 
 <table id="tableshow" align="center" style="width:100%;" class="table table-hover table-striped table-bordered" >
@@ -60,7 +74,6 @@ if(mysqli_num_rows($result) > 0)
                         <td style="text-align: center;">พนักงานจัดสรร</td>
                         <td style="text-align: center;">สถานะ</td>
                         <td style="text-align: center;">รายละเอียด</td>
-                        <td style="text-align: center;">แบบฟอร์ม</td>
 
 </tr>
 </thead>
@@ -68,11 +81,9 @@ if(mysqli_num_rows($result) > 0)
  while($data = mysqli_fetch_array($result))
  {
     $id = $data['ac_id'];
-    $stn = $data['status_name'];
+    $stn = $data['status_id'];
 
-
-   
-    if($stn == "รอตรวจสอบ"){
+    if($stn == 1){
         $output .= '
     <tr>
         <td style="text-align:left">'.$data['ac_title'].'</td>
@@ -80,13 +91,12 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$data['dep_name'].'</td>
         <td style="text-align:left">'.$data['ac_empid'].'</td>
         <td style="text-align:left">'.$data['status_name'].'</td>
-        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC('.$data['ac_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
-        <td></td>
+        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData('.$data['ac_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
 
     </tr>
         ';
     }
-    if($stn == "ไม่ผ่านการตรวจสอบ"){
+    if($stn == 8){
         $output .= '
     <tr>
         <td style="text-align:left">'.$data['ac_title'].'</td>
@@ -94,12 +104,11 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$data['dep_name'].'</td>
         <td style="text-align:left">'.$data['ac_empid'].'</td>
         <td style="text-align:left">'.$data['status_name'].'</td>
-        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_dt('.$data['ac_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
-        <td></td>
+        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData('.$data['ac_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
     </tr>
         ';
     }
-    if($stn == "ไม่อนุมัติ")
+    if($stn == 11)
     {
         $output .= '
     <tr>
@@ -108,11 +117,10 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$data['dep_name'].'</td>
         <td style="text-align:left">'.$data['ac_empid'].'</td>
         <td style="text-align:left">'.$data['status_name'].'</td>
-        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC_dt('.$data['ac_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
-        <td></td>
+        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData('.$data['ac_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
     </tr>';
     }
-    if($stn == "อนุมัติ")
+    if($stn == 10)
     {
         $output .= '
         <tr>
@@ -121,12 +129,25 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$data['dep_name'].'</td>
         <td style="text-align:left">'.$data['ac_empid'].'</td>
         <td style="text-align:left">'.$data['status_name'].'</td>
-        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC_dt('.$data['ac_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
-        <td></td>
+        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData('.$data['ac_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
         </tr>';
     }
     
-    if($stn == "รออนุมัติ")
+    if($stn == 6)
+    {
+        
+        $output .= '
+        <tr>
+        <td style="text-align:left">'.$data['ac_title'].'</td>
+        <td style="text-align:left">'.$data['ac_name'].'</td>
+        <td style="text-align:left">'.$data['dep_name'].'</td>
+        <td style="text-align:left">'.$data['ac_empid'].'</td>
+        <td style="text-align:left">'.$data['status_name'].'</td>
+
+        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData('.$data['ac_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
+        </tr>';   
+    }
+    if($stn == 2)
     {
         $output .= '
         <tr>
@@ -136,11 +157,11 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$data['ac_empid'].'</td>
         <td style="text-align:left">'.$data['status_name'].'</td>
 
-        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_at('.$data['ac_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
-        <td></td>
+        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData('.$data['ac_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
         </tr>';   
     }
-    if($stn == "จัดสรร")
+
+    if($stn == 7)
     {
         $output .= '
         <tr>
@@ -150,16 +171,39 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$data['ac_empid'].'</td>
         <td style="text-align:left">'.$data['status_name'].'</td>
 
-        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC_dt('.$data['ac_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
-        <td><a href="PDF_AC.php?ac_id='.$data['ac_id'].'" class="btn btn-danger" data-role="pdf" style="font-family:Prompt;">แบบฟอร์ม</a></button></td> 
+        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData('.$data['ac_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
         </tr>';   
     }
+
+
+ 
  }
+
  echo $output;
 }
 else
 {
-    echo '<br/><p style="text-align: center; font-size:20px;"><b>ไม่พบข้อมูล</b></p>';
+ 
+    echo '<div class="table-responsive" id="result">
+<p></p>
+<form id="form3"> 
+<table id="tableshow" align="center" style="width:100%;" class="table table-hover table-striped table-bordered" >
+<thead>
+<tr style="font-weight: bold;">
+
+                        <td style="text-align: center;">จุดประสงค์การจัดสรร</td>
+                        <td style="text-align: center;">ชื่อผู้เช่ายืม</td>
+                        <td style="text-align: center;">หน่วยงาน</td>
+                        <td style="text-align: center;">พนักงานจัดสรร</td>
+                        <td style="text-align: center;">สถานะ</td>
+                        <td style="text-align: center;">รายละเอียด</td>
+
+</tr>
+</thead>
+<tr>
+        <td style="text-align:center" colspan="6"><font size="3" color="red"><b>ไม่พบข้อมูล</b></font></td>
+        
+        </tr>';
 }
 
 

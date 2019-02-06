@@ -6,7 +6,7 @@
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
 
         <a class="navbar-brand brand-logo" href="index_head.php">
-          <img src="../images/banner.png" alt="logo" style="width: 170px; height: 50px;"/>
+          <img src="../images/logo1.png" alt="logo" style="width: 170px; height: 50px;"/>
         </a>
 
         <a class="navbar-brand brand-logo-mini" href="index_head.php">
@@ -20,7 +20,7 @@
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <span class="profile-text">Hello, คุณ <?php echo $_SESSION["User"] ?></span>
 
-              <img class="img-xs rounded-circle" src="images/<?php echo $_SESSION["emp_pic"]; ?>" alt="Profile image">    <!--    เอารูปมาแสดง  --->
+              <img class="img-xs rounded-circle" src="../Admin/pages/img/<?php echo $_SESSION["emp_pic"]; ?>" alt="Profile image">    <!--    เอารูปมาแสดง  --->
 
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -62,7 +62,7 @@
               <div class="user-wrapper">
                 <div class="profile-image">
 
-                <img src="images/<?php echo $_SESSION["emp_pic"]; ?>" alt="profile image">      <!--    เอารูปมาแสดง  --->
+                <img src="../Admin/pages/img/<?php echo $_SESSION["emp_pic"]; ?>" alt="profile image">      <!--    เอารูปมาแสดง  --->
                 
                 </div>
                 <div class="text-wrapper">
@@ -143,8 +143,7 @@
         <div class="content-wrapper">         
           <div class="row">
             <div class="col-lg-12 grid-margin">
-              <div class="card">
-                <div class="card-body">
+              
 
 
 

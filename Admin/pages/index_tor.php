@@ -30,7 +30,9 @@ include("../../db_connect.php");
 
 
 <body>
-      
+<div class="card">
+      <div class="card-body">
+
 <!-- /.Model Edit ประเภท-->
     <div class="modal fade" tabindex="-1" role="dialog" id="myModalType" style="font-family:Prompt;">
         <div class="modal-dialog" role="document";>
@@ -310,7 +312,7 @@ include("../../db_connect.php");
                                     </tr>
                                     <tr>
                                         <th style="text-align: right;">ประเภท TOR</th>
-                                        <th style="text-align: center;"><select name="tor_type" id="tor_type" style="width: 99%" class="form-control">
+                                        <th style="text-align: center;"><select name="tor_type" id="tor_type" style="width: 100%; font-family:Prompt; font-size: 15px;" class="form-control">
                                             <option value="">เลือกประเภท</option>
                                             
                                             <?php
@@ -324,7 +326,7 @@ include("../../db_connect.php");
                                             </tr>
                                             <tr>
                                                 <th style="text-align: right;">สัญญา</th>
-                                                <th style="text-align: center;"><select name="tor_contract" id="tor_contract" style="width: 99%" class="form-control">
+                                                <th style="text-align: center;"><select name="tor_contract" id="tor_contract" style="width: 100%; font-family:Prompt; font-size: 15px;" class="form-control">
                                                             <option value="">เลือกสัญญา</option>
                                             <?php
                                                         $cont = "SELECT * FROM contract ORDER BY con_name";
@@ -387,10 +389,13 @@ include("../../db_connect.php");
 
 
 <!-- /.Datateble -->
+<table align="center" class="w3-teal" style="width:100%">
+            <tr>
+                <th colspan="7"><p><h3 style="text-align:center; font-family:Prompt;"><b>ข้อมูล TOR</b></h3></th>
+            </tr>
+            </table>
+    <br>
     <table align="center" style="width:100%">
-        <tr>
-            <th colspan="6"><h3 style="text-align:center; font-family:Prompt;"><b>ข้อมูล TOR</b></h3></th>
-        </tr>
         <tr>
         <form class="form-inline" onsubmit="openModal()" id="myForm">
             <th colspan="5"><input type="text" style="width:100%;" size="50" name="search_tor" id="search_tor" class="form-control" placeholder="ระบุคำที่ต้องการค้นหา"></th>
@@ -402,7 +407,7 @@ include("../../db_connect.php");
             <td colspan="3" ><button type="submit" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModalCon" style="font-family:Prompt;">จัดการข้อมูลสัญญา</button></td>                          
         </tr>
     </table>
-    <br><br>
+
     
     <div class="table-responsive" id="result" style="font-family:Prompt;">
         <p></p>
@@ -411,7 +416,8 @@ include("../../db_connect.php");
 <!-- /.Datateble -->
 
         <?php include ("footer.php"); ?>
-
+</div>
+</div>
 
 <!-- /.script modal add -->
 

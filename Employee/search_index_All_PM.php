@@ -51,28 +51,70 @@ if(mysqli_num_rows($result) > 0)
 '<div class="table-responsive">
 <p></p>
 <form id="form3"> 
-<table id="tableshow" align="center" style="width:100%;" class="table table-hover table-striped table-bordered" >
+<table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " class="hover" >
 <thead>
-            <tr style="font-weight: bold;">
+<tr style="font-weight: bold;">
 
-                    <td style="text-align: center; ">จุดประสงค์การยืม-คืน</td>
-                    <td style="text-align: center;">ชื่อผู้เช่ายืม</td>
-                    <td style="text-align: center;">หน่วยงาน</td>
-                    <td style="text-align: center;">พนักงานจัดสรร</td>
-                    <td style="text-align: center;">สถานะ</td>
-                    <td style="text-align: center;">รายละเอียด</td>
-                    <td style="text-align: center;">แบบฟอร์ม</td>
+<td style="text-align: center; ">จุดประสงค์การยืม-คืน</td>
+<td style="text-align: center; ">ชื่อผู้เช่ายืม</td>
+<td style="text-align: center; ">หน่วยงาน</td>
+<td style="text-align: center; ">พนักงานจัดสรร</td>
+<td style="text-align: center; ">สถานะ</td>
+<td style="text-align: center; ">จัดการ</td>
+<td style="text-align: center; ">รายละเอียด</td>
 
-            </tr>
+
+</tr>
 </thead>
   ';
  while($row = mysqli_fetch_array($result))
  {
     $id = $row['pm_id'];
-    $stn = $row['status_name'];
-   
+    $stn = $row['status_id'];
+    $test =0;
 
-    if($stn == "รอตรวจสอบ"){
+    $exp_date = $row['pm_enddate'];
+    $today_date = date('Y-m-d');
+    $exp = strtotime($exp_date);
+    $td = strtotime($today_date);
+    if($td > $exp)
+    {
+    $test =1;
+    }
+
+if($test == 1){
+        $status = 12; 
+        $update = "UPDATE `permit` SET `pm_status`='$status' WHERE pm_id = $id ";
+        $rs = mysqli_query($conn, $update);
+        $st = "SELECT * FROM permit 
+        LEFT JOIN a_status
+        ON permit.pm_status = a_status.status_id
+        LEFT JOIN department
+        ON permit.pm_dep = department.dep_id WHERE pm_id = $id";
+        $rs1 = mysqli_query($conn, $st);
+        while($ex = mysqli_fetch_array($rs1)){
+          $stn = $ex['pm_status'];
+          $name = $ex['pm_name'];
+          $username = $ex['pm_username'];
+          $dep = $ex['dep_name'];
+          $emp = $ex['pm_empno'];
+          $status_name = $ex['status_name'];
+        }
+if($stn == 12){
+  $output .= '
+    <tr>
+    <td style="text-align:left">'.$name.'</td>
+    <td style="text-align:left">'.$username.'</td>
+    <td style="text-align:left">'.$dep.'</td>
+    <td style="text-align:left">'.$emp.'</td>
+    <td style="text-align:center" class="w3-red">'.$status_name.'</td>
+    <td><button type="button" name="submitRFN" class="btn btn-success btn-block" data-toggle="modal" data-target="#ModalRefund"  value="'.$id.'" onclick="idrefund(this)" style="font-family:Prompt;"><i class="mdi mdi-debug-step-over"></i>คืนครุภัณฑ์</button></td>
+    <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showData('.$row['pm_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
+    
+    </tr>';
+        }
+    }
+if($stn == 7){
         $output .= '
     <tr>
         <td style="text-align:left">'.$row['pm_name'].'</td>
@@ -80,12 +122,13 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$row['dep_name'].'</td>
         <td style="text-align:left">'.$row['pm_empno'].'</td>
         <td style="text-align:left">'.$row['status_name'].'</td>
-        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM('.$row['pm_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
         <td></td>
+        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showData('.$row['pm_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
+       
     </tr>
         ';
     }
-    if($stn == "ไม่ผ่านการตรวจสอบ"){
+    if($stn == 8){
         $output .= '
         <tr>
         <td style="text-align:left">'.$row['pm_name'].'</td>
@@ -93,61 +136,66 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$row['dep_name'].'</td>
         <td style="text-align:left">'.$row['pm_empno'].'</td>
         <td style="text-align:left" >'.$row['status_name'].'</td>
-        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_notpass('.$row['pm_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
         <td></td>
+        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showData('.$row['pm_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
+        
         </tr>
         ';
     }
-    if($stn == "ไม่อนุมัติ")
+    if($stn == 11)
     {
         $output .= '
         <tr>
-                            <td style="text-align:left">'.$row['pm_name'].'</td>
-                            <td style="text-align:left">'.$row['pm_username'].'</td>
-                            <td style="text-align:left">'.$row['dep_name'].'</td>
-                            <td style="text-align:left">'.$row['pm_empno'].'</td>
-                            <td style="text-align:left">'.$row['status_name'].'</td>
-                            <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_pass('.$row['pm_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
-         <td></td>
+        <td style="text-align:left">'.$row['pm_name'].'</td>
+                        <td style="text-align:left">'.$row['pm_username'].'</td>
+                        <td style="text-align:left">'.$row['dep_name'].'</td>
+                        <td style="text-align:left">'.$row['pm_empno'].'</td>
+                        <td style="text-align:left">'.$row['status_name'].'</td>
+                        <td></td>
+                        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showData('.$row['pm_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
+         
         </tr>';
     }
-    if($stn == "อนุมัติ")
+    if($stn == 10)
     {
         $output .= '
         <tr>
-                            <td style="text-align:left">'.$row['pm_name'].'</td>
-                            <td style="text-align:left">'.$row['pm_username'].'</td>
-                            <td style="text-align:left">'.$row['dep_name'].'</td>
-                            <td style="text-align:left">'.$row['pm_empno'].'</td>
-                            <td style="text-align:left">'.$row['status_name'].'</td>
-                            <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_pass('.$row['pm_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
+        <td style="text-align:left">'.$row['pm_name'].'</td>
+        <td style="text-align:left">'.$row['pm_username'].'</td>
+        <td style="text-align:left">'.$row['dep_name'].'</td>
+        <td style="text-align:left">'.$row['pm_empno'].'</td>
+        <td style="text-align:left">'.$row['status_name'].'</td>
         <td></td>
+        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showData('.$row['pm_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
+       
         </tr>';
     }
-    if($stn == "ยืม - คืน")
+    if($stn == 3)
     {
         $output .= '
         <tr>
-                            <td style="text-align:left">'.$row['pm_name'].'</td>
-                            <td style="text-align:left">'.$row['pm_username'].'</td>
-                            <td style="text-align:left">'.$row['dep_name'].'</td>
-                            <td style="text-align:left">'.$row['pm_empno'].'</td>
-                            <td style="text-align:center">'.$row['status_name'].'</td>
-                            <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_pass('.$row['pm_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
-                            <td><a href="PDF_PM.php?pm_id='.$row['pm_id'].'" class="btn btn-danger" data-role="pdf" style="font-family:Prompt;">แบบฟอร์ม</a></button></td>
+        <td style="text-align:left">'.$row['pm_name'].'</td>
+        <td style="text-align:left">'.$row['pm_username'].'</td>
+        <td style="text-align:left">'.$row['dep_name'].'</td>
+        <td style="text-align:left">'.$row['pm_empno'].'</td>
+        <td style="text-align:center"  class="w3-blue-gray">'.$row['status_name'].'</td>
+        <td><button type="button" name="submitRFN" class="btn btn-success btn-block" data-toggle="modal" data-target="#ModalRefund"  value="'.$id.'" onclick="idrefund(this)" style="font-family:Prompt;">  <i class="mdi mdi-debug-step-over"></i>คืนครุภัณฑ์</button></td>
+        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showData('.$row['pm_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
         </tr>';
     }
-    if($stn == "รออนุมัติ")
+    if($stn == 6)
     {
         $output .= '
         <tr>
-                            <td style="text-align:left">'.$row['pm_name'].'</td>
-                            <td style="text-align:left">'.$row['pm_username'].'</td>
-                            <td style="text-align:left">'.$row['dep_name'].'</td>
-                            <td style="text-align:left">'.$row['pm_empno'].'</td>
-                            <td style="text-align:left">'.$row['status_name'].'</td>
-                            <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showPM_notpass('.$row['pm_id'].')" style="font-family:Prompt;">ดูรายละเอียด</button></td>
-                            <td></td>
+        <td style="text-align:left">'.$row['pm_name'].'</td>
+        <td style="text-align:left">'.$row['pm_username'].'</td>
+        <td style="text-align:left">'.$row['dep_name'].'</td>
+        <td style="text-align:left">'.$row['pm_empno'].'</td>
+        <td style="text-align:left">'.$row['status_name'].'</td>
+        <td></td>
+        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showData('.$row['pm_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
+        
+      
         </tr>';   
     }
  }
@@ -155,7 +203,27 @@ if(mysqli_num_rows($result) > 0)
 }
 else
 {
-    echo '<br/><p style="text-align: center; font-size:20px;"><b>ไม่พบข้อมูล</b></p>';
+    echo '<div class="table-responsive" id="result">
+    <p></p>
+    <form id="form3"> 
+    <table id="tableshow" align="center" style="width:100%;" class="table table-hover table-striped table-bordered" >
+    <thead>
+    <tr style="font-weight: bold;">
+    
+    <td style="text-align: center; ">จุดประสงค์การยืม-คืน</td>
+    <td style="text-align: center; ">ชื่อผู้เช่ายืม</td>
+    <td style="text-align: center; ">หน่วยงาน</td>
+    <td style="text-align: center; ">พนักงานจัดสรร</td>
+    <td style="text-align: center; ">สถานะ</td>
+    <td style="text-align: center; ">จัดการ</td>
+    <td style="text-align: center; ">รายละเอียด</td>
+    
+    </tr>
+    </thead>
+    <tr>
+            <td style="text-align:center" colspan="7"><font size="3" color="red"><b>ไม่พบข้อมูล</b></font></td>
+            
+            </tr>';
 }
 
 

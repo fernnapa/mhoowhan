@@ -1,6 +1,6 @@
 <?php
 include("../../db_connect.php");
-include("datatable_BU_PM.php");
+include("datatable_Type.php");
 
 
 $output = '';
@@ -205,18 +205,18 @@ $result = mysqli_query($conn, $query);
 if(mysqli_num_rows($result) > 0)
 {
  $output .= 
-'<div class="table-responsive">
-<p></p>
+'
+<div class="table-responsive">
 <form id="form3"> 
 <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " class="hover" >
 <thead>
 <tr style="font-weight: bold;">
 
-<th style="text-align: center;font-family:Prompt;"><b>Barcode</b></th>
-<th style="text-align: center;font-family:Prompt;"><b>Serial Number</b></th>
-<th style="text-align: center;font-family:Prompt;"><b>TOR</b></th>
-<th style="text-align: center;font-family:Prompt; " ><b>สัญญา</b></th>
-<th style="text-align: center;font-family:Prompt;"><b>สถานะ</b></th>
+<th style="text-align: center;font-family:Prompt; font-size: 15px;"><b>Barcode</b></th>
+<th style="text-align: center;font-family:Prompt; font-size: 15px;"><b>Serial Number</b></th>
+<th style="text-align: center;font-family:Prompt; font-size: 15px;"><b>TOR</b></th>
+<th style="text-align: center;font-family:Prompt; font-size: 15px;"><b>สัญญา</b></th>
+<th style="text-align: center;font-family:Prompt; font-size: 15px;"><b>สถานะ</b></th>
 <th style="text-align: center;font-family:Prompt;"><b></b></th>
 
 </tr>
@@ -238,7 +238,7 @@ if(mysqli_num_rows($result) > 0)
    <td style="text-align:left;font-family:Prompt;">'.$status_name.'</td>
   
 
-    <td style="text-align:center"><button type="button" class="btn btn-icons btn-rounded btn-primary" value="'.$row["eq_id"].'" onclick="getidTOedit(this)"><i class="mdi mdi-qrcode"></i></button>
+    <td style="text-align:center"><button type="button" class="btn btn-outline-primary btn-icons btn-rounded btn-primary" value="'.$row["eq_id"].'" onclick="getidTOedit(this)"><i class="mdi mdi-qrcode"></i></button>
     </tr>
 
    

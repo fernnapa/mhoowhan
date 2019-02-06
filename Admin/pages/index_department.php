@@ -26,7 +26,8 @@ include("../../db_connect.php");
   <?php include("navbar.php"); ?>
 
 <body>
-
+<div class="card">
+      <div class="card-body">
     <!-- /.modal edit-->
     <div class="modal fade" tabindex="-1" role="dialog" id="myModal2">
         <div class="modal-dialog" role="document">
@@ -57,23 +58,21 @@ include("../../db_connect.php");
     <!-- /.modal edit-->
 
     <!-- /.data -->
-    <div class="container w3-card-2 w3-round" style="width:60% " >          
-        <table align="center">
+   
+        <table align="center" class="w3-teal" style="width:100%">
             <tr>
-                <br/>
-                <th colspan="7"><h3 style="text-align:center; font-family:Prompt;"><b>ค้นหาข้อมูลหน่วยงาน</b></h3></th>
+                <th colspan="7"><p><h3 style="text-align:center; font-family:Prompt;"><b>ข้อมูลหน่วยงาน</b></h3></th>
             </tr>
-            <tr>
+            </table>
+            <br>
                 <form class="form-inline">
-                    <th colspan="6"><input type="text" style="width:100%;" size="50" name="search_text" id="search_text" class="form-control" placeholder="ระบุคำที่ต้องการค้นหา"></th>
-                    <th style="text-align:right;"><button type="button" class="btn btn-success btn-block" style="font-family:Prompt;" onclick="location.href='create_dep.php';">เพิ่มข้อมูล</button></th>   
+                <table align="center" style="width:100%;" border="0">
+                    <tr>
+                    <th style="width:80%;"><input type="text" style="width:100%;" name="search_text" id="search_text" class="form-control" placeholder="ระบุคำที่ต้องการค้นหา"></th>
+                    <th style="text-align:right; width:20%;"><button type="button" class="btn btn-success btn-block" style="font-family:Prompt;" onclick="location.href='create_dep.php';">เพิ่มข้อมูล</button></th>   
+                    </tr>
+                </table>
                 </form>                        
-            </tr>
-        </table>
-        <br>
-    </div>
-    <br>          
-
 
     <div class="table-responsive" id="result" style="font-family:Prompt;">
         <p></p>
@@ -82,7 +81,17 @@ include("../../db_connect.php");
         
     <!-- /.data -->
     <?php include ("footer.php"); ?>
-    
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
     <!-- /.script modal edit -->
     <script>
         $('#myFormEdit').on('submit', function(e){
