@@ -6,7 +6,7 @@
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
 
         <a class="navbar-brand brand-logo" href="index.php">
-          <img src="../images/logo1.png" alt="logo" style="width: 180px; height: 80px;"/>
+          <img src="../images/logo1.png" alt="logo" style="width: 170px; height: 70px;"/>
         </a>
 
         <a class="navbar-brand brand-logo-mini" href="index.php">
@@ -20,7 +20,7 @@
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <span class="profile-text">Hello, คุณ <?php echo $_SESSION["User"] ?></span>
 
-              <img class="img-xs rounded-circle" src="../Admin/pages/img/<?php echo $_SESSION["emp_pic"]; ?>" alt="Profile image">    <!--    เอารูปมาแสดง  --->
+              <img class="img-xs rounded-circle" src="../Admin/pages/img/<?php echo $_SESSION["emp_pic"]; ?>" alt="Profile image">      
 
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
@@ -62,7 +62,7 @@
               <div class="user-wrapper">
                 <div class="profile-image">
 
-                  <img src="img/<?php echo $_SESSION["emp_pic"]; ?>" alt="profile image">      <!--    เอารูปมาแสดง  --->
+                  <img src="../Admin/pages/img/<?php echo $_SESSION["emp_pic"]; ?>"  alt="profile image">      <!--    เอารูปมาแสดง  --->
                 
                 </div>
                 <div class="text-wrapper">
@@ -190,7 +190,7 @@
           <li class="nav-item">
             <a class="nav-link" href="index_chart.php">
               <i class="menu-icon mdi mdi-chart-line"></i>
-              <span class="menu-title">แผนภูมิ</span>
+              <span class="menu-title">รายงาน</span>
             </a>
           </li>
           <li class="nav-item">

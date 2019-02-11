@@ -5,7 +5,7 @@
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
         <a class="navbar-brand brand-logo" href="index_leader.php">
-        <img src="../images/logo1.png" alt="logo" style="width: 170px; height: 50px;"/>
+        <img src="../images/logo1.png" alt="logo" style="width: 170px; height: 70px;"/>
         </a>
         <a class="navbar-brand brand-logo-mini" href="index_leader.php">
           <img src="../images/favicon.png" alt="logo" />
@@ -100,7 +100,7 @@
           <li class="nav-item">
             <a class="nav-link" href="index_chart.php">
               <i class="menu-icon mdi mdi-chart-line"></i>
-              <span class="menu-title">แผนภูมิ</span>
+              <span class="menu-title">รายงาน</span>
             </a>
           </li>
           <li class="nav-item">

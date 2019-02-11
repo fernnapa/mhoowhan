@@ -160,18 +160,18 @@ if(mysqli_num_rows($result) > 0)
 {
  $output .= 
 '<div class="table-responsive">
-<p></p>
+
 <form id="form3"> 
 <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " class="hover" >
 <thead>
-<tr style="font-family:Prompt; font-weight: bold; font-size: 15px;  ">
+<tr>
 
-<td style="text-align: center;">Barcode</td>
-<td style="text-align: center;">Serial Number</td>
-<td style="text-align: center;">สัญญา</td>
-<td style="text-align: center;">ประเภทครุภัณฑ์</td>
-<td style="text-align: center;">สถานะ</td>
-<td style="text-align: center;">เลือกครุภัณฑ์</td>
+<td style="text-align: center;"><b>Barcode</b></td>
+<td style="text-align: center;"><b>Serial Number</b></td>
+<td style="text-align: center;"><b>สัญญา</b></td>
+<td style="text-align: center;"><b>ประเภทครุภัณฑ์</b></td>
+<td style="text-align: center;"><b>สถานะ</b></td>
+<td style="text-align: center;"><b>เลือกครุภัณฑ์</b></td>
 
 </tr>
 </thead>

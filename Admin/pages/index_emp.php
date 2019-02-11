@@ -276,7 +276,8 @@ include("../../db_connect.php");
                                                      location.reload();
                                                     }
                                                     );
-                                }else if(data > 1){
+                                }
+                                if(data == 2){
                                              swal( {
                                                      title: "ข้อมูลไม่สำเร็จ",
                                                      text: "รหัสหรือรูปนี้มีอยู่ในระบบเเล้ว",
@@ -284,14 +285,14 @@ include("../../db_connect.php");
                                                      button: "กรอกข้อมูลอีกครั้ง",
                                                     }
                                                   );
-                                }else{
+                                }if(data == 3){
                                              swal( {
                                                      title: "เพิ่มข้อมูลไม่สำเร็จ",
-                                                     text: "ท่านกรอกข้อมูลไม่ครบถ้วนหรือไม่ถูกต้อง",
+                                                     text: "กรุณาอัพโหลดรูปภาพ",
                                                      icon: "error",
                                                      button: "ตกลง",
                                                     });
-                                                   }     
+                                                   }   
                                                 }  
                        })  
                   });  

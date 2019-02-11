@@ -59,7 +59,7 @@ $_SESSION['chooseEq'] = array();
                                             </form>
                                         </div>
                                         <div class="modal-footer">
-                                          <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                                          <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
                                         </div>
 
                             </div>
@@ -81,7 +81,7 @@ $_SESSION['chooseEq'] = array();
                             <table align="center">
                             <tr>
                             <td><input type="hidden" name="id_rf" id="id_rf" class="form-control"></td>
-                            <td>วันที่คืนครุภัณฑ์ </td>
+                            <td style="font-family:Prompt;">วันที่คืนครุภัณฑ์ </td>
                             <td><input type="date" name="pm_date_refund" id="pm_date_refund" class="form-control"></td>
                             </tr>
                             </table>

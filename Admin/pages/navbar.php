@@ -98,10 +98,10 @@
             <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a class="nav-link" href="index_eq.php">ข้อมูลครุภัณฑ์คอมพิวเตอร์</a>         <!-----  หน้า จัดการ ----->
+                  <a class="nav-link" href="index_tor.php">ข้อมูลประเภทครุภัณฑ์</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="index_tor.php">ข้อมูลประเภทครุภัณฑ์</a>
+                  <a class="nav-link" href="index_eq.php">ข้อมูลครุภัณฑ์คอมพิวเตอร์</a>         <!-----  หน้า จัดการ ----->
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="index_department.php">ข้อมูลหน่วยงาน</a>
@@ -125,9 +125,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="chart.php">
+            <a class="nav-link" href="index_chart.php">
               <i class="menu-icon mdi mdi-chart-line"></i>
-              <span class="menu-title">แผนภูมิ</span>
+              <span class="menu-title">รายงาน</span>
             </a>
           </li>
           <li class="nav-item">

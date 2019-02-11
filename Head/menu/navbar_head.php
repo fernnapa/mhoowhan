@@ -6,7 +6,7 @@
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
 
         <a class="navbar-brand brand-logo" href="index_head.php">
-          <img src="../images/logo1.png" alt="logo" style="width: 170px; height: 50px;"/>
+          <img src="../images/logo1.png" alt="logo" style="width: 170px; height: 70px;"/>
         </a>
 
         <a class="navbar-brand brand-logo-mini" href="index_head.php">
@@ -101,18 +101,6 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index_map.php">
-              <i class="menu-icon mdi mdi-flag-variant"></i>
-              <span class="menu-title">แผนที่</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index_chart.php">
-              <i class="menu-icon mdi mdi-chart-line"></i>
-              <span class="menu-title">แผนภูมิ</span>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="menu-icon mdi mdi-folder-download"></i>
               <span class="menu-title" >ดาวน์โหลดรายงาน</span>  <!-----  หน้า จัดการ ----->
@@ -128,6 +116,18 @@
                 </li>
               </ul>
             </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index_map.php">
+              <i class="menu-icon mdi mdi-flag-variant"></i>
+              <span class="menu-title">แผนที่</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index_chart.php">
+              <i class="menu-icon mdi mdi-chart-line"></i>
+              <span class="menu-title">รายงาน</span>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../Home/logout.php">

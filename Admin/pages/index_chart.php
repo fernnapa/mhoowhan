@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <?php  
-include("../db_connect.php");
+include("../../db_connect.php");
 
 
                         if(isset($_POST["search"])){
@@ -55,8 +55,13 @@ include("../db_connect.php");
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>รายงาน</title>
   <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
-  <?php include("menu/link.php"); ?>
+  <?php include("link.php"); ?>
   <style>
+            .table-responsive {
+              
+              overflow-x: auto;
+              overflow-y: hidden;
+
             table, th, td    {
             }
             td {
@@ -76,10 +81,10 @@ include("../db_connect.php");
 
 <body>
 
-    <?php include("menu/navbar_emp.php")  ?>
+    <?php include("navbar.php")  ?>
 
                              <?php
-                                  include("../db_connect.php");
+                                  include("../../db_connect.php");
                                   
                                   $sql = "SELECT COUNT(eq_id) as total1 FROM `equipment`";
                                   $result = mysqli_query($conn, $sql);
@@ -307,6 +312,7 @@ include("../db_connect.php");
 </div>
 </div>
 </div>
+
 
   
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

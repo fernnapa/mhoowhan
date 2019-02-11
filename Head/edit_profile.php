@@ -13,7 +13,28 @@ include("../db_connect.php");
   <title>ข้อมูลส่วนตัว</title>
  
   <?php include("menu/link.php"); ?>
+  <style>
+            .modal-dialog.a{
+                max-width : 835px;
+                max-height: 550px;
 
+            }
+
+            table, th, td    {
+            }
+            td {
+                padding: 5px;
+                text-align: center;    
+            }
+            th {
+                padding: 5px;
+            }
+            body{
+                font-family: 'Kanit', sans-serif;
+            }
+            .search-table-outter { overflow-x: scroll; }
+            .w3-theme-l2 {color:#fff !important;background-color:#78acce !important}
+    </style>
   </head>
   
   <body>
@@ -42,7 +63,7 @@ include("../db_connect.php");
                     <!-- left column -->
                             <div class="col-md-3">
                                 <div class="text-center">
-                                <img src="images/<?php echo $row["emp_pic"]; ?>" width='100%' height='100%' class="img-fluid">
+                                <img src="../Admin/pages/img/<?php echo $row["emp_pic"]; ?>" width='100%' height='100%' class="img-fluid">
                                 </div>
                             </div>
       
@@ -155,7 +176,7 @@ $conn->close();
                   $('#update_form').on('submit', function(e){  
                        e.preventDefault();  
                        $.ajax({  
-                            url :"save_profile.php",  
+                            url :"../Employee/save_profile.php",  
                             method:"POST",  
                             data:new FormData(this),  
                             contentType:false,  

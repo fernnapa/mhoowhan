@@ -210,8 +210,13 @@ $(document).ready(function(){
         "language": {
             "lengthMenu": "ข้อมูลเเสดง _MENU_ ต่อหน้า",
             "info": " _PAGE_ หน้าจาก _PAGES_",
-            "sSearch": "ค้นหา"
+            "sSearch": "ค้นหา",
+          
 
+        },
+        "Paginate": {
+            "sPrevious": "ก่อนหน้า", // This is the link to the previous page
+            "sNext": "ถัดไป" // This is the link to the next page
         },
   
       retrieve: true,

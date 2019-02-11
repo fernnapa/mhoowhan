@@ -86,12 +86,11 @@
                     <div class="card-body">
                    
                     <div class="table-responsive" id="result">
-                    <p></p>
+    
                     <form id="form3"> 
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
                     <tr >
-                        <td style="text-align: center;"></td>
                         <td style="text-align: center;">Barcode</td>
                         <td style="text-align: center;">Serial Number</td>
                         <td style="text-align: center;">สัญญา</td>
@@ -116,7 +115,6 @@
                        while($data = mysqli_fetch_array($result)):
 
                     ?>
-                        <td style="text-align:left"><?php echo $data['eq_pic']; ?></td>
                         <td style="text-align:left"><?php echo $data['eq_barcode']; ?></td>
                         <td style="text-align:left"><?php echo $data['eq_serial']; ?></td>
                         <td style="text-align:left"><?php echo $data['con_name']; ?></td>

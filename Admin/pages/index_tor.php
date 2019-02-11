@@ -18,7 +18,7 @@ include("../../db_connect.php");
             max-width : 70%;
             }
             .modal-dialog.b{
-            max-width : 500px;
+            max-width : 700px;
             }
             body{
                 font-family: 'Kanit', sans-serif;
@@ -35,7 +35,7 @@ include("../../db_connect.php");
 
 <!-- /.Model Edit ประเภท-->
     <div class="modal fade" tabindex="-1" role="dialog" id="myModalType" style="font-family:Prompt;">
-        <div class="modal-dialog" role="document";>
+        <div class="modal-dialog b" role="document";>
             <div class="modal-content">
                 <div class="card">
                     <div class="card-body">
@@ -785,28 +785,20 @@ include("../../db_connect.php");
 $(document).ready(function(){  
       $('#tableType').DataTable({
         "searching": true,
+        "language": {
+            "lengthMenu": "ข้อมูลเเสดง _MENU_ ต่อหน้า",
+            "info": " _PAGE_ หน้าจาก _PAGES_",
+            "sSearch": "ค้นหา"
 
-        "oLanguage": {
-   		"sSearch": "ค้นหา : "
- 		},
-        retrieve: true,
+        },
+  
+      retrieve: true,
+
 	  });  
 });  
 </script>
 
 
-<script>
-$(document).ready(function(){  
-      $('#tableCon').DataTable({
-        "searching": true,
-
-        "oLanguage": {
-        "sSearch": "ค้นหา : "
-        },
-        retrieve: true,
-        });  
-});  
-</script>
 
 
 <!-- script remove -->

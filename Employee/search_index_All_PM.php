@@ -21,6 +21,8 @@ if(isset($_POST["query"]) )
             ON permit.pm_status = a_status.status_id
             LEFT JOIN department
             ON permit.pm_dep = department.dep_id
+            LEFT JOIN employee
+            ON permit.pm_empno = employee.emp_id
             WHERE pm_status = 9 OR pm_status = 7 OR pm_status = 6 OR pm_status= 3 OR pm_status= 8 OR pm_status= 10 OR pm_status= 11 OR pm_status = 12";
         }
         else
@@ -30,6 +32,8 @@ if(isset($_POST["query"]) )
             ON permit.pm_status = a_status.status_id
             LEFT JOIN department
             ON permit.pm_dep = department.dep_id
+            LEFT JOIN employee
+            ON permit.pm_empno = employee.emp_id
             WHERE pm_status = '$search'";
         }
 
@@ -41,6 +45,8 @@ else
  ON permit.pm_status = a_status.status_id
  LEFT JOIN department
  ON permit.pm_dep = department.dep_id
+ LEFT JOIN employee
+ ON permit.pm_empno = employee.emp_id
  WHERE pm_status = 9 OR pm_status = 7 OR pm_status = 6 OR pm_status= 3 OR pm_status= 8 OR pm_status= 10 OR pm_status= 11 OR pm_status = 12";
 }
 
@@ -51,7 +57,7 @@ if(mysqli_num_rows($result) > 0)
 '<div class="table-responsive">
 <p></p>
 <form id="form3"> 
-<table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " class="hover" >
+<table id="tableshow" align="center" style="width:100%;" class="table table-hover table-striped table-bordered" class="hover" >
 <thead>
 <tr style="font-weight: bold;">
 
@@ -97,7 +103,9 @@ if($test == 1){
           $name = $ex['pm_name'];
           $username = $ex['pm_username'];
           $dep = $ex['dep_name'];
-          $emp = $ex['pm_empno'];
+          $pm_fname = $row["emp_fname"];
+          $pm_lname = $row["emp_lname"];
+        //   $emp = $ex['pm_empno'];
           $status_name = $ex['status_name'];
         }
 if($stn == 12){
@@ -106,7 +114,7 @@ if($stn == 12){
     <td style="text-align:left">'.$name.'</td>
     <td style="text-align:left">'.$username.'</td>
     <td style="text-align:left">'.$dep.'</td>
-    <td style="text-align:left">'.$emp.'</td>
+    <td style="text-align:left">'.$pm_fname.'&nbsp;&nbsp;'.$pm_lname.'</td>
     <td style="text-align:center" class="w3-red">'.$status_name.'</td>
     <td><button type="button" name="submitRFN" class="btn btn-success btn-block" data-toggle="modal" data-target="#ModalRefund"  value="'.$id.'" onclick="idrefund(this)" style="font-family:Prompt;"><i class="mdi mdi-debug-step-over"></i>คืนครุภัณฑ์</button></td>
     <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showData('.$row['pm_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
@@ -120,7 +128,7 @@ if($stn == 7){
         <td style="text-align:left">'.$row['pm_name'].'</td>
         <td style="text-align:left">'.$row['pm_username'].'</td>
         <td style="text-align:left">'.$row['dep_name'].'</td>
-        <td style="text-align:left">'.$row['pm_empno'].'</td>
+        <td style="text-align:left">'.$row["emp_fname"].'&nbsp;&nbsp;'.$row["emp_lname"].'</td>
         <td style="text-align:left">'.$row['status_name'].'</td>
         <td></td>
         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showData('.$row['pm_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
@@ -134,7 +142,7 @@ if($stn == 7){
         <td style="text-align:left">'.$row['pm_name'].'</td>
         <td style="text-align:left">'.$row['pm_username'].'</td>
         <td style="text-align:left">'.$row['dep_name'].'</td>
-        <td style="text-align:left">'.$row['pm_empno'].'</td>
+        <td style="text-align:left">'.$row["emp_fname"].'&nbsp;&nbsp;'.$row["emp_lname"].'</td>
         <td style="text-align:left" >'.$row['status_name'].'</td>
         <td></td>
         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showData('.$row['pm_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
@@ -149,7 +157,7 @@ if($stn == 7){
         <td style="text-align:left">'.$row['pm_name'].'</td>
                         <td style="text-align:left">'.$row['pm_username'].'</td>
                         <td style="text-align:left">'.$row['dep_name'].'</td>
-                        <td style="text-align:left">'.$row['pm_empno'].'</td>
+                        <td style="text-align:left">'.$row["emp_fname"].'&nbsp;&nbsp;'.$row["emp_lname"].'</td>
                         <td style="text-align:left">'.$row['status_name'].'</td>
                         <td></td>
                         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showData('.$row['pm_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
@@ -163,7 +171,7 @@ if($stn == 7){
         <td style="text-align:left">'.$row['pm_name'].'</td>
         <td style="text-align:left">'.$row['pm_username'].'</td>
         <td style="text-align:left">'.$row['dep_name'].'</td>
-        <td style="text-align:left">'.$row['pm_empno'].'</td>
+        <td style="text-align:left">'.$row["emp_fname"].'&nbsp;&nbsp;'.$row["emp_lname"].'</td>
         <td style="text-align:left">'.$row['status_name'].'</td>
         <td></td>
         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showData('.$row['pm_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
@@ -177,7 +185,7 @@ if($stn == 7){
         <td style="text-align:left">'.$row['pm_name'].'</td>
         <td style="text-align:left">'.$row['pm_username'].'</td>
         <td style="text-align:left">'.$row['dep_name'].'</td>
-        <td style="text-align:left">'.$row['pm_empno'].'</td>
+        <td style="text-align:left">'.$row["emp_fname"].'&nbsp;&nbsp;'.$row["emp_lname"].'</td>
         <td style="text-align:center"  class="w3-blue-gray">'.$row['status_name'].'</td>
         <td><button type="button" name="submitRFN" class="btn btn-success btn-block" data-toggle="modal" data-target="#ModalRefund"  value="'.$id.'" onclick="idrefund(this)" style="font-family:Prompt;">  <i class="mdi mdi-debug-step-over"></i>คืนครุภัณฑ์</button></td>
         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showData('.$row['pm_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
@@ -190,7 +198,7 @@ if($stn == 7){
         <td style="text-align:left">'.$row['pm_name'].'</td>
         <td style="text-align:left">'.$row['pm_username'].'</td>
         <td style="text-align:left">'.$row['dep_name'].'</td>
-        <td style="text-align:left">'.$row['pm_empno'].'</td>
+        <td style="text-align:left">'.$row["emp_fname"].'&nbsp;&nbsp;'.$row["emp_lname"].'</td>
         <td style="text-align:left">'.$row['status_name'].'</td>
         <td></td>
         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="showData('.$row['pm_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>

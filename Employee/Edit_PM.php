@@ -89,7 +89,6 @@ $_SESSION['chooseEq'] = array();
                 </div>
 
 
-                <br>   
                 <?php
                
                 $pm = "SELECT * FROM `permit` 
@@ -116,18 +115,18 @@ $_SESSION['chooseEq'] = array();
                 ?>
                     
                     <form id="Add_PM"> 
-                    <table border="0" align="center" style="width:80%;" class="w3-teal">
+                    <table border="0" align="center" style="width:100%;" class="w3-teal">
                     <tr>
-                    <td><h3 style="width:100%; font-family:Prompt;"><b>เเก้ไขรายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
+                    <td><p><h3 style="width:100%; font-family:Prompt;"><b>เเก้ไขรายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
                     <div class="container" > 
                     <div class="table-responsive">
-                    <br>
-                    <table border="1" align="center" style="width:100%;  font-family:Prompt;" class="w3-round ">
+            
+                    <table border="0" align="center" style="width:100%;  font-family:Prompt;" class="w3-round ">
                     <tr>
-                    <td style="text-align: left; width:40%;">คำนำหน้าชื่อ</td>
-                    <td style="text-align: left; width:60%;">ชื่อผู้เช่ายืม</td>
+                    <td style="text-align: left; width:50%;">คำนำหน้าชื่อ</td>
+                    <td style="text-align: left; width:50%;">ชื่อผู้เช่ายืม</td>
                     </tr>
                     <td><input type="text" name="pm_userTname" class="form-control" value="<?php echo $pm_userTname; ?>"></td>
                     <td ><input type="text" name="pm_username" class="form-control" value="<?php echo $pm_username; ?>"></td>
@@ -270,10 +269,15 @@ $_SESSION['chooseEq'] = array();
 <!-- /.script modal add -->
 
 <script>
-
 $(document).ready(function(){  
       $('#tableshow').DataTable({
-  "searching": true
+  "searching": false,
+  "lengthChange": false,
+  "paging":   false,
+  "oLanguage": {
+        "sSearch": "ค้นหา : "
+        },
+        retrieve: true,
 });  
  }); 
 </script>

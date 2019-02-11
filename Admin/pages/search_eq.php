@@ -207,7 +207,7 @@ if(mysqli_num_rows($result) > 0)
  $output .= 
 '<div class="table-responsive">
 <form id="form3"> 
-<table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " class="hover" >
+<table id="tableshow" align="center" style="width:100%;" class="table table-hover table-striped table-bordered " class="hover" >
 <thead>
 <tr style="font-weight: bold; font-family:Prompt;">
 

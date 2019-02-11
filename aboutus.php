@@ -98,7 +98,7 @@ input[type="text"] {
  <div class="container"  align="center"style="font-family:Prompt;" >
 			
 
-        <table class="tg" align="center" style="width:70%">
+        <table class="tg" align="center" style="width:70%" border="0">
             <tr>
                 <th class="tg-0pky" colspan="2"><div align='center'><img src="images/about.jpg" width="50%" ></div></th>
             </tr>

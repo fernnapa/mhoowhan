@@ -39,7 +39,7 @@ session_start();
                   <div class="row">
                       <div class="col-md-3">
                           <div class="text-center">
-                              <img src="img/<?php echo $row["emp_pic"]; ?>"width='100%' height='100%' class="img-fluid">
+                              <img src="../Admin/pages/img/<?php echo $row["emp_pic"]; ?>"width='100%' height='100%' class="img-fluid">
                                   <h6 style="font-family:Prompt;">รูปภาพ</h6>
                           </div>
                       </div>

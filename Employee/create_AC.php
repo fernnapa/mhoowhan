@@ -29,6 +29,7 @@ session_start();
             .modal-dialog.a{
                 max-width : 50%;
             }
+            
          
     </style>
     </head>
@@ -94,7 +95,7 @@ session_start();
                     <table border="0" align="center" style="width:100%" class="w3-round ">
                     <tr>
                     <td style="text-align: left;"  width="50%">คำนำหน้าชื่อ</td>
-                    <td style="text-align: left; " width="50%">ชื่อผู้เช่ายืม</td>
+                    <td style="text-align: left; " width="50%">ชื่อ-สกุล</td>
                     </tr>
 
                     <tr>
@@ -120,7 +121,7 @@ session_start();
                     </tr>
 
                     <tr>
-                    <td class="form-inline"><input type="text" name="pm_ex" placeholder="หน่วยงาน"  class="form-control " id="pm_ex" readonly style="width:100%;">
+                    <td class="form-inline"><input type="text" name="pm_ex"  placeholder="หน่วยงาน"  class="form-control " id="pm_ex" readonly style="width:100%;">
                     <input type="hidden" name="ac_dep" placeholder="กรุณาเลือกหน่วยงาน"  class="form-control " id="ac_dep" style="width:100%;">
                     <form id="chooseDep"><input type="submit" name="AddDep" id="AddDep" style="font-family:Prompt;" value="เลือกหน่วยงาน" form="chooseDep" class="btn btn-primary btn-block" data-toggle="modal" data-target="#ModalDep"></button></form></td>
                     <td style="vertical-align:top"><textarea name="ac_title" class="form-control" style="width:100%;" ></textarea></td>
@@ -133,7 +134,7 @@ session_start();
                     </tr>
 
                     <tr>
-                    <td ><input type="text" name="ac_emp" class="form-control" value="<?php echo $_SESSION["User"] ?>"readonly/></td>
+                    <td ><input type="text" name="ac_emp" class="form-control" style="font-family:Prompt;" value="<?php echo $_SESSION["User"] ?>"readonly/></td>
                     <input type="hidden" name="ac_emp" class="form-control" value="<?php echo $_SESSION["emp_id"] ?>">
                     <td ><input type="text" name="ac_typeR" class="form-control"></td>
                     </tr>
@@ -155,7 +156,7 @@ session_start();
                     
                     <div class="table-responsive" id="result">
                     <p></p>
-                    <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
+                    <table id="tableshow" align="center" style="width:100%;" class="table table-hover table-striped table-bordered" >
                     <thead>
                     <tr >
                        

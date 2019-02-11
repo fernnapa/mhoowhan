@@ -74,7 +74,7 @@ $_SESSION['chooseEq'] = array();
                     </table>
                     <div class="table-responsive" id="result">
                     <form id="form3"> 
-                    <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
+                    <table id="tableshow" align="center" style="width:100%;" class="table table-hover table-striped table-bordered" >
                     <thead>
                     <tr style="font-weight: bold; font-family:Prompt;">
                         <td style="text-align: center; font-size: 15px;">ลำดับที่</td>

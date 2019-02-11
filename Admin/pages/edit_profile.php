@@ -14,6 +14,18 @@ include("../../db_connect.php");
  
   <?php include("link.php"); ?>
 
+  <style>
+    .modal-dialog.a{
+    max-width : 70%;
+    }
+    .modal-dialog.b{
+    max-width : 580px;
+    }
+
+    body{
+                font-family: 'Kanit', sans-serif;
+            }
+    </style>
   </head>
   
   <body>

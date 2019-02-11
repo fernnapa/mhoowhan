@@ -60,7 +60,7 @@ include("../db_connect.php");
                         <td style="text-align: center;">รายการ</td>
                         <td style="text-align: center;">รหัสหน่วยงาน</td>
                         <td style="text-align: center;">ชื่อหน่วยงาน</td>
-                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">คำนำหน้าชื่อ</td>
                         <td style="text-align: center;">ชื่อ</td>
                         <td style="text-align: center;">ตำเเหน่ง</td>
                         <td style="text-align: center;">รหัสพนักงาน</td>

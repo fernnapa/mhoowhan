@@ -2,10 +2,12 @@
 session_start();
         if(isset($_REQUEST['emp_user'])){
 				//connection
-                  include("db_connect.php");
+                  include("../db_connect.php");
 				//รับค่า user & password
                   $emp_user = $_REQUEST['emp_user'];
                   $eq_id = $_POST['id_eq'];
+
+                
                 
                  $emp_pass = $_REQUEST['emp_pass'];
 				//query 
@@ -28,7 +30,17 @@ session_start();
 
                       if ($_SESSION["emp_status"]=="member"){
                           $sql2="SELECT * FROM `equipment` WHERE `eq_id` = $eq_id";
-                          $result2 = mysqli_query($conn,$sql2);
+                          if(mysqli_query($conn, $sql2)){ 
+                            $result2 = mysqli_query($conn,$sql2);
+    
+                          }else{
+                            echo '<script type="text/javascript">'; 
+                              echo 'alert("กรุณาสเเกน QR-Code อีกครั้ง");'; 
+                              echo 'window.location.href = "login_phone.php";';
+                              echo '</script>';
+    
+                            return;  
+                          }
                           while($row2 = mysqli_fetch_array($result2))
                           {
                                    $eq  = $row2["eq_id"];
@@ -39,18 +51,82 @@ session_start();
 
                       }
 
+                      if ($_SESSION["emp_status"]=="head"){
+                        $sql2="SELECT * FROM `equipment` WHERE `eq_id` = $eq_id";
+                        if(mysqli_query($conn, $sql2)){ 
+                          $result2 = mysqli_query($conn,$sql2);
+  
+                        }else{
+                          echo '<script type="text/javascript">'; 
+                            echo 'alert("กรุณาสเเกน QR-Code อีกครั้ง");'; 
+                            echo 'window.location.href = "login_phone.php";';
+                            echo '</script>';
+  
+                          return;  
+                        }
+                        while($row2 = mysqli_fetch_array($result2))
+                        {
+                                 $eq  = $row2["eq_id"];
+                        }
+                      echo "<script>";
+                      echo 'location.href = "../Admin/pages/viewQR_Admin.php?ID='.$eq.'"';
+                      echo "</script>";
 
+                    }
 
-                  }else{
+                    if ($_SESSION["emp_status"]=="leader"){
+                      $sql2="SELECT * FROM `equipment` WHERE `eq_id` = $eq_id";
+                      if(mysqli_query($conn, $sql2)){ 
+                        $result2 = mysqli_query($conn,$sql2);
+
+                      }else{
+                        echo '<script type="text/javascript">'; 
+                          echo 'alert("กรุณาสเเกน QR-Code อีกครั้ง");'; 
+                          echo 'window.location.href = "login_phone.php";';
+                          echo '</script>';
+
+                        return;  
+                      }
+                      while($row2 = mysqli_fetch_array($result2))
+                      {
+                               $eq  = $row2["eq_id"];
+                      }
                     echo "<script>";
-                        echo "alert(\" user หรือ  password ไม่ถูกต้อง\");"; 
-                        echo "window.history.back()";
+                    echo 'location.href = "../Admin/pages/viewQR_Admin.php?ID='.$eq.'"';
                     echo "</script>";
 
                   }
 
+                  if ($_SESSION["emp_status"]=="admin"){
+                    $sql2="SELECT * FROM `equipment` WHERE `eq_id` = $eq_id";
+                    if(mysqli_query($conn, $sql2)){ 
+                      $result2 = mysqli_query($conn,$sql2);
+
+                    }else{
+                      echo '<script type="text/javascript">'; 
+                        echo 'alert("กรุณาสเเกน QR-Code อีกครั้ง");'; 
+                        echo 'window.location.href = "login_phone.php";';
+                        echo '</script>';
+
+                      return;  
+                    }
+                    while($row2 = mysqli_fetch_array($result2))
+                    {
+                             $eq  = $row2["eq_id"];
+                    }
+                  echo "<script>";
+                  echo 'location.href = "../Admin/pages/viewQR_Admin.php?ID='.$eq.'"';
+                  echo "</script>";
+
+                }
+               
+
         }else{
-             header("Location: login_phone.php"); //user & password incorrect back to login again
+          echo "<script>";
+              echo "alert(\" user หรือ  password ไม่ถูกต้อง\");"; 
+              echo "window.history.back()";
+          echo "</script>";
 
         }
+      }
 ?>

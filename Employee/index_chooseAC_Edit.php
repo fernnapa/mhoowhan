@@ -81,11 +81,11 @@ $_SESSION['chooseEq'] = array();
                     <div class="card">
                     <div class="card-body">
                     <div class="table-responsive" id="result">
-                    <p></p>
+                   
                     <form id="form3"> 
                     <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
                     <thead>
-                    <tr style="font-family:Prompt; font-weight: bold; font-size: 15px;  ">
+                    <tr>
                         <td style="text-align: center;">Barcode</td>
                         <td style="text-align: center;">Serial Number</td>
                         <td style="text-align: center;">สัญญา</td>

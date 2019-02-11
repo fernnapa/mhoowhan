@@ -33,7 +33,8 @@ include("../db_connect.php");
 
     <title>ดาวน์โหลดไฟล์การจัดสรรครุภัณฑ์คอมพิวเตอร์</title>
         <body >
-      
+        <div class="card">
+        <div class="card-body">
                     <div class="container" > 
        
                     <table border="0" align="center" style="width:100%;" class="w3-teal">
@@ -54,14 +55,14 @@ include("../db_connect.php");
                     <br>
                     <br>
                     <form id="form3"> 
-                    <table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " >
+                    <table id="tableshow" align="center" style="width:100%;" class="table table-hover table-striped table-bordered" >
                     <thead>
                     <tr >
                         <td style="text-align: center;">Barcode</td>
                         <td style="text-align: center;">รายการ</td>
                         <td style="text-align: center;">รหัสหน่วยงาน</td>
                         <td style="text-align: center;">ชื่อหน่วยงาน</td>
-                        <td style="text-align: center;"></td>
+                        <td style="text-align: center;">คำนำหน้าชื่อ</td>
                         <td style="text-align: center;">ชื่อ</td>
                         <td style="text-align: center;">ตำเเหน่ง</td>
                         <td style="text-align: center;">รหัสพนักงาน</td>
@@ -146,7 +147,8 @@ include("../db_connect.php");
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-
+  </div>
+  </div>
 
 
 

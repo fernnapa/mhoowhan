@@ -1,6 +1,6 @@
 <?php  
 session_start();
-include("../../Home/db_connect.php");
+include("../../db_connect.php");
 $_SESSION['chooseEq'] = array();
 ?>  
 <!DOCTYPE html>
@@ -10,7 +10,6 @@ $_SESSION['chooseEq'] = array();
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Home</title>
   <?php include("link_phone.php"); ?>
   
   <style>
@@ -46,7 +45,7 @@ $_SESSION['chooseEq'] = array();
                     
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3><b>รายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
+                    <td style="font-family:Prompt;"><h3><b>รายการยืม-คืนครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
                     
@@ -73,6 +72,8 @@ $_SESSION['chooseEq'] = array();
                             ON permit.pm_status = a_status.status_id
                             LEFT JOIN department
                             ON permit.pm_dep = department.dep_id
+                            LEFT JOIN employee
+                            ON permit.pm_empno = employee.emp_id
                             WHERE pm_status = 9 OR pm_status = 7 OR pm_status = 6 OR pm_status= 3 OR pm_status= 8 OR pm_status= 10 OR pm_status= 11 OR pm_status = 12";
                          $result = mysqli_query($conn, $sql);
                        while($data = mysqli_fetch_array($result)):
@@ -98,14 +99,18 @@ $_SESSION['chooseEq'] = array();
                                 LEFT JOIN a_status
                                 ON permit.pm_status = a_status.status_id
                                 LEFT JOIN department
-                                ON permit.pm_dep = department.dep_id WHERE pm_id = $id";
+                                ON permit.pm_dep = department.dep_id WHERE pm_id = $id
+                                LEFT JOIN employee
+                                ON permit.pm_empno = employee.emp_id";
+                                
                                 $rs1 = mysqli_query($conn, $st);
                                 while($ex = mysqli_fetch_array($rs1)){
                                   $stn = $ex['pm_status'];
                                   $name = $ex['pm_name'];
                                   $username = $ex['pm_username'];
                                   $dep = $ex['dep_name'];
-                                  $emp = $ex['pm_empno'];
+                                  $emp = $ex['emp_fname'];
+                                  $emp1 = $ex['emp_lname'];
                                   $status_name = $ex['status_name'];
                                 }
                             if($stn == 12){ ?>
@@ -113,6 +118,7 @@ $_SESSION['chooseEq'] = array();
                             <td style="text-align:left"><?php echo $username; ?></td>
                             <td style="text-align:left"><?php echo $dep; ?></td>
                             <td style="text-align:left"><?php echo $emp; ?></td>
+                            <td style="text-align:left"><?php echo $emp1; ?></td>
                             <td style="text-align:center" class="w3-red"><?php echo $status_name; ?></td>
                             
                        
@@ -121,7 +127,7 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['pm_username']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['pm_empno']; ?></td>
+                        <td style="text-align:left"><?php echo $data['emp_fname']; ?>&nbsp;&nbsp;<?php echo $data['emp_lname']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                         
                     
@@ -130,7 +136,7 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['pm_username']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['pm_empno']; ?></td>
+                        <td style="text-align:left"><?php echo $data['emp_fname']; ?>&nbsp;&nbsp;<?php echo $data['emp_lname']; ?></td>
                         <td style="text-align:left" ><?php echo $data['status_name']; ?></td>
                         
                     
@@ -139,7 +145,7 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['pm_username']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['pm_empno']; ?></td>
+                        <td style="text-align:left"><?php echo $data['emp_fname']; ?>&nbsp;&nbsp;<?php echo $data['emp_lname']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                         
                     
@@ -148,7 +154,7 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['pm_username']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['pm_empno']; ?></td>
+                        <td style="text-align:left"><?php echo $data['emp_fname']; ?>&nbsp;&nbsp;<?php echo $data['emp_lname']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                         
                    
@@ -157,21 +163,21 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['pm_username']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['pm_empno']; ?></td>
+                        <td style="text-align:left"><?php echo $data['emp_fname']; ?>&nbsp;&nbsp;<?php echo $data['emp_lname']; ?></td>
                         <td style="text-align:center"  class="w3-blue-gray"><?php echo $data['status_name']; ?></td>
                         
                     <?php }if($stn == "ผ่านการตรวจสอบ"){ ?>
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['pm_username']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['pm_empno']; ?></td>
+                        <td style="text-align:left"><?php echo $data['emp_fname']; ?>&nbsp;&nbsp;<?php echo $data['emp_lname']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                         
                     <?php }if($stn == "รออนุมัติ"){?>
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
                          <td style="text-align:left"><?php echo $data['pm_username']; ?></td>
                          <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                         <td style="text-align:left"><?php echo $data['pm_empno']; ?></td>
+                         <td style="text-align:left"><?php echo $data['emp_fname']; ?>&nbsp;&nbsp;<?php echo $data['emp_lname']; ?></td>
                          <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                          
                     <?php } ?>
@@ -179,6 +185,13 @@ $_SESSION['chooseEq'] = array();
                        <?php endwhile; ?>
                 </table>
                 </form>
+                <br>
+                <br>
+                <table align="center" border="0" style="width:100%">
+                <tr>
+                <td><a class="btn btn-danger btn-block" href="../../Home/logout_phone.php">ออกจากระบบ</a>
+                </tr>
+                </table>
                 </div>
                 <br>
                 </div>

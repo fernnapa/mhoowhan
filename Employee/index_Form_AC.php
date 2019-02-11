@@ -103,8 +103,8 @@ session_start();
                     <td style="text-align:left"><?php echo $data['ac_empid']; ?></td>
                     <td style="text-align:left"><?php echo $data['status_name']; ?></td>
 
-                    <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC_dt(<?php echo $data['ac_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
-                    <td><a href="PDF_AC.php?ac_id=<?php echo $data['ac_id']; ?>" class="btn btn-danger" data-role="pdf" style="font-family:Prompt;">แบบฟอร์ม</a></button></td> 
+                    <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showAC_DC_dt(<?php echo $data['ac_id']; ?>)" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
+                    <td><a href="PDF_AC.php?ac_id=<?php echo $data['ac_id']; ?>" class="btn btn-danger" data-role="pdf" style="font-family:Prompt;"><i class="mdi mdi-file-pdf"></i>แบบฟอร์ม</a></button></td> 
                     </tr> 
                     <?php } ?>
         </table>

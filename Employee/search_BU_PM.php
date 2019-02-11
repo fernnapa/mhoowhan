@@ -93,18 +93,18 @@ if(mysqli_num_rows($result) > 0)
 '<div class="table-responsive">
 <p></p>
 <form id="form3"> 
-<table id="tableshow" align="center" style="width:100%;" class="table table-striped table-bordered " class="hover" >
+<table id="tableshow" align="center" style="width:100%;" class="table table-hover table-striped table-bordered" class="hover" >
 <thead>
 <tr style="font-weight: bold; ">
 
                       
-<td style="text-align: center; font-size: 15px;">ผู้ยืม</td>
-<td style="text-align: center; font-size: 15px;">Serial Number</td>
-<td style="text-align: center; font-size: 15px;">สัญญา</td>
-<td style="text-align: center; font-size: 15px;">ประเภทครุภัณฑ์</td>
-<td style="text-align: center; font-size: 15px;">จุดประสงค์การยืม</td>
-<td style="text-align: center; font-size: 15px;">วันที่ยืม</td>
-<td style="text-align: center; font-size: 15px;">วันที่คืน</td>
+<td style="text-align: center; ">ผู้ยืม</td>
+<td style="text-align: center; ">Serial Number</td>
+<td style="text-align: center; ">สัญญา</td>
+<td style="text-align: center; ">ประเภทครุภัณฑ์</td>
+<td style="text-align: center; ">จุดประสงค์การยืม</td>
+<td style="text-align: center; ">วันที่ยืม</td>
+<td style="text-align: center; ">วันที่คืน</td>
 
 </tr>
 </thead>

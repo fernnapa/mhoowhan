@@ -9,7 +9,6 @@ include("../db_connect.php");
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Home</title>
   <?php include("menu/link.php"); ?>
   <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
 
@@ -64,8 +63,8 @@ include("../db_connect.php");
                                     </div>
                                     <div class="modal-footer">
                                    
-                                    <button type="button" class="btn btn-success"  value="PM_pass" name="PM_pass" id="PM_pass" form="ViewPM">อนุมัติ</button>
-                                    <button type="button" class="btn btn-danger"  value="To_note" data-toggle="modal" data-target="#ModalNote"  id="To_note" name="To_note" form="ViewPM">ไม่อนุมัติ</button>
+                                    <button type="button" class="btn btn-success"  value="PM_pass" name="PM_pass" id="PM_pass" form="ViewPM" style="font-family:Prompt;">อนุมัติ</button>
+                                    <button type="button" class="btn btn-danger"  value="To_note" data-toggle="modal" data-target="#ModalNote"  id="To_note" name="To_note" form="ViewPM" style="font-family:Prompt;">ไม่อนุมัติ</button>
                                     </div>
 
                             </div>
@@ -78,7 +77,7 @@ include("../db_connect.php");
                 <div class="modal-dialog" role="document">
                 <div class="modal-content w3-theme-l2" >
                 <div class="modal-header">
-                                <h4 class="modal-title"><b>เหตุผลที่ไม่ผ่านการตรวจสอบ</b></h4>
+                                <h4 class="modal-title" style="font-family:Prompt;"><b>เหตุผลที่ไม่ผ่านการตรวจสอบ</b></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                         <div class="modal-body table-responsive">
@@ -89,15 +88,15 @@ include("../db_connect.php");
                             <td><input type="hidden" name="pm_head_dc" id="pm_head_dc" class="form-control" value="<?php echo $_SESSION["User"] ?>"></td>
                             <td><input type="hidden" name="pm_dc_position" id="pm_dc_position" class="form-control" value="<?php echo $_SESSION["emp_position"]?>"></td>
 
-                            <td>เหตุผลที่ไม่ผ่านการตรวจสอบ: </td>
+                            <td style="font-family:Prompt;">เหตุผลที่ไม่ผ่านการตรวจสอบ: </td>
                             <td><input type="text" name="pm_note" id="pm_note" class="form-control"></td>
                             </tr>
                             </table>
                             </form>
                             </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-success"  name="Note_PM" id="Note_PM" form="NotePM">ส่งผลการตรวจสอบ</button>
-                                    <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                                    <button type="button" class="btn btn-success"  name="Note_PM" id="Note_PM" form="NotePM" style="font-family:Prompt;">ส่งผลการตรวจสอบ</button>
+                                    <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +122,7 @@ include("../db_connect.php");
                         <td style="text-align: center;">หน่วยงาน</td>
                         <td style="text-align: center;">พนักงานจัดสรร</td>
                         <td style="text-align: center;">สถานะ</td>
-                        <td style="text-align: center;">Action</td>
+                        <td style="text-align: center;"></td>
                    </tr>
                     </thead>
                     <tr>

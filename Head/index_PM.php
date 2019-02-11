@@ -84,15 +84,15 @@ include("../db_connect.php");
                             <td><input type="hidden" name="pm_head" id="pm_head" class="form-control" value="<?php echo $_SESSION["User"] ?>"></td>
                             <td><input type="hidden" name="pm_hd_position" id="pm_hd_position" class="form-control" value="<?php echo $_SESSION["emp_position"]?>"></td>
 
-                            <td>เหตุผลที่ไม่ผ่านการตรวจสอบ: </td>
+                            <td style="font-family:Prompt;">เหตุผลที่ไม่ผ่านการตรวจสอบ: </td>
                             <td><input type="text" name="pm_note" id="pm_note" class="form-control"></td>
                             </tr>
                             </table>
                             </form>
                             </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-success"  name="Note_PM" id="Note_PM" form="NotePM">ส่งผลการตรวจสอบ</button>
-                                    <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                                    <button type="button" class="btn btn-success"  name="Note_PM" id="Note_PM" form="NotePM" style="font-family:Prompt;">ส่งผลการตรวจสอบ</button>
+                                    <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
                                 </div>
                                 </div>
                                 </div>

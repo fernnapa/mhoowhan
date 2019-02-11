@@ -1,5 +1,6 @@
 <?php
 include("../db_connect.php");
+include("datatable_all.php");
 session_start();
 $_SESSION['chooseEq'] = array();
 

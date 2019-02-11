@@ -21,6 +21,8 @@ if(isset($_POST["query"]) )
             ON allocate.ac_status = a_status.status_id
             LEFT JOIN department
             ON allocate.ac_dep = department.dep_id
+            LEFT JOIN employee
+            ON allocate.ac_emp = employee.emp_id
             WHERE 
             ac_status = 9 OR 
             ac_status = 7 OR 
@@ -36,6 +38,8 @@ if(isset($_POST["query"]) )
             ON allocate.ac_status = a_status.status_id
             LEFT JOIN department
             ON allocate.ac_dep = department.dep_id
+            LEFT JOIN employee
+            ON allocate.ac_emp = employee.emp_id
             WHERE ac_status = '$search'";
         }
 
@@ -47,6 +51,8 @@ else
     ON allocate.ac_status = a_status.status_id
     LEFT JOIN department
     ON allocate.ac_dep = department.dep_id
+    LEFT JOIN employee
+    ON allocate.ac_emp = employee.emp_id
     WHERE 
     ac_status = 9 OR 
     ac_status = 7 OR 
@@ -89,7 +95,7 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$data['ac_title'].'</td>
         <td style="text-align:left">'.$data['ac_name'].'</td>
         <td style="text-align:left">'.$data['dep_name'].'</td>
-        <td style="text-align:left">'.$data['ac_empid'].'</td>
+        <td style="text-align:left">'.$data['emp_fname'].'  '.$data['emp_lname'].'</td>
         <td style="text-align:left">'.$data['status_name'].'</td>
         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData('.$data['ac_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
 
@@ -102,7 +108,7 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$data['ac_title'].'</td>
         <td style="text-align:left">'.$data['ac_name'].'</td>
         <td style="text-align:left">'.$data['dep_name'].'</td>
-        <td style="text-align:left">'.$data['ac_empid'].'</td>
+        <td style="text-align:left">'.$data['emp_fname'].' '.$data['emp_lname'].'</td>
         <td style="text-align:left">'.$data['status_name'].'</td>
         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData('.$data['ac_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
     </tr>
@@ -115,7 +121,7 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$data['ac_title'].'</td>
         <td style="text-align:left">'.$data['ac_name'].'</td>
         <td style="text-align:left">'.$data['dep_name'].'</td>
-        <td style="text-align:left">'.$data['ac_empid'].'</td>
+        <td style="text-align:left">'.$data['emp_fname'].' '.$data['emp_lname'].'</td>
         <td style="text-align:left">'.$data['status_name'].'</td>
         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData('.$data['ac_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
     </tr>';
@@ -127,7 +133,7 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$data['ac_title'].'</td>
         <td style="text-align:left">'.$data['ac_name'].'</td>
         <td style="text-align:left">'.$data['dep_name'].'</td>
-        <td style="text-align:left">'.$data['ac_empid'].'</td>
+        <td style="text-align:left">'.$data['emp_fname'].' '.$data['emp_lname'].'</td>
         <td style="text-align:left">'.$data['status_name'].'</td>
         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData('.$data['ac_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
         </tr>';
@@ -141,7 +147,7 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$data['ac_title'].'</td>
         <td style="text-align:left">'.$data['ac_name'].'</td>
         <td style="text-align:left">'.$data['dep_name'].'</td>
-        <td style="text-align:left">'.$data['ac_empid'].'</td>
+        <td style="text-align:left">'.$data['emp_fname'].' '.$data['emp_lname'].'</td>
         <td style="text-align:left">'.$data['status_name'].'</td>
 
         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData('.$data['ac_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
@@ -154,7 +160,7 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$data['ac_title'].'</td>
         <td style="text-align:left">'.$data['ac_name'].'</td>
         <td style="text-align:left">'.$data['dep_name'].'</td>
-        <td style="text-align:left">'.$data['ac_empid'].'</td>
+        <td style="text-align:left">'.$data['emp_fname'].' '.$data['emp_lname'].'</td>
         <td style="text-align:left">'.$data['status_name'].'</td>
 
         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData('.$data['ac_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
@@ -168,7 +174,7 @@ if(mysqli_num_rows($result) > 0)
         <td style="text-align:left">'.$data['ac_title'].'</td>
         <td style="text-align:left">'.$data['ac_name'].'</td>
         <td style="text-align:left">'.$data['dep_name'].'</td>
-        <td style="text-align:left">'.$data['ac_empid'].'</td>
+        <td style="text-align:left">'.$data['emp_fname'].' '.$data['emp_lname'].'</td>
         <td style="text-align:left">'.$data['status_name'].'</td>
 
         <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewAC" onclick="showData('.$data['ac_id'].')" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>

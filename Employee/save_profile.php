@@ -38,7 +38,7 @@ include("../db_connect.php");
                               {  
                                    $new_name = $_FILES['images']['name'][$name];  
                                    $sourcePath = $_FILES["images"]["tmp_name"][$name];  
-                                   $targetPath = "img/".$new_name;
+                                   $targetPath = "../Admin/pages/img/".$new_name;
                                    $noup = 2;  
 
                                    $p = "SELECT * FROM employee WHERE emp_id = $id"; 
@@ -61,7 +61,7 @@ include("../db_connect.php");
                                                                             
                                         $pic = $_FILES['images']['name'][$name];
                                              $data = 1;
-                                        unlink("img/$img_old");
+                                        unlink("../Admin/pages/img/$img_old");
                                                   }
 
 

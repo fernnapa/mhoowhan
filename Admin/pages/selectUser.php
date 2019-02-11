@@ -1,5 +1,5 @@
 <?php
-include("../../Home/db_connect.php");
+include("../../db_connect.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -7,9 +7,12 @@ include("../../Home/db_connect.php");
   
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
+
         <?php include("link.php");?>
 
-        <link href="https://fonts.googleapis.com/css?family=Kanit|Prompt" rel="stylesheet">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 
 
 
@@ -20,28 +23,29 @@ include("../../Home/db_connect.php");
             }
             td {
                 padding: 5px;
-                text-align: center;    
+                text-align: center;  
+                font-size: 50px;  
             }
             th {
                 padding: 5px;
             }
             body{
                 font-family: 'Kanit', sans-serif;
-                background-image: url("../../img/auth/bg.jpg");
+                background-image: url("../../images/bg/bg.jpg");
                 height: auto; 
                 background-size: cover;
             }
             .search-table-outter { overflow-x: scroll; }
 
-            .box {
-    width:300px;
-    height:100px;
-    position:fixed;
-    margin-left:-150px; /* half of width */
-    margin-top:-50px;  /* half of height */
-    top:50%;
-    left:50%;
-}
+            .box { 
+                width:300px;
+                height:100px;
+                position:fixed;
+                margin-left:-150px; /* half of width */
+                margin-top:-50px;  /* half of height */
+                top:35%;
+                left:67%;
+            }
          
     </style>
 
@@ -70,17 +74,30 @@ include("../../Home/db_connect.php");
     
     
     
-    <table align="center" class="box" border="0">
+    <table align="center" class="box" border="0" style="width:40%;" >
+   
         <tr>
-
-        <td> <a href="../../Home/login_phone.php?ERFdfgRTsTR=<?php echo $id; ?>" class="btn btn-success btn-block" style="font-family:Prompt;">เจ้าหน้าที่ศูนย์คอมพิวเตอร์</a></td>
+        <td style="font-family:Prompt;"> 
+        
+        <a href="../../Home/login_phone.php?ERFdfgRTsTR=<?php echo $id; ?>" class=" btn btn-primary btn-lg btn-block">
+                <i class="fa fa-desktop fa-3x"></i><br><br/>
+                &nbsp;&nbsp; เจ้าหน้าที่
+                <br/>ศูนย์คอมพิวเตอร์
+            </a></td>
         </tr>
         <tr>
-        <td><a href="viewQR_User.php?ID=<?php echo $id; ?>" class="btn btn-success btn-block" style="font-family:Prompt;">ผู้ใช้งานทั่วไป</a></td>
+        <td style="font-family:Prompt;">
+        <a href="viewQR_User.php?ID=<?php echo $id; ?>" class=" btn btn-primary btn-lg btn-block">
+                <i class="fa fa-users fa-3x"></i><br><br/>
+                &nbsp;&nbsp;ผู้ใช้งานทั่วไป
+            </a></td>
+         
+        
+            
         </tr>
     </table>
     
-
+   
 
 
 

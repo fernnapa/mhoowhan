@@ -1,5 +1,6 @@
 <?php
-include("../../Home/db_connect.php");
+session_start();
+include("../../db_connect.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -52,31 +53,9 @@ include("../../Home/db_connect.php");
         if(isset($_GET['id'])){
             $id = $_GET['id'];
         }
-
+        $x = 0;
 ?>
-  <div class="modal fade" tabindex="-1" role="dialog" id="myModal2">
-                            <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">เเก้ไขข้อมูลครุภัณฑ์</h4>
-                            </div>
-                                    <div class="modal-body">
-                                            <form id="Edit_Eq" method="POST">
-                                            <table style="width:100%" align="center" id="getEq">
-                                               
-                                               
-                                            
-                                            </table>
-                                            </form>
-                                        </div>
-                            <div class="modal-footer">
-                                <button type="reset" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
-                                <button type="submit" class="btn btn-success" value="submit" name="Eq_update" id="submit" form="Edit_Eq">อัพเดท</button>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
+  
                 <br>   
                 <?php
 
@@ -88,6 +67,7 @@ include("../../Home/db_connect.php");
 
                 if($num_rows>0)
                 {
+                    $x = 1;
                     $pm = "SELECT * FROM `permit_detail`
                     LEFT JOIN permit
                     ON permit_detail.per_id = permit.pm_id 
@@ -127,7 +107,7 @@ include("../../Home/db_connect.php");
                         <form id="Add_PM"> 
                         <table border="0" align="center" style="width:100%;" class="w3-teal ">
                         <tr>
-                        <td><h3><b>รายการครุภัณฑ์</b></h3></a></button></td>
+                        <td><h3><b>รายการยืมครุภัณฑ์</b></h3></a></button></td>
                         </tr>
                         </table>
                         <div class="table-responsive w3-card-2 w3-round">
@@ -169,23 +149,111 @@ include("../../Home/db_connect.php");
                         <td ><?php echo $pm_enddate; ?></td>
                         </tr>
                         <tr>
-                        <?php $sql = "SELECT * FROM `equipment` WHERE eq_id = $id";
-                            $result2 = mysqli_query($conn, $sql);
-                            while($data2 = mysqli_fetch_array($result2))
-                            {
-                                    $pic = $data2['eq_pic'];
-                            }
-                         ?>
-                        <td colspan="2"><img src="img/<?php echo $pic; ?>" width="400px;" height="320px;" / class="w3-card-2 w3-round"></td>
+                        <td colspan="2"><a class="btn btn-danger btn-block" href="../../Home/logout_phone.php">ออกจากระบบ</a>
+                </td>
                         </tr>
                         
                         </table>
                         </div>
             
 
-                        <?php }else{ 
+                        <?php }
 
-               
+                        
+                       
+                        $searchinAC ="SELECT * FROM `allocate_detail` WHERE `ald_eq_id` = $id";
+                        $result9 = mysqli_query($conn, $searchinAC);   
+                        $num_rows2 = mysqli_num_rows($result9);
+
+                        
+                        if($num_rows2>0)
+                        {
+                            $x = 1;
+                            $pm = "SELECT * FROM `allocate_detail`
+                            LEFT JOIN allocate
+                            ON allocate_detail.ac_id = allocate.ac_id 
+                            LEFT JOIN department
+                            ON allocate.ac_dep = department.dep_id
+                            WHERE ald_eq_id = $id";
+                            $result = mysqli_query($conn, $pm);
+                            while($data = mysqli_fetch_array($result))
+                            { 
+                                $ac_userTname = $data['ac_tname'];
+                                $ac_username = $data['ac_name'];
+                                $ac_userno = $data['ac_emp'];
+                                $ac_position = $data['ac_position'];
+                                $ac_dep = $data['ac_dep'];
+                                $ac_dep_name = $data['dep_name'];
+                            
+                                $ac_name = $data['ac_title'];
+                                $date = $data['ac_date'];
+                                $ac_empid = $data['ac_empid'];
+                                $ac_typeR = $data['ac_typeR'];
+                                $bc =  $data['ald_eq_barcode'];
+                                $sr =  $data['ald_eq_serial'];
+                                $tn =  $data['ald_type_name'];
+                                $cn =  $data['ald_con_name'];
+                                $cn =  $data['ald_con_name'];
+                                $stn =  $data['ald_status_name'];
+                                $dpn =  $data['dep_name'];
+
+                        }
+                        ?>
+                     <form id="Add_PM"> 
+                        <table border="0" align="center" style="width:100%;" class="w3-teal ">
+                        <tr>
+                        <td><h3><b>รายการจัดสรรครุภัณฑ์</b></h3></a></button></td>
+                        </tr>
+                        </table>
+                        <div class="table-responsive w3-card-2 w3-round">
+                        <table border="1" align="center" style="width:100%" class="w3-round table table-striped table-bordered">
+                        <tr>
+                        <td style="text-align: left; width: 50%;"><b>Barcode</b></td>
+                        <td style="text-align: left; width: 50%;"><b>หมายเลขเครื่อง</b></td>
+                        </tr>
+                        <td><?php echo $bc; ?></td>
+                        <td ><?php echo $sr; ?></td>
+                        </tr>
+    
+                        
+                        <tr>
+                        <td  style="text-align: left"><b>ประเภท</b></td>
+                        <td  style="text-align: left"><b>สัญญา</b></td>
+                        </tr>
+                        <tr>
+                        <td ><?php echo $tn; ?></td>
+                        <td><?php echo $cn; ?></td>
+                        </tr>
+    
+                        <tr>
+                        <td  style="text-align: left"><b>สถานะ</b></td>
+                        <td  style="text-align: left"><b>หน่วยงาน</b></td>
+                        </tr>
+    
+                        <tr>
+                        <td ><?php echo $stn; ?></td>
+                        <td><?php echo $dpn; ?></td>
+                        </tr>
+    
+                        <tr>
+                        <td style="text-align: left"><b>ผู้จัดสรร</b></td>
+                        <td style="text-align: left" ><b>จุดประสงค์</b></td>
+                        </tr>
+                        <tr>
+                        <td ><?php echo $ac_username; ?></td>
+                        <td ><?php echo $ac_name; ?></td>
+                        </tr>
+                        <tr>
+                        <td colspan="2"><a class="btn btn-danger btn-block" href="../../Home/logout_phone.php">ออกจากระบบ</a>
+                </td>
+                        </tr>
+                        
+                        </table>
+                        </div>
+                     
+                    <?php   }
+                    
+                    if($x == 0){ 
                 $eq = "SELECT * FROM equipment
                 LEFT JOIN a_status
                 ON equipment.eq_status = a_status.status_id
@@ -207,8 +275,7 @@ include("../../Home/db_connect.php");
                     $tn =  $data2['type_name'];
                     $cn =  $data2['con_name'];
                     $stn =  $data2['status_name'];
-                    $dpn =  '-';
-                    $pic = $data2['eq_pic'];
+                    $dpn =  "-";
                     $eqid = $data2['eq_id'];
 
 
@@ -230,7 +297,7 @@ include("../../Home/db_connect.php");
                     </tr>
                     </table>
                     <div class="table-responsive">
-                    <br>
+                 
                     <table border="1" align="center" style="width:100%" class="w3-round table table-striped table-bordered">
                     <tr>
                     <td style="text-align: left; font-family:Prompt;">Barcode</td>
@@ -268,13 +335,18 @@ include("../../Home/db_connect.php");
                     <td ><?php echo $pm_username; ?></td>
                     <td ><?php echo $pm_enddate; ?></td>
                     </tr>
+                   
                     <tr>
-                    <td colspan="2"><img src="img/<?php echo $pic; ?>" width="400px;" height="300px;" class="w3-card-2 w3-round"></td>
-                    </tr>
-                    <tr>
+                    <?php if($_SESSION["emp_status"] == "member")
+                    { ?>
                     <td><a href="create_AC_QR.php?ID=<?php echo $eqid; ?>" class="btn btn-success btn-block" style="font-family:Prompt;">ทำรายการจัดสรรครุภัณฑ์</a></td>
                     <td><a href="create_PM_QR.php?ID=<?php echo $eqid; ?>" class="btn btn-success btn-block" style="font-family:Prompt;">ทำรายการยืมคืนครุภัณฑ์</a></td>
-                    </tr>                    
+                    <?php } ?>
+                    </tr>   
+                    <tr>
+                        <td colspan="2"><a class="btn btn-danger btn-block" href="../../Home/logout_phone.php">ออกจากระบบ</a>
+                </td>
+                        </tr>                 
                     </table>
                     </div>
             <?php } ?>

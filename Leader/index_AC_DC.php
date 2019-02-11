@@ -9,7 +9,6 @@ include("../db_connect.php");
   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Home</title>
     <?php include("menu/link.php"); ?>
 
         <link rel="stylesheet" href="style.css">   
@@ -59,8 +58,8 @@ include("../db_connect.php");
                                     </div>
                                     <div class="modal-footer">
                                    
-                                    <button type="button" class="btn btn-success"  value="AC_pass" name="AC_pass" id="AC_pass" form="ViewAC">อนุมัติ</button>
-                                    <button type="button" class="btn btn-danger"  value="To_note" data-toggle="modal" data-target="#ModalNote"  id="To_note" name="To_note" form="ViewAC">ไม่อนุมัติ</button>
+                                    <button type="button" class="btn btn-success"  value="AC_pass" name="AC_pass" id="AC_pass" form="ViewAC" style="font-family:Prompt;">อนุมัติ</button>
+                                    <button type="button" class="btn btn-danger"  value="To_note" data-toggle="modal" data-target="#ModalNote"  id="To_note" name="To_note" form="ViewAC" style="font-family:Prompt;">ไม่อนุมัติ</button>
                                     </div>
 
                             </div>
@@ -81,7 +80,7 @@ include("../db_connect.php");
                             <td><input type="hidden" name="id_ac" id="id_ac" class="form-control"></td>
                             <td><input type="hidden" name="ac_head_dc" id="ac_head_dc" class="form-control" value="<?php echo $_SESSION["User"] ?>"></td>
                             <td><input type="hidden" name="ac_dc_position" id="ac_dc_position" class="form-control" value="<?php echo $_SESSION["emp_position"]?>"></td>
-                            <td>เหตุผลที่ไม่ผ่านการตรวจสอบ: </td>
+                            <td style="font-family:Prompt;">เหตุผลที่ไม่ผ่านการตรวจสอบ: </td>
                             <td><input type="text" name="ac_note" id="ac_note" class="form-control"></td>
                             </tr>
                            
@@ -89,8 +88,8 @@ include("../db_connect.php");
                             </form>
                             </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-success"  name="Note_AC" id="Note_AC" form="NoteAC">ส่งผลการตรวจสอบ</button>
-                                    <button type="reset" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                                    <button type="button" class="btn btn-success"  name="Note_AC" id="Note_AC" form="NoteAC" style="font-family:Prompt;">ส่งผลการตรวจสอบ</button>
+                                    <button type="reset" class="btn btn-danger" data-dismiss="modal" style="font-family:Prompt;">ปิด</button>
                                 </div>
                                 </div>
                                 </div>

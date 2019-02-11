@@ -30,17 +30,10 @@ include("../../db_connect.php");
                                    $noup = 2;   
                               }
                          }else{
-                              $noup = 1;
-                              $pic = ""; 
-                              $id = $_POST['emp_id']; 
-                              $fname = $_POST['emp_fname']; 
-                              $lname = $_POST['emp_lname']; 
-                              $position = $_POST['emp_position']; 
-                              $tel = $_POST['emp_tel']; 
-                              $mail = $_POST['emp_mail']; 
-                              $user =  $_POST['emp_user']; 
-                              $pass = $_POST['emp_pass']; 
-                              $status = $_POST['emp_status']; 
+                              $data =3;
+                              echo $data;
+                              return;
+
                               
                          }
                        
@@ -59,14 +52,10 @@ include("../../db_connect.php");
                                   ('$id','$fname','$lname','$position','$tel','$mail','$pic','$user','$pass','$status')";
                     
                                     if(mysqli_query($conn, $sql)){
-                                       if($noup == 1){
-                                                  $data = 1; 
-                                                  echo $data;
-                                       }else{
                                         move_uploaded_file($sourcePath, $targetPath); 
                                         $data = 1; 
                                         echo $data;
-                                       }      
+                                             
                                     }else{
                                                   $data = 0;
                                                   echo $data;

@@ -1,6 +1,6 @@
 <?php  
         session_start();
-        include("../../Home/db_connect.php");
+        include("../../db_connect.php");
         $_SESSION['chooseEq'] = array();
 ?>  
 <!DOCTYPE html>
@@ -10,7 +10,6 @@
   
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <title>Home</title>
             <?php include("link_phone.php"); ?>
             
                 <style>
@@ -39,7 +38,7 @@
                             <div class="modal-dialog " role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                            <h4 class="modal-title"><b>รายการจัดสรรครุภัณฑ์</b></h4>
+                            <h4 class="modal-title" style="font-family:Prompt;"><b>รายการจัดสรรครุภัณฑ์</b></h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                                     <div class="modal-body table-responsive">
@@ -60,7 +59,7 @@
                    
                     <table border="0" align="center" style="width:100%;" class="w3-teal w3-round">
                     <tr>
-                    <td><h3><b>รายการจัดสรรครุภัณฑ์</b></h3></a></button></td>
+                    <td style="font-family:Prompt;"><h3><b>รายการจัดสรรครุภัณฑ์</b></h3></a></button></td>
                     </tr>
                     </table>
                     
@@ -87,6 +86,8 @@
                             ON allocate.ac_status = a_status.status_id
                             LEFT JOIN department
                             ON allocate.ac_dep = department.dep_id
+                            LEFT JOIN employee
+                            ON allocate.ac_emp = employee.emp_id
                           
                           
                             WHERE ac_status = 9 OR ac_status = 7 OR ac_status = 6 OR ac_status= 2 OR ac_status= 8 OR ac_status= 10 OR ac_status= 11";
@@ -130,7 +131,7 @@
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
                         <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['ac_empid']; ?></td>
+                        <td style="text-align:left"><?php echo $data['emp_fname']; ?>&nbsp;&nbsp;<?php echo $data['emp_lname']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                         
 
@@ -139,7 +140,7 @@
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
                         <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['ac_empid']; ?></td>
+                        <td style="text-align:left"><?php echo $data['emp_fname']; ?>&nbsp;&nbsp;<?php echo $data['emp_lname']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                      
 
@@ -147,7 +148,7 @@
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
                         <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['ac_empid']; ?></td>
+                        <td style="text-align:left"><?php echo $data['emp_fname']; ?>&nbsp;&nbsp;<?php echo $data['emp_lname']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                         
 
@@ -155,7 +156,7 @@
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
                         <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['ac_empid']; ?></td>
+                        <td style="text-align:left"><?php echo $data['emp_fname']; ?>&nbsp;&nbsp;<?php echo $data['emp_lname']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                         
                         
@@ -163,7 +164,7 @@
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
                         <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['ac_empid']; ?></td>
+                        <td style="text-align:left"><?php echo $data['emp_fname']; ?>&nbsp;&nbsp;<?php echo $data['emp_lname']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                        
                     <?php }if($stn == "รออนุมัติ"){?>
@@ -171,7 +172,7 @@
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
                         <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['ac_empid']; ?></td>
+                        <td style="text-align:left"><?php echo $data['emp_fname']; ?>&nbsp;&nbsp;<?php echo $data['emp_lname']; ?></td>
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                       
 
@@ -179,7 +180,7 @@
                         <td style="text-align:left"><?php echo $data['ac_title']; ?></td>
                         <td style="text-align:left"><?php echo $data['ac_name']; ?></td>
                         <td style="text-align:left"><?php echo $data['dep_name']; ?></td>
-                        <td style="text-align:left"><?php echo $data['ac_empid']; ?></td>
+                        <td style="text-align:left"><?php echo $data['emp_fname']; ?>&nbsp;&nbsp;<?php echo $data['emp_lname']; ?></td>
                         <td style="text-align:center"  class="w3-blue-gray"><?php echo $data['status_name']; ?></td>
                       
                     <?php } ?>
@@ -187,6 +188,13 @@
                        <?php endwhile; ?>
                 </table>
                 </form>
+<br>
+<br>
+                <table align="center" border="0" style="width:100%">
+                <tr>
+                <td><a class="btn btn-danger btn-block" href="../../Home/logout_phone.php">ออกจากระบบ</a>
+                </tr>
+                </table>
                 </div>
                 <br>
                 </div>

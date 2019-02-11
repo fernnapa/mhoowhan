@@ -275,9 +275,10 @@ if(isset($_GET['id'])){
                                                                             </tr>
                                                                             <tr>
                                                                             <td style="text-align: right;"><b>ผู้ทำการตรวจสอบ </b></td>
-                                                                            <td style="text-align: left;" colspan="3">'.$pm_head.' 
+                                                                            <td style="text-align: left;" >'.$pm_head.' 
                                                                             <input type="hidden" name="pm_hd_position" id="pm_hd_position" value="'.$pm_hd_position.'" ></td> 
-                                                                            
+                                                                            <td style="text-align: right;"><b>ผู้ทำการอนุมัติ</b></td>
+                                                                            <td style="text-align: left;" >'.$pm_head_dc.' 
                                                                             </tr>
                                                                             </table>
                                                                             </div>

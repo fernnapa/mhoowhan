@@ -126,19 +126,19 @@ function initMap() {
 		<div style="margin-top:20px">
 				<form id="Add_dep">
 						<div class="form-group" style="font-family:Prompt;">
-						  <label for="location_name">รหัสหน่วยงาน</label>
+						  <label for="location_name" style="font-size: 15px; font-weight: bold;">รหัสหน่วยงาน</label>
 						  <input type="text" class="form-control" id="dep_no" name="dep_no" style="font-family:Prompt;" placeholder="ระบุรหัสหน่วยงาน" required>
 						</div>
 						<div class="form-group" style="font-family:Prompt;">
-						  <label for="location_name">ชื่อหน่วยงาน</label>
+						  <label for="location_name" style="font-size: 15px; font-weight: bold;">ชื่อหน่วยงาน</label>
 						  <input type="text" class="form-control" id="location_name" name="location_name" style="font-family:Prompt;" placeholder="ระบุชื่อสถานที่" required>
 						</div>
 						<div class="form-group" style="font-family:Prompt;">
-								<label for="lat">ละติจูด</label>
+								<label for="lat" style="font-size: 15px; font-weight: bold;">ละติจูด</label>
 								<input type="text" class="form-control" id="lat" name="lat" style="font-family:Prompt;" placeholder="ระบุละติจูด" required>
 						</div>
 						<div class="form-group" style="font-family:Prompt;">
-							<label for="Lng">ลองจิจูด</label>
+							<label for="Lng" style="font-size: 15px; font-weight: bold;">ลองจิจูด</label>
 							<input type="text" class="form-control" id="lng" name="lng" style="font-family:Prompt;" placeholder="ระบุลองจิจูด" required>
 						</div>
 						<div align="center" style="font-family:Prompt;">

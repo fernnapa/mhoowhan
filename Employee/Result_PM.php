@@ -118,7 +118,7 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
 
                         <td><button type="button" name="idEdit" class="btn btn-warning btn-block" value="<?php echo $data['pm_id']; ?>" onclick="getidTOedit(this)" style="font-family:Prompt;">เเก้ไขรายการ</button></td>
-                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="ShowData(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="ShowData(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
 
                     <?php  } if($stn == "ไม่อนุมัติ"){ ?>
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
@@ -128,7 +128,7 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                     
                         <td><button type="button" name="submitviewRS" id="submitviewNopass" class="btn btn-danger btn-block"  value="<?php echo $id; ?>" onclick="notpass(this)" style="font-family:Prompt;">ยกเลิกรายการ</button></td>
-                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="ShowData(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="submitviewNopass" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="ShowData(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
 
                     <?php } if($stn == "อนุมัติ"){ ?>
                         <td style="text-align:left"><?php echo $data['pm_name']; ?></td>
@@ -138,7 +138,7 @@ $_SESSION['chooseEq'] = array();
                         <td style="text-align:left"><?php echo $data['status_name']; ?></td>
                     
                         <td><button type="button" name="submitviewRS" id="submitviewRS" class="btn btn-success btn-block"  value="<?php echo $id; ?>" onclick="pass(this)" style="font-family:Prompt;">ทำการยืม-คืน</button></td>
-                        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="ShowData(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;">ดูรายละเอียด</button></td>
+                        <td><button type="button" name="submitview" class="btn btn-primary btn-block"  data-toggle="modal" data-target="#ModalViewPM" onclick="ShowData(<?php echo $data['pm_id']; ?>)" style="font-family:Prompt;"><i class="mdi mdi-file-document"></i>ดูรายละเอียด</button></td>
                     <?php } ?>
                         </tr>
                     <?php } ?>
