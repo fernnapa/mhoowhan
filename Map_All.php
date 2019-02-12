@@ -111,12 +111,12 @@
                             $address = $_GET['address'];
                             $strSQL = "SELECT * FROM department"; 
                             $rs = mysqli_query($conn, $strSQL);
-                            $infomation = $rs->fetch_assoc();       //เอาค่าไปแสดง description
+                            $infomation = $rs->fetch_assoc();       //เอาค่าไปแสดง description ข้างล่าง
                   
                             $objQuery = mysqli_query($conn, $strSQL);
                             ?>
                                   
-                           <div align="center">
+                        <div align="center">
                         <form action="Map_ALL.php" method="post">
                             <h3 align ="center" style="font-family:Prompt;">หน่วยงานที่มีการจัดสรรครุภัณฑ์คอมพิวเตอร์</h3><br/>
                             <table align="center" border="0">
@@ -146,11 +146,12 @@
                         {   //ถ้ามีการ search และมีค่าที่ไม่ใช่ "ทั้งหมด" links ไป index_unique
                             $address = $_POST["address"];          
                             header('Location: map.php?address='.$address); 
-                          } 
-                    if($check == 0) {   //เมื่อเปิดหน้ามาครั้งเเรกยังไม่มีการเรียก search หรือ การรับค่า GET
+                        } 
+
+                        if($check == 0) {   //เมื่อเปิดหน้ามาครั้งเเรกยังไม่มีการเรียก search หรือ การรับค่า GET
                 
-                          $strSQL = "SELECT * FROM department"; ?>
-                           <div align="center">
+                        $strSQL = "SELECT * FROM department"; ?>
+                        <div align="center">
                         <form action="Map_All.php" method="post">
                             <h3 align ="center" style="font-family:Prompt;">หน่วยงานที่มีการจัดสรรครุภัณฑ์คอมพิวเตอร์</h3><br/>
                             <table align="center" border="0">
@@ -182,14 +183,13 @@
                  <?php
                 
                           $rs = mysqli_query($conn, $strSQL);
+                          
                           $infomation = $rs->fetch_assoc();       //เอาค่าไปแสดง description
                 
                           $objQuery = mysqli_query($conn, $strSQL);
                 
                 ?>
-                
-					
-                 
+                               
 			    </div>
 		    </div>
 		</div>
@@ -232,10 +232,10 @@
           function initMap() {
             // The location of 
             var sut = {lat: 14.8803505, lng: 102.0156959};
-            // The map, centered at Uluru
+          
             var maps = new google.maps.Map(
                 document.getElementById('map'), {zoom: 15, center: sut});
-            // The marker, positioned at Uluru
+          
                 
             var marker, info;
                     $.getJSON("jsondata.php", function(jsonObj){
@@ -248,7 +248,7 @@
                             });
 
                                 info = new google.maps.InfoWindow();
-                                google.maps.event.addListener(marker, 'click', (function(marker, i){
+                                google.maps.event.addListener(marker, ' ', (function(marker, i){
                                 return function(){
                                     info.setContent(item.dep_name);
                                     info.open(maps,marker);
@@ -257,11 +257,6 @@
                             });
                         })
                     }
-
-
-                
-
-
 </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXkgT4Hw83wzhkNsSJ05qL_dMkzX8EsuE&callback=initMap"

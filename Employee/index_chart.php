@@ -215,7 +215,7 @@ include("../db_connect.php");
                                     <br><td style="font-family:Prompt;"><b>วันที่จัดสรร</b> </td>
                                     <td>
                                     <select name="start" class="form-control" style="width:200px"> 
-                    <!--DISTINCT เป็นคำสั่งที่ใช้สำหรับการระบุเงื่อนไขการเลือกข้อมูลในตารางTableโดยทำการเลือกข้อมูลที่ซ้ำกันมาเพียงแค่Recordเดียว/ASCเรียงจากน้อยไปหามาก -->
+                            <!--DISTINCT เป็นคำสั่งที่ใช้สำหรับการระบุเงื่อนไขการเลือกข้อมูลในตารางTableโดยทำการเลือกข้อมูลที่ซ้ำกันมาเพียงแค่Recordเดียว/ASCเรียงจากน้อยไปหามาก -->
                                 
                                     <?php 
                                         $sql_date_start = "SELECT distinct(ac_date) FROM `allocate` order by ac_date asc";

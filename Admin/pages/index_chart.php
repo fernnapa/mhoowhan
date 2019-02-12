@@ -1,6 +1,7 @@
 <?php  
 session_start();
 ?>  
+
 <!DOCTYPE html>
 <html lang="en">
 <?php  
@@ -13,18 +14,15 @@ include("../../db_connect.php");
                             $end = $_POST["end"];
 
 
-                            $sql_range = $_POST["search"];
-
-
-               
-                        
+                        $sql_range = $_POST["search"];                       
                         $sql_range = "SELECT ac_date, ac_dep, department.dep_name, count(ac_id) as total 
                         FROM allocate 
                         INNER JOIN department ON department.dep_id = allocate.ac_dep 
                         INNER JOIN a_status ON allocate.ac_status = a_status.status_id
                         WHERE a_status.status_id in(2) AND ac_date BETWEEN '$start' AND '$end' 
                         GROUP BY department.dep_name ORDER BY `ac_id` DESC";
-                        
+
+                        $sql_range2 = $_POST["search"]; 
                         $sql_range2 ="SELECT pm_date_analys, pm_dep, department.dep_name, count(pm_id) as total 
                         FROM permit
                         INNER JOIN department ON department.dep_id = permit.pm_dep 
@@ -37,12 +35,7 @@ include("../../db_connect.php");
 
 
                         }
-
-
-
-
-                      
-                
+       
                         //echo  $sql_range;
 
                         
@@ -110,9 +103,6 @@ include("../../db_connect.php");
                                     $dp = $depart["total4"];
                                   } 
 
-                                
-
-                                  
                               ?>
 
 
@@ -220,6 +210,7 @@ include("../../db_connect.php");
                                     <br><td style="font-family:Prompt;"><b>วันที่จัดสรร</b> </td>
                                     <td>
                                     <select name="start" class="form-control" style="width:200px"> 
+                    
                     <!--DISTINCT เป็นคำสั่งที่ใช้สำหรับการระบุเงื่อนไขการเลือกข้อมูลในตารางTableโดยทำการเลือกข้อมูลที่ซ้ำกันมาเพียงแค่Recordเดียว/ASCเรียงจากน้อยไปหามาก -->
                                 
                                     <?php 
@@ -236,7 +227,8 @@ include("../../db_connect.php");
 
                                 <td style="font-family:Prompt;"><b>ถึง</b></td>
 
-                            <!--DISTINCT เป็นคำสั่งที่ใช้สำหรับการระบุเงื่อนไขการเลือกข้อมูลในตารางTableโดยทำการเลือกข้อมูลที่ซ้ำกันมาเพียงแค่Recordเดียว/DESCเรียงจากมากไปหาน้อย -->
+                    <!--DISTINCT เป็นคำสั่งที่ใช้สำหรับการระบุเงื่อนไขการเลือกข้อมูลในตารางTableโดยทำการเลือกข้อมูลที่ซ้ำกันมาเพียงแค่Recordเดียว/DESCเรียงจากมากไปหาน้อย -->
+                               
                                 <td>
                                 <select name="end" class="form-control" style="width:200px">
                                 <?php 
@@ -361,6 +353,9 @@ include("../../db_connect.php");
     </script>
 
 
+
+
+
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
@@ -410,7 +405,10 @@ include("../../db_connect.php");
     </script>
 
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
     google.charts.load('current', {'packages':['bar']});
     google.charts.setOnLoadCallback(drawChart);

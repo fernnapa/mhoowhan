@@ -8,9 +8,8 @@ $objQuery = mysqli_query($objConnect, $strSQL);
 $resultArray = array();
 while($obResult = mysqli_fetch_assoc($objQuery))
 {
-    array_push($resultArray, $obResult);
+    array_push($resultArray, $obResult);      // เก็บค่า  [0]["SUT"]
 }
-echo json_encode($resultArray);
-
+echo json_encode($resultArray);    //   ["SUT"]
 
 ?>

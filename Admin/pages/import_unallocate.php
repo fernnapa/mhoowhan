@@ -3,18 +3,18 @@ include("../../db_connect.php");
         if(isset($_POST["Import"])){
 
               echo $filename=$_FILES["file"]["tmp_name"];
-              $check_repeat = 0;
+              $check_repeat = 0;  //เช็คว่ามีข้อมูลไหม
 
-                  if($_FILES["file"]["size"] > 0)
+                  if($_FILES["file"]["size"] > 0) 
       {
 
-         $file = fopen($filename, "r");
+         $file = fopen($filename, "r");  //อ่านไฟล์
          while (($Data = fgetcsv($file, 100000, ",")) !== FALSE)
       {
 			 
          $result_check = mysqli_query($conn, "SELECT * FROM equipment WHERE eq_barcode='" . $Data[0] . "'");
          if(mysqli_num_rows($result_check) > 0){
-               $check_repeat = 1;
+               $check_repeat = 1;  //มีข้อมูลซ้ำ
          }else{
             $t = $Data[1];
             $c = $Data[12];
@@ -101,6 +101,8 @@ include("../../db_connect.php");
                         alert(\"Invalid File:Please Upload CSV File.\");
                         window.location = \"import_file.php\"
                         </script>";
+                  }else{
+                     echo "ffrfrg";
                   }
         }
 

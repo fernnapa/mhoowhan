@@ -9,15 +9,12 @@ include("../../db_connect.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>ข้อมูลหน่วยงาน</title>
     <?php include("link.php"); ?>
 
     <style>
-    .modal-dialog.a{
-        max-width : 70%;
-    } body{
+     body{
         font-family: 'Kanit', sans-serif;
     }
     </style>
@@ -28,8 +25,9 @@ include("../../db_connect.php");
 <body>
 <div class="card">
       <div class="card-body">
+   
     <!-- /.modal edit-->
-    <div class="modal fade" tabindex="-1" role="dialog" id="myModal2">
+    <div class="modal fade" role="dialog" id="myModal2">   <!--ส่วนของ Modal สังเกตุ id myModal2 ส่วนนี้จะถูกเรียกด้วย Java Script -->
         <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="card">
@@ -57,8 +55,11 @@ include("../../db_connect.php");
     </div>
     <!-- /.modal edit-->
 
-    <!-- /.data -->
-   
+
+
+
+
+    <!-- /.data --> 
         <table align="center" class="w3-teal" style="width:100%">
             <tr>
                 <th colspan="7"><p><h3 style="text-align:center; font-family:Prompt;"><b>ข้อมูลหน่วยงาน</b></h3></th>
@@ -85,35 +86,49 @@ include("../../db_connect.php");
     </div>
 
 
-
-
-
-
-
-
-
-    <!-- /.script modal edit -->
-    <script>
-        $('#myFormEdit').on('submit', function(e){
-            $('#myModalEdit').modal('show');
-            e.preventDefault();
+    <!----------- หลักการทำงาน AJAX เราจะสามารถใช้งานฝั่ง serve โดยไม่ต้องกดปุ่ม ------------>
+    <script>   
+        $(document).ready(function(){
+            load_data();
+                function load_data(query){   // query กำหนดเอง
+                    $.ajax({
+                        url:"search_dep.php",
+                        method:"POST",
+                        data:{query:query},  //ตัวแปนตัวแรกอะไรก็ได้ แต่อีกตัวต้องเหมือนใน load_data(query)
+                        success:function(data)   
+                        {
+                            $('#result').html(data);  //เอาไปแทนที่ในแทค html ที่มีชื่อว่า result
+                        }
+                    });
+                }
+                $('#search_text').keyup(function()    //ถ้ามีการพิมพ์
+                {
+                    var search = $(this).val();
+                    if(search != '')
+                    {
+                        load_data(search);
+                    }else
+                    {
+                        load_data();
+                    }
+                });
         });
     </script>
-    <!-- /.script modal edit --> 
 
 
-    <!-- /.script showdata in modal -->   
+
+    <!-------------- ใช้สำหรับดูรายละเอียด เพื่อกแก้ไข---------------->   
     <script>
         function showDepartment(str) {
         var xhttp;    
-            if (str == "") {
+            if (str == "") {  
                 document.getElementById("txtHint").innerHTML = "";
                 return;
             }
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("txtHint").innerHTML = this.responseText;
+            xhttp = new XMLHttpRequest();    //ใช้สร้าง XHR Object ขึ้นมาใช้งาน
+            xhttp.onreadystatechange = function() {    //ตรวจสอบสถานะการทำงานของการ request
+                if (this.readyState == 4 && this.status == 200) {    
+                document.getElementById("txtHint").innerHTML = this.responseText; //คืนค่าข้อมูลที่ response มาจาก server แบบข้อความ
                 }
             };
             xhttp.open("GET", "getDepartment.php?id="+str, true);
@@ -158,6 +173,7 @@ include("../../db_connect.php");
     <!-- /.script  update data and popup-->   
 
 
+
     <!-- /.script  datatable-->   
     <script>
         $(document).ready(function(){  
@@ -169,6 +185,7 @@ include("../../db_connect.php");
     <!-- /.script  datatable-->   
     
     
+
     <!-- script remove -->
     <script>
     function remove(str){
@@ -207,34 +224,6 @@ include("../../db_connect.php");
             }            
         });
     }
-    </script>
-
-    <script>
-        $(document).ready(function(){
-            load_data();
-                function load_data(query){
-                    $.ajax({
-                        url:"search_dep.php",
-                        method:"POST",
-                        data:{query:query},
-                        success:function(data)
-                        {
-                            $('#result').html(data);
-                        }
-                    });
-                }
-                $('#search_text').keyup(function()
-                {
-                    var search = $(this).val();
-                    if(search != '')
-                    {
-                        load_data(search);
-                    }else
-                    {
-                        load_data();
-                    }
-                });
-        });
     </script>
 
 </body>

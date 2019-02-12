@@ -178,7 +178,7 @@ include("../../db_connect.php");
                                         $exp_date = $data['con_exp'];
                                         $today_date = date('Y-m-d');
                                         $test =0;
-                                        $exp = strtotime($exp_date);
+                                        $exp = strtotime($exp_date);   //แปลงจากสตริงเป็นทาม เพื่อเปรียบเทียบกัน 
                                         $td = strtotime($today_date);
                                         if($td > $exp){
                                             $test =1;
@@ -954,7 +954,7 @@ $(document).ready(function()
                         }
                             );
                 }
-                $('#search_tor').keyup(function()
+                $('#search_tor').keyup(function()  //ถ้าพิมพ์จะเข้าฟังก์ชันนี้
                 {
                     var search = $(this).val();
                     if(search != '')
